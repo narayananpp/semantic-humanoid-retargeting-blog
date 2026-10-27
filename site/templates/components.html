@@ -1,0 +1,90 @@
+<!-- component: study-takeaways -->
+<aside class="takeaways-message" aria-label="Key takeaways">
+  <ul>
+    <li>We posit that accurate and generalizable retargeting requires <strong>foundational priors that capture both the semantic intent and physical requirements of a motion.</strong></li>
+    <li><strong>We use object-trajectory tracking to define the interaction goal, while allowing the robot to adapt its posture, contacts and control.</strong> Using off-the-shelf models and simulation feedback, HuMoTAR reduces mean object-tracking error by <strong>28.6%</strong> over a single <a href="https://github.com/openai/codex">Codex</a> agent across 40 <a href="https://arxiv.org/abs/2504.10414">HUMOTO</a> and <a href="https://arxiv.org/abs/2309.16237">OMOMO</a> tasks.</li>
+    <li><strong>Related experience helps complete the shelf lift.</strong> Reports from other furniture tasks reduce mean ADD from <strong>23.35 to 7.77 cm</strong> under equal refinement budgets.</li>
+    <li><strong>Early stopping offers a shorter refinement budget.</strong> A retrospective cutoff at <strong>22.3 minutes</strong> retains <strong>88.4% of the full-budget ADD reduction</strong> on average.</li>
+  </ul>
+</aside>
+<!-- /component -->
+
+
+<!-- component: aggregate-refinement-plot -->
+<figure class="aggregate-refinement-plot" id="aggregate-refinement-plot">
+  <img src="assets/refinement/aggregate-tracking.svg" width="1320" height="410" loading="lazy" alt="Three side-by-side step plots of mean ADD, position error and orientation error across all 40 benchmark tasks. Dark curves show the overall mean; light curves show each dataset. The view spans 30 minutes, including no-experience continuations for the staged searches.">
+  <figcaption><strong>Fig. 6.</strong> Mean tracking errors during 30 minutes of iterative refinement on 20 HUMOTO and 20 OMOMO tasks. The dark curve averages all 40 tasks; the lighter curves show each dataset.</figcaption>
+</figure>
+<!-- /component -->
+
+<!-- component: refinement-loop -->
+<figure id="refinement-loop" class="configuration-figure">
+            <div class="configuration-grid" id="configuration-diagrams"></div>
+            <noscript><p class="comparison">Enable JavaScript to step through the three configurations. Their inputs and feedback loops are described above.</p></noscript>
+            <figcaption><strong>Fig. 4.</strong> Agent configurations evaluated in this study. Astra one-shot generates a motion and controller in one response. Codex iteratively revises its solution. HuMoTAR runs four independent agents, two with optional retargeting tools, and selects the final execution with the lowest mean ADD.</figcaption>
+          </figure>
+<!-- /component -->
+
+<!-- component: kinematic-videos -->
+<figure id="kinematic-showcase" class="kinematic-showcase"><figcaption><strong>Fig. A1.</strong> Hand–object contact in five kinematic retargeting tasks. GMR, HOI-Retarget and HuMoTAR are shown from matched viewpoints and motion intervals. Reported contact gaps are averaged over each complete motion. Lower is better.</figcaption></figure>
+<!-- /component -->
+
+<!-- component: kinematic-results -->
+<div class="table-wrap"><table id="kinematic-results-table"><caption><strong>Table A1.</strong> Kinematic reference errors on 20 HUMOTO and 20 OMOMO tasks using G1 with Dex3 hands. <mark>↓ Lower is better</mark></caption><thead><tr><th scope="col">Method</th><th scope="col">Tasks</th><th scope="col">Body pose deviation (°)</th><th scope="col">Velocity direction error (°)</th><th scope="col">Contact-point gap (mm)</th><th scope="col">Hand orientation change (°)</th><th scope="col">Body jerk (m/s³)</th></tr></thead><tbody><tr class="dataset-table-heading"><th colspan="7" scope="colgroup">HUMOTO · 20 tasks</th></tr><tr><th scope="row">GMR</th><td>20</td><td>14.68</td><td>20.41</td><td>64.72</td><td>7.38</td><td>83.40</td></tr><tr><th scope="row">HOI-Retarget</th><td>20</td><td>15.18</td><td>28.08</td><td>36.58</td><td>7.41</td><td>25.93</td></tr><tr><th scope="row">Orchestrator-agent ensemble (ours)</th><td>20</td><td><strong>8.98</strong></td><td><strong>10.65</strong></td><td><strong>4.27</strong></td><td><strong>0.23</strong></td><td><strong>9.18</strong></td></tr><tr class="dataset-table-heading"><th colspan="7" scope="colgroup">OMOMO · 20 tasks</th></tr><tr><th scope="row">GMR</th><td>20</td><td>17.42</td><td>21.53</td><td>136.63</td><td>1.50</td><td>77.63</td></tr><tr><th scope="row">HOI-Retarget</th><td>20</td><td>18.94</td><td>26.10</td><td>31.31</td><td>4.93</td><td>34.68</td></tr><tr><th scope="row">Orchestrator-agent ensemble (ours)</th><td>20</td><td><strong>8.56</strong></td><td><strong>11.07</strong></td><td><strong>3.53</strong></td><td><strong>0.20</strong></td><td><strong>9.99</strong></td></tr></tbody></table></div><p class="metric-coverage">HUMOTO: contact gap uses 16 tasks; hand orientation uses 16. Each metric uses the same applicable tasks across all three methods.</p>
+<!-- /component -->
+
+<!-- component: dynamics-videos -->
+<figure id="dynamics-showcase" class="dynamics-showcase"><figcaption><strong>Fig. 9.</strong> Human demonstrations and simulated humanoid–object interactions from HUMOTO and OMOMO, with executions from HuMoTAR and the available baselines.</figcaption></figure>
+<!-- /component -->
+
+<!-- component: dynamics-results -->
+<div class="table-wrap"><table id="dynamics-results-table"><caption><strong>Table 2.</strong> Object-tracking errors in the final simulated executions of 20 HUMOTO and 20 OMOMO tasks. <mark>↓ Lower is better</mark></caption>
+<thead><tr><th scope="col">Method</th><th scope="col">Tasks</th><th scope="col">Mean ADD (cm)</th><th scope="col">Position error (cm)</th><th scope="col">Orientation error (°)</th></tr></thead><tbody>
+<tr class="dataset-table-heading"><th colspan="5" scope="colgroup">HUMOTO · 20 tasks</th></tr>
+<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td><td>56.66</td><td>55.49</td><td>51.22</td></tr>
+<tr><th scope="row">Astra one-shot</th><td>20</td><td>56.09</td><td>55.03</td><td>62.88</td></tr>
+<tr><th scope="row">Codex</th><td>20</td><td>20.96</td><td>19.19</td><td>29.32</td></tr>
+<tr><th scope="row">Orchestrator-agent ensemble (ours)</th><td>20</td><td><strong>14.30</strong></td><td><strong>13.87</strong></td><td><strong>22.07</strong></td></tr>
+<tr class="dataset-table-heading"><th colspan="5" scope="colgroup">OMOMO · 20 tasks</th></tr>
+<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td><td>48.31</td><td>43.36</td><td>52.07</td></tr>
+<tr><th scope="row">Astra one-shot</th><td>20</td><td>69.87</td><td>65.61</td><td>58.35</td></tr>
+<tr><th scope="row">Codex</th><td>20</td><td>26.51</td><td>23.70</td><td>28.32</td></tr>
+<tr><th scope="row">Orchestrator-agent ensemble (ours)</th><td>20</td><td><strong>19.61</strong></td><td><strong>17.06</strong></td><td><strong>27.07</strong></td></tr>
+</tbody></table></div>
+<!-- /component -->
+
+<!-- component: experience-frame -->
+<iframe id="experience-frame" src="experience.html?v=matched-experience" title="Matched experience continuations: setup, results and recorded strategies"></iframe>
+<!-- /component -->
+
+<!-- component: experience-result-figure -->
+<figure class="experience-result-figure">
+<img id="experience-result-plot" src="assets/experience/group-effect.svg" width="1320" height="390" alt="Three arrow plots compare the mean errors without and with experience, separately for similar and randomly grouped tasks. ADD and position error decrease in both groups; orientation error increases slightly.">
+<figcaption><strong>Fig. 9.</strong> Effect of prior experience on five similar tasks and five randomly grouped tasks. Each arrow connects the group mean without experience (open circle) to the group mean with experience (filled circle), under equal 30-minute budgets. <strong>Leftward arrows indicate lower error.</strong></figcaption>
+</figure>
+<!-- /component -->
+
+<!-- component: cover-motion -->
+<figure class="cover-motion cover-video">
+  <img class="cover-video-poster" src="assets/teaser/spectator-tour.jpg?v=ae11a54287" width="1920" height="1080" alt="A gallery of recorded humanoid–object interactions">
+  <video controls autoplay muted loop playsinline preload="metadata" width="2560" height="1440" poster="assets/teaser/spectator-tour.jpg?v=ae11a54287" aria-label="Thirty-second tour of humanoid–object interactions">
+    <source src="teaser-media/spectator-tour.mp4?v=ae11a54287" type="video/mp4">
+    <a href="teaser-media/spectator-tour.mp4?v=ae11a54287">Watch the 30-second demonstration.</a>
+  </video>
+</figure>
+<!-- /component -->
+
+<!-- component: early-stopping-plot -->
+<figure id="early-stopping-figure">
+<img src="assets/refinement/early-stopping.svg" width="1320" height="470" loading="lazy" alt="Mean tracking errors over 30 minutes, with dotted lines marking average times to 90, 95 and 99 percent of recorded mean ADD reduction.">
+<figcaption><strong>Fig. 8.</strong> Tracking errors and refinement milestones across 20 HUMOTO and 20 OMOMO tasks. Vertical dotted lines mark the average time to achieve 90%, 95% and 99% of each task’s 30-minute ADD reduction: <strong>20.4, 22.3 and 23.3 minutes</strong>, respectively. Milestones are computed from mean ADD and repeated across the three metric panels.</figcaption>
+</figure>
+<!-- /component -->
+
+<!-- component: experience-story -->
+<div class="experience-story" aria-label="Matched experience refinement walkthrough"></div>
+<!-- /component -->
+
+<!-- component: experience-history-figure -->
+<figure class="experience-history-figure"><img src="assets/experience/refinement-histories.svg" width="1320" height="420" alt="All scored refinement trials and group-average best-recorded ADD curves, separated into similar and random groups, with matched continuations beginning at 15 minutes."><figcaption><strong>Fig. 12.</strong> Refinement with and without experience across five similar tasks and five randomly grouped tasks. Branches start from the shared 15-minute checkpoint. Faint points show individual trials, curves show group-average best-so-far ADD, and diamonds show final submission averages. Curves begin once all five tasks have an evaluation.</figcaption></figure>
+<!-- /component -->

@@ -1,0 +1,276 @@
+{
+  "clips": [
+    {
+      "clip": "sub15_woodchair_047",
+      "title": "Lift and move a wooden chair",
+      "dataset": "omomo",
+      "side": "right",
+      "interval_s": [
+        0.29999999999999993,
+        2.7999999999999994
+      ],
+      "methods": [
+        {
+          "method": "gmr",
+          "label": "GMR",
+          "status": "ready",
+          "contact_gap_mm": 251.68011753935627,
+          "reference_sha256": "264ed1d86e5845bbf431609bf7046099fcf32e32358ee665aa1b571b0b71dcf9",
+          "video": "kinematic-showcase-media/sub15_woodchair_047/gmr.mp4?v=620da58582",
+          "poster": "assets/kinematic-showcase/sub15_woodchair_047/gmr.jpg",
+          "video_sha256": "620da58582803142604e638d3a1f54932cdd67679555b9d39041606bfad1a109",
+          "presentation_trim_start_s": 0.125
+        },
+        {
+          "method": "hoi_retarget",
+          "label": "HOI-Retarget",
+          "status": "ready",
+          "contact_gap_mm": 28.297268211895354,
+          "reference_sha256": "4eab48cdb4b65813c148f13ba4ff3439181202c431c9a33304064ea15b912da4",
+          "video": "kinematic-showcase-media/sub15_woodchair_047/hoi_retarget.mp4?v=00bc149d0c",
+          "poster": "assets/kinematic-showcase/sub15_woodchair_047/hoi_retarget.jpg",
+          "video_sha256": "00bc149d0c8d88c3d2b3c82c8a9d25cdc4f282ae4c8892756b192d24e05e7795",
+          "presentation_trim_start_s": 0.125
+        },
+        {
+          "method": "orchestrator",
+          "label": "Orchestrator-agent ensemble (ours)",
+          "status": "ready",
+          "contact_gap_mm": 1.449227592532032,
+          "reference_sha256": "e2f43717207620a34fc602a5532f4897f2baef000abd4d300efc2e0b67b0d204",
+          "video": "kinematic-showcase-media/sub15_woodchair_047/orchestrator.mp4?v=ac45c5c5ff",
+          "poster": "assets/kinematic-showcase/sub15_woodchair_047/orchestrator.jpg",
+          "video_sha256": "ac45c5c5ff8b9510bd08104674726f83cd692ac9bf56fdc599dd4af1d207bdac",
+          "presentation_trim_start_s": 0.125
+        }
+      ],
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910",
+        "poster": "assets/source-humans/sub15_woodchair_047-454ce8c120.jpg",
+        "video_sha256": "dd7a3f79102e6802bdb5febbac750233a818188ac14621bedc12cb584738a3b1",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 3.875,
+        "presentation_trim_start_s": 0.125
+      }
+    },
+    {
+      "clip": "carry_side_table_with_both_hands_walk_around-536",
+      "title": "Carry a side table",
+      "dataset": "humoto",
+      "side": "left",
+      "interval_s": [
+        5.125,
+        7.625
+      ],
+      "methods": [
+        {
+          "method": "gmr",
+          "label": "GMR",
+          "status": "ready",
+          "contact_gap_mm": 55.641275228311,
+          "reference_sha256": "ef35ac8de787beb9f29617ae1ab95c30676490ec275ae84f0a87b22afebfc111",
+          "video": "kinematic-showcase-media/carry_side_table_with_both_hands_walk_around-536/gmr.mp4?v=8fb0216ddf",
+          "poster": "assets/kinematic-showcase/carry_side_table_with_both_hands_walk_around-536/gmr.jpg",
+          "video_sha256": "8fb0216ddf4e0af88f6e36ef9555d2bccf6070ebf94fad648f6b23d39e03d949",
+          "presentation_trim_start_s": 0.125
+        },
+        {
+          "method": "hoi_retarget",
+          "label": "HOI-Retarget",
+          "status": "ready",
+          "contact_gap_mm": 25.148869199141636,
+          "reference_sha256": "fcddc033db4e38e4ee9ebba9e7ca8cd6c0f816e0c5652a7261d4cbe0a24098bd",
+          "video": "kinematic-showcase-media/carry_side_table_with_both_hands_walk_around-536/hoi_retarget.mp4?v=888d08176a",
+          "poster": "assets/kinematic-showcase/carry_side_table_with_both_hands_walk_around-536/hoi_retarget.jpg",
+          "video_sha256": "888d08176aaf6210b1fa05e4409f4ef6137f6c5886f71fb757b10ea8be74079f",
+          "presentation_trim_start_s": 0.125
+        },
+        {
+          "method": "orchestrator",
+          "label": "Orchestrator-agent ensemble (ours)",
+          "status": "ready",
+          "contact_gap_mm": 1.5153250695747442,
+          "reference_sha256": "3b8cbd23dfdcf4f61359059aee325b29a0ceae563c9b525938b60c63ec1afa6b",
+          "video": "kinematic-showcase-media/carry_side_table_with_both_hands_walk_around-536/orchestrator.mp4?v=edc5689892",
+          "poster": "assets/kinematic-showcase/carry_side_table_with_both_hands_walk_around-536/orchestrator.jpg",
+          "video_sha256": "edc5689892835a51100200817278a9dd6a544ece118c3cbb97d3133f614453f5",
+          "presentation_trim_start_s": 0.125
+        }
+      ],
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/humoto/carry_side_table_with_both_hands_walk_around-536.mp4?v=ca864ed6f7",
+        "poster": "assets/source-humans/carry_side_table_with_both_hands_walk_around-536-3a08508b17.jpg",
+        "video_sha256": "ca864ed6f716a21a6dea9096826b0ee79bee38a987569d08f5ce60aad73fa057",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 8.25,
+        "presentation_trim_start_s": 0.125
+      }
+    },
+    {
+      "clip": "lifting_side_table_and_putting_down-362",
+      "title": "Lift and lower a side table",
+      "dataset": "humoto",
+      "side": "right",
+      "interval_s": [
+        5.791666666666666,
+        7.291666666666666
+      ],
+      "methods": [
+        {
+          "method": "gmr",
+          "label": "GMR",
+          "status": "ready",
+          "contact_gap_mm": 84.07169519277187,
+          "reference_sha256": "55f8604a1e814d8d6db364e3fc799a60f1a47e90303d0850c3b533e8ef70879d",
+          "video": "kinematic-showcase-media/lifting_side_table_and_putting_down-362/gmr.mp4?v=06ad9e0390",
+          "poster": "assets/kinematic-showcase/lifting_side_table_and_putting_down-362/gmr.jpg",
+          "video_sha256": "06ad9e0390c998151b049861f9cc44ad6555c63ac8c83594a21553ea84bdfbf3",
+          "presentation_trim_start_s": 0.125
+        },
+        {
+          "method": "hoi_retarget",
+          "label": "HOI-Retarget",
+          "status": "ready",
+          "contact_gap_mm": 44.706951902233406,
+          "reference_sha256": "a4ba3660073192e6b51e3ee01d5cfa5211798a78c940763bb67377ff9881d057",
+          "video": "kinematic-showcase-media/lifting_side_table_and_putting_down-362/hoi_retarget.mp4?v=bd120011dd",
+          "poster": "assets/kinematic-showcase/lifting_side_table_and_putting_down-362/hoi_retarget.jpg",
+          "video_sha256": "bd120011dda51f251d91d7b9234ec2135c3289c376fda87912539557da68fc3d",
+          "presentation_trim_start_s": 0.125
+        },
+        {
+          "method": "orchestrator",
+          "label": "Orchestrator-agent ensemble (ours)",
+          "status": "ready",
+          "contact_gap_mm": 1.7027617704476736,
+          "reference_sha256": "626d29596705ec69b4443c122f48215acb73ca64956f9afc18d9a2110bb078ec",
+          "video": "kinematic-showcase-media/lifting_side_table_and_putting_down-362/orchestrator.mp4?v=b07855dc00",
+          "poster": "assets/kinematic-showcase/lifting_side_table_and_putting_down-362/orchestrator.jpg",
+          "video_sha256": "b07855dc00015e194a70467d157f1225b4752e305701f92955aa460b3d92abcd",
+          "presentation_trim_start_s": 0.125
+        }
+      ],
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/humoto/lifting_side_table_and_putting_down-362.mp4?v=7fa2548df3",
+        "poster": "assets/source-humans/lifting_side_table_and_putting_down-362-38da18cc56.jpg",
+        "video_sha256": "7fa2548df373d4cca887f638e87028d72608b7c12832148f6f79cd7663bb3d94",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 10.75,
+        "presentation_trim_start_s": 0.125
+      }
+    },
+    {
+      "clip": "sub8_plasticbox_052",
+      "title": "Move and return a plastic box",
+      "dataset": "omomo",
+      "side": "right",
+      "interval_s": [
+        0.0,
+        2.499999999999991
+      ],
+      "methods": [
+        {
+          "method": "gmr",
+          "label": "GMR",
+          "status": "ready",
+          "contact_gap_mm": 39.00360199292438,
+          "reference_sha256": "291e743164eea24bad20b8efac62abac515a2851056e97fd70b1c1438b3e89df",
+          "video": "kinematic-showcase-media/sub8_plasticbox_052/gmr.mp4?v=b8243f56c5",
+          "poster": "assets/kinematic-showcase/sub8_plasticbox_052/gmr.jpg",
+          "video_sha256": "b8243f56c5a97637e233af8d9557d787724459c51f65c79848c273db10ddccca",
+          "presentation_trim_start_s": 0.125
+        },
+        {
+          "method": "hoi_retarget",
+          "label": "HOI-Retarget",
+          "status": "ready",
+          "contact_gap_mm": 36.2692434112148,
+          "reference_sha256": "05c9a8ae97c2d49dad9d9d7ccc6b407bc02af3992abc4968af3725df68bb949a",
+          "video": "kinematic-showcase-media/sub8_plasticbox_052/hoi_retarget.mp4?v=6bdf1f189a",
+          "poster": "assets/kinematic-showcase/sub8_plasticbox_052/hoi_retarget.jpg",
+          "video_sha256": "6bdf1f189ae929e9f5cd421c5fa7b3450b050cc3adcc4e5ca47261f013a95d85",
+          "presentation_trim_start_s": 0.125
+        },
+        {
+          "method": "orchestrator",
+          "label": "Orchestrator-agent ensemble (ours)",
+          "status": "ready",
+          "contact_gap_mm": 2.459476084760016,
+          "reference_sha256": "e86c42f582f3fe7686b0d8b18d4cdd61edd534ab3929c8a2ce48ed3e7c269dc3",
+          "video": "kinematic-showcase-media/sub8_plasticbox_052/orchestrator.mp4?v=eaa3885c27",
+          "poster": "assets/kinematic-showcase/sub8_plasticbox_052/orchestrator.jpg",
+          "video_sha256": "eaa3885c27de3a3a0dd8c269cf8a32774c7abac17ea6aec4c2d1b8215eb7f898",
+          "presentation_trim_start_s": 0.125
+        }
+      ],
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/omomo/sub8_plasticbox_052.mp4?v=b513c3d3e4",
+        "poster": "assets/source-humans/sub8_plasticbox_052-16967ad13b.jpg",
+        "video_sha256": "b513c3d3e4c06a2898bcf2a88fb25a6d4d5b73c3f01bf867a61f2eee79f43708",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 7.709,
+        "presentation_trim_start_s": 0.125
+      }
+    },
+    {
+      "clip": "sub16_plasticbox_049",
+      "title": "Move a box outward and back",
+      "dataset": "omomo",
+      "side": "right",
+      "interval_s": [
+        1.2999999999999954,
+        3.7999999999999865
+      ],
+      "methods": [
+        {
+          "method": "gmr",
+          "label": "GMR",
+          "status": "ready",
+          "contact_gap_mm": 46.175519032498606,
+          "reference_sha256": "8afba62ce94f73dc72742f8b05d71a67ed876fbe48862a8dbbb39a4ee930dcc0",
+          "video": "kinematic-showcase-media/sub16_plasticbox_049/gmr.mp4?v=2ace01c2cb",
+          "poster": "assets/kinematic-showcase/sub16_plasticbox_049/gmr.jpg",
+          "video_sha256": "2ace01c2cb16368324e224423c532400c0b78af3d1e4238f03245853a71468e3",
+          "presentation_trim_start_s": 0.125
+        },
+        {
+          "method": "hoi_retarget",
+          "label": "HOI-Retarget",
+          "status": "ready",
+          "contact_gap_mm": 33.50245855367817,
+          "reference_sha256": "33c078695206e90bac918e8a65108970b770917733d6abd76f24196836db5220",
+          "video": "kinematic-showcase-media/sub16_plasticbox_049/hoi_retarget.mp4?v=fb98df6c27",
+          "poster": "assets/kinematic-showcase/sub16_plasticbox_049/hoi_retarget.jpg",
+          "video_sha256": "fb98df6c27c6f2be2fb436773ccfca52fc20c45bd4a983357f8fec9ec3ec5369",
+          "presentation_trim_start_s": 0.125
+        },
+        {
+          "method": "orchestrator",
+          "label": "Orchestrator-agent ensemble (ours)",
+          "status": "ready",
+          "contact_gap_mm": 1.0191175055808583,
+          "reference_sha256": "c32f27617d91331e83c5b32c1507ebd7f25a50654304f8753bf596f83f7d8052",
+          "video": "kinematic-showcase-media/sub16_plasticbox_049/orchestrator.mp4?v=ce3fb44b92",
+          "poster": "assets/kinematic-showcase/sub16_plasticbox_049/orchestrator.jpg",
+          "video_sha256": "ce3fb44b92604fa6420f3c4af2ebb05f5d2dbde301cad4689d246bfef6e9c131",
+          "presentation_trim_start_s": 0.125
+        }
+      ],
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/omomo/sub16_plasticbox_049.mp4?v=aec3559c2b",
+        "poster": "assets/source-humans/sub16_plasticbox_049-681f40f344.jpg",
+        "video_sha256": "aec3559c2b3571d5b600bc4a474dc54baa80f30b3e9768df2ded3da22da059ff",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 4.917,
+        "presentation_trim_start_s": 0.125
+      }
+    }
+  ],
+  "physics_evaluated": false,
+  "selection_manifest": "docs/analysis/kinematic-showcase/selection.json"
+}

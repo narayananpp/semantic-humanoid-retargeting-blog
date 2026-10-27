@@ -1,0 +1,502 @@
+[
+  {
+    "path": "baseline-showcase-media/carry_side_table_with_both_hands_walk_around-536/codex.mp4",
+    "bytes": 3893580,
+    "sha256": "55cc41a2ca42ec952c2e9bc4a87818b93fffdda47793bc1400385de4032d0247"
+  },
+  {
+    "path": "baseline-showcase-media/carry_side_table_with_both_hands_walk_around-536/zero_shot.mp4",
+    "bytes": 4580329,
+    "sha256": "0eacaced475f5e042610146298935622e4a2ba647c6a8ea93813204116d33f38"
+  },
+  {
+    "path": "baseline-showcase-media/carrying_mixing_bowl_with_both_hands-134/codex.mp4",
+    "bytes": 2737657,
+    "sha256": "e9f1385216d87e731fe9dae78843c399fecaced0648457bf4c76d57627271e44"
+  },
+  {
+    "path": "baseline-showcase-media/carrying_mixing_bowl_with_both_hands-134/zero_shot.mp4",
+    "bytes": 4153388,
+    "sha256": "b53a92fff171750d03f339fb5aa856b1dec6d67cd9397bc432d56678d094bbd3"
+  },
+  {
+    "path": "baseline-showcase-media/lifting_and_checking_basket_90-215/codex.mp4",
+    "bytes": 3624179,
+    "sha256": "e8302ccd4ccee57ebf0c27bfbdbcd2a3cd9d3fede5d3538bac8d3acacb237f27"
+  },
+  {
+    "path": "baseline-showcase-media/lifting_and_checking_basket_90-215/zero_shot.mp4",
+    "bytes": 8336839,
+    "sha256": "6d37f4e04303eeb6789cd177a9075dfeecadd1a2ca8fb2e7cee2e93e6456df9c"
+  },
+  {
+    "path": "baseline-showcase-media/lifting_dining_chair_from_backrest_and_placing_back_with_right_hand_on_ground-595/codex.mp4",
+    "bytes": 5664760,
+    "sha256": "512e1aa58e157646ddd04138c6b408d4c828c853fea69d9375ee447ef1e402c2"
+  },
+  {
+    "path": "baseline-showcase-media/lifting_dining_chair_from_backrest_and_placing_back_with_right_hand_on_ground-595/zero_shot.mp4",
+    "bytes": 9615916,
+    "sha256": "89dfe41b292332c303b1e1c4c12608a5d949f380b6ff3f23b89f06455265f435"
+  },
+  {
+    "path": "baseline-showcase-media/lifting_side_table_and_putting_down-362/codex.mp4",
+    "bytes": 2524370,
+    "sha256": "89528594b1dcfa2e197cde5780f321e6c3cb09e34a4ad3b956ab23ed7668745e"
+  },
+  {
+    "path": "baseline-showcase-media/lifting_side_table_and_putting_down-362/zero_shot.mp4",
+    "bytes": 13357377,
+    "sha256": "baecd164a219458995c112ce163cb6e6c3ec44a1635a64f0e7a0a1062f006f1e"
+  },
+  {
+    "path": "baseline-showcase-media/sub10_clothesstand_002/codex.mp4",
+    "bytes": 1689525,
+    "sha256": "1d39f025583910ff8d085e5fafd357ee7ad5bdec4ce7c5525f20f78f132c2aeb"
+  },
+  {
+    "path": "baseline-showcase-media/sub10_clothesstand_002/zero_shot.mp4",
+    "bytes": 1330138,
+    "sha256": "f4214208795787bbe0e4bbbc171ca36b8943c03c3c687e44d64f4bc3dce538fa"
+  },
+  {
+    "path": "baseline-showcase-media/sub15_woodchair_047/codex.mp4",
+    "bytes": 1513596,
+    "sha256": "d0c0ec0d63c9ab94e70d28db991dbc7a661e218a3d3a36fe903964bffb710f86"
+  },
+  {
+    "path": "baseline-showcase-media/sub15_woodchair_047/zero_shot.mp4",
+    "bytes": 1355933,
+    "sha256": "e56308b1aaf0c3100c1c49b3bcdb0890f916186766fc1d55b1a806351c61ee23"
+  },
+  {
+    "path": "baseline-showcase-media/sub15_woodchair_053/codex.mp4",
+    "bytes": 2263526,
+    "sha256": "2023cb4f4a711606a1d057350c21f7f8a111c646b266b3dcf2b837f215d1ff78"
+  },
+  {
+    "path": "baseline-showcase-media/sub15_woodchair_053/zero_shot.mp4",
+    "bytes": 1362419,
+    "sha256": "84d781d1798d940e95dca9934a80bf8c367134146d15d99296f9bf1ccfa4e2b2"
+  },
+  {
+    "path": "baseline-showcase-media/sub16_plasticbox_049/codex.mp4",
+    "bytes": 2537542,
+    "sha256": "b551753694a0692fc3714d3659b0597375b798d322f25d0261c0666389e18f69"
+  },
+  {
+    "path": "baseline-showcase-media/sub16_plasticbox_049/zero_shot.mp4",
+    "bytes": 2998712,
+    "sha256": "44757907cc65ee6e8c75c6e0dd57b2c4e1dde1362ad82a831e8b1ac7cc1dd9ae"
+  },
+  {
+    "path": "baseline-showcase-media/sub17_floorlamp_007/codex.mp4",
+    "bytes": 1755230,
+    "sha256": "bef81b7ea4cd3536abcf5a58e071e14a6cc844adb9322b98ec8c5e29b5eccf60"
+  },
+  {
+    "path": "baseline-showcase-media/sub17_floorlamp_007/zero_shot.mp4",
+    "bytes": 1311092,
+    "sha256": "a709a9abb436bc9aa5f2c09dacd1f856d05cd6d9f98d4a420f3a40833c03c88a"
+  },
+  {
+    "path": "baseline-showcase-media/tilting_trash_can_with_right_foot-985/codex.mp4",
+    "bytes": 943283,
+    "sha256": "886f828b5204edcd8a33ca49044f0426ac363da3585fbdbd4cdd73e9cfe51766"
+  },
+  {
+    "path": "baseline-showcase-media/tilting_trash_can_with_right_foot-985/zero_shot.mp4",
+    "bytes": 1826559,
+    "sha256": "639f38230608712090ec68b22575884db2f7ad0b5da68f4d8abd744216ce846e"
+  },
+  {
+    "path": "baseline-showcase-media/turn_on_floor_lamp_while_sitting_on_low_chair_and_drinking_from_mug-457/codex.mp4",
+    "bytes": 4774401,
+    "sha256": "223c5160765a042ba2b46ba8dac8dda7a137fdb8b0c7e492c76c620b2db63c51"
+  },
+  {
+    "path": "baseline-showcase-media/turn_on_floor_lamp_while_sitting_on_low_chair_and_drinking_from_mug-457/zero_shot.mp4",
+    "bytes": 7758001,
+    "sha256": "d3c44925da2d8579678a119f5226b2adf19b9fb583b02158c20e40e49762b86d"
+  },
+  {
+    "path": "dynamics-showcase-media/humoto/carry_side_table_with_both_hands_walk_around-536.mp4",
+    "bytes": 4232793,
+    "sha256": "308c1150dffb91cab58cfff0444fc6ffdccdb4a972154d6a5fa57bfa4d0d123d"
+  },
+  {
+    "path": "dynamics-showcase-media/humoto/carrying_mixing_bowl_with_both_hands-134.mp4",
+    "bytes": 3212630,
+    "sha256": "dbc51442f1d83a886dd983990c639ec279179c3720378115ec08328daed16797"
+  },
+  {
+    "path": "dynamics-showcase-media/humoto/lifting_and_checking_basket_90-215.mp4",
+    "bytes": 5598639,
+    "sha256": "5331287d1dc7f1da9e7e8ffdaa69a4cede5ab28a678c251f1a900847cfd9dac0"
+  },
+  {
+    "path": "dynamics-showcase-media/humoto/lifting_dining_chair_from_backrest_and_placing_back_with_right_hand_on_ground-595.mp4",
+    "bytes": 4130009,
+    "sha256": "ad5835b45258941a44d9d01c63a745eb760fedeee34e545d9258fdaeb806ccf0"
+  },
+  {
+    "path": "dynamics-showcase-media/humoto/lifting_side_table_and_putting_down-362.mp4",
+    "bytes": 6529861,
+    "sha256": "a9f5c0a307e98ce087db67eea7ad3b8a0238b93dba91a99e9b7c7270a308d5aa"
+  },
+  {
+    "path": "dynamics-showcase-media/humoto/tilting_trash_can_with_right_foot-985.mp4",
+    "bytes": 996752,
+    "sha256": "f6c9bbe86a9bdd0cf0fd3a975ea49241ef75c4cff9077ba0a2b92845ab5a36b2"
+  },
+  {
+    "path": "dynamics-showcase-media/humoto/turn_on_floor_lamp_while_sitting_on_low_chair_and_drinking_from_mug-457.mp4",
+    "bytes": 4221800,
+    "sha256": "56135217e8fa26704e00c0c2b8682f74dae49b672a9aa4c916c604b4c236f502"
+  },
+  {
+    "path": "dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4",
+    "bytes": 2078245,
+    "sha256": "430d6c797d11e6042df57b00dc58caf67a1f191e02939a9dd8ae2f2df8aba504"
+  },
+  {
+    "path": "dynamics-showcase-media/omomo/sub15_woodchair_047.mp4",
+    "bytes": 2673884,
+    "sha256": "42dfeb1d4af2b766399509c0667c03de7888abf268d3b895110b5a3d48ff701f"
+  },
+  {
+    "path": "dynamics-showcase-media/omomo/sub15_woodchair_053.mp4",
+    "bytes": 2207925,
+    "sha256": "8ec90d79f81b8ff47b1187c7a07a85e63fde6b750aa48fbe5c68035d35ebcf67"
+  },
+  {
+    "path": "dynamics-showcase-media/omomo/sub16_plasticbox_049.mp4",
+    "bytes": 11722750,
+    "sha256": "a3f81e7f49aeeb9afc95d7981ba209d82d133a300f277a9ad6b2b2a4a884fd3a"
+  },
+  {
+    "path": "dynamics-showcase-media/omomo/sub17_floorlamp_007.mp4",
+    "bytes": 2020807,
+    "sha256": "3175ec900817e6943ea2e0a4d7a171ea576b2b27f9812b15cfccd8725450cc7b"
+  },
+  {
+    "path": "experience-story-media/lift_shelf_lie_to_stand-867/base.mp4",
+    "bytes": 3651260,
+    "sha256": "82396ed15baeea1440882242ee2d06584a694c5841d6cad362b2da5f8d55f984"
+  },
+  {
+    "path": "experience-story-media/lift_shelf_lie_to_stand-867/human.mp4",
+    "bytes": 2646951,
+    "sha256": "e43559aa2521db6af6540b7e9c5b3423afe8d9b53a6bb4a4c6f60f70408de344"
+  },
+  {
+    "path": "experience-story-media/lift_shelf_lie_to_stand-867/intermediate-legblend4.mp4",
+    "bytes": 3991794,
+    "sha256": "1be5840cdea4ef67956a66a1a9b97c6488c5f7cfb4f0a9678483b6a1ec4a2c55"
+  },
+  {
+    "path": "experience-story-media/lift_shelf_lie_to_stand-867/kinematic.mp4",
+    "bytes": 2418630,
+    "sha256": "6706f83a9893390d10492dd21639c0c350ea7c7af0f7dfd0299bcba545a8dff9"
+  },
+  {
+    "path": "experience-story-media/lift_shelf_lie_to_stand-867/prior.mp4",
+    "bytes": 2595489,
+    "sha256": "03c6e40c0a928ce3d0445c0d7b84a2e68ef52d3cd0e143118a2f607ce54b5b8a"
+  },
+  {
+    "path": "experience-story-media/lift_shelf_lie_to_stand-867/with_experience.mp4",
+    "bytes": 5580912,
+    "sha256": "0d190f304e96d23333c07d1d1ef85d62dfde3cbf683dc0a744a500d44ee513ae"
+  },
+  {
+    "path": "experience-story-media/lift_shelf_lie_to_stand-867/without_experience.mp4",
+    "bytes": 4104404,
+    "sha256": "b09b4136c66dcdc76875e225221ab6f3babd911b4c242055844117cec2a55fa2"
+  },
+  {
+    "path": "experience-story-media/tilting_trash_can_with_right_foot-985/base.mp4",
+    "bytes": 996734,
+    "sha256": "8b585ce70bc9b018f5b3ecafdf65d3aa5565247bbf74fe06e4845aebdbad3460"
+  },
+  {
+    "path": "experience-story-media/tilting_trash_can_with_right_foot-985/human.mp4",
+    "bytes": 525074,
+    "sha256": "c91fd747d78bd5af9efea64a186183579446f928800afd262a70fbc9f38ba15c"
+  },
+  {
+    "path": "experience-story-media/tilting_trash_can_with_right_foot-985/kinematic.mp4",
+    "bytes": 597484,
+    "sha256": "8b9f5b7c6d2f82053c655173c3065a9be019348b3054fe43ab66fb3d863fa5c8"
+  },
+  {
+    "path": "experience-story-media/tilting_trash_can_with_right_foot-985/with_experience.mp4",
+    "bytes": 971601,
+    "sha256": "0668ec452ede9f9b3077d94daa2c22ca44dda24bda342883e12ceafa745a114a"
+  },
+  {
+    "path": "experience-story-media/tilting_trash_can_with_right_foot-985/without_experience.mp4",
+    "bytes": 996752,
+    "sha256": "f6c9bbe86a9bdd0cf0fd3a975ea49241ef75c4cff9077ba0a2b92845ab5a36b2"
+  },
+  {
+    "path": "intro-media/chair.mp4",
+    "bytes": 636182,
+    "sha256": "be4d8e70e960e2a1f14c477d89d830252bb1fefe72cb6f481d6418fe225cb279"
+  },
+  {
+    "path": "intro-media/smallbox.mp4",
+    "bytes": 1017584,
+    "sha256": "7efdd11b539f64cc822f6e898b3d42c35785879e1a8fbad57f802ef08abb8ca6"
+  },
+  {
+    "path": "intro-media/spider.mp4",
+    "bytes": 785252,
+    "sha256": "39e4853555ff912728174e6f205fc744e02acf1cb7b4b82018d2db752c0f7684"
+  },
+  {
+    "path": "kinematic-showcase-media/carry_side_table_with_both_hands_walk_around-536/gmr.mp4",
+    "bytes": 849683,
+    "sha256": "8fb0216ddf4e0af88f6e36ef9555d2bccf6070ebf94fad648f6b23d39e03d949"
+  },
+  {
+    "path": "kinematic-showcase-media/carry_side_table_with_both_hands_walk_around-536/hoi_retarget.mp4",
+    "bytes": 868597,
+    "sha256": "888d08176aaf6210b1fa05e4409f4ef6137f6c5886f71fb757b10ea8be74079f"
+  },
+  {
+    "path": "kinematic-showcase-media/carry_side_table_with_both_hands_walk_around-536/orchestrator.mp4",
+    "bytes": 993063,
+    "sha256": "edc5689892835a51100200817278a9dd6a544ece118c3cbb97d3133f614453f5"
+  },
+  {
+    "path": "kinematic-showcase-media/lifting_side_table_and_putting_down-362/gmr.mp4",
+    "bytes": 596002,
+    "sha256": "06ad9e0390c998151b049861f9cc44ad6555c63ac8c83594a21553ea84bdfbf3"
+  },
+  {
+    "path": "kinematic-showcase-media/lifting_side_table_and_putting_down-362/hoi_retarget.mp4",
+    "bytes": 593062,
+    "sha256": "bd120011dda51f251d91d7b9234ec2135c3289c376fda87912539557da68fc3d"
+  },
+  {
+    "path": "kinematic-showcase-media/lifting_side_table_and_putting_down-362/orchestrator.mp4",
+    "bytes": 638009,
+    "sha256": "b07855dc00015e194a70467d157f1225b4752e305701f92955aa460b3d92abcd"
+  },
+  {
+    "path": "kinematic-showcase-media/sub15_woodchair_047/gmr.mp4",
+    "bytes": 943378,
+    "sha256": "620da58582803142604e638d3a1f54932cdd67679555b9d39041606bfad1a109"
+  },
+  {
+    "path": "kinematic-showcase-media/sub15_woodchair_047/hoi_retarget.mp4",
+    "bytes": 953201,
+    "sha256": "00bc149d0c8d88c3d2b3c82c8a9d25cdc4f282ae4c8892756b192d24e05e7795"
+  },
+  {
+    "path": "kinematic-showcase-media/sub15_woodchair_047/orchestrator.mp4",
+    "bytes": 1049929,
+    "sha256": "ac45c5c5ff8b9510bd08104674726f83cd692ac9bf56fdc599dd4af1d207bdac"
+  },
+  {
+    "path": "kinematic-showcase-media/sub16_plasticbox_049/gmr.mp4",
+    "bytes": 3130060,
+    "sha256": "2ace01c2cb16368324e224423c532400c0b78af3d1e4238f03245853a71468e3"
+  },
+  {
+    "path": "kinematic-showcase-media/sub16_plasticbox_049/hoi_retarget.mp4",
+    "bytes": 3062030,
+    "sha256": "fb98df6c27c6f2be2fb436773ccfca52fc20c45bd4a983357f8fec9ec3ec5369"
+  },
+  {
+    "path": "kinematic-showcase-media/sub16_plasticbox_049/orchestrator.mp4",
+    "bytes": 3103861,
+    "sha256": "ce3fb44b92604fa6420f3c4af2ebb05f5d2dbde301cad4689d246bfef6e9c131"
+  },
+  {
+    "path": "kinematic-showcase-media/sub8_plasticbox_052/gmr.mp4",
+    "bytes": 3291483,
+    "sha256": "b8243f56c5a97637e233af8d9557d787724459c51f65c79848c273db10ddccca"
+  },
+  {
+    "path": "kinematic-showcase-media/sub8_plasticbox_052/hoi_retarget.mp4",
+    "bytes": 3282769,
+    "sha256": "6bdf1f189ae929e9f5cd421c5fa7b3450b050cc3adcc4e5ca47261f013a95d85"
+  },
+  {
+    "path": "kinematic-showcase-media/sub8_plasticbox_052/orchestrator.mp4",
+    "bytes": 3359044,
+    "sha256": "eaa3885c27de3a3a0dd8c269cf8a32774c7abac17ea6aec4c2d1b8215eb7f898"
+  },
+  {
+    "path": "source-human-media/humoto/carry_side_table_with_both_hands_walk_around-536.mp4",
+    "bytes": 1056430,
+    "sha256": "ca864ed6f716a21a6dea9096826b0ee79bee38a987569d08f5ce60aad73fa057"
+  },
+  {
+    "path": "source-human-media/humoto/carrying_mixing_bowl_with_both_hands-134.mp4",
+    "bytes": 2303922,
+    "sha256": "6b6e7a00b9fb9da4de9a272d16a3a8a6a9b7e4c00fc6b0b89b51d7fdfadc2e8c"
+  },
+  {
+    "path": "source-human-media/humoto/lifting_and_checking_basket_90-215.mp4",
+    "bytes": 671835,
+    "sha256": "63be9a9478fdd8851e4a35769d3e53cdf388393852d3bcdfbafe29644feb8ffa"
+  },
+  {
+    "path": "source-human-media/humoto/lifting_dining_chair_from_backrest_and_placing_back_with_right_hand_on_ground-595.mp4",
+    "bytes": 1000955,
+    "sha256": "a55ebee40768848f5d0f0ec8720429113c56c8a32bee613b5287100890977192"
+  },
+  {
+    "path": "source-human-media/humoto/lifting_side_table_and_putting_down-362.mp4",
+    "bytes": 1095586,
+    "sha256": "7fa2548df373d4cca887f638e87028d72608b7c12832148f6f79cd7663bb3d94"
+  },
+  {
+    "path": "source-human-media/humoto/pulling_and_pushing_the_dining_chair_from_back_post-203.mp4",
+    "bytes": 764766,
+    "sha256": "e2192b7a7fbd347fc44f4a7aa0f3adffc7b3ad591ba8b2562513e3c991efbe11"
+  },
+  {
+    "path": "source-human-media/humoto/tilting_trash_can_with_right_foot-985.mp4",
+    "bytes": 525074,
+    "sha256": "c91fd747d78bd5af9efea64a186183579446f928800afd262a70fbc9f38ba15c"
+  },
+  {
+    "path": "source-human-media/humoto/turn_on_floor_lamp_while_sitting_on_low_chair_and_drinking_from_mug-457.mp4",
+    "bytes": 1838300,
+    "sha256": "1461b2c6fe7531deaf1cc03d1581225e21042fb2c4867f12fea5618a2593c87c"
+  },
+  {
+    "path": "source-human-media/omomo/sub10_clothesstand_002.mp4",
+    "bytes": 435422,
+    "sha256": "7d7b8e30aad9451e0e746111155b01e042463e1e2012a2c914e8c3a3ac0c2f88"
+  },
+  {
+    "path": "source-human-media/omomo/sub15_woodchair_047.mp4",
+    "bytes": 454350,
+    "sha256": "dd7a3f79102e6802bdb5febbac750233a818188ac14621bedc12cb584738a3b1"
+  },
+  {
+    "path": "source-human-media/omomo/sub15_woodchair_053.mp4",
+    "bytes": 399646,
+    "sha256": "931a41fd5f97323a0732cf9cbdadd42033072a36a675220f82965eb11acff79d"
+  },
+  {
+    "path": "source-human-media/omomo/sub16_plasticbox_049.mp4",
+    "bytes": 670904,
+    "sha256": "aec3559c2b3571d5b600bc4a474dc54baa80f30b3e9768df2ded3da22da059ff"
+  },
+  {
+    "path": "source-human-media/omomo/sub17_floorlamp_007.mp4",
+    "bytes": 395382,
+    "sha256": "257a7cd55d0b638f222d813b4320661738a1fe3322e0b2e8b9958d0c12fde375"
+  },
+  {
+    "path": "source-human-media/omomo/sub7_smallbox_054.mp4",
+    "bytes": 495721,
+    "sha256": "dc1c03562d05948715acb0740b905e29c844533fe5c957bda79ce7f05c5e82c7"
+  },
+  {
+    "path": "source-human-media/omomo/sub8_plasticbox_052.mp4",
+    "bytes": 1160595,
+    "sha256": "b513c3d3e4c06a2898bcf2a88fb25a6d4d5b73c3f01bf867a61f2eee79f43708"
+  },
+  {
+    "path": "teaser-media/spectator-tour.mp4",
+    "bytes": 22596250,
+    "sha256": "ae11a542878489a1f6f23679f4d270cb74df36f025f1060b1115b402648f9d3a"
+  },
+  {
+    "path": "walkthrough-media/baseline/full/video.mp4",
+    "bytes": 1628488,
+    "sha256": "c182b397ff54f5bd77a82dcaa5a9cf455fdba9e35b2fd6e7ad62df35974d7172"
+  },
+  {
+    "path": "walkthrough-media/clothesstand-selected/001/video.mp4",
+    "bytes": 1556555,
+    "sha256": "cfa7c69d3689c73035706091e97ffca442532eb65ea0249ee358bf57d295f5a7"
+  },
+  {
+    "path": "walkthrough-media/clothesstand-selected/002/video.mp4",
+    "bytes": 1656698,
+    "sha256": "9d50adfa95da5f6da5050100f8ebfd357e1fd387a777637a4905474d145356cf"
+  },
+  {
+    "path": "walkthrough-media/clothesstand-selected/004/video.mp4",
+    "bytes": 1648152,
+    "sha256": "f2c1592bb0cf26d6103448b92fcf869dba41241cc768e59397efaa3a88165682"
+  },
+  {
+    "path": "walkthrough-media/clothesstand-selected/007/video.mp4",
+    "bytes": 1840213,
+    "sha256": "b6e5f0378d03c518de778a4b1685a1598b2e91461f71eecb6eae6592fb04ef9f"
+  },
+  {
+    "path": "walkthrough-media/clothesstand-selected/final/video.mp4",
+    "bytes": 2168695,
+    "sha256": "998d535611a368cfd57280d0ea9a2b5f9935e070d9275edbeeecba199d4eceba"
+  },
+  {
+    "path": "walkthrough-media/clothesstand/001/video.mp4",
+    "bytes": 1076501,
+    "sha256": "43d5cb25c23ef027e7691036b53869e2dc6c049fd66288b6373471f4c12b4393"
+  },
+  {
+    "path": "walkthrough-media/clothesstand/002/video.mp4",
+    "bytes": 1876885,
+    "sha256": "e8ec29ada4ce6fb47ffd4d566d7aa68708e55ad3ae3b4959216e4b50435da88e"
+  },
+  {
+    "path": "walkthrough-media/clothesstand/007/video.mp4",
+    "bytes": 1856351,
+    "sha256": "33bc680bf94579197c85d4cfa7351aa755c774ca0ba89803dc18a57add07b21e"
+  },
+  {
+    "path": "walkthrough-media/clothesstand/010/video.mp4",
+    "bytes": 1862667,
+    "sha256": "e07ff1db03ec22ad34809e0a596d25343a9775ecacd9d785a1571a9d6ac15ec6"
+  },
+  {
+    "path": "walkthrough-media/clothesstand/025/video.mp4",
+    "bytes": 2686983,
+    "sha256": "2cdc0fd86489b85ae236b337a2e62dd365c1d5f696d1ef8b1b4dbada7f102468"
+  },
+  {
+    "path": "walkthrough-media/clothesstand/kinematic/video.mp4",
+    "bytes": 797990,
+    "sha256": "8259d3b3bb149ed16d2801a8591f86bd9f12eb892fd2c3f998ffa79e0d602dc5"
+  },
+  {
+    "path": "walkthrough-media/grasp02/full/video.mp4",
+    "bytes": 5529778,
+    "sha256": "eb16e8666dfde3a23e2dcdde81bef8a221143423f47a213f56447cb720cd6159"
+  },
+  {
+    "path": "walkthrough-media/grasp03/full/video.mp4",
+    "bytes": 7856900,
+    "sha256": "ab1b59b8cedd107e29ecbe21d894e5ca0bdeeb618cc4b2d1c41f7ead8f5402e2"
+  },
+  {
+    "path": "walkthrough-media/grasp04/full/video.mp4",
+    "bytes": 10884034,
+    "sha256": "af7262c238b77558a2019dc54a7b861cefc04fbb0b99ce9d2fd9592f0b626993"
+  },
+  {
+    "path": "walkthrough-media/grasp05/full/video.mp4",
+    "bytes": 11722750,
+    "sha256": "a3f81e7f49aeeb9afc95d7981ba209d82d133a300f277a9ad6b2b2a4a884fd3a"
+  },
+  {
+    "path": "walkthrough-media/human/full/video.mp4",
+    "bytes": 924641,
+    "sha256": "81f765933da95afbef88419e6401d5ff8c84903f0b24e4ae87fa71a98b0e7dd9"
+  },
+  {
+    "path": "walkthrough-media/kinematic/full/video.mp4",
+    "bytes": 1526206,
+    "sha256": "f85c65c42a9d582c2a84b0fe8314e72028bbdcf13affaf90de7d7a1d8df6905f"
+  }
+]

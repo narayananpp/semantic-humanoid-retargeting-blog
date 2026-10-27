@@ -1,0 +1,135 @@
+{
+  "title": "HuMoTAR: Semantic Humanoid Retargeting with Foundational Priors",
+  "description": "From human demonstrations to executable humanoid interactions: a study of agentic refinement, simulation feedback and transferable experience.",
+  "subtitle": "",
+  "date": "25 October 2026",
+  "pages": {
+    "index.html": {
+      "template": "article.html",
+      "sections": [
+        {
+          "file": "overview.md",
+          "tag": "section",
+          "id": "overview",
+          "class": "outline-section tldr-section"
+        },
+        {
+          "file": "reference-setup.md",
+          "tag": "section",
+          "id": "reference-setup",
+          "class": "outline-section"
+        },
+        {
+          "file": "dynamic-interaction.md",
+          "tag": "section",
+          "id": "dynamic-interaction",
+          "class": "outline-section"
+        },
+        {
+          "file": "method.md",
+          "tag": "section",
+          "id": "method",
+          "class": "outline-section"
+        },
+        {
+          "file": "agent-diagnosis.md",
+          "tag": "section",
+          "id": "agent-diagnosis",
+          "class": "outline-section execution-analysis"
+        },
+        {
+          "file": "refinement-progress.md",
+          "tag": "section",
+          "id": "refinement-progress-panel",
+          "class": "outline-section execution-analysis"
+        },
+        {
+          "file": "refinement-walkthrough.md",
+          "tag": "section",
+          "id": "refinement-walkthrough-panel",
+          "class": "outline-section execution-analysis"
+        },
+        {
+          "file": "early-stopping.md",
+          "tag": "section",
+          "id": "early-stopping-panel",
+          "class": "outline-section execution-analysis"
+        },
+        {
+          "file": "refinement-results.md",
+          "tag": "section",
+          "id": "refinement-results",
+          "class": "outline-section"
+        },
+        {
+          "file": "experience.md",
+          "tag": "section",
+          "id": "experience"
+        },
+        {
+          "file": "experience/setup.md",
+          "tag": "section",
+          "id": "experience-setup",
+          "heading_offset": 1,
+          "inline_experience": true,
+          "class": " inline-experience"
+        },
+        {
+          "file": "experience/shelf-walkthrough.md",
+          "tag": "article",
+          "id": "experience-shelf-walkthrough",
+          "class": "proof-example inline-experience",
+          "data-example": "shelf-walkthrough",
+          "heading_offset": 1,
+          "inline_experience": true
+        },
+        {
+          "file": "discussion.md",
+          "tag": "section",
+          "id": "discussion",
+          "class": "outline-section"
+        },
+        {
+          "file": "references.md",
+          "tag": "section",
+          "id": "references",
+          "class": "outline-section"
+        },
+        {
+          "file": "appendix.md",
+          "tag": "section",
+          "id": "appendix",
+          "class": "outline-section"
+        },
+        {
+          "file": "citation.md",
+          "tag": "section",
+          "id": "citation",
+          "class": "outline-section blog-citation"
+        }
+      ]
+    },
+    "experience.html": {
+      "template": "experience.html",
+      "sections": [
+        {
+          "file": "experience/intro.md",
+          "tag": "header",
+          "class": "experience-intro"
+        },
+        {
+          "file": "experience/setup.md",
+          "tag": "section",
+          "id": "setup"
+        },
+        {
+          "file": "experience/shelf-walkthrough.md",
+          "tag": "article",
+          "id": "shelf-walkthrough",
+          "class": "proof-example",
+          "data-example": "shelf-walkthrough"
+        }
+      ]
+    }
+  }
+}

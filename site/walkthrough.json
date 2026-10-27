@@ -1,0 +1,233 @@
+{
+  "clip": "sub10_clothesstand_002",
+  "candidate": 0,
+  "selected_by_harness": true,
+  "method": "Orchestrator-agent ensemble",
+  "human_video": "source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa",
+  "final_video": "walkthrough-media/clothesstand-selected/final/video.mp4?v=998d535611",
+  "stages": [
+    {
+      "id": "001",
+      "title": "Find where contact fails",
+      "quote": "The first trial kept the robot upright and lifted the stand, but the stand slipped from the one-handed grasp during lowering. I’m testing a second grasp lower on the pole to improve tilt control and prevent that drop.",
+      "description": "The first controller lifts the stand with one hand but loses contact during lowering. The agent adds a second grasp lower on the pole to resist tilt.",
+      "tag": "Test contact under load",
+      "anchor": "refinement-5c",
+      "time_min": 3.7382431333333335,
+      "add_cm": 39.703163334444184,
+      "video": "walkthrough-media/clothesstand-selected/001/video.mp4?v=cfa7c69d36",
+      "poster": "assets/refinement/walkthrough/clothesstand-selected/001.jpg",
+      "log_line": 434,
+      "log_time": "2026-10-26T00:34:22.622344+00:00",
+      "quote_excerpts": [
+        "The first trial kept the robot upright and lifted the stand, but the stand slipped from the one-handed grasp during lowering. I’m testing a second grasp lower on the pole to improve tilt control and prevent that drop."
+      ],
+      "presentation_trim_start_s": 0.125
+    },
+    {
+      "id": "002",
+      "title": "Stabilize the grasp",
+      "quote": "The two-handed trial avoided the drop and reduced mean orientation error to about 12.5°. Position error remains about 17 cm because the robot lags behind the target and the arms run out of reach. I’m now testing body-tracking corrections while keeping the validated starting posture and grasp.",
+      "description": "The lower, second contact prevents the earlier drop. The remaining error comes from body lag: the arms approach their reach limit as the stand moves ahead.",
+      "tag": "Recover reach through body and arm motion",
+      "anchor": "refinement-5d",
+      "time_min": 8.7816209,
+      "add_cm": 18.515084452349615,
+      "video": "walkthrough-media/clothesstand-selected/002/video.mp4?v=9d50adfa95",
+      "poster": "assets/refinement/walkthrough/clothesstand-selected/002.jpg",
+      "log_line": 689,
+      "log_time": "2026-10-26T00:40:10.805884+00:00",
+      "quote_excerpts": [
+        "The two-handed trial avoided the drop and reduced mean orientation error to about 12.5°. Position error remains about 17 cm because the robot lags behind the target and the arms run out of reach. I’m now testing body-tracking corrections while keeping the validated starting posture and grasp."
+      ],
+      "presentation_trim_start_s": 0.125
+    },
+    {
+      "id": "004",
+      "title": "Bring the body into the motion",
+      "quote": "Position error remains about 17 cm because the robot lags behind the target and the arms run out of reach. I’m now testing body-tracking corrections while keeping the validated starting posture and grasp.",
+      "description": "The agent uses root-position error to adjust body lean, keeping the same two-handed grasp. Tracking improves, but the stand still finishes short of its target; the next revision adds a stronger correction and a standing hold.",
+      "tag": "Recover reach through body and arm motion",
+      "anchor": "refinement-5d",
+      "time_min": 10.905584333333334,
+      "add_cm": 13.808027239035153,
+      "video": "walkthrough-media/clothesstand-selected/004/video.mp4?v=f2c1592bb0",
+      "poster": "assets/refinement/walkthrough/clothesstand-selected/004.jpg",
+      "log_line": 689,
+      "log_time": "2026-10-26T00:40:10.805884+00:00",
+      "quote_excerpts": [
+        "Position error remains about 17 cm because the robot lags behind the target and the arms run out of reach. I’m now testing body-tracking corrections while keeping the validated starting posture and grasp."
+      ],
+      "presentation_trim_start_s": 0.125
+    },
+    {
+      "id": "007",
+      "title": "Complete the carry",
+      "quote": "Freezing the unnecessary body motion near the end improved the full-curve result to 6.3 cm mean ADD, 5.1 cm mean position error, and 7.4° mean orientation error. The robot remains upright and the stand reaches the endpoint area under control. I’m refining the remaining pose offset and testing release onto the floor.",
+      "description": "Body tracking and a standing hold bring the stand through the carry. The hands remain in contact at the end; a controlled release is still needed.",
+      "tag": "Coordinate whole-body control and arm control",
+      "anchor": "refinement-5d",
+      "time_min": 12.837113283333334,
+      "add_cm": 6.342235490605839,
+      "video": "walkthrough-media/clothesstand-selected/007/video.mp4?v=b6e5f0378d",
+      "poster": "assets/refinement/walkthrough/clothesstand-selected/007.jpg",
+      "log_line": 827,
+      "log_time": "2026-10-26T00:42:36.873139+00:00",
+      "quote_excerpts": [
+        "Freezing the unnecessary body motion near the end improved the full-curve result to 6.3 cm mean ADD, 5.1 cm mean position error, and 7.4° mean orientation error. The robot remains upright and the stand reaches the endpoint area under control. I’m refining the remaining pose offset and testing release onto the floor."
+      ],
+      "presentation_trim_start_s": 0.125
+    },
+    {
+      "id": "final",
+      "title": "Place and release",
+      "quote": "I’m saving the tested controller with the longer settling interval. … The robot stayed upright, and the stand was motionless and fully floor-supported with no robot contact during the last second.",
+      "description": "The controller opens the fingers over one second and withdraws the hands sideways. A two-second settling interval confirms that the stand remains floor-supported after contact ends.",
+      "tag": "Placement and release",
+      "anchor": "refinement-5f",
+      "time_min": 27.08350558333333,
+      "add_cm": 4.606757161680133,
+      "video": "walkthrough-media/clothesstand-selected/final/video.mp4?v=998d535611",
+      "poster": "assets/refinement/walkthrough/clothesstand-selected/final.jpg",
+      "log_line": 1364,
+      "log_time": "2026-10-26T00:57:23.044541+00:00",
+      "quote_excerpts": [
+        "I’m saving the tested controller with the longer settling interval.",
+        "The robot stayed upright, and the stand was motionless and fully floor-supported with no robot contact during the last second."
+      ],
+      "presentation_trim_start_s": 0.125
+    }
+  ],
+  "trials": [
+    {
+      "time_min": 3.7382431333333335,
+      "add_cm": 39.703163334444184,
+      "trial": "001"
+    },
+    {
+      "time_min": 8.7816209,
+      "add_cm": 18.515084452349615,
+      "trial": "002"
+    },
+    {
+      "time_min": 9.4985105,
+      "add_cm": 65.46497958839979,
+      "trial": "003"
+    },
+    {
+      "time_min": 10.905584333333334,
+      "add_cm": 13.808027239035153,
+      "trial": "004"
+    },
+    {
+      "time_min": 11.573178216666667,
+      "add_cm": 7.259086057342326,
+      "trial": "005"
+    },
+    {
+      "time_min": 12.145636533333334,
+      "add_cm": 10.656314443277301,
+      "trial": "006"
+    },
+    {
+      "time_min": 12.837113283333334,
+      "add_cm": 6.342235490605839,
+      "trial": "007"
+    },
+    {
+      "time_min": 13.221123983333333,
+      "add_cm": 4.877118866523262,
+      "trial": "008"
+    },
+    {
+      "time_min": 15.368703433333334,
+      "add_cm": 7.059545909864898,
+      "trial": "009"
+    },
+    {
+      "time_min": 16.209018233333335,
+      "add_cm": 5.210233235705074,
+      "trial": "010"
+    },
+    {
+      "time_min": 16.4644371,
+      "add_cm": 18.46766074185792,
+      "trial": "011"
+    },
+    {
+      "time_min": 16.723049816666666,
+      "add_cm": 9.946480523389756,
+      "trial": "012"
+    },
+    {
+      "time_min": 16.974121716666666,
+      "add_cm": 103.05676115536848,
+      "trial": "013"
+    },
+    {
+      "time_min": 18.431369949999997,
+      "add_cm": 10.02084532322476,
+      "trial": "014"
+    },
+    {
+      "time_min": 18.9304551,
+      "add_cm": 4.882628042504833,
+      "trial": "015"
+    },
+    {
+      "time_min": 19.8970901,
+      "add_cm": 4.601788006603718,
+      "trial": "016"
+    },
+    {
+      "time_min": 20.159263766666665,
+      "add_cm": 10.580177759228457,
+      "trial": "017"
+    },
+    {
+      "time_min": 20.43280113333333,
+      "add_cm": 6.562288274408823,
+      "trial": "018"
+    },
+    {
+      "time_min": 20.722935966666668,
+      "add_cm": 6.386922172237873,
+      "trial": "019"
+    },
+    {
+      "time_min": 21.830222066666668,
+      "add_cm": 49.422660224724765,
+      "trial": "020"
+    },
+    {
+      "time_min": 22.904828916666666,
+      "add_cm": 4.635265745322518,
+      "trial": "021"
+    },
+    {
+      "time_min": 23.794477616666665,
+      "add_cm": 4.652249379419062,
+      "trial": "022"
+    },
+    {
+      "time_min": 24.469319316666667,
+      "add_cm": 4.930004209401866,
+      "trial": "023"
+    },
+    {
+      "time_min": 25.614944283333333,
+      "add_cm": 4.601788006603718,
+      "trial": "validation_before_format"
+    },
+    {
+      "time_min": 26.004600966666665,
+      "add_cm": 4.601788006603718,
+      "trial": "final_short"
+    },
+    {
+      "time_min": 27.08350558333333,
+      "add_cm": 4.606757161680133,
+      "trial": "final"
+    }
+  ]
+}

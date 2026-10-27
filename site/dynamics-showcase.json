@@ -1,0 +1,482 @@
+{
+  "method": "Orchestrator-agent ensemble",
+  "clips": [
+    {
+      "clip": "tilting_trash_can_with_right_foot-985",
+      "title": "Tilt a bin with the right foot",
+      "dataset": "humoto",
+      "status": "ready",
+      "video": "dynamics-showcase-media/humoto/tilting_trash_can_with_right_foot-985.mp4?v=f6c9bbe86a",
+      "poster": "assets/showcase/tilting_trash_can_with_right_foot-985.jpg",
+      "description": "The right foot contacts the bin near its rim while the other leg supports the robot.",
+      "metrics": {
+        "mean_add_m": 0.0024050540013881815,
+        "position_mean_m": 0.001891722280831544,
+        "orientation_mean_deg": 0.7296472124425742
+      },
+      "source_motion_sha256": "b94ec5194c60c39b4157aa1934b58ee769292a80bc7edc55124afc10c63c0f33",
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/humoto/tilting_trash_can_with_right_foot-985.mp4?v=c91fd747d7",
+        "poster": "assets/source-humans/tilting_trash_can_with_right_foot-985.jpg",
+        "presentation_trim_start_s": 0.125
+      },
+      "methods": {
+        "orchestrator": {
+          "label": "HuMoTAR",
+          "video": "dynamics-showcase-media/humoto/tilting_trash_can_with_right_foot-985.mp4?v=f6c9bbe86a",
+          "poster": "assets/showcase/tilting_trash_can_with_right_foot-985.jpg",
+          "presentation_trim_start_s": 0.125
+        },
+        "codex": {
+          "status": "ready",
+          "label": "Codex",
+          "video": "baseline-showcase-media/tilting_trash_can_with_right_foot-985/codex.mp4?v=886f828b52",
+          "poster": "assets/showcase/baselines/tilting_trash_can_with_right_foot-985/codex.jpg",
+          "video_sha256": "886f828b5204edcd8a33ca49044f0426ac363da3585fbdbd4cdd73e9cfe51766",
+          "presentation_trim_start_s": 0.125
+        },
+        "zero_shot": {
+          "status": "ready",
+          "label": "Astra one-shot",
+          "video": "baseline-showcase-media/tilting_trash_can_with_right_foot-985/zero_shot.mp4?v=639f382306",
+          "poster": "assets/showcase/baselines/tilting_trash_can_with_right_foot-985/zero_shot.jpg",
+          "video_sha256": "639f38230608712090ec68b22575884db2f7ad0b5da68f4d8abd744216ce846e",
+          "presentation_trim_start_s": 0.125
+        }
+      },
+      "presentation_trim_start_s": 0.125
+    },
+    {
+      "clip": "carrying_mixing_bowl_with_both_hands-134",
+      "title": "Walk and turn with a mixing bowl",
+      "dataset": "humoto",
+      "status": "ready",
+      "video": "dynamics-showcase-media/humoto/carrying_mixing_bowl_with_both_hands-134.mp4?v=dbc51442f1",
+      "poster": "assets/showcase/carrying_mixing_bowl_with_both_hands-134.jpg",
+      "description": "The robot keeps the bowl upright while walking and turning with two-handed support.",
+      "metrics": {
+        "mean_add_m": 0.03248722099832932,
+        "position_mean_m": 0.030913631748275792,
+        "orientation_mean_deg": 4.721502944545132
+      },
+      "source_motion_sha256": "79b5ef37e2a45516c10ab83be779c762a5968dc2a4f95f587a7cead2d567550e",
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/humoto/carrying_mixing_bowl_with_both_hands-134.mp4?v=6b6e7a00b9",
+        "poster": "assets/source-humans/carrying_mixing_bowl_with_both_hands-134.jpg",
+        "presentation_trim_start_s": 0.125
+      },
+      "methods": {
+        "orchestrator": {
+          "label": "HuMoTAR",
+          "video": "dynamics-showcase-media/humoto/carrying_mixing_bowl_with_both_hands-134.mp4?v=dbc51442f1",
+          "poster": "assets/showcase/carrying_mixing_bowl_with_both_hands-134.jpg",
+          "presentation_trim_start_s": 0.125
+        },
+        "codex": {
+          "status": "ready",
+          "label": "Codex",
+          "video": "baseline-showcase-media/carrying_mixing_bowl_with_both_hands-134/codex.mp4?v=e9f1385216",
+          "poster": "assets/showcase/baselines/carrying_mixing_bowl_with_both_hands-134/codex.jpg",
+          "video_sha256": "e9f1385216d87e731fe9dae78843c399fecaced0648457bf4c76d57627271e44",
+          "presentation_trim_start_s": 0.125
+        },
+        "zero_shot": {
+          "status": "ready",
+          "label": "Astra one-shot",
+          "video": "baseline-showcase-media/carrying_mixing_bowl_with_both_hands-134/zero_shot.mp4?v=b53a92fff1",
+          "poster": "assets/showcase/baselines/carrying_mixing_bowl_with_both_hands-134/zero_shot.jpg",
+          "video_sha256": "b53a92fff171750d03f339fb5aa856b1dec6d67cd9397bc432d56678d094bbd3",
+          "presentation_trim_start_s": 0.125
+        }
+      },
+      "presentation_trim_start_s": 0.125
+    },
+    {
+      "dataset": "humoto",
+      "clip": "lifting_and_checking_basket_90-215",
+      "title": "Lift and rotate a basket for inspection",
+      "status": "ready",
+      "video": "dynamics-showcase-media/humoto/lifting_and_checking_basket_90-215.mp4?v=5331287d1d",
+      "poster": "assets/showcase/lifting_and_checking_basket_90-215-64a61d4fb2.jpg",
+      "metrics": {
+        "mean_add_m": 0.020902261791197533,
+        "position_mean_m": 0.0164884302084959,
+        "orientation_mean_deg": 6.919804754202599
+      },
+      "video_sha256": "5331287d1dc7f1da9e7e8ffdaa69a4cede5ab28a678c251f1a900847cfd9dac0",
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/humoto/lifting_and_checking_basket_90-215.mp4?v=63be9a9478",
+        "poster": "assets/source-humans/lifting_and_checking_basket_90-215-0877b1a63b.jpg",
+        "video_sha256": "63be9a9478fdd8851e4a35769d3e53cdf388393852d3bcdfbafe29644feb8ffa",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 6.917,
+        "presentation_trim_start_s": 0.125
+      },
+      "methods": {
+        "orchestrator": {
+          "status": "ready",
+          "video": "dynamics-showcase-media/humoto/lifting_and_checking_basket_90-215.mp4?v=5331287d1d",
+          "poster": "assets/showcase/lifting_and_checking_basket_90-215-64a61d4fb2.jpg",
+          "label": "HuMoTAR",
+          "presentation_trim_start_s": 0.125
+        },
+        "codex": {
+          "status": "ready",
+          "label": "Codex",
+          "video": "baseline-showcase-media/lifting_and_checking_basket_90-215/codex.mp4?v=e8302ccd4c",
+          "video_sha256": "e8302ccd4ccee57ebf0c27bfbdbcd2a3cd9d3fede5d3538bac8d3acacb237f27",
+          "presentation_trim_start_s": 0.125
+        },
+        "zero_shot": {
+          "status": "ready",
+          "label": "Astra one-shot",
+          "video": "baseline-showcase-media/lifting_and_checking_basket_90-215/zero_shot.mp4?v=6d37f4e043",
+          "video_sha256": "6d37f4e04303eeb6789cd177a9075dfeecadd1a2ca8fb2e7cee2e93e6456df9c",
+          "presentation_trim_start_s": 0.125
+        }
+      },
+      "presentation_trim_start_s": 0.125
+    },
+    {
+      "dataset": "humoto",
+      "clip": "lifting_side_table_and_putting_down-362",
+      "title": "Lift, lower and lift a side table",
+      "status": "ready",
+      "video": "dynamics-showcase-media/humoto/lifting_side_table_and_putting_down-362.mp4?v=a9f5c0a307",
+      "poster": "assets/showcase/lifting_side_table_and_putting_down-362-55629ac901.jpg",
+      "metrics": {
+        "mean_add_m": 0.016384852019473047,
+        "position_mean_m": 0.013415066550418735,
+        "orientation_mean_deg": 3.0509002758747927
+      },
+      "video_sha256": "a9f5c0a307e98ce087db67eea7ad3b8a0238b93dba91a99e9b7c7270a308d5aa",
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/humoto/lifting_side_table_and_putting_down-362.mp4?v=7fa2548df3",
+        "poster": "assets/source-humans/lifting_side_table_and_putting_down-362-38da18cc56.jpg",
+        "video_sha256": "7fa2548df373d4cca887f638e87028d72608b7c12832148f6f79cd7663bb3d94",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 10.75,
+        "presentation_trim_start_s": 0.125
+      },
+      "methods": {
+        "orchestrator": {
+          "status": "ready",
+          "video": "dynamics-showcase-media/humoto/lifting_side_table_and_putting_down-362.mp4?v=a9f5c0a307",
+          "poster": "assets/showcase/lifting_side_table_and_putting_down-362-55629ac901.jpg",
+          "label": "HuMoTAR",
+          "presentation_trim_start_s": 0.125
+        },
+        "codex": {
+          "status": "ready",
+          "label": "Codex",
+          "video": "baseline-showcase-media/lifting_side_table_and_putting_down-362/codex.mp4?v=89528594b1",
+          "video_sha256": "89528594b1dcfa2e197cde5780f321e6c3cb09e34a4ad3b956ab23ed7668745e",
+          "presentation_trim_start_s": 0.125
+        },
+        "zero_shot": {
+          "status": "ready",
+          "label": "Astra one-shot",
+          "video": "baseline-showcase-media/lifting_side_table_and_putting_down-362/zero_shot.mp4?v=baecd164a2",
+          "video_sha256": "baecd164a219458995c112ce163cb6e6c3ec44a1635a64f0e7a0a1062f006f1e",
+          "presentation_trim_start_s": 0.125
+        }
+      },
+      "presentation_trim_start_s": 0.125
+    },
+    {
+      "dataset": "humoto",
+      "clip": "carry_side_table_with_both_hands_walk_around-536",
+      "title": "Walk and turn while carrying a side table",
+      "status": "ready",
+      "video": "dynamics-showcase-media/humoto/carry_side_table_with_both_hands_walk_around-536.mp4?v=308c1150df",
+      "poster": "assets/showcase/carry_side_table_with_both_hands_walk_around-536-90b161350e.jpg",
+      "description": "The robot carries the side table with both hands through a turn.",
+      "metrics": {
+        "mean_add_m": 0.04278851820005587,
+        "position_mean_m": 0.03450584295364262,
+        "orientation_mean_deg": 8.585552416539361
+      },
+      "video_sha256": "308c1150dffb91cab58cfff0444fc6ffdccdb4a972154d6a5fa57bfa4d0d123d",
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/humoto/carry_side_table_with_both_hands_walk_around-536.mp4?v=ca864ed6f7",
+        "poster": "assets/source-humans/carry_side_table_with_both_hands_walk_around-536-3a08508b17.jpg",
+        "video_sha256": "ca864ed6f716a21a6dea9096826b0ee79bee38a987569d08f5ce60aad73fa057",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 8.25,
+        "presentation_trim_start_s": 0.125
+      },
+      "methods": {
+        "orchestrator": {
+          "status": "ready",
+          "video": "dynamics-showcase-media/humoto/carry_side_table_with_both_hands_walk_around-536.mp4?v=308c1150df",
+          "poster": "assets/showcase/carry_side_table_with_both_hands_walk_around-536-90b161350e.jpg",
+          "label": "HuMoTAR",
+          "presentation_trim_start_s": 0.125
+        },
+        "codex": {
+          "status": "ready",
+          "label": "Codex",
+          "video": "baseline-showcase-media/carry_side_table_with_both_hands_walk_around-536/codex.mp4?v=55cc41a2ca",
+          "video_sha256": "55cc41a2ca42ec952c2e9bc4a87818b93fffdda47793bc1400385de4032d0247",
+          "presentation_trim_start_s": 0.125
+        },
+        "zero_shot": {
+          "status": "ready",
+          "label": "Astra one-shot",
+          "video": "baseline-showcase-media/carry_side_table_with_both_hands_walk_around-536/zero_shot.mp4?v=0eacaced47",
+          "video_sha256": "0eacaced475f5e042610146298935622e4a2ba647c6a8ea93813204116d33f38",
+          "presentation_trim_start_s": 0.125
+        }
+      },
+      "presentation_trim_start_s": 0.125
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub17_floorlamp_007",
+      "title": "Carry and place a floor lamp",
+      "status": "ready",
+      "video": "dynamics-showcase-media/omomo/sub17_floorlamp_007.mp4?v=3175ec9008",
+      "poster": "assets/showcase/sub17_floorlamp_007.jpg",
+      "metrics": {
+        "mean_add_m": 0.03959017979915393,
+        "position_mean_m": 0.036594668771049395,
+        "orientation_mean_deg": 5.1741698255746105
+      },
+      "video_sha256": "3175ec900817e6943ea2e0a4d7a171ea576b2b27f9812b15cfccd8725450cc7b",
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/omomo/sub17_floorlamp_007.mp4?v=257a7cd55d",
+        "poster": "assets/source-humans/sub17_floorlamp_007-611f231edf.jpg",
+        "video_sha256": "257a7cd55d0b638f222d813b4320661738a1fe3322e0b2e8b9958d0c12fde375",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 3.959,
+        "presentation_trim_start_s": 0.125
+      },
+      "methods": {
+        "orchestrator": {
+          "status": "ready",
+          "video": "dynamics-showcase-media/omomo/sub17_floorlamp_007.mp4?v=3175ec9008",
+          "poster": "assets/showcase/sub17_floorlamp_007.jpg",
+          "label": "HuMoTAR",
+          "presentation_trim_start_s": 0.125
+        },
+        "codex": {
+          "status": "ready",
+          "label": "Codex",
+          "video": "baseline-showcase-media/sub17_floorlamp_007/codex.mp4?v=bef81b7ea4",
+          "video_sha256": "bef81b7ea4cd3536abcf5a58e071e14a6cc844adb9322b98ec8c5e29b5eccf60",
+          "presentation_trim_start_s": 0.125
+        },
+        "zero_shot": {
+          "status": "ready",
+          "label": "Astra one-shot",
+          "video": "baseline-showcase-media/sub17_floorlamp_007/zero_shot.mp4?v=a709a9abb4",
+          "video_sha256": "a709a9abb436bc9aa5f2c09dacd1f856d05cd6d9f98d4a420f3a40833c03c88a",
+          "presentation_trim_start_s": 0.125
+        }
+      },
+      "presentation_trim_start_s": 0.125
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub10_clothesstand_002",
+      "title": "Move and release a clothes stand",
+      "status": "ready",
+      "video": "dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d",
+      "poster": "assets/showcase/sub10_clothesstand_002.jpg",
+      "metrics": {
+        "mean_add_m": 0.046067571616801334,
+        "position_mean_m": 0.03717125561856629,
+        "orientation_mean_deg": 5.391721455839788
+      },
+      "video_sha256": "430d6c797d11e6042df57b00dc58caf67a1f191e02939a9dd8ae2f2df8aba504",
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa",
+        "poster": "assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg",
+        "video_sha256": "7d7b8e30aad9451e0e746111155b01e042463e1e2012a2c914e8c3a3ac0c2f88",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 4.417,
+        "presentation_trim_start_s": 0.125
+      },
+      "methods": {
+        "orchestrator": {
+          "status": "ready",
+          "video": "dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d",
+          "poster": "assets/showcase/sub10_clothesstand_002.jpg",
+          "label": "HuMoTAR",
+          "presentation_trim_start_s": 0.125
+        },
+        "codex": {
+          "status": "ready",
+          "label": "Codex",
+          "video": "baseline-showcase-media/sub10_clothesstand_002/codex.mp4?v=1d39f02558",
+          "video_sha256": "1d39f025583910ff8d085e5fafd357ee7ad5bdec4ce7c5525f20f78f132c2aeb",
+          "presentation_trim_start_s": 0.125
+        },
+        "zero_shot": {
+          "status": "ready",
+          "label": "Astra one-shot",
+          "video": "baseline-showcase-media/sub10_clothesstand_002/zero_shot.mp4?v=f421420879",
+          "video_sha256": "f4214208795787bbe0e4bbbc171ca36b8943c03c3c687e44d64f4bc3dce538fa",
+          "presentation_trim_start_s": 0.125
+        },
+        "hoi_spider": {
+          "status": "ready",
+          "label": "HOI-Retarget + SPIDER",
+          "video": "intro-media/spider.mp4?v=39e4853555",
+          "poster": "intro-media/spider.jpg",
+          "presentation_trim_start_s": 0.125
+        }
+      },
+      "presentation_trim_start_s": 0.125
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub15_woodchair_047",
+      "title": "Carry and place a wooden chair",
+      "status": "ready",
+      "video": "dynamics-showcase-media/omomo/sub15_woodchair_047.mp4?v=42dfeb1d4a",
+      "poster": "assets/showcase/sub15_woodchair_047.jpg",
+      "metrics": {
+        "mean_add_m": 0.0433702202728703,
+        "position_mean_m": 0.03688811941302451,
+        "orientation_mean_deg": 6.719262482085216
+      },
+      "video_sha256": "42dfeb1d4af2b766399509c0667c03de7888abf268d3b895110b5a3d48ff701f",
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910",
+        "poster": "assets/source-humans/sub15_woodchair_047-454ce8c120.jpg",
+        "video_sha256": "dd7a3f79102e6802bdb5febbac750233a818188ac14621bedc12cb584738a3b1",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 3.875,
+        "presentation_trim_start_s": 0.125
+      },
+      "methods": {
+        "orchestrator": {
+          "status": "ready",
+          "video": "dynamics-showcase-media/omomo/sub15_woodchair_047.mp4?v=42dfeb1d4a",
+          "poster": "assets/showcase/sub15_woodchair_047.jpg",
+          "label": "HuMoTAR",
+          "presentation_trim_start_s": 0.125
+        },
+        "codex": {
+          "status": "ready",
+          "label": "Codex",
+          "video": "baseline-showcase-media/sub15_woodchair_047/codex.mp4?v=d0c0ec0d63",
+          "video_sha256": "d0c0ec0d63c9ab94e70d28db991dbc7a661e218a3d3a36fe903964bffb710f86",
+          "presentation_trim_start_s": 0.125
+        },
+        "zero_shot": {
+          "status": "ready",
+          "label": "Astra one-shot",
+          "video": "baseline-showcase-media/sub15_woodchair_047/zero_shot.mp4?v=e56308b1aa",
+          "video_sha256": "e56308b1aaf0c3100c1c49b3bcdb0890f916186766fc1d55b1a806351c61ee23",
+          "presentation_trim_start_s": 0.125
+        }
+      },
+      "presentation_trim_start_s": 0.125
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub15_woodchair_053",
+      "title": "Rock a chair and return it upright",
+      "status": "ready",
+      "video": "dynamics-showcase-media/omomo/sub15_woodchair_053.mp4?v=8ec90d79f8",
+      "poster": "assets/showcase/sub15_woodchair_053.jpg",
+      "metrics": {
+        "mean_add_m": 0.014026279283208121,
+        "position_mean_m": 0.011122251679494134,
+        "orientation_mean_deg": 2.393155651654852
+      },
+      "video_sha256": "8ec90d79f81b8ff47b1187c7a07a85e63fde6b750aa48fbe5c68035d35ebcf67",
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/omomo/sub15_woodchair_053.mp4?v=931a41fd5f",
+        "poster": "assets/source-humans/sub15_woodchair_053-b14b5e41c8.jpg",
+        "video_sha256": "931a41fd5f97323a0732cf9cbdadd42033072a36a675220f82965eb11acff79d",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 3.125,
+        "presentation_trim_start_s": 0.125
+      },
+      "methods": {
+        "orchestrator": {
+          "status": "ready",
+          "video": "dynamics-showcase-media/omomo/sub15_woodchair_053.mp4?v=8ec90d79f8",
+          "poster": "assets/showcase/sub15_woodchair_053.jpg",
+          "label": "HuMoTAR",
+          "presentation_trim_start_s": 0.125
+        },
+        "codex": {
+          "status": "ready",
+          "label": "Codex",
+          "video": "baseline-showcase-media/sub15_woodchair_053/codex.mp4?v=2023cb4f4a",
+          "video_sha256": "2023cb4f4a711606a1d057350c21f7f8a111c646b266b3dcf2b837f215d1ff78",
+          "presentation_trim_start_s": 0.125
+        },
+        "zero_shot": {
+          "status": "ready",
+          "label": "Astra one-shot",
+          "video": "baseline-showcase-media/sub15_woodchair_053/zero_shot.mp4?v=84d781d179",
+          "video_sha256": "84d781d1798d940e95dca9934a80bf8c367134146d15d99296f9bf1ccfa4e2b2",
+          "presentation_trim_start_s": 0.125
+        }
+      },
+      "presentation_trim_start_s": 0.125
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub16_plasticbox_049",
+      "title": "Move a box outward and back",
+      "status": "ready",
+      "video": "dynamics-showcase-media/omomo/sub16_plasticbox_049.mp4?v=a3f81e7f49",
+      "poster": "assets/showcase/sub16_plasticbox_049.jpg",
+      "description": "The robot uses seated support while moving the box along the reference path.",
+      "metrics": {
+        "mean_add_m": 0.027924679205724223,
+        "position_mean_m": 0.021635480863914033,
+        "orientation_mean_deg": 4.938901770028066
+      },
+      "video_sha256": "a3f81e7f49aeeb9afc95d7981ba209d82d133a300f277a9ad6b2b2a4a884fd3a",
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/omomo/sub16_plasticbox_049.mp4?v=aec3559c2b",
+        "poster": "assets/source-humans/sub16_plasticbox_049-681f40f344.jpg",
+        "video_sha256": "aec3559c2b3571d5b600bc4a474dc54baa80f30b3e9768df2ded3da22da059ff",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 4.917,
+        "presentation_trim_start_s": 0.125
+      },
+      "methods": {
+        "orchestrator": {
+          "status": "ready",
+          "video": "dynamics-showcase-media/omomo/sub16_plasticbox_049.mp4?v=a3f81e7f49",
+          "poster": "assets/showcase/sub16_plasticbox_049.jpg",
+          "label": "HuMoTAR",
+          "presentation_trim_start_s": 0.125
+        },
+        "codex": {
+          "status": "ready",
+          "label": "Codex",
+          "video": "baseline-showcase-media/sub16_plasticbox_049/codex.mp4?v=b551753694",
+          "video_sha256": "b551753694a0692fc3714d3659b0597375b798d322f25d0261c0666389e18f69",
+          "presentation_trim_start_s": 0.125
+        },
+        "zero_shot": {
+          "status": "ready",
+          "label": "Astra one-shot",
+          "video": "baseline-showcase-media/sub16_plasticbox_049/zero_shot.mp4?v=44757907cc",
+          "video_sha256": "44757907cc65ee6e8c75c6e0dd57b2c4e1dde1362ad82a831e8b1ac7cc1dd9ae",
+          "presentation_trim_start_s": 0.125
+        }
+      },
+      "presentation_trim_start_s": 0.125
+    }
+  ]
+}

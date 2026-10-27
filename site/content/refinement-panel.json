@@ -1,0 +1,148 @@
+{
+  "pipeline": {
+    "image": "assets/refinement/agentic-pipeline.png",
+    "alt": "Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent.",
+    "width": 7440,
+    "height": 3400
+  },
+  "cards": [
+    {
+      "consideration": "Starting pose",
+      "decision": "The agent corrects foot support and hand clearance before stepping. Root height, leg posture and finger placement change while the object\u2019s initial pose stays fixed.",
+      "image": "assets/refinement/consideration-1.png",
+      "alt": "Clothes stand \u00b7 before execution: Feet fitted to the floor.",
+      "scene": "Clothes stand \u00b7 before execution",
+      "time_s": 0,
+      "ellipse": [
+        54,
+        94,
+        8,
+        5
+      ],
+      "tag": [
+        25,
+        79
+      ],
+      "callout": "Feet fitted to the floor",
+      "clip": "sub10_clothesstand_002",
+      "candidate": 1,
+      "selected_by_harness": false,
+      "report": "omomo__sub10_clothesstand_002__1.md",
+      "title": "Prepare the clothes-stand lift"
+    },
+    {
+      "consideration": "Contact acquisition",
+      "title": "Tilt a bin with the right foot",
+      "decision": "Foot placement and leg motion establish contact near the rim to tilt the bin. The other foot provides support while the right foot directs the interaction.",
+      "image": "assets/refinement/consideration-footcontact-v2.png",
+      "alt": "Right foot contacts the bin near its rim.",
+      "clip": "tilting_trash_can_with_right_foot-985",
+      "time_s": 1.7000000000000013,
+      "ellipse": [
+        60,
+        55,
+        10,
+        12
+      ],
+      "tag": [
+        24,
+        27
+      ],
+      "candidate": null,
+      "condition": "without_experience",
+      "source": "experience10_20261024 no-experience continuation"
+    },
+    {
+      "consideration": "Maintaining contact",
+      "title": "Lift and turn a large box",
+      "decision": "Both hands support the raised box through object-relative arm targets. The controller maintains the grip as the load transfers from the floor to the arms.",
+      "image": "assets/refinement/consideration-boxhold-v2.png",
+      "alt": "Fingers and palm support the box during lifting.",
+      "clip": "sub12_largebox_049",
+      "time_s": 6.0,
+      "ellipse": [
+        54,
+        54,
+        10,
+        13
+      ],
+      "tag": [
+        23,
+        30
+      ],
+      "candidate": 1,
+      "selected_by_harness": true,
+      "report": "omomo__sub12_largebox_049__1.md"
+    },
+    {
+      "consideration": "Whole-body coordination",
+      "title": "Carry and place a wooden chair",
+      "decision": "Pelvis-position feedback steers the whole-body reference while arm IK follows the backrest rail. The body advances with the chair while the hand maintains its grasp.",
+      "image": "assets/refinement/consideration-coordination-v2.png",
+      "alt": "Upright G1 steps while carrying a wooden chair by its backrest.",
+      "clip": "sub15_woodchair_047",
+      "time_s": 3.0,
+      "ellipse": [
+        56,
+        54,
+        18,
+        27
+      ],
+      "tag": [
+        83,
+        21
+      ],
+      "candidate": 3,
+      "selected_by_harness": true,
+      "report": "omomo__sub15_woodchair_047__3.md"
+    },
+    {
+      "consideration": "Timing and feedback",
+      "title": "Rock a wooden chair",
+      "decision": "The agent slows the rocking phase and uses object-pose feedback to follow the tilt. Hand opening is staggered as the chair returns upright.",
+      "image": "assets/refinement/consideration-timing-v2.png",
+      "alt": "Bimanual contact during the slower rocking phase.",
+      "clip": "sub15_woodchair_053",
+      "time_s": 3.0,
+      "ellipse": [
+        39,
+        57,
+        10,
+        10
+      ],
+      "tag": [
+        79,
+        29
+      ],
+      "candidate": 1,
+      "selected_by_harness": true,
+      "report": "omomo__sub15_woodchair_053__1.md"
+    },
+    {
+      "consideration": "Placement and release",
+      "decision": "The agent adjusts the base orientation and waits for the lamp to settle before opening the fingers. The hand then withdraws while the floor supports the lamp.",
+      "image": "assets/refinement/consideration-6.png",
+      "alt": "Floor lamp \u00b7 after release: Open hand after placement.",
+      "scene": "Floor lamp \u00b7 after release",
+      "time_s": 20,
+      "ellipse": [
+        40,
+        43,
+        21,
+        14
+      ],
+      "tag": [
+        18,
+        19
+      ],
+      "callout": "Open hand after placement",
+      "clip": "sub17_floorlamp_007",
+      "candidate": 3,
+      "selected_by_harness": false,
+      "report": "omomo__sub17_floorlamp_007__3.md",
+      "title": "Set down a floor lamp"
+    }
+  ],
+  "caption": "HuMoTAR refinement pipeline and six examples of contact and control adjustments. Astra generates motion and controller code, evaluates it in simulation and revises it using execution feedback. Panels (a\u2013f) show starting-pose correction, foot contact, grasp retention, coordinated transport, phase timing and object release.",
+  "heading": "Refining contact, support and motion"
+}

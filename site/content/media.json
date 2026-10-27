@@ -1,0 +1,59 @@
+{
+  "intro-kinematic": {
+    "label": "Carry and place a chair",
+    "src": "intro-media/chair.mp4?v=be4d8e70e9",
+    "poster": "intro-media/chair.jpg",
+    "caption": "Fig. 1. Human demonstration and HOI-Retarget reference for carrying and placing a wooden chair. Kinematic replay without physics simulation.",
+    "views": [
+      {
+        "label": "Human reference",
+        "src": "source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910",
+        "poster": "assets/source-humans/sub15_woodchair_047-454ce8c120.jpg"
+      },
+      {
+        "label": "HOI-Retarget",
+        "src": "intro-media/chair.mp4?v=be4d8e70e9",
+        "poster": "intro-media/chair.jpg"
+      }
+    ]
+  },
+  "intro-smallbox": {
+    "label": "Push and pull a box",
+    "src": "intro-media/smallbox.mp4?v=7efdd11b53",
+    "poster": "intro-media/smallbox.jpg",
+    "caption": "Fig. 2. Human demonstration and HOI-Retarget reference for pushing and pulling a box. Kinematic replay without physics simulation.",
+    "views": [
+      {
+        "label": "Human reference",
+        "src": "source-human-media/omomo/sub7_smallbox_054.mp4?v=dc1c03562d",
+        "poster": "assets/source-humans/sub7_smallbox_054-dc1c03562d.jpg"
+      },
+      {
+        "label": "HOI-Retarget",
+        "src": "intro-media/smallbox.mp4?v=7efdd11b53",
+        "poster": "intro-media/smallbox.jpg"
+      }
+    ]
+  },
+  "intro-dynamics": {
+    "label": "Clothes-stand dynamic execution",
+    "views": [
+      {
+        "label": "Human reference",
+        "src": "source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa",
+        "poster": "assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg"
+      },
+      {
+        "label": "HOI-Retarget + SPIDER",
+        "src": "intro-media/spider.mp4?v=39e4853555",
+        "poster": "intro-media/spider.jpg"
+      },
+      {
+        "label": "HuMoTAR",
+        "src": "dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d",
+        "poster": "assets/showcase/sub10_clothesstand_002.jpg"
+      }
+    ],
+    "caption": "Fig. 3. Human demonstration and simulated clothes-stand manipulation. HOI-Retarget + SPIDER loses balance and tips the stand. HuMoTAR lifts, carries and places it on the floor."
+  }
+}

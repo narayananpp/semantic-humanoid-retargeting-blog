@@ -1,0 +1,1 @@
+This repository hosts the Semantic Humanoid Retargeting research blog, exploring how iterative refinement transforms human motion references into humanoid–object interactions. It includes experimental results, interactive visualizations, and videos illustrating motion refinement and the role of prior experience.

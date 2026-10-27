@@ -1,0 +1,118 @@
+{
+  "sub15_woodchair_047": {
+    "status": "ready",
+    "video": "source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910",
+    "poster": "assets/source-humans/sub15_woodchair_047-454ce8c120.jpg",
+    "video_sha256": "dd7a3f79102e6802bdb5febbac750233a818188ac14621bedc12cb584738a3b1",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "duration_s": 3.875,
+    "presentation_trim_start_s": 0.125
+  },
+  "carry_side_table_with_both_hands_walk_around-536": {
+    "status": "ready",
+    "video": "source-human-media/humoto/carry_side_table_with_both_hands_walk_around-536.mp4?v=ca864ed6f7",
+    "poster": "assets/source-humans/carry_side_table_with_both_hands_walk_around-536-3a08508b17.jpg",
+    "video_sha256": "ca864ed6f716a21a6dea9096826b0ee79bee38a987569d08f5ce60aad73fa057",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "duration_s": 8.25,
+    "presentation_trim_start_s": 0.125
+  },
+  "lifting_side_table_and_putting_down-362": {
+    "status": "ready",
+    "video": "source-human-media/humoto/lifting_side_table_and_putting_down-362.mp4?v=7fa2548df3",
+    "poster": "assets/source-humans/lifting_side_table_and_putting_down-362-38da18cc56.jpg",
+    "video_sha256": "7fa2548df373d4cca887f638e87028d72608b7c12832148f6f79cd7663bb3d94",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "duration_s": 10.75,
+    "presentation_trim_start_s": 0.125
+  },
+  "sub8_plasticbox_052": {
+    "status": "ready",
+    "video": "source-human-media/omomo/sub8_plasticbox_052.mp4?v=b513c3d3e4",
+    "poster": "assets/source-humans/sub8_plasticbox_052-16967ad13b.jpg",
+    "video_sha256": "b513c3d3e4c06a2898bcf2a88fb25a6d4d5b73c3f01bf867a61f2eee79f43708",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "duration_s": 7.709,
+    "presentation_trim_start_s": 0.125
+  },
+  "sub16_plasticbox_049": {
+    "status": "ready",
+    "video": "source-human-media/omomo/sub16_plasticbox_049.mp4?v=aec3559c2b",
+    "poster": "assets/source-humans/sub16_plasticbox_049-681f40f344.jpg",
+    "video_sha256": "aec3559c2b3571d5b600bc4a474dc54baa80f30b3e9768df2ded3da22da059ff",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "duration_s": 4.917,
+    "presentation_trim_start_s": 0.125
+  },
+  "turn_on_floor_lamp_while_sitting_on_low_chair_and_drinking_from_mug-457": {
+    "status": "ready",
+    "video": "source-human-media/humoto/turn_on_floor_lamp_while_sitting_on_low_chair_and_drinking_from_mug-457.mp4?v=1461b2c6fe",
+    "poster": "assets/source-humans/turn_on_floor_lamp_while_sitting_on_low_chair_and_drinking_from_mug-457-ab40502b92.jpg",
+    "video_sha256": "1461b2c6fe7531deaf1cc03d1581225e21042fb2c4867f12fea5618a2593c87c",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "duration_s": 9.042,
+    "presentation_trim_start_s": 0.125
+  },
+  "lifting_dining_chair_from_backrest_and_placing_back_with_right_hand_on_ground-595": {
+    "status": "ready",
+    "video": "source-human-media/humoto/lifting_dining_chair_from_backrest_and_placing_back_with_right_hand_on_ground-595.mp4?v=a55ebee407",
+    "poster": "assets/source-humans/lifting_dining_chair_from_backrest_and_placing_back_with_right_hand_on_ground-595-4434ad92e1.jpg",
+    "video_sha256": "a55ebee40768848f5d0f0ec8720429113c56c8a32bee613b5287100890977192",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "duration_s": 10.667,
+    "presentation_trim_start_s": 0.125
+  },
+  "lifting_and_checking_basket_90-215": {
+    "status": "ready",
+    "video": "source-human-media/humoto/lifting_and_checking_basket_90-215.mp4?v=63be9a9478",
+    "poster": "assets/source-humans/lifting_and_checking_basket_90-215-0877b1a63b.jpg",
+    "video_sha256": "63be9a9478fdd8851e4a35769d3e53cdf388393852d3bcdfbafe29644feb8ffa",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "duration_s": 6.917,
+    "presentation_trim_start_s": 0.125
+  },
+  "sub17_floorlamp_007": {
+    "status": "ready",
+    "video": "source-human-media/omomo/sub17_floorlamp_007.mp4?v=257a7cd55d",
+    "poster": "assets/source-humans/sub17_floorlamp_007-611f231edf.jpg",
+    "video_sha256": "257a7cd55d0b638f222d813b4320661738a1fe3322e0b2e8b9958d0c12fde375",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "duration_s": 3.959,
+    "presentation_trim_start_s": 0.125
+  },
+  "sub10_clothesstand_002": {
+    "status": "ready",
+    "video": "source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa",
+    "poster": "assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg",
+    "video_sha256": "7d7b8e30aad9451e0e746111155b01e042463e1e2012a2c914e8c3a3ac0c2f88",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "duration_s": 4.417,
+    "presentation_trim_start_s": 0.125
+  },
+  "sub15_woodchair_053": {
+    "status": "ready",
+    "video": "source-human-media/omomo/sub15_woodchair_053.mp4?v=931a41fd5f",
+    "poster": "assets/source-humans/sub15_woodchair_053-b14b5e41c8.jpg",
+    "video_sha256": "931a41fd5f97323a0732cf9cbdadd42033072a36a675220f82965eb11acff79d",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "duration_s": 3.125,
+    "presentation_trim_start_s": 0.125
+  },
+  "pulling_and_pushing_the_dining_chair_from_back_post-203": {
+    "status": "ready",
+    "video": "source-human-media/humoto/pulling_and_pushing_the_dining_chair_from_back_post-203.mp4?v=e2192b7a7f",
+    "poster": "assets/source-humans/pulling_and_pushing_the_dining_chair_from_back_post-203-bcf5e3dd5b.jpg",
+    "video_sha256": "e2192b7a7fbd347fc44f4a7aa0f3adffc7b3ad591ba8b2562513e3c991efbe11",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "duration_s": 8.75,
+    "presentation_trim_start_s": 0.125
+  },
+  "sub7_smallbox_054": {
+    "status": "ready",
+    "video": "source-human-media/omomo/sub7_smallbox_054.mp4?v=dc1c03562d",
+    "poster": "assets/source-humans/sub7_smallbox_054-dc1c03562d.jpg",
+    "video_sha256": "dc1c03562d05948715acb0740b905e29c844533fe5c957bda79ce7f05c5e82c7",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "presentation_trim_start_s": 0.125
+  }
+}
