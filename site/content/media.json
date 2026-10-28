@@ -55,5 +55,21 @@
       }
     ],
     "caption": "Fig. 3. Human demonstration and simulated clothes-stand manipulation. HOI-Retarget + SPIDER loses balance and tips the stand. HuMoTAR lifts, carries and places it on the floor."
+  },
+  "discussion-plate": {
+    "label": "Swirl a plate",
+    "views": [
+      {
+        "label": "Human reference",
+        "src": "intro-media/plate-human.mp4?v=1ce87eb92b",
+        "poster": "intro-media/plate-human.jpg"
+      },
+      {
+        "label": "HuMoTAR",
+        "src": "intro-media/plate-robot.mp4?v=c85e205f9b",
+        "poster": "intro-media/plate-robot.jpg"
+      }
+    ],
+    "caption": "Fig. 11. Human demonstration and HuMoTAR execution of the plate-swirling task. The robot partially lifts the plate but does not complete the demonstrated swirling motion."
   }
 }

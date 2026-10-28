@@ -336,10 +336,15 @@
 <section id="discussion" class="outline-section">
 <h2 id="6-discussion">6. Discussion</h2>
 <h3 id="metric-limitations">Limits of the metrics</h3>
+<p>We use object-tracking error to measure how closely an execution follows the desired object motion. <strong>Low tracking error does not always imply task success.</strong> A robot may remain close to the target trajectory while losing contact or leaving the interaction incomplete. An alternative motion may also accomplish the task without closely following the demonstration. User studies could help evaluate whether the intended outcome is preserved. LLM judges offer another way to provide semantic feedback during refinement and evaluation, provided their judgments are checked against human assessments. We encourage further work on these complementary measures of retargeting quality.</p>
 <h3 id="rl-fine-tuning">RL fine-tuning</h3>
-<p>Downstream reinforcement-learning fine-tuning has not yet been evaluated.</p>
+<p>Retargeted references can serve as training data for whole-body policies intended for deployment. Our results show that off-the-shelf models, combined with a pretrained whole-body controller, can refine a range of interactions in simulation. <strong>Reinforcement-learning fine-tuning is a natural next step</strong> toward policies that can reproduce these interactions under disturbances and changes in object properties. We have not yet evaluated downstream policy training or transfer to hardware. We hope this study encourages the community to investigate agentic refinement as a way to produce useful references for that training.</p>
 <h3 id="failure-analysis">Failure cases in dynamic retargeting</h3>
-<p>Reliable execution on thin objects and other difficult contact geometries remains to be demonstrated. These cases will form part of our analysis of failures in dynamics.</p>
+<p><strong>Thin objects remain difficult to manipulate reliably.</strong> In the plate task below, HuMoTAR achieves a partial lift but does not complete the demonstrated swirling motion. The agents repeatedly revise finger placement around the sloped rim, yet contacts that support a lift fail during rotation. This points to a mismatch between the required grasp and the geometry and articulation of the Dex3 hand. Hand morphology is a likely contributor: refining the motion alone may not resolve an interaction that requires a different arrangement of supporting contacts.</p>
+
+
+<figure class="authored-video" data-media-id="discussion-plate"><div class="authored-video-views"><div><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="intro-media/plate-human.jpg" src="intro-media/plate-human.mp4?v=1ce87eb92b"></video></div><div><p>HuMoTAR</p><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="intro-media/plate-robot.jpg" src="intro-media/plate-robot.mp4?v=c85e205f9b"></video></div></div><figcaption>Fig. 11. Human demonstration and HuMoTAR execution of the plate-swirling task. The robot partially lifts the plate but does not complete the demonstrated swirling motion.</figcaption></figure>
+
 </section>
 <section id="references" class="outline-section">
 <h2 id="reference-list">References</h2>

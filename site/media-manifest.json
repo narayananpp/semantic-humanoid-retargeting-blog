@@ -260,6 +260,16 @@
     "sha256": "be4d8e70e960e2a1f14c477d89d830252bb1fefe72cb6f481d6418fe225cb279"
   },
   {
+    "path": "intro-media/plate-human.mp4",
+    "bytes": 400100,
+    "sha256": "1ce87eb92bd6d3b850e941c858b07c9817e55feadf011851a41c51099c8779df"
+  },
+  {
+    "path": "intro-media/plate-robot.mp4",
+    "bytes": 1856246,
+    "sha256": "c85e205f9baea7043a5475e7d22edac1c8544f6e46f6d69fef822155d79cd463"
+  },
+  {
     "path": "intro-media/smallbox.mp4",
     "bytes": 1017584,
     "sha256": "7efdd11b539f64cc822f6e898b3d42c35785879e1a8fbad57f802ef08abb8ca6"
