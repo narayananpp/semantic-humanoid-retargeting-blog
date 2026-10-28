@@ -24,5 +24,3 @@ Agents can write their own analysis and control code. Two ensemble agents also r
 | Object-path evaluation | Mean ADD, position and orientation errors against the fixed target trajectory. |
 | Whole-body control | A frozen tracking policy driven by a motion reference. |
 | Custom joint control | Targets, gains and feedforward torques for the agent’s manipulation controller. |
-
-The model weights remain unchanged. Adaptation takes place in the generated program, its motion references and the decisions made from simulation feedback.
