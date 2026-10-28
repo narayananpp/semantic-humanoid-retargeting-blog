@@ -2,11 +2,13 @@
 
 ::: anchor hoi-reference
 
-**Motion retargeting translates a human demonstration into a reference motion for a robot.** A person and a humanoid have different proportions, joint limits and ranges of motion. Retargeting accounts for these differences while preserving features of the demonstration, such as the path of a hand, the placement of a foot or contact with an object.
+**Motion retargeting translates a human demonstration into a reference motion for a robot.** Human and robot bodies differ in their proportions, joint limits and ranges of motion. Existing methods typically match the demonstrated body motion while adapting contact targets to the robot’s geometry.
+
+**We posit that retargeting should preserve the semantic intent of the interaction: what the human accomplishes with the object.** The robot may need a different posture, grasp or sequence of movements to achieve that intent. In our experiments, we use the demonstrated object trajectory, scaled for G1, as the interaction target. Object-tracking error measures how closely the robot reproduces the desired object motion, while its own motion and contact strategy remain free to change.
 
 ::: anchor kinematic-setup
 
-These references supply training data for humanoid policies, as studied in [GMR](https://arxiv.org/abs/2510.02252)’s analysis of retargeting and motion tracking. Rather than designing each movement by hand, we can learn a controller that tracks retargeted demonstrations while maintaining balance and responding to physical forces. This makes retargeting an important part of the data pipeline for interactive humanoid systems.
+Retargeted references **can serve as training data for downstream whole-body control policies**, as studied in [GMR](https://arxiv.org/abs/2510.02252)’s analysis of retargeting and motion tracking. These policies learn to track the reference while maintaining balance and responding to physical forces. The quality of the reference therefore matters for the interactions a policy can learn.
 
 ### What does a kinematic reference provide?
 

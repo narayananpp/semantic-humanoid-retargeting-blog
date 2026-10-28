@@ -98,12 +98,13 @@
 
 <span id="hoi-reference" class="section-anchor"></span>
 
-<p><strong>Motion retargeting translates a human demonstration into a reference motion for a robot.</strong> A person and a humanoid have different proportions, joint limits and ranges of motion. Retargeting accounts for these differences while preserving features of the demonstration, such as the path of a hand, the placement of a foot or contact with an object.</p>
+<p><strong>Motion retargeting translates a human demonstration into a reference motion for a robot.</strong> Human and robot bodies differ in their proportions, joint limits and ranges of motion. Existing methods typically match the demonstrated body motion while adapting contact targets to the robot’s geometry.</p>
+<p><strong>We posit that retargeting should preserve the semantic intent of the interaction: what the human accomplishes with the object.</strong> The robot may need a different posture, grasp or sequence of movements to achieve that intent. In our experiments, we use the demonstrated object trajectory, scaled for G1, as the interaction target. Object-tracking error measures how closely the robot reproduces the desired object motion, while its own motion and contact strategy remain free to change.</p>
 
 
 <span id="kinematic-setup" class="section-anchor"></span>
 
-<p>These references supply training data for humanoid policies, as studied in <a href="https://arxiv.org/abs/2510.02252">GMR</a>’s analysis of retargeting and motion tracking. Rather than designing each movement by hand, we can learn a controller that tracks retargeted demonstrations while maintaining balance and responding to physical forces. This makes retargeting an important part of the data pipeline for interactive humanoid systems.</p>
+<p>Retargeted references <strong>can serve as training data for downstream whole-body control policies</strong>, as studied in <a href="https://arxiv.org/abs/2510.02252">GMR</a>’s analysis of retargeting and motion tracking. These policies learn to track the reference while maintaining balance and responding to physical forces. The quality of the reference therefore matters for the interactions a policy can learn.</p>
 <h3 id="what-does-a-kinematic-reference-provide">What does a kinematic reference provide?</h3>
 <div class="intro-reference-videos">
 <div class="intro-reference-example">
