@@ -180,9 +180,10 @@
         "zero_shot": {
           "status": "ready",
           "label": "Astra one-shot",
-          "video": "baseline-showcase-media/lifting_side_table_and_putting_down-362/zero_shot.mp4?v=baecd164a2",
-          "video_sha256": "baecd164a219458995c112ce163cb6e6c3ec44a1635a64f0e7a0a1062f006f1e",
-          "presentation_trim_start_s": 0.125
+          "video": "baseline-showcase-media/lifting_side_table_and_putting_down-362/zero_shot.mp4?v=6517e5c879",
+          "video_sha256": "6517e5c8791f0440671c7075c2dade526e7895a0a8838da769083a7c1ce581f9",
+          "presentation_trim_start_s": 0.125,
+          "presentation_duration_s": 11.0
         }
       },
       "presentation_trim_start_s": 0.125
@@ -432,51 +433,54 @@
     },
     {
       "dataset": "omomo",
-      "clip": "sub16_plasticbox_049",
-      "title": "Move a box outward and back",
+      "clip": "sub12_largebox_049",
+      "title": "Lift, turn and place a large box",
       "status": "ready",
-      "video": "dynamics-showcase-media/omomo/sub16_plasticbox_049.mp4?v=a3f81e7f49",
-      "poster": "assets/showcase/sub16_plasticbox_049.jpg",
-      "description": "The robot uses seated support while moving the box along the reference path.",
-      "metrics": {
-        "mean_add_m": 0.027924679205724223,
-        "position_mean_m": 0.021635480863914033,
-        "orientation_mean_deg": 4.938901770028066
-      },
-      "video_sha256": "a3f81e7f49aeeb9afc95d7981ba209d82d133a300f277a9ad6b2b2a4a884fd3a",
-      "human": {
-        "status": "ready",
-        "video": "source-human-media/omomo/sub16_plasticbox_049.mp4?v=aec3559c2b",
-        "poster": "assets/source-humans/sub16_plasticbox_049-681f40f344.jpg",
-        "video_sha256": "aec3559c2b3571d5b600bc4a474dc54baa80f30b3e9768df2ded3da22da059ff",
-        "renderer": "Blender 4.5.3 Cycles OptiX",
-        "duration_s": 4.917,
-        "presentation_trim_start_s": 0.125
-      },
+      "description": "The robot lifts the box with both hands, turns with it and lowers it to the floor.",
       "methods": {
         "orchestrator": {
           "status": "ready",
-          "video": "dynamics-showcase-media/omomo/sub16_plasticbox_049.mp4?v=a3f81e7f49",
-          "poster": "assets/showcase/sub16_plasticbox_049.jpg",
-          "label": "HuMoTAR",
-          "presentation_trim_start_s": 0.125
+          "video": "dynamics-showcase-media/omomo/sub12_largebox_049.mp4?v=1f70d93774",
+          "video_sha256": "1f70d937741959c0e5f15a560d08faa53bb184df3ff643d553ff7a0048958b94",
+          "presentation_trim_start_s": 0.125,
+          "poster": "assets/showcase/baselines/sub12_largebox_049/orchestrator.jpg",
+          "label": "HuMoTAR"
         },
         "codex": {
           "status": "ready",
-          "label": "Codex",
-          "video": "baseline-showcase-media/sub16_plasticbox_049/codex.mp4?v=b551753694",
-          "video_sha256": "b551753694a0692fc3714d3659b0597375b798d322f25d0261c0666389e18f69",
-          "presentation_trim_start_s": 0.125
+          "video": "baseline-showcase-media/sub12_largebox_049/codex.mp4?v=b668a50434",
+          "video_sha256": "b668a504347b2bbb2c28718e4a3934497cde74fd3f7f2057a5ff3428347b9f7b",
+          "presentation_trim_start_s": 0.125,
+          "poster": "assets/showcase/baselines/sub12_largebox_049/codex.jpg",
+          "label": "Codex"
         },
         "zero_shot": {
           "status": "ready",
-          "label": "Astra one-shot",
-          "video": "baseline-showcase-media/sub16_plasticbox_049/zero_shot.mp4?v=44757907cc",
-          "video_sha256": "44757907cc65ee6e8c75c6e0dd57b2c4e1dde1362ad82a831e8b1ac7cc1dd9ae",
-          "presentation_trim_start_s": 0.125
+          "video": "baseline-showcase-media/sub12_largebox_049/zero_shot.mp4?v=68366a1b51",
+          "video_sha256": "68366a1b51236afb1300e9058cd184af6309e78c56b6a043ed4f286571298a92",
+          "presentation_trim_start_s": 0.125,
+          "poster": "assets/showcase/baselines/sub12_largebox_049/zero_shot.jpg",
+          "label": "Astra one-shot"
         }
       },
-      "presentation_trim_start_s": 0.125
+      "video": "dynamics-showcase-media/omomo/sub12_largebox_049.mp4?v=1f70d93774",
+      "video_sha256": "1f70d937741959c0e5f15a560d08faa53bb184df3ff643d553ff7a0048958b94",
+      "presentation_trim_start_s": 0.125,
+      "poster": "assets/showcase/baselines/sub12_largebox_049/orchestrator.jpg",
+      "metrics": {
+        "mean_add_m": 0.2187396852470088,
+        "position_mean_m": 0.2024562890977902,
+        "orientation_mean_deg": 35.37336150252063
+      },
+      "human": {
+        "status": "ready",
+        "video": "source-human-media/omomo/sub12_largebox_049.mp4?v=5321663336",
+        "video_sha256": "5321663336971b7117391d8feca47cf27a53670a515be912b2a5ecc76f9ee96b",
+        "presentation_trim_start_s": 0.125,
+        "poster": "assets/source-humans/sub12_largebox_049.jpg",
+        "renderer": "Blender 4.5.3 Cycles OptiX",
+        "duration_s": 9.375
+      }
     }
   ]
 }

@@ -114,5 +114,14 @@
     "video_sha256": "dc1c03562d05948715acb0740b905e29c844533fe5c957bda79ce7f05c5e82c7",
     "renderer": "Blender 4.5.3 Cycles OptiX",
     "presentation_trim_start_s": 0.125
+  },
+  "sub12_largebox_049": {
+    "status": "ready",
+    "video": "source-human-media/omomo/sub12_largebox_049.mp4?v=5321663336",
+    "video_sha256": "5321663336971b7117391d8feca47cf27a53670a515be912b2a5ecc76f9ee96b",
+    "presentation_trim_start_s": 0.125,
+    "poster": "assets/source-humans/sub12_largebox_049.jpg",
+    "renderer": "Blender 4.5.3 Cycles OptiX",
+    "duration_s": 9.375
   }
 }

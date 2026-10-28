@@ -46,8 +46,8 @@
   },
   {
     "path": "baseline-showcase-media/lifting_side_table_and_putting_down-362/zero_shot.mp4",
-    "bytes": 13357377,
-    "sha256": "baecd164a219458995c112ce163cb6e6c3ec44a1635a64f0e7a0a1062f006f1e"
+    "bytes": 2496404,
+    "sha256": "6517e5c8791f0440671c7075c2dade526e7895a0a8838da769083a7c1ce581f9"
   },
   {
     "path": "baseline-showcase-media/sub10_clothesstand_002/codex.mp4",
@@ -58,6 +58,16 @@
     "path": "baseline-showcase-media/sub10_clothesstand_002/zero_shot.mp4",
     "bytes": 1330138,
     "sha256": "f4214208795787bbe0e4bbbc171ca36b8943c03c3c687e44d64f4bc3dce538fa"
+  },
+  {
+    "path": "baseline-showcase-media/sub12_largebox_049/codex.mp4",
+    "bytes": 1442431,
+    "sha256": "b668a504347b2bbb2c28718e4a3934497cde74fd3f7f2057a5ff3428347b9f7b"
+  },
+  {
+    "path": "baseline-showcase-media/sub12_largebox_049/zero_shot.mp4",
+    "bytes": 2090106,
+    "sha256": "68366a1b51236afb1300e9058cd184af6309e78c56b6a043ed4f286571298a92"
   },
   {
     "path": "baseline-showcase-media/sub15_woodchair_047/codex.mp4",
@@ -158,6 +168,11 @@
     "path": "dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4",
     "bytes": 2078245,
     "sha256": "430d6c797d11e6042df57b00dc58caf67a1f191e02939a9dd8ae2f2df8aba504"
+  },
+  {
+    "path": "dynamics-showcase-media/omomo/sub12_largebox_049.mp4",
+    "bytes": 2202558,
+    "sha256": "1f70d937741959c0e5f15a560d08faa53bb184df3ff643d553ff7a0048958b94"
   },
   {
     "path": "dynamics-showcase-media/omomo/sub15_woodchair_047.mp4",
@@ -373,6 +388,11 @@
     "path": "source-human-media/omomo/sub10_clothesstand_002.mp4",
     "bytes": 435422,
     "sha256": "7d7b8e30aad9451e0e746111155b01e042463e1e2012a2c914e8c3a3ac0c2f88"
+  },
+  {
+    "path": "source-human-media/omomo/sub12_largebox_049.mp4",
+    "bytes": 821784,
+    "sha256": "5321663336971b7117391d8feca47cf27a53670a515be912b2a5ecc76f9ee96b"
   },
   {
     "path": "source-human-media/omomo/sub15_woodchair_047.mp4",
