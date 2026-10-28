@@ -2,7 +2,7 @@
 
 ### Limits of the metrics {#metric-limitations}
 
-**We posit that retargeting should be evaluated by the successful transfer of an interaction’s semantic intent.** In this study, we use object tracking as a measurable objective, but it does not fully capture whether the robot accomplishes the task. The plate example below illustrates this gap: a partial lift can yield a low tracking error without completing the intended motion. User studies could provide a more direct assessment of interaction success. LLM-based judges could also supply semantic feedback during refinement and evaluation. We encourage the community to explore these directions and assess their agreement with human judgments.
+**We posit that retargeting should be evaluated by the successful transfer of an interaction’s semantic intent.** In this study, object tracking provides a measurable objective for preserving the intended object motion. It is possible, however, for executions with similar tracking errors to differ in how fully they accomplish the task. User studies could complement these measurements by assessing whether the intended interaction is preserved. LLM-based judges could also supply semantic feedback during refinement and evaluation. We encourage the community to explore these directions and assess their agreement with human judgments.
 
 ### RL fine-tuning {#rl-fine-tuning}
 
