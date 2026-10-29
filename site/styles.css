@@ -363,6 +363,20 @@ html[data-media="off"] video,html[data-media="off"] .video-cue,html[data-media="
 .reference-overlay-media a { display:block; cursor:zoom-in; }
 .reference-overlay-media figcaption { margin-top:10px; font-size:.85rem; line-height:1.55; }
 .reference-overlay-media .reference-overlay-poster { display:none; }
+.text-motion-showcase { margin:24px 0 8px; }
+.text-motion-picker { display:flex; align-items:center; gap:12px; margin-bottom:22px; font-weight:600; }
+.text-motion-picker select { max-width:100%; min-width:0; padding:9px 12px; border:1px solid var(--line); border-radius:4px; background:var(--background); }
+.text-motion-example { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.5fr); gap:32px; align-items:center; }
+.text-motion-example[hidden] { display:none; }
+.text-motion-command h4 { margin:0 0 12px; font-size:19px; }
+.text-motion-label { color:var(--muted); font-size:13px; margin:0 0 8px; }
+.text-motion-command blockquote { margin:0; padding:0 0 0 16px; border-left:3px solid var(--line); font-size:16px; line-height:1.65; overflow-wrap:break-word; }
+.text-motion-example figure { margin:0; min-width:0; }
+.text-motion-example video,.text-motion-example .text-motion-still { display:block; width:100%; aspect-ratio:16/9; height:auto; object-fit:contain; border-radius:6px; background:#d1d2d3; }
+.text-motion-example .text-motion-still { display:none; }
+html[data-media="off"] .text-motion-example .text-motion-still { display:block; }
+.text-motion-example figcaption { margin-top:10px; font-size:.85rem; }
+@media(max-width:800px) { .text-motion-example { grid-template-columns:1fr; gap:22px; } .text-motion-picker { align-items:flex-start; flex-direction:column; gap:8px; } .text-motion-picker select { width:100%; } }
 html[data-media="off"] .reference-overlay-media .reference-overlay-poster { display:block; }
 @media(max-width:760px) { .reference-overlay-media { grid-template-columns:1fr; gap:24px; } }
 .walkthrough-origins { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; align-items:center; margin-bottom:2rem; }

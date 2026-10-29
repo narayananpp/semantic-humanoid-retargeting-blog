@@ -440,6 +440,31 @@
     "sha256": "ae11a542878489a1f6f23679f4d270cb74df36f025f1060b1115b402648f9d3a"
   },
   {
+    "path": "text-motion-media/carry_side_table_with_both_hands_walk_around-536.mp4",
+    "bytes": 7633682,
+    "sha256": "2450963b74049c4d57b4943c0d7a51df8293f05cc0199ccd1d8fce4a73143138"
+  },
+  {
+    "path": "text-motion-media/lifting_and_checking_basket_90-215.mp4",
+    "bytes": 4433921,
+    "sha256": "6bd0ec9b548a36dcacad7e20a4ad9e8e784a1fe7efeabf7c157e21ab4eda007a"
+  },
+  {
+    "path": "text-motion-media/lifting_side_table_and_putting_down-362.mp4",
+    "bytes": 5537389,
+    "sha256": "7634f6f0b2a71efa0a787f929b2b4206bbea8830f96cd576fc8f6187620575c5"
+  },
+  {
+    "path": "text-motion-media/sub10_clothesstand_002.mp4",
+    "bytes": 5562539,
+    "sha256": "4e290547e920ff98ca6a35d3a5b385ca633942c9ca5fe54f214576d6e7b1b228"
+  },
+  {
+    "path": "text-motion-media/sub15_woodchair_053.mp4",
+    "bytes": 4204560,
+    "sha256": "01848da2589e57d1f1047204366462115b428a7554c773e21d1d02bc4a0534d6"
+  },
+  {
     "path": "walkthrough-media/baseline/full/video.mp4",
     "bytes": 1628488,
     "sha256": "c182b397ff54f5bd77a82dcaa5a9cf455fdba9e35b2fd6e7ad62df35974d7172"
