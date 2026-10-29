@@ -37,7 +37,7 @@ We overlay the **initial kinematic reference in purple** and the **refined refer
 
 <div class="reference-overlay-media">
   <figure>
-    <a href="assets/refinement/reference-overlay/clothesstand-overlay.png" aria-label="Open the reference and execution overlay at full resolution"><img src="assets/refinement/reference-overlay/clothesstand-overlay.png" alt="Pickup, transport and placement: purple initial reference and blue refined reference overlaid on the solid gray simulated G1" loading="lazy" width="3414" height="2499"></a>
+    <a href="assets/refinement/reference-overlay/clothesstand-overlay.png" aria-label="Open the reference and execution overlay at full resolution"><img src="assets/refinement/reference-overlay/clothesstand-overlay.png" alt="Pickup, transport and placement: purple initial reference and blue refined reference overlaid on the solid gray simulated G1" loading="lazy" width="448" height="328" style="max-width:100%;height:auto;max-height:300px;object-fit:contain"></a>
     <figcaption><strong>(a) Reference and execution.</strong> Both rows use the same physical rollout. Insets show hand alignment with the stand.</figcaption>
   </figure>
   <figure>
