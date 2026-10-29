@@ -528,5 +528,10 @@
     "path": "walkthrough-media/kinematic/full/video.mp4",
     "bytes": 1526206,
     "sha256": "f85c65c42a9d582c2a84b0fe8314e72028bbdcf13affaf90de7d7a1d8df6905f"
+  },
+  {
+    "path": "walkthrough-media/reference-overlay/contact-flow.mp4",
+    "bytes": 3129549,
+    "sha256": "05bca01212bb676ddbf35ea0a39ea4a00e127fa4ad42b11450925349c182a3c9"
   }
 ]

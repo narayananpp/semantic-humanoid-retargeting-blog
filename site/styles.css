@@ -355,6 +355,14 @@ html[data-media="off"] video,html[data-media="off"] .video-cue,html[data-media="
 
 /* Figure 7: one motion, five recorded decisions. */
 .refinement-walkthrough { margin: 2rem 0 1rem; --walk-ink:#174e48; }
+.reference-overlay-media { display:grid; grid-template-columns:1.1fr 1fr; gap:24px; align-items:center; margin:24px 0 16px; }
+.reference-overlay-media figure { margin:0; min-width:0; }
+.reference-overlay-media img,.reference-overlay-media video { display:block; width:100%; height:auto; border-radius:6px; }
+.reference-overlay-media a { display:block; cursor:zoom-in; }
+.reference-overlay-media figcaption { margin-top:10px; font-size:.85rem; line-height:1.55; }
+.reference-overlay-media .reference-overlay-poster { display:none; }
+html[data-media="off"] .reference-overlay-media .reference-overlay-poster { display:block; }
+@media(max-width:760px) { .reference-overlay-media { grid-template-columns:1fr; gap:24px; } }
 .walkthrough-origins { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; align-items:center; margin-bottom:2rem; }
 .walkthrough-origins figure { margin:0; }
 .walkthrough-origins video { display:block; width:100%; aspect-ratio:8/5; background:#e2e1dc; border-radius:4px; }

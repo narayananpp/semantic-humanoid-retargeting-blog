@@ -30,3 +30,21 @@ Here we follow the agent selected by our orchestrator harness through a complete
 </div>
 
 **Fig. 7.** Five revisions of the OMOMO clothes-stand task by HuMoTAR’s selected agent. Videos show the simulated motions; agent excerpts describe the changes between trials. The highlighted curve point identifies the displayed revision and its mean ADD.
+
+#### How does the reference change?
+
+We overlay the **initial kinematic reference in purple** and the **refined reference in blue** with the **physical execution in solid gray**. Their spatial separation shows where the prescribed and executed robot poses differ at corresponding motion phases. The refined hand path follows the executed grasp more closely; body posture can still differ as the controller maintains balance.
+
+<div class="reference-overlay-media">
+  <figure>
+    <a href="assets/refinement/reference-overlay/clothesstand-overlay.png" aria-label="Open the reference and execution overlay at full resolution"><img src="assets/refinement/reference-overlay/clothesstand-overlay.png" alt="Pickup, transport and placement: purple initial reference and blue refined reference overlaid on the solid gray simulated G1" loading="lazy" width="3414" height="2499"></a>
+    <figcaption><strong>(a) Reference and execution.</strong> Both rows use the same physical rollout. Insets show hand alignment with the stand.</figcaption>
+  </figure>
+  <figure>
+    <img class="reference-overlay-poster" src="assets/refinement/reference-overlay/contact-flow-poster.png" alt="Purple initial and blue refined finger-pad paths around the clothes stand" loading="lazy" width="1920" height="1080">
+    <video controls muted playsinline preload="none" poster="assets/refinement/reference-overlay/contact-flow-poster.png" src="walkthrough-media/reference-overlay/contact-flow.mp4" aria-label="Initial and refined reference motions with left-hand finger-pad paths, at half speed"></video>
+    <figcaption><strong>(b) Finger motion around the object.</strong> The video compares the two references at 0.5× speed along their shared target object path. Fading trails show recent finger-pad motion relative to the object, not measured contact forces.</figcaption>
+  </figure>
+</div>
+
+**Fig. 7 (continued).** Initial and refined references for the clothes-stand interaction. The figure includes physical execution; the video shows reference geometry without online controller corrections.
