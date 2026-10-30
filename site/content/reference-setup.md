@@ -3,9 +3,9 @@
 ::: anchor hoi-reference
 ::: anchor kinematic-setup
 
-**A retargeted motion can look convincing and still fail when executed.** Motion retargeting translates a human demonstration into robot motion, accounting for differences in body proportions, joints and contact geometry. A kinematic replay shows the prescribed poses; it does not establish that the robot can balance, support the object or keep it from slipping.
+**Humanoid motion retargeting adapts a human demonstration to the robot’s body.** A kinematic replay can reproduce the intended poses even when the robot cannot generate the contacts and forces needed to move the object. Executing the reference in simulation tests whether the robot can maintain balance, support the load and complete the interaction.
 
-[HOI-Retarget](https://arxiv.org/abs/2609.34674) optimizes humanoid motion to preserve the demonstration's body motion and object-relative contacts. We execute its references using [SPIDER](https://arxiv.org/abs/2511.09484), which optimizes tracking controls in physics simulation. **HuMoTAR instead uses agentic refinement to revise both the motion reference and manipulation controller.** The comparisons below follow each task from the human demonstration to execution by [Unitree G1](https://www.unitree.com/g1/) with Dex3 hands.
+[HOI-Retarget](https://arxiv.org/abs/2609.34674) optimizes humanoid motion to preserve the demonstration's body motion and object-relative contacts. We test these references in simulation with [SPIDER](https://arxiv.org/abs/2511.09484), which optimizes the controls used to track the motion. **HuMoTAR instead uses agentic refinement to revise both the motion reference and manipulation controller.** The comparisons below follow each task from the human demonstration to execution by [Unitree G1](https://www.unitree.com/g1/) with Dex3 hands.
 
 ::: anchor execution-setup
 ::: anchor dynamic-interaction

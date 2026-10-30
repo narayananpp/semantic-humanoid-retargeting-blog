@@ -100,8 +100,8 @@
 
 <span id="kinematic-setup" class="section-anchor"></span>
 
-<p><strong>A retargeted motion can look convincing and still fail when executed.</strong> Motion retargeting translates a human demonstration into robot motion, accounting for differences in body proportions, joints and contact geometry. A kinematic replay shows the prescribed poses; it does not establish that the robot can balance, support the object or keep it from slipping.</p>
-<p><a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> optimizes humanoid motion to preserve the demonstration's body motion and object-relative contacts. We execute its references using <a href="https://arxiv.org/abs/2511.09484">SPIDER</a>, which optimizes tracking controls in physics simulation. <strong>HuMoTAR instead uses agentic refinement to revise both the motion reference and manipulation controller.</strong> The comparisons below follow each task from the human demonstration to execution by <a href="https://www.unitree.com/g1/">Unitree G1</a> with Dex3 hands.</p>
+<p><strong>Humanoid motion retargeting adapts a human demonstration to the robot’s body.</strong> A kinematic replay can reproduce the intended poses even when the robot cannot generate the contacts and forces needed to move the object. Executing the reference in simulation tests whether the robot can maintain balance, support the load and complete the interaction.</p>
+<p><a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> optimizes humanoid motion to preserve the demonstration's body motion and object-relative contacts. We test these references in simulation with <a href="https://arxiv.org/abs/2511.09484">SPIDER</a>, which optimizes the controls used to track the motion. <strong>HuMoTAR instead uses agentic refinement to revise both the motion reference and manipulation controller.</strong> The comparisons below follow each task from the human demonstration to execution by <a href="https://www.unitree.com/g1/">Unitree G1</a> with Dex3 hands.</p>
 
 
 <span id="execution-setup" class="section-anchor"></span>
