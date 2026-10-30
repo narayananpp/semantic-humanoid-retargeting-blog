@@ -103,6 +103,6 @@ Agents can write their own analysis and control code. Two ensemble agents also r
 | Codex | 308.945 | 304.407 | 1.832 | 310.777 |
 | HuMoTAR | 1,044.046 | 1,025.339 | 6.391 | 1,050.436 |
 
-Cached input is included in input; reasoning tokens are included in output. The saved counters are partial for 12 Codex and 89 HuMoTAR worker records, so those totals are observed lower bounds. Earlier superseded experiments are excluded. [Download the per-task token totals](assets/analysis/agent-tokens.json).
+Reported usage includes cached input and reasoning tokens.
 
 </details>
