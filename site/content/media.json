@@ -1,62 +1,67 @@
 {
-  "intro-kinematic": {
+  "intro-chair-comparison": {
     "label": "Carry and place a chair",
-    "src": "intro-media/chair.mp4?v=be4d8e70e9",
-    "poster": "intro-media/chair.jpg",
-    "caption": "Fig. 1. Human demonstration and HOI-Retarget reference for carrying and placing a wooden chair. Kinematic replay without physics simulation.",
+    "layout": "four-way",
     "views": [
       {
-        "label": "Human reference",
+        "label": "Human reference \u00b7 SMPL",
         "src": "source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910",
         "poster": "assets/source-humans/sub15_woodchair_047-454ce8c120.jpg"
       },
       {
-        "label": "HOI-Retarget",
+        "label": "Kinematic reference",
         "src": "intro-media/chair.mp4?v=be4d8e70e9",
-        "poster": "intro-media/chair.jpg"
-      }
-    ]
-  },
-  "intro-smallbox": {
-    "label": "Push and pull a box",
-    "src": "intro-media/smallbox.mp4?v=7efdd11b53",
-    "poster": "intro-media/smallbox.jpg",
-    "caption": "Fig. 2. Human demonstration and HOI-Retarget reference for pushing and pulling a box. Kinematic replay without physics simulation.",
-    "views": [
-      {
-        "label": "Human reference",
-        "src": "source-human-media/omomo/sub7_smallbox_054.mp4?v=dc1c03562d",
-        "poster": "assets/source-humans/sub7_smallbox_054-dc1c03562d.jpg"
+        "poster": "intro-media/chair.jpg",
+        "sublabel": "HOI-Retarget \u00b7 no physics"
       },
       {
-        "label": "HOI-Retarget",
-        "src": "intro-media/smallbox.mp4?v=7efdd11b53",
-        "poster": "intro-media/smallbox.jpg"
+        "label": "HOI-Retarget + SPIDER",
+        "src": "intro-media/chair-spider.mp4",
+        "poster": "intro-media/chair-spider.jpg",
+        "outcome": "failure",
+        "sublabel": "Physics execution"
+      },
+      {
+        "label": "HuMoTAR",
+        "src": "dynamics-showcase-media/omomo/sub15_woodchair_047.mp4",
+        "poster": "assets/showcase/sub15_woodchair_047.jpg",
+        "outcome": "success",
+        "sublabel": "Physics execution"
       }
-    ]
+    ],
+    "caption": "Fig. 1. Carrying and placing a wooden chair. The kinematic replay follows the prescribed motion without physics. With HOI-Retarget + SPIDER, the robot falls and the chair tips over; HuMoTAR carries and places it. Videos retain each method\u2019s execution timing."
   },
-  "intro-dynamics": {
-    "label": "Clothes-stand dynamic execution",
+  "intro-stand-comparison": {
+    "label": "Lift, carry and place a clothes stand",
+    "layout": "four-way",
     "views": [
       {
-        "label": "Human reference",
+        "label": "Human reference \u00b7 SMPL",
         "src": "source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa",
         "poster": "assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg"
+      },
+      {
+        "label": "Kinematic reference",
+        "src": "intro-media/stand-kinematic.mp4",
+        "poster": "intro-media/stand-kinematic.jpg",
+        "sublabel": "HOI-Retarget \u00b7 no physics"
       },
       {
         "label": "HOI-Retarget + SPIDER",
         "src": "intro-media/spider.mp4?v=39e4853555",
         "poster": "intro-media/spider.jpg",
-        "outcome": "failure"
+        "outcome": "failure",
+        "sublabel": "Physics execution"
       },
       {
         "label": "HuMoTAR",
         "src": "dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d",
         "poster": "assets/showcase/sub10_clothesstand_002.jpg",
-        "outcome": "success"
+        "outcome": "success",
+        "sublabel": "Physics execution"
       }
     ],
-    "caption": "Fig. 3b. Human demonstration and simulated clothes-stand manipulation. HOI-Retarget + SPIDER loses balance and tips the stand. HuMoTAR lifts, carries and places it on the floor."
+    "caption": "Fig. 2. Lifting and transporting a clothes stand. The kinematic reference prescribes the interaction without physics; HOI-Retarget + SPIDER loses balance and tips the stand, while HuMoTAR lifts, carries and places it."
   },
   "discussion-plate": {
     "label": "Swirl a plate",
@@ -72,31 +77,6 @@
         "poster": "intro-media/plate-robot.jpg"
       }
     ],
-    "caption": "Fig. 11. Human demonstration and HuMoTAR execution of the plate-swirling task. The robot partially lifts the plate but does not complete the demonstrated swirling motion."
-  },
-  "intro-chair-physics": {
-    "label": "Carry and place a chair",
-    "src": "intro-media/chair-physics.mp4?v=6985e301b0",
-    "poster": "intro-media/chair-physics.jpg",
-    "caption": "Fig. 3a. Carrying and placing a wooden chair. The unrefined HOI-Retarget reference is executed with SONIC and the supplied finger targets; it fails to lift the chair. HuMoTAR refines the motion and manipulation controller to carry and place it.",
-    "views": [
-      {
-        "label": "Human reference",
-        "src": "source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910",
-        "poster": "assets/source-humans/sub15_woodchair_047-454ce8c120.jpg"
-      },
-      {
-        "label": "HOI-Retarget + SONIC",
-        "src": "intro-media/chair-physics.mp4?v=6985e301b0",
-        "poster": "intro-media/chair-physics.jpg",
-        "outcome": "failure"
-      },
-      {
-        "label": "HuMoTAR",
-        "src": "dynamics-showcase-media/omomo/sub15_woodchair_047.mp4",
-        "poster": "assets/showcase/sub15_woodchair_047.jpg",
-        "outcome": "success"
-      }
-    ]
+    "caption": "Fig. 10. Human demonstration and HuMoTAR execution of the plate-swirling task. The robot partially lifts the plate but does not complete the demonstrated swirling motion."
   }
 }

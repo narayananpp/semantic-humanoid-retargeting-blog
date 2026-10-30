@@ -142,7 +142,7 @@
       const prior=node('div','experience-prior');prior.id=priorId;prior.tabIndex=-1;prior.append(node('h4','prior-heading',`From the supplied experience: ${example.prior.peer_title}`));
       const pair=node('div','source-motion-pair');if(example.prior.human)pair.append(videoCard(example.prior.human,'Human reference'));pair.append(videoCard(example.prior.media,'Prior robot execution'));prior.append(pair,node('p','prior-excerpt',`“${example.prior.text}”`));root.append(prior);
     }
-    root.append(node('p','experience-trace-caption','Fig. 10. Shelf righting with and without related experience. Both branches continue from one 15-minute checkpoint to a 30-minute total budget. Videos show the checkpoint, an intermediate comparison and final executions. Faint dots show evaluated trials, curves show best-so-far ADD, and diamonds mark final submissions.'));
+    root.append(node('p','experience-trace-caption','Fig. 9. Shelf righting with and without related experience. Both branches continue from one 15-minute checkpoint to a 30-minute total budget. Videos show the checkpoint, an intermediate comparison and final executions. Faint dots show evaluated trials, curves show best-so-far ADD, and diamonds mark final submissions.'));
   }
   fetch('experience-story.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(data=>{
     for(const example of data.examples){const root=document.querySelector(`[data-example="${example.group==='related'?'shelf':'bin'}-walkthrough"] .experience-story`);if(root)build(root,example,data.tasks.find(t=>t.clip===example.clip));}

@@ -42,19 +42,26 @@ def video_html(name, media):
         if not url.scheme and (src.startswith("/") or ".." in Path(src).parts):
             raise ValueError(f"Video path must be relative to the blog: {src}")
         label = escape(view.get("label", item["label"]))
+        sublabel = escape(view.get("sublabel", ""))
+        note = ""
+        if sublabel:
+            note = f'<span class="video-mode">{sublabel}</span>'
+        elif item.get("layout") == "four-way":
+            note = '<span class="video-mode" aria-hidden="true">&nbsp;</span>'
         outcome = view.get("outcome")
         badge = ""
         if outcome in {"failure", "success"}:
             status, symbol = ("Failed execution", "✕") if outcome == "failure" else ("Successful execution", "✓")
             badge = f'<span class="execution-{outcome}" role="img" aria-label="{status}">{symbol}</span>'
         panels.append(
-            f'<div class="execution-panel"><p>{label}</p>{badge}<video controls muted playsinline '
+            f'<div class="execution-panel"><p>{label}{note}</p>{badge}<video controls muted playsinline '
             f'preload="none" aria-label="{label}" '
             f'poster="{escape(view.get("poster", ""), quote=True)}" src="{escape(src, quote=True)}"></video></div>'
         )
     caption = escape(item.get("caption", ""))
+    layout_class = " four-way-comparison" if item.get("layout") == "four-way" else ""
     return (
-        f'<figure class="authored-video" data-media-id="{escape(name)}">'
+        f'<figure class="authored-video{layout_class}" data-media-id="{escape(name)}">'
         f'<div class="authored-video-views">{"".join(panels)}</div>'
         f"<figcaption>{caption}</figcaption></figure>"
     )
@@ -188,7 +195,7 @@ def refinement_panel():
         f'{pipeline_html}'
         f'<h3 class="refinement-examples-heading">{escape(data.get("heading", "Refining contact, support and motion"))}</h3>'
         f'<div class="consideration-grid">{"".join(cards)}</div>'
-        f'<figcaption><strong>Figure 6.</strong> {escape(data["caption"])}</figcaption></figure>'
+        f'<figcaption><strong>Figure 5.</strong> {escape(data["caption"])}</figcaption></figure>'
     )
 
 

@@ -1,35 +1,23 @@
-## 1. From human motion to humanoid interaction
+## 1. Does humanoid retargeting survive physics?
 
 ::: anchor hoi-reference
-
-**Motion retargeting translates a human demonstration into a reference motion for a robot.** Human and robot bodies differ in their proportions, joint limits and ranges of motion. Existing methods typically match the demonstrated body motion while adapting contact targets to the robot’s geometry.
-
-**We posit that accurate and generalizable retargeting can use frontier agentic models to capture both the semantic intent and physical requirements of a motion.** The goal is to preserve what the human accomplishes with the object. The robot may need a different posture, grasp or sequence of movements to achieve that intent. In our experiments, we use the demonstrated object trajectory, scaled for G1, as the interaction target. Object-tracking error measures how closely the robot reproduces the desired object motion, while its own motion and contact strategy remain free to change.
-
 ::: anchor kinematic-setup
 
-Retargeted references **can serve as training data for downstream whole-body control policies**, as studied in [GMR](https://arxiv.org/abs/2510.02252)’s analysis of retargeting and motion tracking. These policies learn to track the reference while maintaining balance and responding to physical forces. The quality of the reference therefore matters for the interactions a policy can learn.
+**A retargeted motion can look convincing and still fail when executed.** Motion retargeting translates a human demonstration into robot motion, accounting for differences in body proportions, joints and contact geometry. A kinematic replay shows the prescribed poses; it does not establish that the robot can balance, support the object or keep it from slipping.
 
-### From human motion to a kinematic reference
+[HOI-Retarget](https://arxiv.org/abs/2609.34674) optimizes humanoid motion to preserve the demonstration's body motion and object-relative contacts. We execute its references using [SPIDER](https://arxiv.org/abs/2511.09484), which optimizes tracking controls in physics simulation. **HuMoTAR instead uses agentic refinement to revise both the motion reference and manipulation controller.** The comparisons below follow each task from the human demonstration to execution by [Unitree G1](https://www.unitree.com/g1/) with Dex3 hands.
 
-<div class="intro-reference-videos">
+::: anchor execution-setup
+::: anchor dynamic-interaction
 
-<div class="intro-reference-example">
-<h4>Carry and place a chair</h4>
+<h3>Carry and place a chair</h3>
 
-::: video intro-kinematic
+::: video intro-chair-comparison
 
-</div>
+<h3>Lift, carry and place a clothes stand</h3>
 
-<div class="intro-reference-example">
-<h4>Push and pull a box</h4>
+::: video intro-stand-comparison
 
-::: video intro-smallbox
+::: anchor execution-task
 
-</div>
-
-</div>
-
-[HOI-Retarget](https://arxiv.org/abs/2609.34674) treats contact as part of the retargeting problem. It maps human motion and object-relative contact targets onto the humanoid, in our case [Unitree G1](https://www.unitree.com/g1/), then optimizes the robot motion to preserve them. The result specifies how the robot and object should move. **Carry and place a chair (Fig. 1)** shows the intended interaction in a kinematic replay, without advancing physics.
-
-A geometric objective still has to reconcile body pose, joint limits and contact targets on a different embodiment. These constraints can compete. In **Push and pull a box (Fig. 2)**, the resulting body and hand configuration does not preserve a useful contact with the box. A reference can therefore require revision even before we ask a controller to execute it.
+**We posit that retargeting should preserve what the human accomplishes, while allowing the robot to change how it moves.** In HuMoTAR, the demonstrated object trajectory, scaled for G1, defines the interaction goal. The agents can revise posture, contacts, timing and control to follow that trajectory in simulation. The resulting references can also provide training data for downstream whole-body policies, as studied in [GMR](https://arxiv.org/abs/2510.02252).

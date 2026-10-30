@@ -1,8 +1,8 @@
-## 2. A study of agentic retargeting
+## 2. What is the best way to do agentic retargeting?
 
 ::: anchor configurations
 
-We study three ways to use the same off-the-shelf model, [GPT-6 Astra](https://openai.com/index/gpt-6-astra/), for retargeting. Each receives the human-motion reference, the task scene and the robot interfaces. The distinction is how it proposes a solution and uses feedback.
+**HuMoTAR combines independent agentic refinement with simulation feedback.** Each agent receives the human-motion reference, task scene and robot interfaces, then writes and tests motion and control code. We use the off-the-shelf [GPT-6 Astra](https://openai.com/index/gpt-6-astra/) model and compare HuMoTAR with two simpler configurations to examine the contributions of iterative feedback and multiple agents.
 
 - **Astra one-shot** produces a motion and controller in one response.
 - **[Codex](https://github.com/openai/codex)** works in a persistent coding session, executing and revising its solution.

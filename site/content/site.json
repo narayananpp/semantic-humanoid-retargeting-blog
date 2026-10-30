@@ -1,5 +1,5 @@
 {
-  "title": "HuMoTAR: Physics-Aware Agentic Retargeting for Humanoid–Object Interaction",
+  "title": "HuMoTAR: Physics-Aware Agentic Retargeting for Humanoid\u2013Object Interaction",
   "description": "From human demonstrations to executable humanoid interactions: a study of agentic refinement, simulation feedback and transferable experience.",
   "subtitle": "",
   "date": "25 October 2026",
@@ -17,12 +17,6 @@
           "file": "reference-setup.md",
           "tag": "section",
           "id": "reference-setup",
-          "class": "outline-section"
-        },
-        {
-          "file": "dynamic-interaction.md",
-          "tag": "section",
-          "id": "dynamic-interaction",
           "class": "outline-section"
         },
         {

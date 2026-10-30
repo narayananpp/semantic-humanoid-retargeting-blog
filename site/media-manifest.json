@@ -260,6 +260,11 @@
     "sha256": "6985e301b028db18fc41673729a5928aefa7d6cfa07c9c3bf189c28d28b236ba"
   },
   {
+    "path": "intro-media/chair-spider.mp4",
+    "bytes": 2443262,
+    "sha256": "a7c90dddb3a0cb9a7a0cebb7de6cc07aa50fe54f7c7596480421b005ecff05b5"
+  },
+  {
     "path": "intro-media/chair.mp4",
     "bytes": 636182,
     "sha256": "be4d8e70e960e2a1f14c477d89d830252bb1fefe72cb6f481d6418fe225cb279"
@@ -283,6 +288,11 @@
     "path": "intro-media/spider.mp4",
     "bytes": 785252,
     "sha256": "39e4853555ff912728174e6f205fc744e02acf1cb7b4b82018d2db752c0f7684"
+  },
+  {
+    "path": "intro-media/stand-kinematic.mp4",
+    "bytes": 1938092,
+    "sha256": "0645306579157b96831288039495394db6f493b223866d06019099960bd85a7b"
   },
   {
     "path": "kinematic-showcase-media/carry_side_table_with_both_hands_walk_around-536/gmr.mp4",

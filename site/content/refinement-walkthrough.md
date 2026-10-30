@@ -1,6 +1,6 @@
 ### 4.2 Agentic refinement walkthrough {#agentic-refinement-walkthrough}
 
-Here we follow the agent selected by our orchestrator harness through a complete refinement of the clothes-stand interaction from **Figure 6**. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved revisions trace how the agent resolves a slipping grasp, brings the body into the motion and completes release.
+Here we follow the agent selected by our orchestrator harness through a complete refinement of the clothes-stand interaction from **Figure 5**. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved revisions trace how the agent resolves a slipping grasp, brings the body into the motion and completes release.
 
 <div class="refinement-walkthrough" id="clothesstand-walkthrough" data-refinement-walkthrough>
   <div class="walkthrough-origins">
@@ -29,7 +29,7 @@ Here we follow the agent selected by our orchestrator harness through a complete
   <p class="walkthrough-error" hidden></p>
 </div>
 
-**Fig. 7.** Five revisions of the OMOMO clothes-stand task by HuMoTAR’s selected agent. Videos show the simulated motions; agent excerpts describe the changes between trials. The highlighted curve point identifies the displayed revision and its mean ADD.
+**Fig. 6.** Five revisions of the OMOMO clothes-stand task by HuMoTAR’s selected agent. Videos show the simulated motions; agent excerpts describe the changes between trials. The highlighted curve point identifies the displayed revision and its mean ADD.
 
 #### How does the reference change?
 
@@ -47,4 +47,4 @@ We overlay the **initial kinematic reference in purple** and the **refined refer
   </figure>
 </div>
 
-**Fig. 7 (continued).** Initial and refined references for the clothes-stand interaction. The figure includes physical execution; the video shows reference geometry without online controller corrections.
+**Fig. 6 (continued).** Initial and refined references for the clothes-stand interaction. The figure includes physical execution; the video shows reference geometry without online controller corrections.

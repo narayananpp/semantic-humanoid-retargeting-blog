@@ -1,6 +1,6 @@
 ## Results with and without experience
 
-Figure 9 compares the final reference motion outputs after equal refinement budgets, with and without experience. Each point averages all five tasks in its group; the arrow shows how that average changes when experience is supplied.
+Figure 8 compares the final reference motion outputs after equal refinement budgets, with and without experience. Each point averages all five tasks in its group; the arrow shows how that average changes when experience is supplied.
 
 ::: component experience-result-figure
 
