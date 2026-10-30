@@ -8,7 +8,7 @@
   <meta name="description" content="From human demonstrations to executable humanoid interactions: a study of agentic refinement, simulation feedback and transferable experience.">
   <title>HuMoTAR: Affordance-Aware Humanoid Retargeting with Foundational Priors</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
-  <link rel="stylesheet" href="styles.css?v=results-first-1">
+  <link rel="stylesheet" href="styles.css?v=reference-physics-2">
   <link rel="stylesheet" href="experience.css?v=shelf-connected-6">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -21,8 +21,8 @@
       <button class="contents-toggle" aria-expanded="false" aria-controls="contents-links">Contents <span aria-hidden="true">＋</span></button>
       <nav id="contents-links" aria-label="Article sections"><a href="#overview">TL;DR</a>
 <a href="#reference-setup">1. From human motion to humanoid interaction</a>
-<a class="subsection" href="#why-is-a-kinematic-reference-not-enough">Why is a kinematic reference not enough?</a>
-<a class="subsection" href="#can-the-reference-survive-physical-execution">Can the reference survive physical execution?</a>
+<a class="subsection" href="#from-human-motion-to-a-kinematic-reference">From human motion to a kinematic reference</a>
+<a class="subsection" href="#from-a-kinematic-reference-to-physical-execution">From a kinematic reference to physical execution</a>
 <a href="#method">2. A study of agentic retargeting</a>
 <a href="#refinement-results">3. Dynamic retargeting results</a>
 <a class="subsection" href="#experimental-setup">Experimental setup</a>
@@ -105,35 +105,44 @@
 <span id="kinematic-setup" class="section-anchor"></span>
 
 <p>Retargeted references <strong>can serve as training data for downstream whole-body control policies</strong>, as studied in <a href="https://arxiv.org/abs/2510.02252">GMR</a>’s analysis of retargeting and motion tracking. These policies learn to track the reference while maintaining balance and responding to physical forces. The quality of the reference therefore matters for the interactions a policy can learn.</p>
-<h3 id="why-is-a-kinematic-reference-not-enough">Why is a kinematic reference not enough?</h3>
-<p>A motion reference can match the demonstrated poses and still fail to move the object in simulation. <strong>In the chair task, the unrefined HOI-Retarget motion fails to lift the chair; HuMoTAR completes the carry and placement.</strong></p>
+<h3 id="from-human-motion-to-a-kinematic-reference">From human motion to a kinematic reference</h3>
+<div class="intro-reference-videos">
+<div class="intro-reference-example">
 <h4>Carry and place a chair</h4>
 
 
-<figure class="authored-video" data-media-id="intro-kinematic"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="assets/source-humans/sub15_woodchair_047-454ce8c120.jpg" src="source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910"></video></div><div class="execution-panel"><p>HOI-Retarget + SONIC</p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="HOI-Retarget + SONIC" poster="intro-media/chair-physics.jpg" src="intro-media/chair-physics.mp4?v=6985e301b0"></video></div><div class="execution-panel"><p>HuMoTAR</p><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub15_woodchair_047.jpg" src="dynamics-showcase-media/omomo/sub15_woodchair_047.mp4"></video></div></div><figcaption>Fig. 1. Carrying and placing a wooden chair. The unrefined HOI-Retarget reference is executed with SONIC and the supplied finger targets; it fails to lift the chair. HuMoTAR refines the motion and manipulation controller to carry and place it.</figcaption></figure>
+<figure class="authored-video" data-media-id="intro-kinematic"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="assets/source-humans/sub15_woodchair_047-454ce8c120.jpg" src="source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910"></video></div><div class="execution-panel"><p>HOI-Retarget</p><video controls muted playsinline preload="none" aria-label="HOI-Retarget" poster="intro-media/chair.jpg" src="intro-media/chair.mp4?v=be4d8e70e9"></video></div></div><figcaption>Fig. 1. Human demonstration and HOI-Retarget reference for carrying and placing a wooden chair. Kinematic replay without physics simulation.</figcaption></figure>
 
-<p><a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> treats contact as part of the retargeting problem. It maps human motion and object-relative contact targets onto the humanoid, in our case <a href="https://www.unitree.com/g1/">Unitree G1</a>, then optimizes the robot motion to preserve them. The result specifies how the robot and object should move. In <strong>Carry and place a chair (Fig. 1)</strong>, we execute this unrefined reference with <a href="https://arxiv.org/abs/2511.07820">SONIC</a> for whole-body tracking and the supplied finger targets. Contact does not support the lift. HuMoTAR instead refines the reference and manipulation controller using simulation feedback.</p>
-<p>A geometric objective still has to reconcile body pose, joint limits and contact targets on a different embodiment. These constraints can compete. In <strong>Push and pull a box (Fig. 2)</strong>, the resulting body and hand configuration does not preserve a useful contact with the box. A reference can therefore require revision even before we ask a controller to execute it.</p>
+</div>
+<div class="intro-reference-example">
 <h4>Push and pull a box</h4>
-<div class="intro-box-example">
 
 
 <figure class="authored-video" data-media-id="intro-smallbox"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="assets/source-humans/sub7_smallbox_054-dc1c03562d.jpg" src="source-human-media/omomo/sub7_smallbox_054.mp4?v=dc1c03562d"></video></div><div class="execution-panel"><p>HOI-Retarget</p><video controls muted playsinline preload="none" aria-label="HOI-Retarget" poster="intro-media/smallbox.jpg" src="intro-media/smallbox.mp4?v=7efdd11b53"></video></div></div><figcaption>Fig. 2. Human demonstration and HOI-Retarget reference for pushing and pulling a box. Kinematic replay without physics simulation.</figcaption></figure>
 
 </div>
+</div>
+<p><a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> treats contact as part of the retargeting problem. It maps human motion and object-relative contact targets onto the humanoid, in our case <a href="https://www.unitree.com/g1/">Unitree G1</a>, then optimizes the robot motion to preserve them. The result specifies how the robot and object should move. <strong>Carry and place a chair (Fig. 1)</strong> shows the intended interaction in a kinematic replay, without advancing physics.</p>
+<p>A geometric objective still has to reconcile body pose, joint limits and contact targets on a different embodiment. These constraints can compete. In <strong>Push and pull a box (Fig. 2)</strong>, the resulting body and hand configuration does not preserve a useful contact with the box. A reference can therefore require revision even before we ask a controller to execute it.</p>
 </section>
 <section id="dynamic-interaction" class="outline-section">
-<h3 id="can-the-reference-survive-physical-execution">Can the reference survive physical execution?</h3>
+<h3 id="from-a-kinematic-reference-to-physical-execution">From a kinematic reference to physical execution</h3>
 
 
 <span id="execution-setup" class="section-anchor"></span>
 
-<p><strong>The clothes-stand execution fails with HOI-Retarget + SPIDER: the robot loses balance and tips the stand. HuMoTAR lifts, carries and places it.</strong></p>
+<p>A kinematic replay prescribes the robot and object poses without testing the forces needed to produce them. In physics simulation, the robot must establish contact, support the object's weight and maintain balance. <strong>The unrefined chair reference fails to lift the chair; HuMoTAR carries and places it.</strong> We execute the HOI-Retarget reference with <a href="https://arxiv.org/abs/2511.07820">SONIC</a> for whole-body tracking and the supplied finger targets, then compare it with HuMoTAR's refined motion and manipulation controller.</p>
+<h4>Carry and place a chair</h4>
 
 
-<figure class="authored-video" data-media-id="intro-dynamics"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa"></video></div><div class="execution-panel"><p>HOI-Retarget + SPIDER</p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="HOI-Retarget + SPIDER" poster="intro-media/spider.jpg" src="intro-media/spider.mp4?v=39e4853555"></video></div><div class="execution-panel"><p>HuMoTAR</p><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub10_clothesstand_002.jpg" src="dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d"></video></div></div><figcaption>Fig. 3. Human demonstration and simulated clothes-stand manipulation. HOI-Retarget + SPIDER loses balance and tips the stand. HuMoTAR lifts, carries and places it on the floor.</figcaption></figure>
+<figure class="authored-video" data-media-id="intro-chair-physics"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="assets/source-humans/sub15_woodchair_047-454ce8c120.jpg" src="source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910"></video></div><div class="execution-panel"><p>HOI-Retarget + SONIC</p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="HOI-Retarget + SONIC" poster="intro-media/chair-physics.jpg" src="intro-media/chair-physics.mp4?v=6985e301b0"></video></div><div class="execution-panel"><p>HuMoTAR</p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub15_woodchair_047.jpg" src="dynamics-showcase-media/omomo/sub15_woodchair_047.mp4"></video></div></div><figcaption>Fig. 3a. Carrying and placing a wooden chair. The unrefined HOI-Retarget reference is executed with SONIC and the supplied finger targets; it fails to lift the chair. HuMoTAR refines the motion and manipulation controller to carry and place it.</figcaption></figure>
 
-<p>A kinematic reference describes the intended motion, but executing it requires the robot to balance, establish contact and support the object's weight. <strong><a href="https://arxiv.org/abs/2511.09484">SPIDER</a></strong> addresses this gap through sampling-based optimization in physics simulation. We combine it with HOI-Retarget to evaluate whether the retargeted motions can be executed by G1 with Dex3 hands.</p>
+<p><strong><a href="https://arxiv.org/abs/2511.09484">SPIDER</a></strong> uses sampling-based optimization in physics simulation to find controls that track a reference. We combine it with HOI-Retarget to evaluate execution on G1 with Dex3 hands. <strong>In the clothes-stand task, HOI-Retarget + SPIDER loses balance and tips the stand; HuMoTAR lifts, carries and places it.</strong></p>
+<h4>Lift, carry and place a clothes stand</h4>
+
+
+<figure class="authored-video" data-media-id="intro-dynamics"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa"></video></div><div class="execution-panel"><p>HOI-Retarget + SPIDER</p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="HOI-Retarget + SPIDER" poster="intro-media/spider.jpg" src="intro-media/spider.mp4?v=39e4853555"></video></div><div class="execution-panel"><p>HuMoTAR</p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub10_clothesstand_002.jpg" src="dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d"></video></div></div><figcaption>Fig. 3b. Human demonstration and simulated clothes-stand manipulation. HOI-Retarget + SPIDER loses balance and tips the stand. HuMoTAR lifts, carries and places it on the floor.</figcaption></figure>
+
 <p>Physics-based optimization can improve execution, but complex interactions may require a different grasp, posture or sequence of movements. HuMoTAR can revise both the reference motion and the interaction controller using feedback from execution.</p>
 
 
@@ -149,7 +158,11 @@
 <span id="configurations" class="section-anchor"></span>
 
 <p>We study three ways to use the same off-the-shelf model, <a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra</a>, for retargeting. Each receives the human-motion reference, the task scene and the robot interfaces. The distinction is how it proposes a solution and uses feedback.</p>
-<p><strong>Astra one-shot</strong> produces a motion and controller in one response. <strong><a href="https://github.com/openai/codex">Codex</a></strong> works in a persistent coding session, executing and revising its solution. <strong>HuMoTAR</strong>, our harness, runs four independent Codex agents within a 30-minute refinement budget and retains the valid final execution with the lowest mean ADD. Two agents also receive optional retargeting tools for contact, geometry and tracking analysis. All four explore their own solutions without exchanging intermediate results.</p>
+<ul>
+<li><strong>Astra one-shot</strong> produces a motion and controller in one response.</li>
+<li><strong><a href="https://github.com/openai/codex">Codex</a></strong> works in a persistent coding session, executing and revising its solution.</li>
+<li><strong>HuMoTAR</strong>, our harness, runs four independent Codex agents within a 30-minute refinement budget and retains the valid final execution with the lowest mean ADD. Two agents also receive optional retargeting tools for contact, geometry and tracking analysis. All four explore their own solutions without exchanging intermediate results.</li>
+</ul>
 <p>Executions combine the generated manipulation controller with <a href="https://arxiv.org/abs/2511.07820">SONIC</a> for whole-body tracking in <a href="https://mujoco.org/">MuJoCo</a>.</p>
 
 
@@ -204,6 +217,7 @@
 </tbody></table></div>
 
 <p>Recorded token totals for the compared runs are reported in <a href="#agent-token-usage">Appendix Table A3</a>.</p>
+<p>We next follow one interaction through refinement to examine how the agent achieves these improvements.</p>
 </section>
 <section id="agent-diagnosis" class="outline-section execution-analysis">
 <h2 id="4-inside-the-refinement-process">4. Inside the refinement process</h2>

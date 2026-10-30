@@ -1,12 +1,18 @@
-### Can the reference survive physical execution?
+### From a kinematic reference to physical execution
 
 ::: anchor execution-setup
 
-**The clothes-stand execution fails with HOI-Retarget + SPIDER: the robot loses balance and tips the stand. HuMoTAR lifts, carries and places it.**
+A kinematic replay prescribes the robot and object poses without testing the forces needed to produce them. In physics simulation, the robot must establish contact, support the object's weight and maintain balance. **The unrefined chair reference fails to lift the chair; HuMoTAR carries and places it.** We execute the HOI-Retarget reference with [SONIC](https://arxiv.org/abs/2511.07820) for whole-body tracking and the supplied finger targets, then compare it with HuMoTAR's refined motion and manipulation controller.
+
+<h4>Carry and place a chair</h4>
+
+::: video intro-chair-physics
+
+**[SPIDER](https://arxiv.org/abs/2511.09484)** uses sampling-based optimization in physics simulation to find controls that track a reference. We combine it with HOI-Retarget to evaluate execution on G1 with Dex3 hands. **In the clothes-stand task, HOI-Retarget + SPIDER loses balance and tips the stand; HuMoTAR lifts, carries and places it.**
+
+<h4>Lift, carry and place a clothes stand</h4>
 
 ::: video intro-dynamics
-
-A kinematic reference describes the intended motion, but executing it requires the robot to balance, establish contact and support the object's weight. **[SPIDER](https://arxiv.org/abs/2511.09484)** addresses this gap through sampling-based optimization in physics simulation. We combine it with HOI-Retarget to evaluate whether the retargeted motions can be executed by G1 with Dex3 hands.
 
 Physics-based optimization can improve execution, but complex interactions may require a different grasp, posture or sequence of movements. HuMoTAR can revise both the reference motion and the interaction controller using feedback from execution.
 

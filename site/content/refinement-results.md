@@ -29,3 +29,5 @@ All three metrics use the same trajectory alignment. We compute each task’s sc
 
 
 Recorded token totals for the compared runs are reported in [Appendix Table A3](#agent-token-usage).
+
+We next follow one interaction through refinement to examine how the agent achieves these improvements.

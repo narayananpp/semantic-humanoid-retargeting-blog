@@ -43,8 +43,10 @@ def video_html(name, media):
             raise ValueError(f"Video path must be relative to the blog: {src}")
         label = escape(view.get("label", item["label"]))
         outcome = view.get("outcome")
-        badge = ('<span class="execution-failure" role="img" aria-label="Failed execution">✕</span>'
-                 if outcome == "failure" else '')
+        badge = ""
+        if outcome in {"failure", "success"}:
+            status, symbol = ("Failed execution", "✕") if outcome == "failure" else ("Successful execution", "✓")
+            badge = f'<span class="execution-{outcome}" role="img" aria-label="{status}">{symbol}</span>'
         panels.append(
             f'<div class="execution-panel"><p>{label}</p>{badge}<video controls muted playsinline '
             f'preload="none" aria-label="{label}" '
