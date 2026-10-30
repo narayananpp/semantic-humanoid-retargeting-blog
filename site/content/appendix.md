@@ -94,15 +94,6 @@ Agents can write their own analysis and control code. Two ensemble agents also r
 | Codex | 132.942 | 130.910 | 0.801 | 133.742 |
 | HuMoTAR | 633.498 | 624.557 | 3.798 | 637.296 |
 
-**Total · 40 tasks**
-
-| Method | Input | Cached input | Output | Total |
-| --- | ---: | ---: | ---: | ---: |
-| HOI-Retarget + SPIDER | 0.000 | 0.000 | 0.000 | 0.000 |
-| Astra one-shot | 8.782 | 0.361 | 0.353 | 9.134 |
-| Codex | 308.945 | 304.407 | 1.832 | 310.777 |
-| HuMoTAR | 1,044.046 | 1,025.339 | 6.391 | 1,050.436 |
-
 Reported usage includes cached input and reasoning tokens.
 
 </details>
