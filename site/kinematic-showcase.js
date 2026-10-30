@@ -8,7 +8,7 @@
     if (text !== undefined) e.textContent = text;
     return e;
   };
-  fetch('kinematic-showcase.json', {cache: 'no-cache'}).then(r => {
+  fetch('kinematic-showcase.json?v=humotar-names-3', {cache: 'no-cache'}).then(r => {
     if (!r.ok) throw new Error(r.status);
     return r.json();
   }).then(data => {

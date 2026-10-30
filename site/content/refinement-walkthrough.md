@@ -1,6 +1,6 @@
-### 3.3 Agentic refinement walkthrough {#agentic-refinement-walkthrough}
+### 4.2 Agentic refinement walkthrough {#agentic-refinement-walkthrough}
 
-Here we follow the agent selected by our orchestrator harness through a complete refinement of the clothes-stand interaction from **Figure 5**. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved revisions trace how the agent resolves a slipping grasp, brings the body into the motion and completes release.
+Here we follow the agent selected by our orchestrator harness through a complete refinement of the clothes-stand interaction from **Figure 6**. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved revisions trace how the agent resolves a slipping grasp, brings the body into the motion and completes release.
 
 <div class="refinement-walkthrough" id="clothesstand-walkthrough" data-refinement-walkthrough>
   <div class="walkthrough-origins">

@@ -42,8 +42,11 @@ def video_html(name, media):
         if not url.scheme and (src.startswith("/") or ".." in Path(src).parts):
             raise ValueError(f"Video path must be relative to the blog: {src}")
         label = escape(view.get("label", item["label"]))
+        outcome = view.get("outcome")
+        badge = ('<span class="execution-failure" role="img" aria-label="Failed execution">✕</span>'
+                 if outcome == "failure" else '')
         panels.append(
-            f"<div><p>{label}</p><video controls muted playsinline "
+            f'<div class="execution-panel"><p>{label}</p>{badge}<video controls muted playsinline '
             f'preload="none" aria-label="{label}" '
             f'poster="{escape(view.get("poster", ""), quote=True)}" src="{escape(src, quote=True)}"></video></div>'
         )
@@ -183,7 +186,7 @@ def refinement_panel():
         f'{pipeline_html}'
         f'<h3 class="refinement-examples-heading">{escape(data.get("heading", "Refining contact, support and motion"))}</h3>'
         f'<div class="consideration-grid">{"".join(cards)}</div>'
-        f'<figcaption><strong>Figure 5.</strong> {escape(data["caption"])}</figcaption></figure>'
+        f'<figcaption><strong>Figure 6.</strong> {escape(data["caption"])}</figcaption></figure>'
     )
 
 

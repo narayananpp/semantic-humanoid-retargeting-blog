@@ -32,15 +32,15 @@
           "class": "outline-section"
         },
         {
+          "file": "refinement-results.md",
+          "tag": "section",
+          "id": "refinement-results",
+          "class": "outline-section"
+        },
+        {
           "file": "agent-diagnosis.md",
           "tag": "section",
           "id": "agent-diagnosis",
-          "class": "outline-section execution-analysis"
-        },
-        {
-          "file": "refinement-progress.md",
-          "tag": "section",
-          "id": "refinement-progress-panel",
           "class": "outline-section execution-analysis"
         },
         {
@@ -50,16 +50,16 @@
           "class": "outline-section execution-analysis"
         },
         {
+          "file": "refinement-progress.md",
+          "tag": "section",
+          "id": "refinement-progress-panel",
+          "class": "outline-section execution-analysis"
+        },
+        {
           "file": "early-stopping.md",
           "tag": "section",
           "id": "early-stopping-panel",
           "class": "outline-section execution-analysis"
-        },
-        {
-          "file": "refinement-results.md",
-          "tag": "section",
-          "id": "refinement-results",
-          "class": "outline-section"
         },
         {
           "file": "experience.md",

@@ -4,7 +4,7 @@
 <summary id="kinematic-question">How does HuMoTAR compare on kinematic retargeting?</summary>
 
 
-We compare [GMR](https://arxiv.org/abs/2510.02252), [HOI-Retarget](https://arxiv.org/abs/2609.34674) and the Orchestrator-agent ensemble on the same task set.
+We compare [GMR](https://arxiv.org/abs/2510.02252), [HOI-Retarget](https://arxiv.org/abs/2609.34674) and HuMoTAR on the same task set.
 
 We follow [HOI-Retarget’s evaluation protocol (Appendix A)](https://arxiv.org/html/2609.34674v1#A1): **body pose deviation**, **link velocity direction error**, **contact-point gap** and **relative hand-orientation change** measure how well the robot preserves the human motion and object-relative contacts. We also report **body jerk** as a smoothness measure, the mean magnitude of the third time derivative of the palm, ankle, head and pelvis positions, estimated by finite differences. Lower values indicate smoother motion.
 
@@ -49,5 +49,60 @@ We give a single Codex agent a detailed task description, the scene and an initi
     <figure><img class="text-motion-still" src="text-motion-media/sub15_woodchair_053.jpg" alt="Simulated output for Rock a wooden chair and return it upright" loading="lazy" width="960" height="540"><video controls muted playsinline preload="none" poster="text-motion-media/sub15_woodchair_053.jpg" src="text-motion-media/sub15_woodchair_053.mp4" aria-label="Text-to-trajectory output: Rock a wooden chair and return it upright"></video><figcaption>Simulated execution · normal speed</figcaption></figure>
   </div>
 </div>
+
+</details>
+
+<details class="appendix-faq" id="retargeting-tools">
+<summary>Which tools and control interfaces can the agents use?</summary>
+
+Agents can write their own analysis and control code. Two ensemble agents also receive a supplied retargeting-tools file, which they may use, modify or replace. These helpers expose the following measurements and interfaces; they do not prescribe a grasp or a refinement sequence.
+
+**Table A2.** Interfaces available during refinement.
+
+| Tool or interface | What it provides |
+| --- | --- |
+| Contact inspection | Contact locations, normals and forces from a saved execution, with close-up views. |
+| Geometry checks | Contact gaps, surface alignment, penetration and joint-limit margins for a proposed pose. |
+| Motion diagnostics | Link-position and orientation errors, and reference, command and execution joint traces. |
+| Object-path evaluation | Mean ADD, position and orientation errors against the fixed target trajectory. |
+| Whole-body control | A frozen tracking policy driven by a motion reference. |
+| Custom joint control | Targets, gains and feedforward torques for the agent’s manipulation controller. |
+
+</details>
+
+
+<details class="appendix-faq" id="agent-token-usage">
+<summary>How many tokens do the compared methods use?</summary>
+
+**Table A3. Recorded agent token usage (millions).** Totals cover the 20 HUMOTO and 20 OMOMO tasks in the dynamics comparison. HuMoTAR includes all ensemble workers, recorded retry attempts and the continuations used for the reported results. HOI-Retarget + SPIDER makes no model calls.
+
+**HUMOTO · 20 tasks**
+
+| Method | Input | Cached input | Output | Total |
+| --- | ---: | ---: | ---: | ---: |
+| HOI-Retarget + SPIDER | 0.000 | 0.000 | 0.000 | 0.000 |
+| Astra one-shot | 7.277 | 0.361 | 0.181 | 7.458 |
+| Codex | 176.003 | 173.496 | 1.032 | 177.035 |
+| HuMoTAR | 410.548 | 400.781 | 2.593 | 413.140 |
+
+**OMOMO · 20 tasks**
+
+| Method | Input | Cached input | Output | Total |
+| --- | ---: | ---: | ---: | ---: |
+| HOI-Retarget + SPIDER | 0.000 | 0.000 | 0.000 | 0.000 |
+| Astra one-shot | 1.505 | 0.000 | 0.171 | 1.676 |
+| Codex | 132.942 | 130.910 | 0.801 | 133.742 |
+| HuMoTAR | 633.498 | 624.557 | 3.798 | 637.296 |
+
+**Total · 40 tasks**
+
+| Method | Input | Cached input | Output | Total |
+| --- | ---: | ---: | ---: | ---: |
+| HOI-Retarget + SPIDER | 0.000 | 0.000 | 0.000 | 0.000 |
+| Astra one-shot | 8.782 | 0.361 | 0.353 | 9.134 |
+| Codex | 308.945 | 304.407 | 1.832 | 310.777 |
+| HuMoTAR | 1,044.046 | 1,025.339 | 6.391 | 1,050.436 |
+
+Cached input is included in input; reasoning tokens are included in output. The saved counters are partial for 12 Codex and 89 HuMoTAR worker records, so those totals are observed lower bounds. Earlier superseded experiments are excluded. [Download the per-task token totals](assets/analysis/agent-tokens.json).
 
 </details>

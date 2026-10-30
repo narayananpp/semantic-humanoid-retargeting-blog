@@ -1,12 +1,14 @@
-### From a reference to physical execution
+### Can the reference survive physical execution?
 
 ::: anchor execution-setup
 
-A kinematic reference describes the intended motion, but executing it requires the robot to balance, establish contact and support the object's weight. **[SPIDER](https://arxiv.org/abs/2511.09484)** addresses this gap through sampling-based optimization in physics simulation. We combine it with HOI-Retarget to evaluate whether the retargeted motions can be executed by G1 with Dex3 hands.
-
-Physics-based optimization can improve execution, but complex interactions may require a different grasp, posture or sequence of movements. In the clothes-stand example below, HOI-Retarget + SPIDER loses balance and tips the stand. HuMoTAR refines the motion and controller to lift, transport and place the same object.
+**The clothes-stand execution fails with HOI-Retarget + SPIDER: the robot loses balance and tips the stand. HuMoTAR lifts, carries and places it.**
 
 ::: video intro-dynamics
+
+A kinematic reference describes the intended motion, but executing it requires the robot to balance, establish contact and support the object's weight. **[SPIDER](https://arxiv.org/abs/2511.09484)** addresses this gap through sampling-based optimization in physics simulation. We combine it with HOI-Retarget to evaluate whether the retargeted motions can be executed by G1 with Dex3 hands.
+
+Physics-based optimization can improve execution, but complex interactions may require a different grasp, posture or sequence of movements. HuMoTAR can revise both the reference motion and the interaction controller using feedback from execution.
 
 ::: anchor execution-task
 

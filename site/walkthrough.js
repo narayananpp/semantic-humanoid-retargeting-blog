@@ -1,4 +1,4 @@
-/* The selected agent’s evidence-backed refinement sequence. Copy and metrics live in walkthrough.json. */
+/* The selected agent’s evidence-backed refinement sequence. Copy and metrics live in walkthrough.json?v=humotar-names-3. */
 (() => {
   const root = document.querySelector('[data-refinement-walkthrough]');
   if (!root) return;
@@ -102,7 +102,7 @@
   video.addEventListener('ended',()=>{if(touring){if(index<data.stages.length-1)select(index+1,true);else stopTour();}});
   video.addEventListener('error',()=>{stopTour();const e=root.querySelector('.walkthrough-error');e.textContent='This video is unavailable in this preview.';e.hidden=false;});
   document.addEventListener('visibilitychange',()=>{if(document.hidden){video.pause();stopTour();}});
-  fetch('walkthrough.json?v=refinement-process-1').then(response=>{if(!response.ok)throw new Error(response.status);return response.json();})
+  fetch('walkthrough.json?v=humotar-names-3').then(response=>{if(!response.ok)throw new Error(response.status);return response.json();})
     .then(result=>{data=result;draw();select(0);})
     .catch(()=>{root.querySelector('.walkthrough-error').textContent='The walkthrough data could not be loaded.';root.querySelector('.walkthrough-error').hidden=false;});
 })();

@@ -1,5 +1,5 @@
 {
-  "method": "Orchestrator-agent ensemble",
+  "method": "HuMoTAR",
   "clips": [
     {
       "clip": "tilting_trash_can_with_right_foot-985",

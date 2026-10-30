@@ -1,4 +1,4 @@
-## 4. Dynamic retargeting results
+## 3. Dynamic retargeting results
 
 ::: anchor agent-comparison
 
@@ -7,7 +7,7 @@
 
 ### Experimental setup
 
-We compare HOI-Retarget + SPIDER, Astra one-shot, Codex and the Orchestrator-agent ensemble on 20 HUMOTO tasks and 20 OMOMO tasks. Each dataset uses the same task list across all four methods. We report the saved final execution from each run and average equally across tasks.
+We compare HOI-Retarget + SPIDER, Astra one-shot, Codex and HuMoTAR on 20 HUMOTO tasks and 20 OMOMO tasks. Each dataset uses the same task list across all four methods. We report the saved final execution from each run and average equally across tasks.
 
 Codex refines the motion with one agent. The ensemble runs four independent agents, two with optional access to the provided retargeting tools, and selects the final reference by mean ADD. Refinement is evaluated over a 30-minute budget. HOI-Retarget + SPIDER uses the frozen humanoid-object optimization configuration with G1 and Dex3. SPIDER runs at its native 60 Hz integration rate; the agent-generated controllers use the harness’s 500 Hz simulation. Both are scored against the same object targets.
 
@@ -27,3 +27,5 @@ All three metrics use the same trajectory alignment. We compute each task’s sc
 
 ::: component dynamics-results
 
+
+Recorded token totals for the compared runs are reported in [Appendix Table A3](#agent-token-usage).

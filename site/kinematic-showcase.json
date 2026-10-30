@@ -34,7 +34,7 @@
         },
         {
           "method": "orchestrator",
-          "label": "Orchestrator-agent ensemble (ours)",
+          "label": "HuMoTAR",
           "status": "ready",
           "contact_gap_mm": 1.449227592532032,
           "reference_sha256": "e2f43717207620a34fc602a5532f4897f2baef000abd4d300efc2e0b67b0d204",
@@ -88,7 +88,7 @@
         },
         {
           "method": "orchestrator",
-          "label": "Orchestrator-agent ensemble (ours)",
+          "label": "HuMoTAR",
           "status": "ready",
           "contact_gap_mm": 1.5153250695747442,
           "reference_sha256": "3b8cbd23dfdcf4f61359059aee325b29a0ceae563c9b525938b60c63ec1afa6b",
@@ -142,7 +142,7 @@
         },
         {
           "method": "orchestrator",
-          "label": "Orchestrator-agent ensemble (ours)",
+          "label": "HuMoTAR",
           "status": "ready",
           "contact_gap_mm": 1.7027617704476736,
           "reference_sha256": "626d29596705ec69b4443c122f48215acb73ca64956f9afc18d9a2110bb078ec",
@@ -196,7 +196,7 @@
         },
         {
           "method": "orchestrator",
-          "label": "Orchestrator-agent ensemble (ours)",
+          "label": "HuMoTAR",
           "status": "ready",
           "contact_gap_mm": 2.459476084760016,
           "reference_sha256": "e86c42f582f3fe7686b0d8b18d4cdd61edd534ab3929c8a2ce48ed3e7c269dc3",
@@ -250,7 +250,7 @@
         },
         {
           "method": "orchestrator",
-          "label": "Orchestrator-agent ensemble (ours)",
+          "label": "HuMoTAR",
           "status": "ready",
           "contact_gap_mm": 1.0191175055808583,
           "reference_sha256": "c32f27617d91331e83c5b32c1507ebd7f25a50654304f8753bf596f83f7d8052",

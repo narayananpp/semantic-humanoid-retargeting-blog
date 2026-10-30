@@ -2,7 +2,7 @@
   "clip": "sub10_clothesstand_002",
   "candidate": 0,
   "selected_by_harness": true,
-  "method": "Orchestrator-agent ensemble",
+  "method": "HuMoTAR",
   "human_video": "source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa",
   "final_video": "walkthrough-media/clothesstand-selected/final/video.mp4?v=998d535611",
   "stages": [

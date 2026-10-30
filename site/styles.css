@@ -570,3 +570,10 @@ html { scroll-padding-top: 90px; }
 @media(max-width:720px) { .intro-reference-videos { grid-template-columns:1fr; gap:20px; } }
 
 @media(max-width:1000px) { .paper-byline { grid-template-columns:1fr; gap:18px; } }
+
+/* Mark recorded failure cases without covering the interaction. */
+.execution-panel { position: relative; min-width: 0; }
+.execution-failure { position: absolute; z-index: 2; right: 12px; top: 46px; color: #c52c35; font: 800 48px/1 sans-serif; text-shadow: 0 1px 5px #fff; pointer-events: none; }
+
+/* Keep the two-view kinematic example compact; physics comparisons use three columns. */
+.intro-box-example {max-width:820px; margin:0 auto 1.5rem;}

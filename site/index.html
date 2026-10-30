@@ -8,7 +8,7 @@
   <meta name="description" content="From human demonstrations to executable humanoid interactions: a study of agentic refinement, simulation feedback and transferable experience.">
   <title>HuMoTAR: Affordance-Aware Humanoid Retargeting with Foundational Priors</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
-  <link rel="stylesheet" href="styles.css?v=text-motion-appendix-1">
+  <link rel="stylesheet" href="styles.css?v=results-first-1">
   <link rel="stylesheet" href="experience.css?v=shelf-connected-6">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -21,19 +21,19 @@
       <button class="contents-toggle" aria-expanded="false" aria-controls="contents-links">Contents <span aria-hidden="true">＋</span></button>
       <nav id="contents-links" aria-label="Article sections"><a href="#overview">TL;DR</a>
 <a href="#reference-setup">1. From human motion to humanoid interaction</a>
-<a class="subsection" href="#what-does-a-kinematic-reference-provide">What does a kinematic reference provide?</a>
-<a class="subsection" href="#from-a-reference-to-physical-execution">From a reference to physical execution</a>
+<a class="subsection" href="#why-is-a-kinematic-reference-not-enough">Why is a kinematic reference not enough?</a>
+<a class="subsection" href="#can-the-reference-survive-physical-execution">Can the reference survive physical execution?</a>
 <a href="#method">2. A study of agentic retargeting</a>
-<a href="#agent-diagnosis">3. Inside the refinement process</a>
-<a class="subsection" href="#kinematic-to-dynamic">3.1 How does the agent refine an interaction in simulation?</a>
-<a class="subsection" href="#refinement-progress">3.2 Tracking error during refinement</a>
-<a class="subsection" href="#agentic-refinement-walkthrough">3.3 Agentic refinement walkthrough</a>
-<a class="subsection" href="#early-stopping">3.4 How much refinement can a shorter budget retain?</a>
-<a href="#refinement-results">4. Dynamic retargeting results</a>
+<a href="#refinement-results">3. Dynamic retargeting results</a>
 <a class="subsection" href="#experimental-setup">Experimental setup</a>
 <a class="subsection" href="#dynamics-metrics">Object tracking metrics</a>
 <a class="subsection" href="#comparison-results">Results</a>
-<a href="#experience">5. When does experience transfer?</a>
+<a href="#agent-diagnosis">4. Inside the refinement process</a>
+<a class="subsection" href="#kinematic-to-dynamic">4.1 How does the agent refine an interaction in simulation?</a>
+<a class="subsection" href="#agentic-refinement-walkthrough">4.2 Agentic refinement walkthrough</a>
+<a class="subsection" href="#refinement-progress">4.3 Tracking error during refinement</a>
+<a class="subsection" href="#early-stopping">4.4 How much refinement can a shorter budget retain?</a>
+<a href="#experience">5. Does experience matter?</a>
 <a class="subsection" href="#comparing-refinement-with-and-without-experience">Comparing refinement with and without experience</a>
 <a href="#discussion">6. Discussion</a>
 <a class="subsection" href="#metric-limitations">Limits of the metrics</a>
@@ -84,7 +84,7 @@
 
 <aside class="takeaways-message" aria-label="Key takeaways">
   <ul>
-    <li>We posit that accurate and generalizable retargeting requires <strong>foundational priors that capture both the semantic intent and physical requirements of a motion.</strong></li>
+    <li>We posit that accurate and generalizable retargeting can use <strong>frontier agentic models to capture both the semantic intent and physical requirements of a motion.</strong></li>
     <li><strong>We use object-trajectory tracking to define the interaction goal, while allowing the robot to adapt its posture, contacts and control.</strong> Using off-the-shelf models and simulation feedback, HuMoTAR reduces mean object-tracking error by <strong>28.6%</strong> over a single <a href="https://github.com/openai/codex">Codex</a> agent across 40 <a href="https://arxiv.org/abs/2504.10414">HUMOTO</a> and <a href="https://arxiv.org/abs/2309.16237">OMOMO</a> tasks.</li>
     <li><strong>Related experience helps complete the shelf lift.</strong> Reports from other furniture tasks reduce mean ADD from <strong>23.35 to 7.77 cm</strong> under equal refinement budgets.</li>
     <li><strong>Early stopping offers a shorter refinement budget.</strong> A retrospective cutoff at <strong>22.3 minutes</strong> retains <strong>88.4% of the full-budget ADD reduction</strong> on average.</li>
@@ -99,44 +99,42 @@
 <span id="hoi-reference" class="section-anchor"></span>
 
 <p><strong>Motion retargeting translates a human demonstration into a reference motion for a robot.</strong> Human and robot bodies differ in their proportions, joint limits and ranges of motion. Existing methods typically match the demonstrated body motion while adapting contact targets to the robot’s geometry.</p>
-<p><strong>We posit that retargeting should preserve the semantic intent of the interaction: what the human accomplishes with the object.</strong> The robot may need a different posture, grasp or sequence of movements to achieve that intent. In our experiments, we use the demonstrated object trajectory, scaled for G1, as the interaction target. Object-tracking error measures how closely the robot reproduces the desired object motion, while its own motion and contact strategy remain free to change.</p>
+<p><strong>We posit that accurate and generalizable retargeting can use frontier agentic models to capture both the semantic intent and physical requirements of a motion.</strong> The goal is to preserve what the human accomplishes with the object. The robot may need a different posture, grasp or sequence of movements to achieve that intent. In our experiments, we use the demonstrated object trajectory, scaled for G1, as the interaction target. Object-tracking error measures how closely the robot reproduces the desired object motion, while its own motion and contact strategy remain free to change.</p>
 
 
 <span id="kinematic-setup" class="section-anchor"></span>
 
 <p>Retargeted references <strong>can serve as training data for downstream whole-body control policies</strong>, as studied in <a href="https://arxiv.org/abs/2510.02252">GMR</a>’s analysis of retargeting and motion tracking. These policies learn to track the reference while maintaining balance and responding to physical forces. The quality of the reference therefore matters for the interactions a policy can learn.</p>
-<h3 id="what-does-a-kinematic-reference-provide">What does a kinematic reference provide?</h3>
-<div class="intro-reference-videos">
-<div class="intro-reference-example">
+<h3 id="why-is-a-kinematic-reference-not-enough">Why is a kinematic reference not enough?</h3>
+<p>A motion reference can match the demonstrated poses and still fail to move the object in simulation. <strong>In the chair task, the unrefined HOI-Retarget motion fails to lift the chair; HuMoTAR completes the carry and placement.</strong></p>
 <h4>Carry and place a chair</h4>
 
 
-<figure class="authored-video" data-media-id="intro-kinematic"><div class="authored-video-views"><div><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="assets/source-humans/sub15_woodchair_047-454ce8c120.jpg" src="source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910"></video></div><div><p>HOI-Retarget</p><video controls muted playsinline preload="none" aria-label="HOI-Retarget" poster="intro-media/chair.jpg" src="intro-media/chair.mp4?v=be4d8e70e9"></video></div></div><figcaption>Fig. 1. Human demonstration and HOI-Retarget reference for carrying and placing a wooden chair. Kinematic replay without physics simulation.</figcaption></figure>
+<figure class="authored-video" data-media-id="intro-kinematic"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="assets/source-humans/sub15_woodchair_047-454ce8c120.jpg" src="source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910"></video></div><div class="execution-panel"><p>HOI-Retarget + SONIC</p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="HOI-Retarget + SONIC" poster="intro-media/chair-physics.jpg" src="intro-media/chair-physics.mp4?v=6985e301b0"></video></div><div class="execution-panel"><p>HuMoTAR</p><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub15_woodchair_047.jpg" src="dynamics-showcase-media/omomo/sub15_woodchair_047.mp4"></video></div></div><figcaption>Fig. 1. Carrying and placing a wooden chair. The unrefined HOI-Retarget reference is executed with SONIC and the supplied finger targets; it fails to lift the chair. HuMoTAR refines the motion and manipulation controller to carry and place it.</figcaption></figure>
 
-</div>
-<div class="intro-reference-example">
-<h4>Push and pull a box</h4>
-
-
-<figure class="authored-video" data-media-id="intro-smallbox"><div class="authored-video-views"><div><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="assets/source-humans/sub7_smallbox_054-dc1c03562d.jpg" src="source-human-media/omomo/sub7_smallbox_054.mp4?v=dc1c03562d"></video></div><div><p>HOI-Retarget</p><video controls muted playsinline preload="none" aria-label="HOI-Retarget" poster="intro-media/smallbox.jpg" src="intro-media/smallbox.mp4?v=7efdd11b53"></video></div></div><figcaption>Fig. 2. Human demonstration and HOI-Retarget reference for pushing and pulling a box. Kinematic replay without physics simulation.</figcaption></figure>
-
-</div>
-</div>
-<p><a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> treats contact as part of the retargeting problem. It maps human motion and object-relative contact targets onto the humanoid, in our case <a href="https://www.unitree.com/g1/">Unitree G1</a>, then optimizes the robot motion to preserve them. The result specifies how the robot and object should move. <strong>Carry and place a chair (Fig. 1)</strong> shows the intended interaction in a kinematic replay, without advancing physics.</p>
+<p><a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> treats contact as part of the retargeting problem. It maps human motion and object-relative contact targets onto the humanoid, in our case <a href="https://www.unitree.com/g1/">Unitree G1</a>, then optimizes the robot motion to preserve them. The result specifies how the robot and object should move. In <strong>Carry and place a chair (Fig. 1)</strong>, we execute this unrefined reference with <a href="https://arxiv.org/abs/2511.07820">SONIC</a> for whole-body tracking and the supplied finger targets. Contact does not support the lift. HuMoTAR instead refines the reference and manipulation controller using simulation feedback.</p>
 <p>A geometric objective still has to reconcile body pose, joint limits and contact targets on a different embodiment. These constraints can compete. In <strong>Push and pull a box (Fig. 2)</strong>, the resulting body and hand configuration does not preserve a useful contact with the box. A reference can therefore require revision even before we ask a controller to execute it.</p>
+<h4>Push and pull a box</h4>
+<div class="intro-box-example">
+
+
+<figure class="authored-video" data-media-id="intro-smallbox"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="assets/source-humans/sub7_smallbox_054-dc1c03562d.jpg" src="source-human-media/omomo/sub7_smallbox_054.mp4?v=dc1c03562d"></video></div><div class="execution-panel"><p>HOI-Retarget</p><video controls muted playsinline preload="none" aria-label="HOI-Retarget" poster="intro-media/smallbox.jpg" src="intro-media/smallbox.mp4?v=7efdd11b53"></video></div></div><figcaption>Fig. 2. Human demonstration and HOI-Retarget reference for pushing and pulling a box. Kinematic replay without physics simulation.</figcaption></figure>
+
+</div>
 </section>
 <section id="dynamic-interaction" class="outline-section">
-<h3 id="from-a-reference-to-physical-execution">From a reference to physical execution</h3>
+<h3 id="can-the-reference-survive-physical-execution">Can the reference survive physical execution?</h3>
 
 
 <span id="execution-setup" class="section-anchor"></span>
 
+<p><strong>The clothes-stand execution fails with HOI-Retarget + SPIDER: the robot loses balance and tips the stand. HuMoTAR lifts, carries and places it.</strong></p>
+
+
+<figure class="authored-video" data-media-id="intro-dynamics"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa"></video></div><div class="execution-panel"><p>HOI-Retarget + SPIDER</p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="HOI-Retarget + SPIDER" poster="intro-media/spider.jpg" src="intro-media/spider.mp4?v=39e4853555"></video></div><div class="execution-panel"><p>HuMoTAR</p><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub10_clothesstand_002.jpg" src="dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d"></video></div></div><figcaption>Fig. 3. Human demonstration and simulated clothes-stand manipulation. HOI-Retarget + SPIDER loses balance and tips the stand. HuMoTAR lifts, carries and places it on the floor.</figcaption></figure>
+
 <p>A kinematic reference describes the intended motion, but executing it requires the robot to balance, establish contact and support the object's weight. <strong><a href="https://arxiv.org/abs/2511.09484">SPIDER</a></strong> addresses this gap through sampling-based optimization in physics simulation. We combine it with HOI-Retarget to evaluate whether the retargeted motions can be executed by G1 with Dex3 hands.</p>
-<p>Physics-based optimization can improve execution, but complex interactions may require a different grasp, posture or sequence of movements. In the clothes-stand example below, HOI-Retarget + SPIDER loses balance and tips the stand. HuMoTAR refines the motion and controller to lift, transport and place the same object.</p>
-
-
-<figure class="authored-video" data-media-id="intro-dynamics"><div class="authored-video-views"><div><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa"></video></div><div><p>HOI-Retarget + SPIDER</p><video controls muted playsinline preload="none" aria-label="HOI-Retarget + SPIDER" poster="intro-media/spider.jpg" src="intro-media/spider.mp4?v=39e4853555"></video></div><div><p>HuMoTAR</p><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub10_clothesstand_002.jpg" src="dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d"></video></div></div><figcaption>Fig. 3. Human demonstration and simulated clothes-stand manipulation. HOI-Retarget + SPIDER loses balance and tips the stand. HuMoTAR lifts, carries and places it on the floor.</figcaption></figure>
-
+<p>Physics-based optimization can improve execution, but complex interactions may require a different grasp, posture or sequence of movements. HuMoTAR can revise both the reference motion and the interaction controller using feedback from execution.</p>
 
 
 <span id="execution-task" class="section-anchor"></span>
@@ -151,7 +149,7 @@
 <span id="configurations" class="section-anchor"></span>
 
 <p>We study three ways to use the same off-the-shelf model, <a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra</a>, for retargeting. Each receives the human-motion reference, the task scene and the robot interfaces. The distinction is how it proposes a solution and uses feedback.</p>
-<p><strong>Astra one-shot</strong> produces a motion and controller in one response. <strong><a href="https://github.com/openai/codex">Codex</a></strong> works in a persistent coding session, executing and revising its solution. <strong>The Orchestrator-agent ensemble</strong>, our harness, runs four independent Codex agents within a 30-minute refinement budget and retains the valid final execution with the lowest mean ADD. Two agents also receive optional retargeting tools for contact, geometry and tracking analysis. All four explore their own solutions without exchanging intermediate results.</p>
+<p><strong>Astra one-shot</strong> produces a motion and controller in one response. <strong><a href="https://github.com/openai/codex">Codex</a></strong> works in a persistent coding session, executing and revising its solution. <strong>HuMoTAR</strong>, our harness, runs four independent Codex agents within a 30-minute refinement budget and retains the valid final execution with the lowest mean ADD. Two agents also receive optional retargeting tools for contact, geometry and tracking analysis. All four explore their own solutions without exchanging intermediate results.</p>
 <p>Executions combine the generated manipulation controller with <a href="https://arxiv.org/abs/2511.07820">SONIC</a> for whole-body tracking in <a href="https://mujoco.org/">MuJoCo</a>.</p>
 
 
@@ -161,79 +159,72 @@
             <figcaption><strong>Fig. 4.</strong> Agent configurations evaluated in this study. Astra one-shot generates a motion and controller in one response. Codex iteratively revises its solution. HuMoTAR runs four independent agents, two with optional retargeting tools, and selects the final execution with the lowest mean ADD.</figcaption>
           </figure>
 
+<p>Agents can write their own analysis and control code. Two ensemble agents also receive optional retargeting helpers for contact, geometry and motion analysis. See <a href="#retargeting-tools">the tool interfaces in the appendix</a> for details.</p>
+</section>
+<section id="refinement-results" class="outline-section">
+<h2 id="3-dynamic-retargeting-results">3. Dynamic retargeting results</h2>
 
 
-<span id="retargeting-tools" class="section-anchor"></span>
+<span id="agent-comparison" class="section-anchor"></span>
 
-<p>Agents can write their own analysis and control code. Two ensemble agents also receive a supplied retargeting-tools file, which they may use, modify or replace. These helpers expose the following measurements and interfaces; they do not prescribe a grasp or a refinement sequence.</p>
-<p><strong>Table 1.</strong> Interfaces available during refinement.</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Tool or interface</th>
-<th>What it provides</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Contact inspection</td>
-<td>Contact locations, normals and forces from a saved execution, with close-up views.</td>
-</tr>
-<tr>
-<td>Geometry checks</td>
-<td>Contact gaps, surface alignment, penetration and joint-limit margins for a proposed pose.</td>
-</tr>
-<tr>
-<td>Motion diagnostics</td>
-<td>Link-position and orientation errors, and reference, command and execution joint traces.</td>
-</tr>
-<tr>
-<td>Object-path evaluation</td>
-<td>Mean ADD, position and orientation errors against the fixed target trajectory.</td>
-</tr>
-<tr>
-<td>Whole-body control</td>
-<td>A frozen tracking policy driven by a motion reference.</td>
-</tr>
-<tr>
-<td>Custom joint control</td>
-<td>Targets, gains and feedforward torques for the agent’s manipulation controller.</td>
-</tr>
-</tbody>
-</table></div>
+
+
+<span id="study-design" class="section-anchor"></span>
+
+<h3 id="experimental-setup">Experimental setup</h3>
+<p>We compare HOI-Retarget + SPIDER, Astra one-shot, Codex and HuMoTAR on 20 HUMOTO tasks and 20 OMOMO tasks. Each dataset uses the same task list across all four methods. We report the saved final execution from each run and average equally across tasks.</p>
+<p>Codex refines the motion with one agent. The ensemble runs four independent agents, two with optional access to the provided retargeting tools, and selects the final reference by mean ADD. Refinement is evaluated over a 30-minute budget. HOI-Retarget + SPIDER uses the frozen humanoid-object optimization configuration with G1 and Dex3. SPIDER runs at its native 60 Hz integration rate; the agent-generated controllers use the harness’s 500 Hz simulation. Both are scored against the same object targets.</p>
+<h3 id="dynamics-metrics">Object tracking metrics</h3>
+<p>We compare the object’s pose in the <strong>dynamic humanoid–object interaction rollout</strong> with the <strong>human-reference object trajectory scaled for G1</strong>. The reference trajectory stays fixed during refinement, and the object’s size is unchanged. We compare poses along the two object paths in the order they occur, allowing the robot to move at a different speed or pause. Both paths are sampled by progress through translation and rotation, rather than elapsed time.</p>
+<ul>
+<li><strong>Mean ADD (cm):</strong> at each aligned pair of poses, we place the same set of object points at the simulated pose and at the reference pose, then measure the distance between each pair of corresponding points. Averaging these distances over the points and the trajectory gives mean ADD, capturing both position and orientation error in one distance.</li>
+<li><strong>Position error (cm):</strong> average Euclidean distance between the simulated and reference object origins.</li>
+<li><strong>Orientation error (°):</strong> average angle of the relative rotation between the simulated and reference object orientations.</li>
+</ul>
+<p>All three metrics use the same trajectory alignment. We compute each task’s score first, then average equally across tasks; lower is better.</p>
+<h3 id="comparison-results">Results</h3>
+
+
+<figure id="dynamics-showcase" class="dynamics-showcase"><figcaption><strong>Fig. 5.</strong> Human demonstrations and simulated humanoid–object interactions from HUMOTO and OMOMO, with executions from HuMoTAR and the available baselines.</figcaption></figure>
+
+
+
+<div class="table-wrap"><table id="dynamics-results-table"><caption><strong>Table 1.</strong> Object-tracking errors in the final simulated executions of 20 HUMOTO and 20 OMOMO tasks. <mark>↓ Lower is better</mark></caption>
+<thead><tr><th scope="col">Method</th><th scope="col">Tasks</th><th scope="col">Mean ADD (cm)</th><th scope="col">Position error (cm)</th><th scope="col">Orientation error (°)</th></tr></thead><tbody>
+<tr class="dataset-table-heading"><th colspan="5" scope="colgroup">HUMOTO · 20 tasks</th></tr>
+<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td><td>56.66</td><td>55.49</td><td>51.22</td></tr>
+<tr><th scope="row">Astra one-shot</th><td>20</td><td>56.09</td><td>55.03</td><td>62.88</td></tr>
+<tr><th scope="row">Codex</th><td>20</td><td>20.96</td><td>19.19</td><td>29.32</td></tr>
+<tr><th scope="row">HuMoTAR</th><td>20</td><td><strong>14.30</strong></td><td><strong>13.87</strong></td><td><strong>22.07</strong></td></tr>
+<tr class="dataset-table-heading"><th colspan="5" scope="colgroup">OMOMO · 20 tasks</th></tr>
+<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td><td>48.31</td><td>43.36</td><td>52.07</td></tr>
+<tr><th scope="row">Astra one-shot</th><td>20</td><td>69.87</td><td>65.61</td><td>58.35</td></tr>
+<tr><th scope="row">Codex</th><td>20</td><td>26.51</td><td>23.70</td><td>28.32</td></tr>
+<tr><th scope="row">HuMoTAR</th><td>20</td><td><strong>19.61</strong></td><td><strong>17.06</strong></td><td><strong>27.07</strong></td></tr>
+</tbody></table></div>
+
+<p>Recorded token totals for the compared runs are reported in <a href="#agent-token-usage">Appendix Table A3</a>.</p>
 </section>
 <section id="agent-diagnosis" class="outline-section execution-analysis">
-<h2 id="3-inside-the-refinement-process">3. Inside the refinement process</h2>
+<h2 id="4-inside-the-refinement-process">4. Inside the refinement process</h2>
 
 
 <span id="reference-deviation" class="section-anchor"></span>
 
-<h3 id="kinematic-to-dynamic">3.1 How does the agent refine an interaction in simulation?</h3>
-<p>We begin with a human demonstration and an initial G1 motion from HOI-Retarget. The scaled object trajectory defines the interaction goal, while the robot's motion and controller remain open to refinement. Figure 5 shows how Astra turns this starting reference into a program that can be executed, inspected and revised in simulation.</p>
+<h3 id="kinematic-to-dynamic">4.1 How does the agent refine an interaction in simulation?</h3>
+<p>We begin with a human demonstration and an initial G1 motion from HOI-Retarget. The scaled object trajectory defines the interaction goal, while the robot's motion and controller remain open to refinement. Figure 6 shows how Astra turns this starting reference into a program that can be executed, inspected and revised in simulation.</p>
 <p><strong>Astra writes executable Python code.</strong> The code can construct wrist trajectories, solve inverse kinematics for arm and waist joints, adjust finger targets, and change the duration of individual motion phases. Across the recorded runs, agents also implement joint-impedance control, object-pose feedback and contact-dependent transitions; some try constrained inverse dynamics to compute joint torques. These strategies are implemented in the generated program, together with any revised reference trajectories and initialization.</p>
 <p>Physical execution requires whole-body control to support the robot and hand control to manipulate the object. We use <strong><a href="https://arxiv.org/abs/2511.07820">SONIC</a> as a frozen whole-body policy</strong>, tracking a motion reference at 50 Hz. Its 29 body joints include the arms and wrists, but not the Dex3 fingers. To control the interaction, Astra writes a <strong>custom hand and arm controller in Python</strong>. This controller commands the fingers and, when needed, replaces SONIC’s arm commands with targets, gains and feedforward torques suited to the task.</p>
 <p>The agent can also revise the motion reference supplied to SONIC so that whole-body control follows the intended arm motion. During each rollout, SONIC and the custom hand and arm controller produce the joint commands. Astra inspects the resulting execution and revises the code or reference before the next trial.</p>
-<p><a href="https://mujoco.org/">MuJoCo</a> executes the combined joint commands and records the resulting robot and object motion. Astra can inspect rendered views, tracking errors, contact locations and forces, joint limits and collision clearances. It uses this feedback to revise the next candidate, then tests the complete interaction again. The retained result includes the executed reference motion and the controller needed to replay it. The examples in Figure 5 show the kinds of changes made within this loop.</p>
+<p><a href="https://mujoco.org/">MuJoCo</a> executes the combined joint commands and records the resulting robot and object motion. Astra can inspect rendered views, tracking errors, contact locations and forces, joint limits and collision clearances. It uses this feedback to revise the next candidate, then tests the complete interaction again. The retained result includes the executed reference motion and the controller needed to replay it. The examples in Figure 6 show the kinds of changes made within this loop.</p>
 
 
-<figure class="refinement-panel" id="refinement-figure-5"><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/agentic-pipeline.png" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/agentic-pipeline.png" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="7440" height="3400" loading="lazy"></a><h3 class="refinement-examples-heading">Refining contact, support and motion</h3><div class="consideration-grid"><article class="consideration-card" id="refinement-5a"><div class="consideration-label"><span>(a)</span> Starting pose</div><a class="consideration-image" href="assets/refinement/consideration-1.png" aria-label="Enlarge: Clothes stand · before execution: Feet fitted to the floor."><img src="assets/refinement/consideration-1.png" alt="Clothes stand · before execution: Feet fitted to the floor." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="54" cy="70.5" rx="8" ry="3.75"/><path d="M 25 59.25 L 54 70.5"/><circle cx="25" cy="59.25" r="3.2"/><text x="25" y="59.25">a</text></svg></a><h4>Prepare the clothes-stand lift</h4><p class="consideration-decision">The agent corrects foot support and hand clearance before stepping. Root height, leg posture and finger placement change while the object’s initial pose stays fixed.</p></article><article class="consideration-card" id="refinement-5b"><div class="consideration-label"><span>(b)</span> Contact acquisition</div><a class="consideration-image" href="assets/refinement/consideration-footcontact-v2.png" aria-label="Enlarge: Right foot contacts the bin near its rim."><img src="assets/refinement/consideration-footcontact-v2.png" alt="Right foot contacts the bin near its rim." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="60" cy="41.25" rx="10" ry="9.0"/><path d="M 24 20.25 L 60 41.25"/><circle cx="24" cy="20.25" r="3.2"/><text x="24" y="20.25">b</text></svg></a><h4>Tilt a bin with the right foot</h4><p class="consideration-decision">Foot placement and leg motion establish contact near the rim to tilt the bin. The other foot provides support while the right foot directs the interaction.</p></article><article class="consideration-card" id="refinement-5c"><div class="consideration-label"><span>(c)</span> Maintaining contact</div><a class="consideration-image" href="assets/refinement/consideration-boxhold-v2.png" aria-label="Enlarge: Fingers and palm support the box during lifting."><img src="assets/refinement/consideration-boxhold-v2.png" alt="Fingers and palm support the box during lifting." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="54" cy="40.5" rx="10" ry="9.75"/><path d="M 23 22.5 L 54 40.5"/><circle cx="23" cy="22.5" r="3.2"/><text x="23" y="22.5">c</text></svg></a><h4>Lift and turn a large box</h4><p class="consideration-decision">Both hands support the raised box through object-relative arm targets. The controller maintains the grip as the load transfers from the floor to the arms.</p></article><article class="consideration-card" id="refinement-5d"><div class="consideration-label"><span>(d)</span> Whole-body coordination</div><a class="consideration-image" href="assets/refinement/consideration-coordination-v2.png" aria-label="Enlarge: Upright G1 steps while carrying a wooden chair by its backrest."><img src="assets/refinement/consideration-coordination-v2.png" alt="Upright G1 steps while carrying a wooden chair by its backrest." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="56" cy="40.5" rx="18" ry="20.25"/><path d="M 83 15.75 L 56 40.5"/><circle cx="83" cy="15.75" r="3.2"/><text x="83" y="15.75">d</text></svg></a><h4>Carry and place a wooden chair</h4><p class="consideration-decision">Pelvis-position feedback steers the whole-body reference while arm IK follows the backrest rail. The body advances with the chair while the hand maintains its grasp.</p></article><article class="consideration-card" id="refinement-5e"><div class="consideration-label"><span>(e)</span> Timing and feedback</div><a class="consideration-image" href="assets/refinement/consideration-timing-v2.png" aria-label="Enlarge: Bimanual contact during the slower rocking phase."><img src="assets/refinement/consideration-timing-v2.png" alt="Bimanual contact during the slower rocking phase." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="39" cy="42.75" rx="10" ry="7.5"/><path d="M 79 21.75 L 39 42.75"/><circle cx="79" cy="21.75" r="3.2"/><text x="79" y="21.75">e</text></svg></a><h4>Rock a wooden chair</h4><p class="consideration-decision">The agent slows the rocking phase and uses object-pose feedback to follow the tilt. Hand opening is staggered as the chair returns upright.</p></article><article class="consideration-card" id="refinement-5f"><div class="consideration-label"><span>(f)</span> Placement and release</div><a class="consideration-image" href="assets/refinement/consideration-6.png" aria-label="Enlarge: Floor lamp · after release: Open hand after placement."><img src="assets/refinement/consideration-6.png" alt="Floor lamp · after release: Open hand after placement." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="40" cy="32.25" rx="21" ry="10.5"/><path d="M 18 14.25 L 40 32.25"/><circle cx="18" cy="14.25" r="3.2"/><text x="18" y="14.25">f</text></svg></a><h4>Set down a floor lamp</h4><p class="consideration-decision">The agent adjusts the base orientation and waits for the lamp to settle before opening the fingers. The hand then withdraws while the floor supports the lamp.</p></article></div><figcaption><strong>Figure 5.</strong> HuMoTAR refinement pipeline and six examples of contact and control adjustments. Astra generates motion and controller code, evaluates it in simulation and revises it using execution feedback. Panels (a–f) show starting-pose correction, foot contact, grasp retention, coordinated transport, phase timing and object release.</figcaption></figure>
+<figure class="refinement-panel" id="refinement-figure-5"><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/agentic-pipeline.png" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/agentic-pipeline.png" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="7440" height="3400" loading="lazy"></a><h3 class="refinement-examples-heading">Refining contact, support and motion</h3><div class="consideration-grid"><article class="consideration-card" id="refinement-5a"><div class="consideration-label"><span>(a)</span> Starting pose</div><a class="consideration-image" href="assets/refinement/consideration-1.png" aria-label="Enlarge: Clothes stand · before execution: Feet fitted to the floor."><img src="assets/refinement/consideration-1.png" alt="Clothes stand · before execution: Feet fitted to the floor." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="54" cy="70.5" rx="8" ry="3.75"/><path d="M 25 59.25 L 54 70.5"/><circle cx="25" cy="59.25" r="3.2"/><text x="25" y="59.25">a</text></svg></a><h4>Prepare the clothes-stand lift</h4><p class="consideration-decision">The agent corrects foot support and hand clearance before stepping. Root height, leg posture and finger placement change while the object’s initial pose stays fixed.</p></article><article class="consideration-card" id="refinement-5b"><div class="consideration-label"><span>(b)</span> Contact acquisition</div><a class="consideration-image" href="assets/refinement/consideration-footcontact-v2.png" aria-label="Enlarge: Right foot contacts the bin near its rim."><img src="assets/refinement/consideration-footcontact-v2.png" alt="Right foot contacts the bin near its rim." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="60" cy="41.25" rx="10" ry="9.0"/><path d="M 24 20.25 L 60 41.25"/><circle cx="24" cy="20.25" r="3.2"/><text x="24" y="20.25">b</text></svg></a><h4>Tilt a bin with the right foot</h4><p class="consideration-decision">Foot placement and leg motion establish contact near the rim to tilt the bin. The other foot provides support while the right foot directs the interaction.</p></article><article class="consideration-card" id="refinement-5c"><div class="consideration-label"><span>(c)</span> Maintaining contact</div><a class="consideration-image" href="assets/refinement/consideration-boxhold-v2.png" aria-label="Enlarge: Fingers and palm support the box during lifting."><img src="assets/refinement/consideration-boxhold-v2.png" alt="Fingers and palm support the box during lifting." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="54" cy="40.5" rx="10" ry="9.75"/><path d="M 23 22.5 L 54 40.5"/><circle cx="23" cy="22.5" r="3.2"/><text x="23" y="22.5">c</text></svg></a><h4>Lift and turn a large box</h4><p class="consideration-decision">Both hands support the raised box through object-relative arm targets. The controller maintains the grip as the load transfers from the floor to the arms.</p></article><article class="consideration-card" id="refinement-5d"><div class="consideration-label"><span>(d)</span> Whole-body coordination</div><a class="consideration-image" href="assets/refinement/consideration-coordination-v2.png" aria-label="Enlarge: Upright G1 steps while carrying a wooden chair by its backrest."><img src="assets/refinement/consideration-coordination-v2.png" alt="Upright G1 steps while carrying a wooden chair by its backrest." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="56" cy="40.5" rx="18" ry="20.25"/><path d="M 83 15.75 L 56 40.5"/><circle cx="83" cy="15.75" r="3.2"/><text x="83" y="15.75">d</text></svg></a><h4>Carry and place a wooden chair</h4><p class="consideration-decision">Pelvis-position feedback steers the whole-body reference while arm IK follows the backrest rail. The body advances with the chair while the hand maintains its grasp.</p></article><article class="consideration-card" id="refinement-5e"><div class="consideration-label"><span>(e)</span> Timing and feedback</div><a class="consideration-image" href="assets/refinement/consideration-timing-v2.png" aria-label="Enlarge: Bimanual contact during the slower rocking phase."><img src="assets/refinement/consideration-timing-v2.png" alt="Bimanual contact during the slower rocking phase." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="39" cy="42.75" rx="10" ry="7.5"/><path d="M 79 21.75 L 39 42.75"/><circle cx="79" cy="21.75" r="3.2"/><text x="79" y="21.75">e</text></svg></a><h4>Rock a wooden chair</h4><p class="consideration-decision">The agent slows the rocking phase and uses object-pose feedback to follow the tilt. Hand opening is staggered as the chair returns upright.</p></article><article class="consideration-card" id="refinement-5f"><div class="consideration-label"><span>(f)</span> Placement and release</div><a class="consideration-image" href="assets/refinement/consideration-6.png" aria-label="Enlarge: Floor lamp · after release: Open hand after placement."><img src="assets/refinement/consideration-6.png" alt="Floor lamp · after release: Open hand after placement." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="40" cy="32.25" rx="21" ry="10.5"/><path d="M 18 14.25 L 40 32.25"/><circle cx="18" cy="14.25" r="3.2"/><text x="18" y="14.25">f</text></svg></a><h4>Set down a floor lamp</h4><p class="consideration-decision">The agent adjusts the base orientation and waits for the lamp to settle before opening the fingers. The hand then withdraws while the floor supports the lamp.</p></article></div><figcaption><strong>Figure 6.</strong> HuMoTAR refinement pipeline and six examples of contact and control adjustments. Astra generates motion and controller code, evaluates it in simulation and revises it using execution feedback. Panels (a–f) show starting-pose correction, foot contact, grasp retention, coordinated transport, phase timing and object release.</figcaption></figure>
 
-</section>
-<section id="refinement-progress-panel" class="outline-section execution-analysis">
-<h3 id="refinement-progress">3.2 Tracking error during refinement</h3>
-
-
-<figure class="aggregate-refinement-plot" id="aggregate-refinement-plot">
-  <img src="assets/refinement/aggregate-tracking.svg" width="1320" height="410" loading="lazy" alt="Three side-by-side step plots of mean ADD, position error and orientation error across all 40 benchmark tasks. Dark curves show the overall mean; light curves show each dataset. The view spans 30 minutes, including no-experience continuations for the staged searches.">
-  <figcaption><strong>Fig. 6.</strong> Mean tracking errors during 30 minutes of iterative refinement on 20 HUMOTO and 20 OMOMO tasks. The dark curve averages all 40 tasks; the lighter curves show each dataset.</figcaption>
-</figure>
-
-<p>A kinematic reference specifies the intended motion, but execution can produce large errors when contact fails or the robot cannot support the load. Figure 6 follows the performance of the iterative refinement process over a 30-minute budget. Each step reflects a new best execution as the agent revises the motion or controller. The dark curve averages across all tasks; the lighter curves show HUMOTO and OMOMO separately. The larger drops indicate substantial improvements, followed by smaller corrections as refinement progresses.</p>
-<p>Mean ADD selects the best execution at each point; position and orientation report that same execution. The curves begin when all tasks have a scored execution; the unrefined kinematic replay was not recorded consistently enough to mark a shared starting value.</p>
 </section>
 <section id="refinement-walkthrough-panel" class="outline-section execution-analysis">
-<h3 id="agentic-refinement-walkthrough">3.3 Agentic refinement walkthrough</h3>
-<p>Here we follow the agent selected by our orchestrator harness through a complete refinement of the clothes-stand interaction from <strong>Figure 5</strong>. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved revisions trace how the agent resolves a slipping grasp, brings the body into the motion and completes release.</p>
+<h3 id="agentic-refinement-walkthrough">4.2 Agentic refinement walkthrough</h3>
+<p>Here we follow the agent selected by our orchestrator harness through a complete refinement of the clothes-stand interaction from <strong>Figure 6</strong>. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved revisions trace how the agent resolves a slipping grasp, brings the body into the motion and completes release.</p>
 <div class="refinement-walkthrough" id="clothesstand-walkthrough" data-refinement-walkthrough>
   <div class="walkthrough-origins">
     <figure><img class="walkthrough-public-still" src="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" alt="Human source motion"><video controls muted playsinline preload="none" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=4fbe6f93d1" aria-label="Human source motion, SMPL-X"></video><figcaption>Human reference · <a href="https://smpl-x.is.tue.mpg.de/">SMPL-X</a></figcaption></figure>
@@ -276,63 +267,33 @@
 </div>
 <p><strong>Fig. 7 (continued).</strong> Initial and refined references for the clothes-stand interaction. The figure includes physical execution; the video shows reference geometry without online controller corrections.</p>
 </section>
+<section id="refinement-progress-panel" class="outline-section execution-analysis">
+<h3 id="refinement-progress">4.3 Tracking error during refinement</h3>
+
+
+<figure class="aggregate-refinement-plot" id="aggregate-refinement-plot">
+  <img src="assets/refinement/aggregate-tracking.svg" width="1320" height="410" loading="lazy" alt="Three side-by-side step plots of mean ADD, position error and orientation error across all 40 benchmark tasks. Dark curves show the overall mean; light curves show each dataset. The view spans 30 minutes, including no-experience continuations for the staged searches.">
+  <figcaption><strong>Fig. 8.</strong> Mean tracking errors during 30 minutes of iterative refinement on 20 HUMOTO and 20 OMOMO tasks. The dark curve averages all 40 tasks; the lighter curves show each dataset.</figcaption>
+</figure>
+
+<p>A kinematic reference specifies the intended motion, but execution can produce large errors when contact fails or the robot cannot support the load. Figure 8 follows the performance of the iterative refinement process over a 30-minute budget. Each step reflects a new best execution as the agent revises the motion or controller. The dark curve averages across all tasks; the lighter curves show HUMOTO and OMOMO separately. The larger drops indicate substantial improvements, followed by smaller corrections as refinement progresses.</p>
+<p>Mean ADD selects the best execution at each point; position and orientation report that same execution. The curves begin when all tasks have a scored execution; the unrefined kinematic replay was not recorded consistently enough to mark a shared starting value.</p>
+</section>
 <section id="early-stopping-panel" class="outline-section execution-analysis">
-<h3 id="early-stopping">3.4 How much refinement can a shorter budget retain?</h3>
+<h3 id="early-stopping">4.4 How much refinement can a shorter budget retain?</h3>
 
 
 <figure id="early-stopping-figure">
 <img src="assets/refinement/early-stopping.svg" width="1320" height="470" loading="lazy" alt="Mean tracking errors over 30 minutes, with dotted lines marking average times to 90, 95 and 99 percent of recorded mean ADD reduction.">
-<figcaption><strong>Fig. 8.</strong> Tracking errors and refinement milestones across 20 HUMOTO and 20 OMOMO tasks. Vertical dotted lines mark the average time to achieve 90%, 95% and 99% of each task’s 30-minute ADD reduction: <strong>20.4, 22.3 and 23.3 minutes</strong>, respectively. Milestones are computed from mean ADD and repeated across the three metric panels.</figcaption>
+<figcaption><strong>Fig. 9.</strong> Tracking errors and refinement milestones across 20 HUMOTO and 20 OMOMO tasks. Vertical dotted lines mark the average time to achieve 90%, 95% and 99% of each task’s 30-minute ADD reduction: <strong>20.4, 22.3 and 23.3 minutes</strong>, respectively. Milestones are computed from mean ADD and repeated across the three metric panels.</figcaption>
 </figure>
 
 <p><strong>Early stopping limits the time spent on iterative refinement while retaining the best reference motion output obtained so far.</strong> Here, the stopping condition is elapsed refinement time: at a chosen cutoff, we retain the reference motion output and its controller from the refinement stage with the lowest measured mean ADD for each task. We evaluate this condition retrospectively using the recorded executions and token usage from the full 30-minute runs.</p>
-<p>Figure 8 marks the average time each task takes to reach <strong>90%, 95% and 99% of its recorded ADD reduction</strong>. The <strong>95% milestone averages 22.3 minutes</strong>, which motivates a 22.3-minute early-stopping cutoff. Stopping every task at that time retains <strong>88.4% of the improvement on average</strong>, because individual tasks reach their milestones at different times.</p>
-</section>
-<section id="refinement-results" class="outline-section">
-<h2 id="4-dynamic-retargeting-results">4. Dynamic retargeting results</h2>
-
-
-<span id="agent-comparison" class="section-anchor"></span>
-
-
-
-<span id="study-design" class="section-anchor"></span>
-
-<h3 id="experimental-setup">Experimental setup</h3>
-<p>We compare HOI-Retarget + SPIDER, Astra one-shot, Codex and the Orchestrator-agent ensemble on 20 HUMOTO tasks and 20 OMOMO tasks. Each dataset uses the same task list across all four methods. We report the saved final execution from each run and average equally across tasks.</p>
-<p>Codex refines the motion with one agent. The ensemble runs four independent agents, two with optional access to the provided retargeting tools, and selects the final reference by mean ADD. Refinement is evaluated over a 30-minute budget. HOI-Retarget + SPIDER uses the frozen humanoid-object optimization configuration with G1 and Dex3. SPIDER runs at its native 60 Hz integration rate; the agent-generated controllers use the harness’s 500 Hz simulation. Both are scored against the same object targets.</p>
-<h3 id="dynamics-metrics">Object tracking metrics</h3>
-<p>We compare the object’s pose in the <strong>dynamic humanoid–object interaction rollout</strong> with the <strong>human-reference object trajectory scaled for G1</strong>. The reference trajectory stays fixed during refinement, and the object’s size is unchanged. We compare poses along the two object paths in the order they occur, allowing the robot to move at a different speed or pause. Both paths are sampled by progress through translation and rotation, rather than elapsed time.</p>
-<ul>
-<li><strong>Mean ADD (cm):</strong> at each aligned pair of poses, we place the same set of object points at the simulated pose and at the reference pose, then measure the distance between each pair of corresponding points. Averaging these distances over the points and the trajectory gives mean ADD, capturing both position and orientation error in one distance.</li>
-<li><strong>Position error (cm):</strong> average Euclidean distance between the simulated and reference object origins.</li>
-<li><strong>Orientation error (°):</strong> average angle of the relative rotation between the simulated and reference object orientations.</li>
-</ul>
-<p>All three metrics use the same trajectory alignment. We compute each task’s score first, then average equally across tasks; lower is better.</p>
-<h3 id="comparison-results">Results</h3>
-
-
-<figure id="dynamics-showcase" class="dynamics-showcase"><figcaption><strong>Fig. 9.</strong> Human demonstrations and simulated humanoid–object interactions from HUMOTO and OMOMO, with executions from HuMoTAR and the available baselines.</figcaption></figure>
-
-
-
-<div class="table-wrap"><table id="dynamics-results-table"><caption><strong>Table 2.</strong> Object-tracking errors in the final simulated executions of 20 HUMOTO and 20 OMOMO tasks. <mark>↓ Lower is better</mark></caption>
-<thead><tr><th scope="col">Method</th><th scope="col">Tasks</th><th scope="col">Mean ADD (cm)</th><th scope="col">Position error (cm)</th><th scope="col">Orientation error (°)</th></tr></thead><tbody>
-<tr class="dataset-table-heading"><th colspan="5" scope="colgroup">HUMOTO · 20 tasks</th></tr>
-<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td><td>56.66</td><td>55.49</td><td>51.22</td></tr>
-<tr><th scope="row">Astra one-shot</th><td>20</td><td>56.09</td><td>55.03</td><td>62.88</td></tr>
-<tr><th scope="row">Codex</th><td>20</td><td>20.96</td><td>19.19</td><td>29.32</td></tr>
-<tr><th scope="row">Orchestrator-agent ensemble (ours)</th><td>20</td><td><strong>14.30</strong></td><td><strong>13.87</strong></td><td><strong>22.07</strong></td></tr>
-<tr class="dataset-table-heading"><th colspan="5" scope="colgroup">OMOMO · 20 tasks</th></tr>
-<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td><td>48.31</td><td>43.36</td><td>52.07</td></tr>
-<tr><th scope="row">Astra one-shot</th><td>20</td><td>69.87</td><td>65.61</td><td>58.35</td></tr>
-<tr><th scope="row">Codex</th><td>20</td><td>26.51</td><td>23.70</td><td>28.32</td></tr>
-<tr><th scope="row">Orchestrator-agent ensemble (ours)</th><td>20</td><td><strong>19.61</strong></td><td><strong>17.06</strong></td><td><strong>27.07</strong></td></tr>
-</tbody></table></div>
-
+<p>Figure 9 marks the average time each task takes to reach <strong>90%, 95% and 99% of its recorded ADD reduction</strong>. The <strong>95% milestone averages 22.3 minutes</strong>, which motivates a 22.3-minute early-stopping cutoff. Stopping every task at that time retains <strong>88.4% of the improvement on average</strong>, because individual tasks reach their milestones at different times.</p>
 </section>
 <section id="experience">
-<h2 id="5-when-does-experience-transfer">5. When does experience transfer?</h2>
+<h2 id="5-does-experience-matter">5. Does experience matter?</h2>
+<p><strong>Yes, related experience helps in the shelf-righting example, but the benefit depends on what transfers to the new task.</strong> Reports from other furniture interactions help G1 complete the lift, reducing mean ADD from <strong>23.35 to 7.77 cm</strong> compared with continuing without experience. Both continuations start from the same checkpoint and receive the same refinement time.</p>
 </section>
 <section id="experience-setup" class=" inline-experience">
 <h3 id="comparing-refinement-with-and-without-experience">Comparing refinement with and without experience</h3>
@@ -356,7 +317,7 @@
 <p>Our approach still struggles with thin objects and difficult contact geometries. In the plate example, the robot lifts the plate but does not complete the human’s swirling motion. Across the recorded attempts, agents revise finger placement and try two-handed support, yet the grasp remains unreliable during rotation. <strong>We observe that contact strategies must account for the robot’s hand morphology.</strong> The Dex3 fingers must establish opposing contacts around a thin, sloped rim, which appears to contribute to the difficulty of this task. Motion and controller refinement do not yet resolve this limitation.</p>
 
 
-<figure class="authored-video" data-media-id="discussion-plate"><div class="authored-video-views"><div><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="intro-media/plate-human.jpg" src="intro-media/plate-human.mp4?v=1ce87eb92b"></video></div><div><p>HuMoTAR</p><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="intro-media/plate-robot.jpg" src="intro-media/plate-robot.mp4?v=c85e205f9b"></video></div></div><figcaption>Fig. 11. Human demonstration and HuMoTAR execution of the plate-swirling task. The robot partially lifts the plate but does not complete the demonstrated swirling motion.</figcaption></figure>
+<figure class="authored-video" data-media-id="discussion-plate"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="intro-media/plate-human.jpg" src="intro-media/plate-human.mp4?v=1ce87eb92b"></video></div><div class="execution-panel"><p>HuMoTAR</p><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="intro-media/plate-robot.jpg" src="intro-media/plate-robot.mp4?v=c85e205f9b"></video></div></div><figcaption>Fig. 11. Human demonstration and HuMoTAR execution of the plate-swirling task. The robot partially lifts the plate but does not complete the demonstrated swirling motion.</figcaption></figure>
 
 </section>
 <section id="references" class="outline-section">
@@ -379,7 +340,7 @@
 <h2 id="appendix-questions">Appendix</h2>
 <details class="appendix-faq" id="kinematic-refinement">
 <summary id="kinematic-question">How does HuMoTAR compare on kinematic retargeting?</summary>
-<p>We compare <a href="https://arxiv.org/abs/2510.02252">GMR</a>, <a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> and the Orchestrator-agent ensemble on the same task set.</p>
+<p>We compare <a href="https://arxiv.org/abs/2510.02252">GMR</a>, <a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> and HuMoTAR on the same task set.</p>
 <p>We follow <a href="https://arxiv.org/html/2609.34674v1#A1">HOI-Retarget’s evaluation protocol (Appendix A)</a>: <strong>body pose deviation</strong>, <strong>link velocity direction error</strong>, <strong>contact-point gap</strong> and <strong>relative hand-orientation change</strong> measure how well the robot preserves the human motion and object-relative contacts. We also report <strong>body jerk</strong> as a smoothness measure, the mean magnitude of the third time derivative of the palm, ankle, head and pelvis positions, estimated by finite differences. Lower values indicate smoother motion.</p>
 
 
@@ -387,7 +348,7 @@
 
 
 
-<div class="table-wrap"><table id="kinematic-results-table"><caption><strong>Table A1.</strong> Kinematic reference errors on 20 HUMOTO and 20 OMOMO tasks using G1 with Dex3 hands. <mark>↓ Lower is better</mark></caption><thead><tr><th scope="col">Method</th><th scope="col">Tasks</th><th scope="col">Body pose deviation (°)</th><th scope="col">Velocity direction error (°)</th><th scope="col">Contact-point gap (mm)</th><th scope="col">Hand orientation change (°)</th><th scope="col">Body jerk (m/s³)</th></tr></thead><tbody><tr class="dataset-table-heading"><th colspan="7" scope="colgroup">HUMOTO · 20 tasks</th></tr><tr><th scope="row">GMR</th><td>20</td><td>14.68</td><td>20.41</td><td>64.72</td><td>7.38</td><td>83.40</td></tr><tr><th scope="row">HOI-Retarget</th><td>20</td><td>15.18</td><td>28.08</td><td>36.58</td><td>7.41</td><td>25.93</td></tr><tr><th scope="row">Orchestrator-agent ensemble (ours)</th><td>20</td><td><strong>8.98</strong></td><td><strong>10.65</strong></td><td><strong>4.27</strong></td><td><strong>0.23</strong></td><td><strong>9.18</strong></td></tr><tr class="dataset-table-heading"><th colspan="7" scope="colgroup">OMOMO · 20 tasks</th></tr><tr><th scope="row">GMR</th><td>20</td><td>17.42</td><td>21.53</td><td>136.63</td><td>1.50</td><td>77.63</td></tr><tr><th scope="row">HOI-Retarget</th><td>20</td><td>18.94</td><td>26.10</td><td>31.31</td><td>4.93</td><td>34.68</td></tr><tr><th scope="row">Orchestrator-agent ensemble (ours)</th><td>20</td><td><strong>8.56</strong></td><td><strong>11.07</strong></td><td><strong>3.53</strong></td><td><strong>0.20</strong></td><td><strong>9.99</strong></td></tr></tbody></table></div><p class="metric-coverage">HUMOTO: contact gap uses 16 tasks; hand orientation uses 16. Each metric uses the same applicable tasks across all three methods.</p>
+<div class="table-wrap"><table id="kinematic-results-table"><caption><strong>Table A1.</strong> Kinematic reference errors on 20 HUMOTO and 20 OMOMO tasks using G1 with Dex3 hands. <mark>↓ Lower is better</mark></caption><thead><tr><th scope="col">Method</th><th scope="col">Tasks</th><th scope="col">Body pose deviation (°)</th><th scope="col">Velocity direction error (°)</th><th scope="col">Contact-point gap (mm)</th><th scope="col">Hand orientation change (°)</th><th scope="col">Body jerk (m/s³)</th></tr></thead><tbody><tr class="dataset-table-heading"><th colspan="7" scope="colgroup">HUMOTO · 20 tasks</th></tr><tr><th scope="row">GMR</th><td>20</td><td>14.68</td><td>20.41</td><td>64.72</td><td>7.38</td><td>83.40</td></tr><tr><th scope="row">HOI-Retarget</th><td>20</td><td>15.18</td><td>28.08</td><td>36.58</td><td>7.41</td><td>25.93</td></tr><tr><th scope="row">HuMoTAR</th><td>20</td><td><strong>8.98</strong></td><td><strong>10.65</strong></td><td><strong>4.27</strong></td><td><strong>0.23</strong></td><td><strong>9.18</strong></td></tr><tr class="dataset-table-heading"><th colspan="7" scope="colgroup">OMOMO · 20 tasks</th></tr><tr><th scope="row">GMR</th><td>20</td><td>17.42</td><td>21.53</td><td>136.63</td><td>1.50</td><td>77.63</td></tr><tr><th scope="row">HOI-Retarget</th><td>20</td><td>18.94</td><td>26.10</td><td>31.31</td><td>4.93</td><td>34.68</td></tr><tr><th scope="row">HuMoTAR</th><td>20</td><td><strong>8.56</strong></td><td><strong>11.07</strong></td><td><strong>3.53</strong></td><td><strong>0.20</strong></td><td><strong>9.99</strong></td></tr></tbody></table></div><p class="metric-coverage">HUMOTO: contact gap uses 16 tasks; hand orientation uses 16. Each metric uses the same applicable tasks across all three methods.</p>
 
 </details>
 <details class="appendix-faq" id="text-to-trajectory">
@@ -423,6 +384,176 @@
   </div>
 </div>
 </details>
+<details class="appendix-faq" id="retargeting-tools">
+<summary>Which tools and control interfaces can the agents use?</summary>
+<p>Agents can write their own analysis and control code. Two ensemble agents also receive a supplied retargeting-tools file, which they may use, modify or replace. These helpers expose the following measurements and interfaces; they do not prescribe a grasp or a refinement sequence.</p>
+<p><strong>Table A2.</strong> Interfaces available during refinement.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Tool or interface</th>
+<th>What it provides</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contact inspection</td>
+<td>Contact locations, normals and forces from a saved execution, with close-up views.</td>
+</tr>
+<tr>
+<td>Geometry checks</td>
+<td>Contact gaps, surface alignment, penetration and joint-limit margins for a proposed pose.</td>
+</tr>
+<tr>
+<td>Motion diagnostics</td>
+<td>Link-position and orientation errors, and reference, command and execution joint traces.</td>
+</tr>
+<tr>
+<td>Object-path evaluation</td>
+<td>Mean ADD, position and orientation errors against the fixed target trajectory.</td>
+</tr>
+<tr>
+<td>Whole-body control</td>
+<td>A frozen tracking policy driven by a motion reference.</td>
+</tr>
+<tr>
+<td>Custom joint control</td>
+<td>Targets, gains and feedforward torques for the agent’s manipulation controller.</td>
+</tr>
+</tbody>
+</table></div>
+</details>
+<details class="appendix-faq" id="agent-token-usage">
+<summary>How many tokens do the compared methods use?</summary>
+<p><strong>Table A3. Recorded agent token usage (millions).</strong> Totals cover the 20 HUMOTO and 20 OMOMO tasks in the dynamics comparison. HuMoTAR includes all ensemble workers, recorded retry attempts and the continuations used for the reported results. HOI-Retarget + SPIDER makes no model calls.</p>
+<p><strong>HUMOTO · 20 tasks</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align:right">Input</th>
+<th style="text-align:right">Cached input</th>
+<th style="text-align:right">Output</th>
+<th style="text-align:right">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HOI-Retarget + SPIDER</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.000</td>
+</tr>
+<tr>
+<td>Astra one-shot</td>
+<td style="text-align:right">7.277</td>
+<td style="text-align:right">0.361</td>
+<td style="text-align:right">0.181</td>
+<td style="text-align:right">7.458</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td style="text-align:right">176.003</td>
+<td style="text-align:right">173.496</td>
+<td style="text-align:right">1.032</td>
+<td style="text-align:right">177.035</td>
+</tr>
+<tr>
+<td>HuMoTAR</td>
+<td style="text-align:right">410.548</td>
+<td style="text-align:right">400.781</td>
+<td style="text-align:right">2.593</td>
+<td style="text-align:right">413.140</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>OMOMO · 20 tasks</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align:right">Input</th>
+<th style="text-align:right">Cached input</th>
+<th style="text-align:right">Output</th>
+<th style="text-align:right">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HOI-Retarget + SPIDER</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.000</td>
+</tr>
+<tr>
+<td>Astra one-shot</td>
+<td style="text-align:right">1.505</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.171</td>
+<td style="text-align:right">1.676</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td style="text-align:right">132.942</td>
+<td style="text-align:right">130.910</td>
+<td style="text-align:right">0.801</td>
+<td style="text-align:right">133.742</td>
+</tr>
+<tr>
+<td>HuMoTAR</td>
+<td style="text-align:right">633.498</td>
+<td style="text-align:right">624.557</td>
+<td style="text-align:right">3.798</td>
+<td style="text-align:right">637.296</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Total · 40 tasks</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align:right">Input</th>
+<th style="text-align:right">Cached input</th>
+<th style="text-align:right">Output</th>
+<th style="text-align:right">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HOI-Retarget + SPIDER</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.000</td>
+<td style="text-align:right">0.000</td>
+</tr>
+<tr>
+<td>Astra one-shot</td>
+<td style="text-align:right">8.782</td>
+<td style="text-align:right">0.361</td>
+<td style="text-align:right">0.353</td>
+<td style="text-align:right">9.134</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td style="text-align:right">308.945</td>
+<td style="text-align:right">304.407</td>
+<td style="text-align:right">1.832</td>
+<td style="text-align:right">310.777</td>
+</tr>
+<tr>
+<td>HuMoTAR</td>
+<td style="text-align:right">1,044.046</td>
+<td style="text-align:right">1,025.339</td>
+<td style="text-align:right">6.391</td>
+<td style="text-align:right">1,050.436</td>
+</tr>
+</tbody>
+</table></div>
+<p>Cached input is included in input; reasoning tokens are included in output. The saved counters are partial for 12 Codex and 89 HuMoTAR worker records, so those totals are observed lower bounds. Earlier superseded experiments are excluded. <a href="assets/analysis/agent-tokens.json">Download the per-task token totals</a>.</p>
+</details>
 </section>
 <section id="citation" class="outline-section blog-citation">
 <h2 id="cite-this-blog">Cite this blog</h2>
@@ -448,5 +579,6 @@
 <script src="kinematic-showcase.js?v=humotar-story-2" defer></script>
 <script src="experience-story.js?v=captions-8" defer></script>
 <script src="text-motion.js?v=1" defer></script>
+<script src="autoplay.js?v=1" defer></script>
 </body>
 </html>
