@@ -1,4 +1,4 @@
-## 2. What is the best way to do agentic retargeting?
+## 2. Comparing agentic workflows for humanoid retargeting
 
 ::: anchor configurations
 
