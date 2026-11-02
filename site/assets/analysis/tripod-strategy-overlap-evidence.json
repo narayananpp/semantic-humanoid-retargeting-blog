@@ -1,0 +1,158 @@
+{
+  "task": "sub12_tripod_023",
+  "scope": "Selected reports; first 8 minutes omitted. Times relative to each worker session. Two-hand grasp overlap is not identical experiments or measured wasted time. Arrows link sharing, verification, refinement and replay of named controller artifacts.",
+  "outcomes": {
+    "independent": {
+      "clip": "sub12_tripod_023",
+      "dataset": "omomo",
+      "method": "orchestrator",
+      "metrics": {
+        "mean_add_m": 0.10550403202141939,
+        "position_mean_m": 0.0907069229887035,
+        "orientation_mean_deg": 25.181077969911932
+      },
+      "semantic": "FAIL",
+      "raw_semantic": "FAIL",
+      "opening_disqualified": false,
+      "judge_reason": "The robot tilts and moves the stand at 1.5\u20133.5 s, but never returns it to an upright, freestanding position as in the reference. From 5 s through the endpoint, the stand remains markedly diagonal against the robot rather than completing the upright set-down."
+    },
+    "collaborative": {
+      "clip": "sub12_tripod_023",
+      "dataset": "omomo",
+      "method": "communicating",
+      "metrics": {
+        "mean_add_m": 0.08200549164189633,
+        "position_mean_m": 0.06873734273820922,
+        "orientation_mean_deg": 16.749150263189527
+      },
+      "semantic": "PASS",
+      "raw_semantic": "PASS",
+      "opening_disqualified": false,
+      "execution_valid": true,
+      "judge_reason": "The robot moves the stand while tilting it diagonally at 0.5\u20131.5 s, then returns it upright with its tripod base on the floor by about 3.5 s. The stand remains upright through the ending, including after the gripper visibly opens around 13 s, substantially matching the reference\u2019s relocation and set-down."
+    }
+  },
+  "events": [
+    {
+      "id": "independent-0-1350",
+      "mode": "independent",
+      "worker": 0,
+      "line": 1350,
+      "minute": 28.18689703333333,
+      "label": "No release",
+      "quote": "I\u2019m stopping trial work and saving the best tested controller and reference. The selected run achieved mean ADD 0.128 m, position error 0.083 m, and orientation error 20.65\u00b0. I\u2019ll document that it remained upright with sustained grasp contact, but did not accurately complete the curve or achieve independent final support.",
+      "source": "job/call/events.jsonl",
+      "source_sha256": "a040eac1cd002c516e811b978ad19568d289390af892774dceb7eb4124741fb5"
+    },
+    {
+      "id": "independent-1-1260",
+      "mode": "independent",
+      "worker": 1,
+      "line": 1260,
+      "minute": 27.724770116666665,
+      "label": "No release",
+      "quote": "The best tested rollout so far has mean ADD **0.191 m**, position error **0.158 m**, and orientation error **25.1\u00b0** over the complete scored curves. The robot stays upright, but the tripod does not complete the target pose curve or finish in the required independently supported pose. I\u2019m saving that controller and running its final reproducibility check, with those limitations documented.",
+      "source": "job/call/events.jsonl",
+      "source_sha256": "66c81b4862620c8e4de422dbb8136034f7dec8b12c33b66e900b50cc520db6b6"
+    },
+    {
+      "id": "independent-2-743",
+      "mode": "independent",
+      "worker": 2,
+      "line": 743,
+      "minute": 13.230812566666666,
+      "label": "Two-hand grasp",
+      "quote": "The first two-hand rollout lost the object, so it is not a viable final candidate. I\u2019m testing a slower walking reference with a steady torso heading and planned foot placements, which should make the two-hand grasp easier to maintain.",
+      "source": "job/call/events.jsonl",
+      "source_sha256": "35c224fc18b67ab455417ca157ef409c62e74169ca86366ae5ef4938180a3e6a"
+    },
+    {
+      "id": "independent-2-1391",
+      "mode": "independent",
+      "worker": 2,
+      "line": 1391,
+      "minute": 28.451518500000002,
+      "label": "No release",
+      "quote": "I\u2019m stopping trials and saving the best tested 10-second rollout with stable robot and object motion. Its mean errors are 0.106 m ADD, 0.091 m position, and 25.2\u00b0 orientation. It still relies on hand contact at the endpoint, so independent release remains an unmet requirement.",
+      "source": "job/call/events.jsonl",
+      "source_sha256": "35c224fc18b67ab455417ca157ef409c62e74169ca86366ae5ef4938180a3e6a"
+    },
+    {
+      "id": "independent-3-893",
+      "mode": "independent",
+      "worker": 3,
+      "line": 893,
+      "minute": 15.546739966666667,
+      "label": "Two-hand grasp",
+      "quote": "The two-hand version acquired the shaft, but it disrupted the SONIC walking motion and then lost control, so I\u2019m discarding it. I\u2019m returning to the better single-hand run and reducing the wrist orientation constraint so the arm can prioritize reaching the required contact positions.",
+      "source": "job/call/events.jsonl",
+      "source_sha256": "85084f15a3ca1481b671206f08db65be218ce65d64d3814ba3dac251720710dc"
+    },
+    {
+      "id": "independent-3-1489",
+      "mode": "independent",
+      "worker": 3,
+      "line": 1489,
+      "minute": 27.165554316666665,
+      "label": "Lost grasp",
+      "quote": "The best tested candidate has mean ADD 0.248 m, mean position error 0.201 m, and mean orientation error 81.6\u00b0. It keeps the robot upright, but loses controlled support of the tripod late in the motion, so it does not satisfy the full task. I\u2019m saving that candidate and running a final reproducibility check with full command recordings.",
+      "source": "job/call/events.jsonl",
+      "source_sha256": "85084f15a3ca1481b671206f08db65be218ce65d64d3814ba3dac251720710dc"
+    },
+    {
+      "id": "collaborative-0-1592",
+      "mode": "collaborative",
+      "worker": 0,
+      "line": 1592,
+      "minute": 20.619033233333333,
+      "label": "Verify release",
+      "quote": "Independently reproduced peer01 release09 exact: ADD .100554,pos .085860,rot18.88deg. Verified final2s zero handforce, floor4.905N, object speedmax4.9e-14, all3feet contacts (soft penetrations18/58/30micrometres), pelvismin.70765. Complete independent support confirmed. Integrating sweep15 prepath and retaining this as valid fallback.",
+      "source": "job/candidates/00/call/events.jsonl",
+      "source_sha256": "899f4e7d978db67ccf09b83007fcf057e87e768c4abde1ff20c002fa4761fdf4"
+    },
+    {
+      "id": "collaborative-1-1519",
+      "mode": "collaborative",
+      "worker": 1,
+      "line": 1519,
+      "minute": 19.25089815,
+      "label": "Share release",
+      "quote": "SUCCESS independent placement release09! Tested14s: balance11 path then stable-end target correction3.2-4.2s, integral WORLD XY orientation error gain1 after3.5s capped\u00b1.4rad added to .5 orientation feedback; release10s, fingers open.6s, thumb1+.4 at10.8-11.6; wrist fixed atrelease. At12-14s all3foot gaps~0, zero handforce, floor4.9N, object velocity4.6e-14. Objectfinal[1.013,.177,.525], minpelvis.70765m. No drop/fall. Source+ref attached; noenv needed defaults. Scoring next.",
+      "source": "job/candidates/01/call/events.jsonl",
+      "source_sha256": "dc536d44ad88b109c015345353017d1e84033dc49cf928173ccd175ec629440e"
+    },
+    {
+      "id": "collaborative-2-1770",
+      "mode": "collaborative",
+      "worker": 2,
+      "line": 1770,
+      "minute": 21.559960166666666,
+      "label": "Verify release",
+      "quote": "Independent release09 replay successful: ADD .1005535,pos .0858602,rot18.8798. Final2s exactly zero hand force, floor4.905N, object speed<5e-14; all3feet softcontact; pelvismin.70765. Rejected attempted smooth20+integral and twist+integral transfers: drift/drop. Own incremental endpoint improved final pose but strictgate neverreleased by24s; not viable final. Replaying full xyz integral next, then small final refinements.",
+      "source": "job/candidates/02/call/events.jsonl",
+      "source_sha256": "3e56fdd8733d57025ef09211a641d372db98d02c2120188e6094f265644e0fe1"
+    },
+    {
+      "id": "collaborative-2-2041",
+      "mode": "collaborative",
+      "worker": 2,
+      "line": 2041,
+      "minute": 26.26986583333333,
+      "label": "Refine release",
+      "quote": "NEW VALID improved full release: local trials/refine45_1 mean ADD .08200549164m,pos .06873734274m,rot16.74915026deg. Original valid initial/grasp,20sref. Changed proportional rot_feedback .45 (from.5), end integral gain1.5 all axes, capsxy\u00b1.6 z\u00b11.2, release12s. Last2s maxhandforce0, maxobjvelocity2.14e-14, minpelvis.714763m,objminz.486669. Source/reference attached. Selecting and full-recording replay now.",
+      "source": "job/candidates/02/call/events.jsonl",
+      "source_sha256": "3e56fdd8733d57025ef09211a641d372db98d02c2120188e6094f265644e0fe1"
+    },
+    {
+      "id": "collaborative-3-2019",
+      "mode": "collaborative",
+      "worker": 3,
+      "line": 2019,
+      "minute": 27.11501265,
+      "label": "Verify refinement",
+      "quote": "Independently reproduced peer02 refine45_1 via packaged deterministic controller and full20s recording: ADD .08200549164,pos .06873734274,rot16.74915026, finalADD .03330551; minpelvis .714763. Source constants same .45 feedback,1.5 integral capxy\u00b1.6,z\u00b11.2,release12. Retaining this improved final candidate. Full metrics/force checks being documented.",
+      "source": "job/candidates/03/call/events.jsonl",
+      "source_sha256": "523ce4fc2d3e199b4506688ea0866d3e825150d8bfd053a1bc6c841c76006ce9"
+    }
+  ]
+}
