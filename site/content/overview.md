@@ -1,3 +1,3 @@
-## TL;DR
+## Key Takeaways
 
 ::: component study-takeaways
