@@ -34,22 +34,59 @@
 <!-- /component -->
 
 <!-- component: dynamics-videos -->
-<figure id="dynamics-showcase" class="dynamics-showcase"><figcaption><strong>Fig. 4.</strong> Human demonstrations and simulated humanoid–object interactions from HUMOTO and OMOMO, with executions from HuMoTAR and the available baselines.</figcaption></figure>
+<div id="dynamics-showcase" class="dynamics-showcase" aria-label="Selected task executions"></div>
 <!-- /component -->
 
 <!-- component: dynamics-results -->
-<div class="table-wrap"><table id="dynamics-results-table"><caption><strong>Table 1.</strong> Object-tracking errors in the final simulated executions of 20 HUMOTO and 20 OMOMO tasks. <mark>↓ Lower is better</mark></caption>
-<thead><tr><th scope="col">Method</th><th scope="col">Tasks</th><th scope="col">Mean ADD (cm)</th><th scope="col">Position error (cm)</th><th scope="col">Orientation error (°)</th></tr></thead><tbody>
-<tr class="dataset-table-heading"><th colspan="5" scope="colgroup">HUMOTO · 20 tasks</th></tr>
-<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td><td>56.66</td><td>55.49</td><td>51.22</td></tr>
-<tr><th scope="row">Astra one-shot</th><td>20</td><td>56.09</td><td>55.03</td><td>62.88</td></tr>
-<tr><th scope="row">Codex</th><td>20</td><td>20.96</td><td>19.19</td><td>29.32</td></tr>
-<tr><th scope="row">HuMoTAR</th><td>20</td><td><strong>14.30</strong></td><td><strong>13.87</strong></td><td><strong>22.07</strong></td></tr>
-<tr class="dataset-table-heading"><th colspan="5" scope="colgroup">OMOMO · 20 tasks</th></tr>
-<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td><td>48.31</td><td>43.36</td><td>52.07</td></tr>
-<tr><th scope="row">Astra one-shot</th><td>20</td><td>69.87</td><td>65.61</td><td>58.35</td></tr>
-<tr><th scope="row">Codex</th><td>20</td><td>26.51</td><td>23.70</td><td>28.32</td></tr>
-<tr><th scope="row">HuMoTAR</th><td>20</td><td><strong>19.61</strong></td><td><strong>17.06</strong></td><td><strong>27.07</strong></td></tr>
+<div class="table-wrap results-table"><table id="dynamics-results-table" aria-label="Tracking error and semantic success"><thead><tr><th scope="col">Method</th><th scope="col">Tracking tasks</th><th scope="col">Mean ADD (cm) ↓</th><th scope="col">Position error (cm) ↓</th><th scope="col">Orientation error (°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">HUMOTO · 20 tasks</th></tr>
+<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td>
+<td>56.66</td>
+<td>55.49</td>
+<td>51.22</td>
+<td>0/20 · 0.0%</td></tr>
+<tr><th scope="row">Astra one-shot</th><td>20</td>
+<td>56.09</td>
+<td>55.03</td>
+<td>62.88</td>
+<td>1/20 · 5.0%</td></tr>
+<tr><th scope="row">Codex · 30 min</th><td>20</td>
+<td><strong>20.96</strong></td>
+<td><strong>19.19</strong></td>
+<td><strong>29.32</strong></td>
+<td><strong>11/20 · 55.0%</strong></td></tr>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">OMOMO · 20 tasks</th></tr>
+<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td>
+<td>48.31</td>
+<td>43.36</td>
+<td>52.07</td>
+<td>2/20 · 10.0%</td></tr>
+<tr><th scope="row">Astra one-shot</th><td>20</td>
+<td>69.87</td>
+<td>65.61</td>
+<td>58.35</td>
+<td>0/20 · 0.0%</td></tr>
+<tr><th scope="row">Codex · 30 min</th><td>20</td>
+<td><strong>26.51</strong></td>
+<td><strong>23.70</strong></td>
+<td><strong>28.32</strong></td>
+<td><strong>8/20 · 40.0%</strong></td></tr>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">Overall · 40 tasks</th></tr>
+<tr><th scope="row">HOI-Retarget + SPIDER</th><td>40</td>
+<td>52.48</td>
+<td>49.43</td>
+<td>51.65</td>
+<td>2/40 · 5.0%</td></tr>
+<tr><th scope="row">Astra one-shot</th><td>40</td>
+<td>62.98</td>
+<td>60.32</td>
+<td>60.62</td>
+<td>1/40 · 2.5%</td></tr>
+<tr><th scope="row">Codex · 30 min</th><td>40</td>
+<td><strong>23.74</strong></td>
+<td><strong>21.44</strong></td>
+<td><strong>28.82</strong></td>
+<td><strong>19/40 · 47.5%</strong></td></tr>
 </tbody></table></div>
 <!-- /component -->
 
@@ -87,4 +124,109 @@
 
 <!-- component: experience-history-figure -->
 <figure class="experience-history-figure"><img src="assets/experience/refinement-histories.svg" width="1320" height="420" alt="All scored refinement trials and group-average best-recorded ADD curves, separated into similar and random groups, with matched continuations beginning at 15 minutes."><figcaption><strong>Fig. 11.</strong> Refinement with and without experience across five similar tasks and five randomly grouped tasks. Branches start from the shared 15-minute checkpoint. Faint points show individual trials, curves show group-average best-so-far ADD, and diamonds show final submission averages. Curves begin once all five tasks have an evaluation.</figcaption></figure>
+<!-- /component -->
+
+<!-- component: results-matched-time -->
+<figure class="results-plot"><img src="assets/analysis/results/matched-time.svg" alt="Final 30-minute semantic success and mean ADD for Codex, independent and collaborative swarms." loading="lazy" width="1100" height="410"></figure><div class="table-wrap results-table"><table id="matched-time-table" aria-label="Tracking error and semantic success"><thead><tr><th scope="col">Method</th><th scope="col">Tracking tasks</th><th scope="col">Mean ADD (cm) ↓</th><th scope="col">Position error (cm) ↓</th><th scope="col">Orientation error (°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">HUMOTO · 20 tasks</th></tr>
+<tr><th scope="row">Codex · 30 min</th><td>20</td>
+<td>20.96</td>
+<td>19.19</td>
+<td>29.32</td>
+<td>11/20 · 55.0%</td></tr>
+<tr><th scope="row">Independent swarm · 30 min</th><td>20</td>
+<td>14.30</td>
+<td>13.87</td>
+<td>22.07</td>
+<td>9/20 · 45.0%</td></tr>
+<tr><th scope="row">Collaborative swarm · 30 min</th><td>20</td>
+<td><strong>13.45</strong></td>
+<td><strong>13.07</strong></td>
+<td><strong>21.59</strong></td>
+<td><strong>12/20 · 60.0%</strong></td></tr>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">OMOMO · 20 tasks</th></tr>
+<tr><th scope="row">Codex · 30 min</th><td>20</td>
+<td>26.51</td>
+<td>23.70</td>
+<td>28.32</td>
+<td>8/20 · 40.0%</td></tr>
+<tr><th scope="row">Independent swarm · 30 min</th><td>20</td>
+<td>19.61</td>
+<td>17.06</td>
+<td>27.07</td>
+<td>10/20 · 50.0%</td></tr>
+<tr><th scope="row">Collaborative swarm · 30 min</th><td>20</td>
+<td><strong>12.84</strong></td>
+<td><strong>10.26</strong></td>
+<td><strong>22.21</strong></td>
+<td><strong>15/20 · 75.0%</strong></td></tr>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">Overall · 40 tasks</th></tr>
+<tr><th scope="row">Codex · 30 min</th><td>40</td>
+<td>23.74</td>
+<td>21.44</td>
+<td>28.82</td>
+<td>19/40 · 47.5%</td></tr>
+<tr><th scope="row">Independent swarm · 30 min</th><td>40</td>
+<td>16.96</td>
+<td>15.47</td>
+<td>24.57</td>
+<td>19/40 · 47.5%</td></tr>
+<tr><th scope="row">Collaborative swarm · 30 min</th><td>40</td>
+<td><strong>13.14</strong></td>
+<td><strong>11.67</strong></td>
+<td><strong>21.90</strong></td>
+<td><strong>27/40 · 67.5%</strong></td></tr>
+</tbody></table></div><div class="results-pending" role="note"><strong>Tracking error over refinement time</strong><span>Object tracking at 5, 10, 15, 20, 25 and 30 minutes. Semantic comparisons use the final judged executions.</span></div>
+<!-- /component -->
+
+<!-- component: results-communication -->
+<figure class="results-plot"><img src="assets/analysis/results/communication.svg" alt="Independent and collaborative final executions compared task by task for semantic outcomes and mean ADD." loading="lazy" width="1100" height="410"></figure><details class="results-evidence"><summary>Per-task tracking errors and semantic judgments · 40 tasks</summary><div data-results-pairs="communication"></div></details>
+<!-- /component -->
+
+<!-- component: results-agent-hours -->
+<figure class="results-plot"><img src="assets/analysis/results/agent-hours.svg" alt="Collaborative swarm at 30 minutes and Codex at 120 minutes: final semantic success and paired mean ADD." loading="lazy" width="1100" height="410"></figure><div class="table-wrap results-table"><table id="agent-hours-table" aria-label="Tracking error and semantic success"><thead><tr><th scope="col">Method</th><th scope="col">Tracking tasks</th><th scope="col">Mean ADD (cm) ↓</th><th scope="col">Position error (cm) ↓</th><th scope="col">Orientation error (°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">HUMOTO · 20 tasks</th></tr>
+<tr><th scope="row">Collaborative swarm · 30 min</th><td>20</td>
+<td>13.45</td>
+<td>13.07</td>
+<td>21.59</td>
+<td>12/20 · 60.0%</td></tr>
+<tr><th scope="row">Codex · 120 min</th><td>20</td>
+<td><strong>9.85</strong></td>
+<td><strong>9.07</strong></td>
+<td><strong>14.74</strong></td>
+<td><strong>16/20 · 80.0%</strong></td></tr>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">OMOMO · 20 tasks</th></tr>
+<tr><th scope="row">Collaborative swarm · 30 min</th><td>19</td>
+<td><strong>12.52</strong></td>
+<td><strong>9.95</strong></td>
+<td>21.88</td>
+<td><strong>15/20 · 75.0%</strong></td></tr>
+<tr><th scope="row">Codex · 120 min</th><td>19</td>
+<td>15.55</td>
+<td>14.16</td>
+<td><strong>16.46</strong></td>
+<td>14/20 · 70.0%</td></tr>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">Overall · 40 tasks</th></tr>
+<tr><th scope="row">Collaborative swarm · 30 min</th><td>39</td>
+<td>13.00</td>
+<td><strong>11.55</strong></td>
+<td>21.73</td>
+<td>27/40 · 67.5%</td></tr>
+<tr><th scope="row">Codex · 120 min</th><td>39</td>
+<td><strong>12.63</strong></td>
+<td>11.55</td>
+<td><strong>15.58</strong></td>
+<td><strong>30/40 · 75.0%</strong></td></tr>
+</tbody></table></div>
+<p class="results-coverage">Tracking: 39 paired executions (20 HUMOTO, 19 OMOMO). Semantic success: all 40 tasks; one incomplete Codex execution counts as unsuccessful.</p><details class="results-evidence"><summary>Per-task tracking errors and semantic judgments · 40 tasks</summary><div data-results-pairs="longer"></div></details>
+<!-- /component -->
+
+<!-- component: results-tradeoff -->
+<figure class="results-plot"><img src="assets/analysis/results/tradeoff.svg" alt="Observed final semantic success and paired mean ADD against elapsed refinement time; points are final results, not intermediate curves." loading="lazy" width="1100" height="410"></figure><p class="results-coverage">Final results only. Mean ADD uses the 39 tasks with valid executions in all plotted conditions; semantic success uses all 40.</p>
+<!-- /component -->
+
+<!-- component: results-within-run -->
+<figure class="results-plot"><img src="assets/analysis/results/within-run-tracking.svg" width="1200" height="360" loading="lazy" alt="Recorded tracking errors throughout two-hour Codex refinement. Faint lines show individual tasks; the teal mean follows the same 35 tasks from 30 to 120 minutes."></figure>
+<p class="results-coverage">Faint lines: individual recorded runs. Teal: the same 35 tasks with an eligible output by 30 minutes. The mean starts at 30 minutes to keep the task set fixed. All errors follow the lowest-ADD eligible execution at each time.</p>
 <!-- /component -->

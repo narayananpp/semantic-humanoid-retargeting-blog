@@ -8,7 +8,7 @@
   <meta name="description" content="From human demonstrations to executable humanoid interactions: a study of agentic refinement, simulation feedback and transferable experience.">
   <title>HuMoTAR: Physics-Aware Agentic Retargeting for Humanoid–Object Interaction</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
-  <link rel="stylesheet" href="styles.css?v=four-agent-workflows-row-2">
+  <link rel="stylesheet" href="styles.css?v=results-study-1">
   <link rel="stylesheet" href="experience.css?v=shelf-connected-6">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -21,11 +21,16 @@
       <button class="contents-toggle" aria-expanded="false" aria-controls="contents-links">Contents <span aria-hidden="true">＋</span></button>
       <nav id="contents-links" aria-label="Article sections"><a href="#overview">Key Takeaways</a>
 <a href="#reference-setup">1. Rethinking humanoid retargeting</a>
+<a class="subsection" href="#carry-and-place-a-chair">Carry and place a chair</a>
+<a class="subsection" href="#lift-carry-and-place-a-clothes-stand">Lift, carry and place a clothes stand</a>
 <a href="#method">2. Comparing agentic workflows for humanoid retargeting</a>
-<a href="#refinement-results">3. Dynamic retargeting results</a>
-<a class="subsection" href="#experimental-setup">Experimental setup</a>
-<a class="subsection" href="#dynamics-metrics">Object tracking metrics</a>
-<a class="subsection" href="#comparison-results">Results</a>
+<a href="#refinement-results">3. Retargeting results and analysis</a>
+<a class="subsection" href="#dynamics-metrics">Evaluation metrics</a>
+<a class="subsection" href="#comparison-results">3.1 Comparison with existing approaches</a>
+<a class="subsection" href="#matched-time">3.2 Matched time: single-agent refinement versus swarms</a>
+<a class="subsection" href="#inter-agent-communication">3.3 The effect of inter-agent communication</a>
+<a class="subsection" href="#matched-agent-hours">3.4 Matched compute: longer iterative refinement</a>
+<a class="subsection" href="#compute-time-tradeoff">3.5 The compute–time tradeoff</a>
 <a href="#agent-diagnosis">4. Inside the refinement process</a>
 <a class="subsection" href="#kinematic-to-dynamic">4.1 How does the agent refine an interaction in simulation?</a>
 <a class="subsection" href="#agentic-refinement-walkthrough">4.2 Agentic refinement walkthrough</a>
@@ -157,7 +162,7 @@
 
 </section>
 <section id="refinement-results" class="outline-section">
-<h2 id="3-dynamic-retargeting-results">3. Dynamic retargeting results</h2>
+<h2 id="3-retargeting-results-and-analysis">3. Retargeting results and analysis</h2>
 
 
 <span id="agent-comparison" class="section-anchor"></span>
@@ -166,40 +171,196 @@
 
 <span id="study-design" class="section-anchor"></span>
 
-<h3 id="experimental-setup">Experimental setup</h3>
-<p>We compare HOI-Retarget + SPIDER, Astra one-shot, Codex and HuMoTAR on 20 HUMOTO tasks and 20 OMOMO tasks. Each dataset uses the same task list across all four methods. We report the saved final execution from each run and average equally across tasks.</p>
-<p>Codex refines the motion with one agent. The ensemble runs four independent agents, two with optional access to the provided retargeting tools, and selects the final reference by mean ADD. Refinement is evaluated over a 30-minute budget. HOI-Retarget + SPIDER uses the frozen humanoid-object optimization configuration with G1 and Dex3. SPIDER runs at its native 60 Hz integration rate; the agent-generated controllers use the harness’s 500 Hz simulation. Both are scored against the same object targets.</p>
-<h3 id="dynamics-metrics">Object tracking metrics</h3>
-<p>We compare the object’s pose in the <strong>dynamic humanoid–object interaction rollout</strong> with the <strong>human-reference object trajectory scaled for G1</strong>. The reference trajectory stays fixed during refinement, and the object’s size is unchanged. We compare poses along the two object paths in the order they occur, allowing the robot to move at a different speed or pause. Both paths are sampled by progress through translation and rotation, rather than elapsed time.</p>
+<h3 id="dynamics-metrics">Evaluation metrics</h3>
+<p>Results cover <strong>20 HUMOTO and 20 OMOMO tasks</strong>. We report <strong>object-tracking errors</strong> and <strong>semantic success</strong> for each comparison.</p>
+<p><strong>Object tracking.</strong> We compare the object’s pose in the simulated execution with the human-reference object trajectory scaled for G1. The target trajectory stays fixed, and the object’s size is unchanged. We align the two paths by progress through translation and rotation rather than elapsed time, so the robot can move at a different speed or pause.</p>
 <ul>
-<li><strong>Mean ADD (cm):</strong> at each aligned pair of poses, we place the same set of object points at the simulated pose and at the reference pose, then measure the distance between each pair of corresponding points. Averaging these distances over the points and the trajectory gives mean ADD, capturing both position and orientation error in one distance.</li>
-<li><strong>Position error (cm):</strong> average Euclidean distance between the simulated and reference object origins.</li>
-<li><strong>Orientation error (°):</strong> average angle of the relative rotation between the simulated and reference object orientations.</li>
+<li><strong>Mean ADD (cm):</strong> at each aligned pair of object poses, we measure the distances between corresponding points on the object. The average over points and the trajectory captures both position and orientation error.</li>
+<li><strong>Position error (cm):</strong> the average distance between the simulated and target object origins.</li>
+<li><strong>Orientation error (°):</strong> the average angle between the simulated and target object orientations.</li>
 </ul>
-<p>All three metrics use the same trajectory alignment. We compute each task’s score first, then average equally across tasks; lower is better.</p>
-<h3 id="comparison-results">Results</h3>
+<p>All three errors are averaged equally across tasks. <strong>Lower is better.</strong></p>
+<p><strong>Semantic success.</strong> Astra compares the human demonstration with the robot execution and judges whether the intended object interaction is completed. Exact timing, posture and grasp need not match. We report the percentage of tasks judged PASS, after a separate review for obvious initial hand–object penetration. Incomplete executions count as unsuccessful. <strong>Higher is better.</strong> The <a href="#semantic-evaluation">evaluation protocol</a> includes the judge prompt and review criteria.</p>
+<h3 id="comparison-results">3.1 Comparison with existing approaches</h3>
 
 
-<figure id="dynamics-showcase" class="dynamics-showcase"><figcaption><strong>Fig. 4.</strong> Human demonstrations and simulated humanoid–object interactions from HUMOTO and OMOMO, with executions from HuMoTAR and the available baselines.</figcaption></figure>
+<div id="dynamics-showcase" class="dynamics-showcase" aria-label="Selected task executions"></div>
 
 
 
-<div class="table-wrap"><table id="dynamics-results-table"><caption><strong>Table 1.</strong> Object-tracking errors in the final simulated executions of 20 HUMOTO and 20 OMOMO tasks. <mark>↓ Lower is better</mark></caption>
-<thead><tr><th scope="col">Method</th><th scope="col">Tasks</th><th scope="col">Mean ADD (cm)</th><th scope="col">Position error (cm)</th><th scope="col">Orientation error (°)</th></tr></thead><tbody>
-<tr class="dataset-table-heading"><th colspan="5" scope="colgroup">HUMOTO · 20 tasks</th></tr>
-<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td><td>56.66</td><td>55.49</td><td>51.22</td></tr>
-<tr><th scope="row">Astra one-shot</th><td>20</td><td>56.09</td><td>55.03</td><td>62.88</td></tr>
-<tr><th scope="row">Codex</th><td>20</td><td>20.96</td><td>19.19</td><td>29.32</td></tr>
-<tr><th scope="row">HuMoTAR</th><td>20</td><td><strong>14.30</strong></td><td><strong>13.87</strong></td><td><strong>22.07</strong></td></tr>
-<tr class="dataset-table-heading"><th colspan="5" scope="colgroup">OMOMO · 20 tasks</th></tr>
-<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td><td>48.31</td><td>43.36</td><td>52.07</td></tr>
-<tr><th scope="row">Astra one-shot</th><td>20</td><td>69.87</td><td>65.61</td><td>58.35</td></tr>
-<tr><th scope="row">Codex</th><td>20</td><td>26.51</td><td>23.70</td><td>28.32</td></tr>
-<tr><th scope="row">HuMoTAR</th><td>20</td><td><strong>19.61</strong></td><td><strong>17.06</strong></td><td><strong>27.07</strong></td></tr>
+<div class="table-wrap results-table"><table id="dynamics-results-table" aria-label="Tracking error and semantic success"><thead><tr><th scope="col">Method</th><th scope="col">Tracking tasks</th><th scope="col">Mean ADD (cm) ↓</th><th scope="col">Position error (cm) ↓</th><th scope="col">Orientation error (°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">HUMOTO · 20 tasks</th></tr>
+<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td>
+<td>56.66</td>
+<td>55.49</td>
+<td>51.22</td>
+<td>0/20 · 0.0%</td></tr>
+<tr><th scope="row">Astra one-shot</th><td>20</td>
+<td>56.09</td>
+<td>55.03</td>
+<td>62.88</td>
+<td>1/20 · 5.0%</td></tr>
+<tr><th scope="row">Codex · 30 min</th><td>20</td>
+<td><strong>20.96</strong></td>
+<td><strong>19.19</strong></td>
+<td><strong>29.32</strong></td>
+<td><strong>11/20 · 55.0%</strong></td></tr>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">OMOMO · 20 tasks</th></tr>
+<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td>
+<td>48.31</td>
+<td>43.36</td>
+<td>52.07</td>
+<td>2/20 · 10.0%</td></tr>
+<tr><th scope="row">Astra one-shot</th><td>20</td>
+<td>69.87</td>
+<td>65.61</td>
+<td>58.35</td>
+<td>0/20 · 0.0%</td></tr>
+<tr><th scope="row">Codex · 30 min</th><td>20</td>
+<td><strong>26.51</strong></td>
+<td><strong>23.70</strong></td>
+<td><strong>28.32</strong></td>
+<td><strong>8/20 · 40.0%</strong></td></tr>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">Overall · 40 tasks</th></tr>
+<tr><th scope="row">HOI-Retarget + SPIDER</th><td>40</td>
+<td>52.48</td>
+<td>49.43</td>
+<td>51.65</td>
+<td>2/40 · 5.0%</td></tr>
+<tr><th scope="row">Astra one-shot</th><td>40</td>
+<td>62.98</td>
+<td>60.32</td>
+<td>60.62</td>
+<td>1/40 · 2.5%</td></tr>
+<tr><th scope="row">Codex · 30 min</th><td>40</td>
+<td><strong>23.74</strong></td>
+<td><strong>21.44</strong></td>
+<td><strong>28.82</strong></td>
+<td><strong>19/40 · 47.5%</strong></td></tr>
 </tbody></table></div>
 
-<p>Recorded token totals for the compared runs are reported in <a href="#agent-token-usage">Appendix Table A3</a>.</p>
-<p>We next follow one interaction through refinement to examine how the agent achieves these improvements.</p>
+<p><strong>Iterative Codex completes 19 of 40 tasks, compared with 2 for SPIDER and 1 for Astra one-shot.</strong> It also lowers ADD on 35 tasks relative to SPIDER and 39 relative to one-shot. The improvement therefore appears in both object tracking and the judged interaction. These comparisons establish the benefit of the tested iterative workflow, before adding multiple agents. <a href="#results-baseline-evidence">Per-task comparisons</a>.</p>
+<h3 id="matched-time">3.2 Matched time: single-agent refinement versus swarms</h3>
+
+
+<figure class="results-plot"><img src="assets/analysis/results/matched-time.svg" alt="Final 30-minute semantic success and mean ADD for Codex, independent and collaborative swarms." loading="lazy" width="1100" height="410"></figure><div class="table-wrap results-table"><table id="matched-time-table" aria-label="Tracking error and semantic success"><thead><tr><th scope="col">Method</th><th scope="col">Tracking tasks</th><th scope="col">Mean ADD (cm) ↓</th><th scope="col">Position error (cm) ↓</th><th scope="col">Orientation error (°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">HUMOTO · 20 tasks</th></tr>
+<tr><th scope="row">Codex · 30 min</th><td>20</td>
+<td>20.96</td>
+<td>19.19</td>
+<td>29.32</td>
+<td>11/20 · 55.0%</td></tr>
+<tr><th scope="row">Independent swarm · 30 min</th><td>20</td>
+<td>14.30</td>
+<td>13.87</td>
+<td>22.07</td>
+<td>9/20 · 45.0%</td></tr>
+<tr><th scope="row">Collaborative swarm · 30 min</th><td>20</td>
+<td><strong>13.45</strong></td>
+<td><strong>13.07</strong></td>
+<td><strong>21.59</strong></td>
+<td><strong>12/20 · 60.0%</strong></td></tr>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">OMOMO · 20 tasks</th></tr>
+<tr><th scope="row">Codex · 30 min</th><td>20</td>
+<td>26.51</td>
+<td>23.70</td>
+<td>28.32</td>
+<td>8/20 · 40.0%</td></tr>
+<tr><th scope="row">Independent swarm · 30 min</th><td>20</td>
+<td>19.61</td>
+<td>17.06</td>
+<td>27.07</td>
+<td>10/20 · 50.0%</td></tr>
+<tr><th scope="row">Collaborative swarm · 30 min</th><td>20</td>
+<td><strong>12.84</strong></td>
+<td><strong>10.26</strong></td>
+<td><strong>22.21</strong></td>
+<td><strong>15/20 · 75.0%</strong></td></tr>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">Overall · 40 tasks</th></tr>
+<tr><th scope="row">Codex · 30 min</th><td>40</td>
+<td>23.74</td>
+<td>21.44</td>
+<td>28.82</td>
+<td>19/40 · 47.5%</td></tr>
+<tr><th scope="row">Independent swarm · 30 min</th><td>40</td>
+<td>16.96</td>
+<td>15.47</td>
+<td>24.57</td>
+<td>19/40 · 47.5%</td></tr>
+<tr><th scope="row">Collaborative swarm · 30 min</th><td>40</td>
+<td><strong>13.14</strong></td>
+<td><strong>11.67</strong></td>
+<td><strong>21.90</strong></td>
+<td><strong>27/40 · 67.5%</strong></td></tr>
+</tbody></table></div><div class="results-pending" role="note"><strong>Tracking error over refinement time</strong><span>Object tracking at 5, 10, 15, 20, 25 and 30 minutes. Semantic comparisons use the final judged executions.</span></div>
+
+<p><strong>At 30 minutes, the collaborative swarm completes 27 tasks, compared with 19 for both Codex and the independent swarm.</strong> The independent swarm reduces mean ADD from 23.74 to 16.96 cm, but seven newly successful tasks are offset by seven regressions. Lower tracking error does not necessarily mean that more tasks are completed.</p>
+<p>The independent workers produce different executions with different errors. Selecting among them improves tracking relative to a typical worker, but this does not establish that they explore distinct strategies or avoid repeated work. <a href="#results-exploration-evidence">Worker-level results</a>.</p>
+<p><a class="results-view-link" href="#dynamics-showcase" data-showcase-method="communicating">View task executions</a></p>
+<h3 id="inter-agent-communication">3.3 The effect of inter-agent communication</h3>
+
+
+<figure class="results-plot"><img src="assets/analysis/results/communication.svg" alt="Independent and collaborative final executions compared task by task for semantic outcomes and mean ADD." loading="lazy" width="1100" height="410"></figure><details class="results-evidence"><summary>Per-task tracking errors and semantic judgments · 40 tasks</summary><div data-results-pairs="communication"></div></details>
+
+<p><strong>The collaborative swarm succeeds on ten tasks that the independent swarm fails, and regresses on two.</strong> Its mean ADD is lower on 24 of 40 tasks. The logs contain direct messages, shared controller files and independent tests of peer proposals, including proposals that are rejected after testing.</p>
+<p>This establishes that communication affects the refinement process, rather than merely accompanying it. It does not isolate how much of the result comes from reuse, critique or different sampled strategies. We report the exchanges and both directions of outcome change in the <a href="#results-communication-evidence">communication analysis</a>.</p>
+<p><a class="results-view-link" href="#dynamics-showcase" data-showcase-method="orchestrator">View independent and collaborative executions</a></p>
+<h3 id="matched-agent-hours">3.4 Matched compute: longer iterative refinement</h3>
+
+
+<figure class="results-plot"><img src="assets/analysis/results/agent-hours.svg" alt="Collaborative swarm at 30 minutes and Codex at 120 minutes: final semantic success and paired mean ADD." loading="lazy" width="1100" height="410"></figure><div class="table-wrap results-table"><table id="agent-hours-table" aria-label="Tracking error and semantic success"><thead><tr><th scope="col">Method</th><th scope="col">Tracking tasks</th><th scope="col">Mean ADD (cm) ↓</th><th scope="col">Position error (cm) ↓</th><th scope="col">Orientation error (°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">HUMOTO · 20 tasks</th></tr>
+<tr><th scope="row">Collaborative swarm · 30 min</th><td>20</td>
+<td>13.45</td>
+<td>13.07</td>
+<td>21.59</td>
+<td>12/20 · 60.0%</td></tr>
+<tr><th scope="row">Codex · 120 min</th><td>20</td>
+<td><strong>9.85</strong></td>
+<td><strong>9.07</strong></td>
+<td><strong>14.74</strong></td>
+<td><strong>16/20 · 80.0%</strong></td></tr>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">OMOMO · 20 tasks</th></tr>
+<tr><th scope="row">Collaborative swarm · 30 min</th><td>19</td>
+<td><strong>12.52</strong></td>
+<td><strong>9.95</strong></td>
+<td>21.88</td>
+<td><strong>15/20 · 75.0%</strong></td></tr>
+<tr><th scope="row">Codex · 120 min</th><td>19</td>
+<td>15.55</td>
+<td>14.16</td>
+<td><strong>16.46</strong></td>
+<td>14/20 · 70.0%</td></tr>
+<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">Overall · 40 tasks</th></tr>
+<tr><th scope="row">Collaborative swarm · 30 min</th><td>39</td>
+<td>13.00</td>
+<td><strong>11.55</strong></td>
+<td>21.73</td>
+<td>27/40 · 67.5%</td></tr>
+<tr><th scope="row">Codex · 120 min</th><td>39</td>
+<td><strong>12.63</strong></td>
+<td>11.55</td>
+<td><strong>15.58</strong></td>
+<td><strong>30/40 · 75.0%</strong></td></tr>
+</tbody></table></div>
+<p class="results-coverage">Tracking: 39 paired executions (20 HUMOTO, 19 OMOMO). Semantic success: all 40 tasks; one incomplete Codex execution counts as unsuccessful.</p><details class="results-evidence"><summary>Per-task tracking errors and semantic judgments · 40 tasks</summary><div data-results-pairs="longer"></div></details>
+
+<p>We match the allocated compute budget in agent-hours: four agents for 30 minutes and one Codex agent for 120 minutes each receive two agent-hours.</p>
+<p><strong>Two-hour Codex completes 30 tasks, compared with 27 for the 30-minute collaborative swarm.</strong> Six tasks pass only with Codex and three pass only with the swarm. These are separate runs, so their final outcomes alone cannot show whether additional refinement time caused the difference.</p>
+<p>To test continued refinement directly, we also follow the same two-hour runs over time. Among the 35 runs with an eligible saved execution by 30 minutes, 33 achieve a lower ADD later. Their paired mean falls from <strong>30.17 to 10.65 cm</strong>. The selected reference changes in 31 runs and the initial robot state changes in 26. This is evidence of further motion refinement within a run, not just a comparison between different sampled solutions.</p>
+
+
+<figure class="results-plot"><img src="assets/analysis/results/within-run-tracking.svg" width="1200" height="360" loading="lazy" alt="Recorded tracking errors throughout two-hour Codex refinement. Faint lines show individual tasks; the teal mean follows the same 35 tasks from 30 to 120 minutes."></figure>
+<p class="results-coverage">Faint lines: individual recorded runs. Teal: the same 35 tasks with an eligible output by 30 minutes. The mean starts at 30 minutes to keep the task set fixed. All errors follow the lowest-ADD eligible execution at each time.</p>
+
+<p>For semantic success, we use the existing final judgments from the separate 30-minute and 120-minute Codex runs: <strong>19/40 versus 30/40 tasks</strong>. We do not infer intermediate PASS or FAIL outcomes from the within-run tracking curves. <a href="#results-longer-evidence">Timing, selection and per-task evidence</a>.</p>
+<p><a class="results-view-link" href="#dynamics-showcase" data-showcase-method="codex120">View longer-refinement executions</a></p>
+<h3 id="compute-time-tradeoff">3.5 The compute–time tradeoff</h3>
+
+
+<figure class="results-plot"><img src="assets/analysis/results/tradeoff.svg" alt="Observed final semantic success and paired mean ADD against elapsed refinement time; points are final results, not intermediate curves." loading="lazy" width="1100" height="410"></figure><p class="results-coverage">Final results only. Mean ADD uses the 39 tasks with valid executions in all plotted conditions; semantic success uses all 40.</p>
+
+<p>The collaborative swarm reaches <strong>67.5% semantic success in 30 minutes</strong>. Two-hour Codex reaches <strong>75% in 120 minutes</strong>. Both are allocated two agent-hours: four agents for half an hour, or one agent for two hours. The observed tradeoff is a shorter completion budget versus a higher final success rate. Agent-hours describe the allocation, not identical token consumption or simulation work. <a href="#results-budget-evidence">Budget definitions and comparison limits</a>.</p>
 </section>
 <section id="agent-diagnosis" class="outline-section execution-analysis">
 <h2 id="4-inside-the-refinement-process">4. Inside the refinement process</h2>
@@ -380,6 +541,39 @@
   </div>
 </div>
 </details>
+<details class="appendix-faq" id="semantic-evaluation">
+<summary>How is semantic success evaluated?</summary>
+<p>The same Astra judging prompt compares the complete human demonstration and robot execution. A PASS means the main object interaction is substantially achieved. A FAIL means an essential action is missing or the object is lost before completion. An UNCERTAIN judgment is not counted as a pass. The prompt permits differences in robot posture, grasp and timing, as well as minor wobble or imperfect placement.</p>
+<p>A separate opening-contact review checks for obvious initial hand–object penetration. Normal contact, small overlaps and ambiguous occlusion are not disqualifying. Suspected substantial intersections are reviewed with additional views; a collision-proxy measurement alone does not establish penetration. This review can change a PASS to a FAIL without modifying the original judge response. It is not a collision audit of the entire motion.</p>
+<p>Success rates use all 40 assigned tasks. The two-hour Codex condition has one incomplete execution, counted as unsuccessful. Tracking comparisons with this condition use the same 39 valid tasks for both methods. The other final tracking comparisons use all 40 tasks.</p>
+<details><summary>Original judging prompt</summary>
+<pre class="judge-prompt">You receive two videos:
+- Reference: the original human–object interaction.
+- Candidate: the robot execution.
+
+Does the candidate achieve the overall object interaction shown in
+the reference?
+
+Judge generously. Focus on what happens to the object across the
+complete motion. Exact trajectory, timing, robot posture and grasp
+need not match. Minor wobble and imperfect placement are acceptable.
+
+PASS if the main interaction is substantially achieved.
+FAIL if an essential part is missing or the object is lost before
+the interaction is completed.
+
+Check object rotation across multiple frames. Do not mistake an
+intentional set-down for a drop. Do not require release or a stationary
+ending unless the reference clearly makes it part of the interaction.
+
+If the view does not provide enough evidence, return UNCERTAIN
+instead of guessing.
+
+Return:
+- Verdict: PASS / FAIL / UNCERTAIN
+- Reason: one or two sentences citing visible moments in the candidate.</pre>
+</details>
+</details>
 <details class="appendix-faq" id="simulation-feedback">
 <summary>What simulation feedback can the agents inspect?</summary>
 <p>After a rollout, agents can inspect rendered views and numerical measurements from the recorded execution:</p>
@@ -519,6 +713,47 @@
 </table></div>
 <p>Reported usage includes cached input and reasoning tokens.</p>
 </details>
+<!-- analysis-proof:start -->
+<details class="appendix-faq" id="results-baseline-evidence">
+<summary>What supports the comparison with existing approaches?</summary>
+<p>All methods use the same 40 tasks. The table below lists mean ADD in centimetres and the final semantic verdict for every task. These are paired results, not a subset selected for improvement. SPIDER passes 2 tasks, one-shot passes 1 and 30-minute Codex passes 19. Codex preserves both SPIDER successes and adds 17. Relative to one-shot it preserves the one success and adds 18.</p>
+<p>The comparison changes the complete workflow, including model access to execution and iterative revision. It does not isolate any single tool or prompt instruction.</p>
+<div class="table-wrap results-table"><div class="table-wrap"><table><thead><tr><th scope="col">Task</th><th scope="col">SPIDER: ADD / verdict</th><th scope="col">One-shot: ADD / verdict</th><th scope="col">Codex 30 min: ADD / verdict</th></tr></thead><tbody><tr><th scope="row">carry side table with both hands walk around-536</th><td>115.23 / FAIL</td><td>101.81 / FAIL</td><td>6.35 / PASS</td></tr><tr><th scope="row">carry wok turner right hand walk around-968</th><td>83.52 / FAIL</td><td>74.51 / FAIL</td><td>7.27 / PASS</td></tr><tr><th scope="row">carrying mixing bowl with both hands-134</th><td>71.70 / FAIL</td><td>99.27 / FAIL</td><td>12.48 / PASS</td></tr><tr><th scope="row">drag wash tub on ground while walking-176</th><td>69.77 / FAIL</td><td>77.20 / FAIL</td><td>26.22 / FAIL</td></tr><tr><th scope="row">examining cutting board-141</th><td>26.02 / FAIL</td><td>26.29 / FAIL</td><td>20.35 / FAIL</td></tr><tr><th scope="row">lift and push utility cart and walk-692</th><td>81.43 / FAIL</td><td>110.92 / FAIL</td><td>10.14 / PASS</td></tr><tr><th scope="row">lift shelf lie to stand-867</th><td>97.36 / FAIL</td><td>66.43 / FAIL</td><td>19.36 / PASS</td></tr><tr><th scope="row">lifting and carrying table-105</th><td>45.36 / FAIL</td><td>70.56 / FAIL</td><td>35.92 / FAIL</td></tr><tr><th scope="row">lifting and checking basket 90-215</th><td>46.38 / FAIL</td><td>51.08 / FAIL</td><td>6.66 / PASS</td></tr><tr><th scope="row">lifting and straightening working chair-433</th><td>28.39 / FAIL</td><td>34.32 / FAIL</td><td>2.75 / PASS</td></tr><tr><th scope="row">lifting and tilting table-304</th><td>25.39 / FAIL</td><td>33.32 / FAIL</td><td>33.19 / FAIL</td></tr><tr><th scope="row">lifting dining chair from backrest and placing back with right hand on ground-595</th><td>39.03 / FAIL</td><td>33.57 / FAIL</td><td>3.49 / PASS</td></tr><tr><th scope="row">lifting side table and putting down-362</th><td>13.53 / FAIL</td><td>13.41 / FAIL</td><td>2.43 / PASS</td></tr><tr><th scope="row">pulling and pushing the dining chair from back post-203</th><td>31.29 / FAIL</td><td>8.86 / FAIL</td><td>1.10 / FAIL</td></tr><tr><th scope="row">rearranging the vase from next to last shelf to two shelves above-640</th><td>52.63 / FAIL</td><td>52.46 / FAIL</td><td>52.45 / FAIL</td></tr><tr><th scope="row">sub10 clothesstand 002</th><td>61.33 / FAIL</td><td>142.65 / FAIL</td><td>6.30 / PASS</td></tr><tr><th scope="row">sub11 monitor 044</th><td>84.17 / FAIL</td><td>87.92 / FAIL</td><td>90.08 / FAIL</td></tr><tr><th scope="row">sub12 largebox 049</th><td>67.22 / FAIL</td><td>96.86 / FAIL</td><td>20.28 / PASS</td></tr><tr><th scope="row">sub12 tripod 023</th><td>35.22 / FAIL</td><td>37.03 / FAIL</td><td>13.87 / FAIL</td></tr><tr><th scope="row">sub13 whitechair 069</th><td>39.76 / FAIL</td><td>59.22 / FAIL</td><td>32.73 / FAIL</td></tr><tr><th scope="row">sub14 woodchair 011</th><td>62.47 / FAIL</td><td>74.23 / FAIL</td><td>22.65 / PASS</td></tr><tr><th scope="row">sub15 plasticbox 019</th><td>34.52 / FAIL</td><td>43.49 / FAIL</td><td>9.36 / PASS</td></tr><tr><th scope="row">sub15 woodchair 047</th><td>46.54 / FAIL</td><td>55.00 / FAIL</td><td>8.81 / PASS</td></tr><tr><th scope="row">sub15 woodchair 053</th><td>6.16 / PASS</td><td>32.61 / FAIL</td><td>1.74 / PASS</td></tr><tr><th scope="row">sub16 plasticbox 038</th><td>63.12 / FAIL</td><td>107.96 / FAIL</td><td>10.96 / FAIL</td></tr><tr><th scope="row">sub16 plasticbox 049</th><td>14.13 / FAIL</td><td>23.50 / FAIL</td><td>16.31 / FAIL</td></tr><tr><th scope="row">sub17 floorlamp 007</th><td>112.63 / FAIL</td><td>106.17 / FAIL</td><td>56.66 / FAIL</td></tr><tr><th scope="row">sub1 largetable 015</th><td>52.41 / FAIL</td><td>88.46 / FAIL</td><td>46.06 / FAIL</td></tr><tr><th scope="row">sub1 plasticbox 006</th><td>34.56 / PASS</td><td>33.55 / FAIL</td><td>4.54 / PASS</td></tr><tr><th scope="row">sub1 suitcase 060</th><td>22.76 / FAIL</td><td>68.42 / FAIL</td><td>42.99 / FAIL</td></tr><tr><th scope="row">sub4 suitcase 040</th><td>54.83 / FAIL</td><td>55.98 / FAIL</td><td>32.58 / FAIL</td></tr><tr><th scope="row">sub4 whitechair 039</th><td>47.34 / FAIL</td><td>44.52 / FAIL</td><td>17.38 / FAIL</td></tr><tr><th scope="row">sub6 whitechair 052</th><td>21.80 / FAIL</td><td>12.65 / FAIL</td><td>4.29 / PASS</td></tr><tr><th scope="row">sub8 plasticbox 052</th><td>37.42 / FAIL</td><td>68.25 / FAIL</td><td>19.45 / FAIL</td></tr><tr><th scope="row">sub9 monitor 056</th><td>67.75 / FAIL</td><td>158.96 / FAIL</td><td>73.16 / FAIL</td></tr><tr><th scope="row">subject holding plastic bowl walk back and fourth-039</th><td>78.43 / FAIL</td><td>68.78 / FAIL</td><td>43.17 / FAIL</td></tr><tr><th scope="row">tilting trash can with right foot-985</th><td>0.76 / FAIL</td><td>1.55 / PASS</td><td>0.21 / PASS</td></tr><tr><th scope="row">turn on floor lamp while sitting on low chair and drinking from mug-457</th><td>77.53 / FAIL</td><td>35.99 / FAIL</td><td>18.48 / FAIL</td></tr><tr><th scope="row">walk with low chair-308</th><td>87.64 / FAIL</td><td>83.64 / FAIL</td><td>62.39 / PASS</td></tr><tr><th scope="row">work with laptop put pen and notebooks in organizer-562</th><td>61.86 / FAIL</td><td>77.90 / FAIL</td><td>54.90 / FAIL</td></tr></tbody></table></div></div>
+</details>
+<details class="appendix-faq" id="results-exploration-evidence">
+<summary>Do the independent workers produce different solutions?</summary>
+<p>All 30 tasks with four full 30-minute worker records have distinct final motion hashes among their valid workers. Their mean best-worker ADD is 20.12 cm, compared with 30.74 cm for the within-task median worker. This measures variation in executed outputs and the effect of selecting the lowest-error output. It does not measure diversity of strategies or prove that workers avoid redundant experiments.</p>
+<p>The remaining ten historical HUMOTO results use four 15-minute workers followed by a 15-minute continuation of the selected worker without experience. Their initial worker spread is reported separately below. They contribute to the published final results, but not to the 30-task worker-spread means above. The historical independent and later collaborative runs are therefore not a controlled communication-only ablation.</p>
+<p>Two independent-swarm PASS verdicts were disqualified by the separate initial-penetration review. The adjusted success count is 19/40, equal to 30-minute Codex. Seven tasks change from FAIL to PASS and seven from PASS to FAIL.</p>
+<div class="table-wrap results-table"><div class="table-wrap"><table><thead><tr><th scope="col">Task</th><th scope="col">Worker budget (min)</th><th scope="col">Valid workers</th><th scope="col">Best ADD (cm)</th><th scope="col">Median ADD (cm)</th><th scope="col">Worst ADD (cm)</th></tr></thead><tbody><tr><th scope="row">carry side table with both hands walk around-536</th><td>15</td><td>4</td><td>4.85</td><td>6.73</td><td>7.78</td></tr><tr><th scope="row">carry wok turner right hand walk around-968</th><td>30</td><td>4</td><td>8.63</td><td>18.05</td><td>65.68</td></tr><tr><th scope="row">carrying mixing bowl with both hands-134</th><td>15</td><td>4</td><td>3.75</td><td>5.09</td><td>6.65</td></tr><tr><th scope="row">drag wash tub on ground while walking-176</th><td>15</td><td>4</td><td>11.86</td><td>14.24</td><td>24.50</td></tr><tr><th scope="row">examining cutting board-141</th><td>30</td><td>4</td><td>18.95</td><td>23.19</td><td>24.78</td></tr><tr><th scope="row">lift and push utility cart and walk-692</th><td>30</td><td>4</td><td>2.82</td><td>4.62</td><td>11.30</td></tr><tr><th scope="row">lift shelf lie to stand-867</th><td>15</td><td>4</td><td>25.59</td><td>34.77</td><td>45.55</td></tr><tr><th scope="row">lifting and carrying table-105</th><td>30</td><td>4</td><td>30.90</td><td>34.46</td><td>37.98</td></tr><tr><th scope="row">lifting and checking basket 90-215</th><td>30</td><td>3</td><td>2.09</td><td>3.44</td><td>6.32</td></tr><tr><th scope="row">lifting and straightening working chair-433</th><td>30</td><td>4</td><td>17.90</td><td>20.25</td><td>21.87</td></tr><tr><th scope="row">lifting and tilting table-304</th><td>30</td><td>3</td><td>17.56</td><td>33.58</td><td>34.07</td></tr><tr><th scope="row">lifting dining chair from backrest and placing back with right hand on ground-595</th><td>15</td><td>4</td><td>6.97</td><td>17.37</td><td>19.54</td></tr><tr><th scope="row">lifting side table and putting down-362</th><td>30</td><td>3</td><td>1.64</td><td>3.83</td><td>12.04</td></tr><tr><th scope="row">pulling and pushing the dining chair from back post-203</th><td>15</td><td>4</td><td>2.41</td><td>3.68</td><td>6.69</td></tr><tr><th scope="row">rearranging the vase from next to last shelf to two shelves above-640</th><td>30</td><td>4</td><td>36.35</td><td>52.45</td><td>52.46</td></tr><tr><th scope="row">subject holding plastic bowl walk back and fourth-039</th><td>15</td><td>4</td><td>10.62</td><td>15.09</td><td>19.03</td></tr><tr><th scope="row">tilting trash can with right foot-985</th><td>15</td><td>4</td><td>0.29</td><td>0.37</td><td>0.41</td></tr><tr><th scope="row">turn on floor lamp while sitting on low chair and drinking from mug-457</th><td>15</td><td>4</td><td>5.36</td><td>6.25</td><td>8.58</td></tr><tr><th scope="row">walk with low chair-308</th><td>15</td><td>4</td><td>14.94</td><td>44.27</td><td>91.57</td></tr><tr><th scope="row">work with laptop put pen and notebooks in organizer-562</th><td>30</td><td>4</td><td>74.59</td><td>74.86</td><td>78.19</td></tr><tr><th scope="row">sub17 floorlamp 007</th><td>30</td><td>4</td><td>3.96</td><td>7.44</td><td>9.94</td></tr><tr><th scope="row">sub14 woodchair 011</th><td>30</td><td>4</td><td>23.07</td><td>34.64</td><td>40.28</td></tr><tr><th scope="row">sub16 plasticbox 038</th><td>30</td><td>4</td><td>24.77</td><td>52.49</td><td>70.68</td></tr><tr><th scope="row">sub1 suitcase 060</th><td>30</td><td>3</td><td>30.74</td><td>52.22</td><td>54.44</td></tr><tr><th scope="row">sub15 woodchair 047</th><td>30</td><td>4</td><td>4.34</td><td>8.98</td><td>9.99</td></tr><tr><th scope="row">sub11 monitor 044</th><td>30</td><td>4</td><td>65.15</td><td>75.30</td><td>89.91</td></tr><tr><th scope="row">sub12 largebox 049</th><td>30</td><td>4</td><td>21.87</td><td>79.19</td><td>81.07</td></tr><tr><th scope="row">sub1 largetable 015</th><td>30</td><td>3</td><td>44.15</td><td>49.72</td><td>56.25</td></tr><tr><th scope="row">sub6 whitechair 052</th><td>30</td><td>4</td><td>3.46</td><td>4.35</td><td>4.75</td></tr><tr><th scope="row">sub15 plasticbox 019</th><td>30</td><td>3</td><td>13.82</td><td>15.79</td><td>17.62</td></tr><tr><th scope="row">sub9 monitor 056</th><td>30</td><td>4</td><td>52.78</td><td>86.05</td><td>119.92</td></tr><tr><th scope="row">sub4 suitcase 040</th><td>30</td><td>4</td><td>23.88</td><td>75.44</td><td>89.53</td></tr><tr><th scope="row">sub10 clothesstand 002</th><td>30</td><td>4</td><td>4.61</td><td>6.96</td><td>21.53</td></tr><tr><th scope="row">sub16 plasticbox 049</th><td>30</td><td>4</td><td>2.79</td><td>7.24</td><td>11.83</td></tr><tr><th scope="row">sub15 woodchair 053</th><td>30</td><td>4</td><td>1.40</td><td>2.80</td><td>8.09</td></tr><tr><th scope="row">sub8 plasticbox 052</th><td>30</td><td>4</td><td>15.06</td><td>19.19</td><td>21.36</td></tr><tr><th scope="row">sub13 whitechair 069</th><td>30</td><td>4</td><td>26.72</td><td>29.57</td><td>35.36</td></tr><tr><th scope="row">sub12 tripod 023</th><td>30</td><td>4</td><td>10.55</td><td>15.95</td><td>24.78</td></tr><tr><th scope="row">sub4 whitechair 039</th><td>30</td><td>4</td><td>13.91</td><td>21.36</td><td>29.42</td></tr><tr><th scope="row">sub1 plasticbox 006</th><td>30</td><td>4</td><td>5.23</td><td>8.79</td><td>14.93</td></tr></tbody></table></div></div>
+</details>
+<details class="appendix-faq" id="results-communication-evidence">
+<summary>What did the collaborative workers actually exchange?</summary>
+<p>The audit covers all 160 workers across all 40 tasks. It counts successful, completed communication calls, with duplicate event IDs checked across resumed sessions: 1,797 broadcasts through <code>publish_findings</code>, 3,238 direct messages through <code>message_peer</code> and 2,127 calls to <code>read_peer_updates</code>. These are tool calls, not estimates from prose summaries.</p>
+<p>159 workers ran at least one successful shell command referencing a shared <code>peer_files</code> path. This includes reading and copying files as well as testing them. It is not a count of adopted controllers. The command audit also finds direct simulator invocations with a peer controller path, but a command alone does not establish that its rollout completed or improved the result.</p>
+<p>The examples below show the content of the exchanges. They illustrate mechanisms present in the logs; they are not used to estimate their frequency or explain every outcome change.</p>
+<details class="results-task"><summary>sub11 monitor 044 · worker 00</summary><blockquote><p>Retrieved capped15 and running independent replay. I will sweep root feedback strengths with your capped15 (80/25cap25 baseline,120/40cap40,210/70cap50, desiredrootvelocityFF option). You handle cap size sweep. Adaptivephase decoupledbody failed/ejected at5s; not adopting.</p></blockquote><p><code>message_peer</code> · <code>job/candidates/00/call/events.jsonl</code>, line 1709.</p><p class="results-coverage">Source SHA-256: <code>d1ce4b75576b4eca70fa0cc5aa1b76bfd632ef5b74a83546fb3a6bc6c22d5707</code></p></details>
+<details class="results-task"><summary>sub10 clothesstand 002 · worker 00</summary><blockquote><p>Original coherent reference+ramp55 combined with later lowering/release failed after touchdown (ADD .54; object remains moving at30s), although carry itself .0606. Reject. Our successful +Y-release30 fallback was additionally checked framewise: no airborne frames without robot contact, max stem tilt24.68deg, final stem tilt1.995deg, last hand contact9.16s, final root velocity tiny. Thus no uncontrolled object drop. Retesting03 lower06/freeze30 plus acquisition variations now.</p></blockquote><p><code>publish_findings</code> · <code>job/candidates/00/call/events.jsonl</code>, line 1463.</p><p class="results-coverage">Source SHA-256: <code>da8a83e8d83ea9466c333fdaf00423e0b8bc9d5ded1a7649e1099e0e01391ff2</code></p></details>
+<details class="results-task"><summary>lifting and carrying table-105 · worker 01</summary><blockquote><p>Worker01 time scaling .7 and1.5 failed to improve baseline ADD (.462/.447 vs .440), root undershoot unchanged. Position-only quaternion feedback in root-local frame (gain .2 cap .25) improves ADD .399, pos .435, rot25.3, min pelvis .720; gain .4 ADD .368 but causes table tipping (max orientation error90deg), unsafe to prefer. Sweeping alternating hip-pitch gait amplitude now. Direct arm impedance all worse .46-.48.</p></blockquote><p><code>publish_findings</code> · <code>job/candidates/01/call/events.jsonl</code>, line 582.</p><p class="results-coverage">Source SHA-256: <code>fc6487095284ea60394dc1b48d8e962cb7cfff1d33f3ba2e4cd2d16a27ec35a6</code></p></details>
+<div class="table-wrap results-table"><div class="table-wrap"><table><thead><tr><th scope="col">Task</th><th scope="col">Broadcasts</th><th scope="col">Direct messages</th><th scope="col">Reads</th><th scope="col">Workers referencing shared files</th></tr></thead><tbody><tr><th scope="row">carry side table with both hands walk around-536</th><td>66</td><td>69</td><td>48</td><td>4</td></tr><tr><th scope="row">carry wok turner right hand walk around-968</th><td>58</td><td>62</td><td>63</td><td>4</td></tr><tr><th scope="row">carrying mixing bowl with both hands-134</th><td>67</td><td>93</td><td>63</td><td>4</td></tr><tr><th scope="row">drag wash tub on ground while walking-176</th><td>39</td><td>98</td><td>64</td><td>4</td></tr><tr><th scope="row">examining cutting board-141</th><td>30</td><td>74</td><td>56</td><td>4</td></tr><tr><th scope="row">lift and push utility cart and walk-692</th><td>42</td><td>88</td><td>62</td><td>4</td></tr><tr><th scope="row">lift shelf lie to stand-867</th><td>41</td><td>92</td><td>48</td><td>4</td></tr><tr><th scope="row">lifting and carrying table-105</th><td>35</td><td>61</td><td>51</td><td>4</td></tr><tr><th scope="row">lifting and checking basket 90-215</th><td>67</td><td>81</td><td>68</td><td>4</td></tr><tr><th scope="row">lifting and straightening working chair-433</th><td>44</td><td>100</td><td>48</td><td>4</td></tr><tr><th scope="row">lifting and tilting table-304</th><td>36</td><td>70</td><td>66</td><td>4</td></tr><tr><th scope="row">lifting dining chair from backrest and placing back with right hand on ground-595</th><td>47</td><td>99</td><td>63</td><td>4</td></tr><tr><th scope="row">lifting side table and putting down-362</th><td>47</td><td>80</td><td>57</td><td>4</td></tr><tr><th scope="row">pulling and pushing the dining chair from back post-203</th><td>36</td><td>79</td><td>59</td><td>4</td></tr><tr><th scope="row">rearranging the vase from next to last shelf to two shelves above-640</th><td>40</td><td>47</td><td>29</td><td>4</td></tr><tr><th scope="row">sub10 clothesstand 002</th><td>56</td><td>75</td><td>52</td><td>4</td></tr><tr><th scope="row">sub11 monitor 044</th><td>32</td><td>93</td><td>67</td><td>4</td></tr><tr><th scope="row">sub12 largebox 049</th><td>50</td><td>58</td><td>64</td><td>4</td></tr><tr><th scope="row">sub12 tripod 023</th><td>49</td><td>58</td><td>48</td><td>4</td></tr><tr><th scope="row">sub13 whitechair 069</th><td>40</td><td>89</td><td>47</td><td>4</td></tr><tr><th scope="row">sub14 woodchair 011</th><td>41</td><td>76</td><td>46</td><td>4</td></tr><tr><th scope="row">sub15 plasticbox 019</th><td>38</td><td>86</td><td>64</td><td>4</td></tr><tr><th scope="row">sub15 woodchair 047</th><td>50</td><td>93</td><td>47</td><td>4</td></tr><tr><th scope="row">sub15 woodchair 053</th><td>39</td><td>74</td><td>48</td><td>4</td></tr><tr><th scope="row">sub16 plasticbox 038</th><td>45</td><td>84</td><td>44</td><td>4</td></tr><tr><th scope="row">sub16 plasticbox 049</th><td>41</td><td>88</td><td>53</td><td>4</td></tr><tr><th scope="row">sub17 floorlamp 007</th><td>66</td><td>82</td><td>59</td><td>4</td></tr><tr><th scope="row">sub1 largetable 015</th><td>34</td><td>111</td><td>55</td><td>4</td></tr><tr><th scope="row">sub1 plasticbox 006</th><td>47</td><td>66</td><td>57</td><td>4</td></tr><tr><th scope="row">sub1 suitcase 060</th><td>30</td><td>77</td><td>52</td><td>4</td></tr><tr><th scope="row">sub4 suitcase 040</th><td>40</td><td>76</td><td>59</td><td>4</td></tr><tr><th scope="row">sub4 whitechair 039</th><td>49</td><td>88</td><td>63</td><td>4</td></tr><tr><th scope="row">sub6 whitechair 052</th><td>42</td><td>78</td><td>39</td><td>4</td></tr><tr><th scope="row">sub8 plasticbox 052</th><td>48</td><td>81</td><td>34</td><td>4</td></tr><tr><th scope="row">sub9 monitor 056</th><td>35</td><td>113</td><td>65</td><td>4</td></tr><tr><th scope="row">subject holding plastic bowl walk back and fourth-039</th><td>52</td><td>104</td><td>63</td><td>4</td></tr><tr><th scope="row">tilting trash can with right foot-985</th><td>51</td><td>76</td><td>35</td><td>4</td></tr><tr><th scope="row">turn on floor lamp while sitting on low chair and drinking from mug-457</th><td>57</td><td>64</td><td>45</td><td>4</td></tr><tr><th scope="row">walk with low chair-308</th><td>41</td><td>104</td><td>49</td><td>4</td></tr><tr><th scope="row">work with laptop put pen and notebooks in organizer-562</th><td>29</td><td>51</td><td>27</td><td>3</td></tr></tbody></table></div></div>
+<p>The final task outcomes are listed in the <a href="#inter-agent-communication">paired comparison</a>, including the ten gains and two regressions. Fewer repeated trials, better strategy diversity and a causal effect of critique have not been established by these counts. Those claims would require classifying executed revisions and repeating the comparison under the same protocol.</p>
+</details>
+<details class="appendix-faq" id="results-longer-evidence">
+<summary>What improves within the same two-hour run?</summary>
+<p>For each cutoff, we retrospectively select the lowest-ADD recorded execution that had finished by that time. It must have completed its reference and passed the recorded initial-object-pose and zero-velocity checks. The framework scores every trial against the same complete target trajectory. All three displayed errors come from the execution selected by ADD. Position and orientation errors can therefore increase even when ADD decreases.</p>
+<p>Active time is reconstructed from the original call and each resume's stated remaining budget. Documented interruption gaps are excluded. Independently generated final verification replays are excluded from intermediate selection. This is a retrospective analysis of saved outputs, not a claim that an agent had computed every comparison score at that instant.</p>
+<p>35 tasks have an eligible output by 30 minutes. On that fixed paired set, mean ADD falls from 30.17 to 10.65 cm and 33 tasks improve. Comparing the selected 30- and 120-minute manifests, reference-file hashes change on 31 tasks and initial-state hashes on 26. A changed hash establishes an artifact change, not its purpose or a semantic improvement. The other five tasks remain visible below without an invented early value.</p>
+<p>Semantic comparisons reuse the existing Astra judgments for the separate 30-minute and 120-minute Codex experiments, with their existing opening-contact reviews. These are final-output judgments, not judgments of intermediate outputs within the two-hour runs. No new replays or judgments are part of this analysis.</p>
+<div class="table-wrap results-table"><div class="table-wrap"><table><thead><tr><th scope="col">Task</th><th scope="col">ADD at 30 min (cm)</th><th scope="col">ADD at 60 min (cm)</th><th scope="col">ADD at 120 min (cm)</th></tr></thead><tbody><tr><th scope="row">carry side table with both hands walk around-536</th><td>9.13</td><td>4.83</td><td>2.87</td></tr><tr><th scope="row">carry wok turner right hand walk around-968</th><td>15.65</td><td>7.73</td><td>6.62</td></tr><tr><th scope="row">carrying mixing bowl with both hands-134</th><td>4.84</td><td>4.14</td><td>3.46</td></tr><tr><th scope="row">drag wash tub on ground while walking-176</th><td>53.39</td><td>14.21</td><td>2.78</td></tr><tr><th scope="row">examining cutting board-141</th><td>19.36</td><td>19.36</td><td>3.96</td></tr><tr><th scope="row">lift and push utility cart and walk-692</th><td>23.52</td><td>23.52</td><td>12.42</td></tr><tr><th scope="row">lift shelf lie to stand-867</th><td>58.27</td><td>29.16</td><td>6.83</td></tr><tr><th scope="row">lifting and tilting table-304</th><td>23.18</td><td>18.51</td><td>1.45</td></tr><tr><th scope="row">lifting dining chair from backrest and placing back with right hand on ground-595</th><td>4.16</td><td>2.90</td><td>0.87</td></tr><tr><th scope="row">lifting side table and putting down-362</th><td>1.06</td><td>0.24</td><td>0.17</td></tr><tr><th scope="row">pulling and pushing the dining chair from back post-203</th><td>1.88</td><td>0.26</td><td>0.26</td></tr><tr><th scope="row">rearranging the vase from next to last shelf to two shelves above-640</th><td>29.21</td><td>29.21</td><td>29.21</td></tr><tr><th scope="row">subject holding plastic bowl walk back and fourth-039</th><td>21.10</td><td>5.82</td><td>4.26</td></tr><tr><th scope="row">tilting trash can with right foot-985</th><td>0.22</td><td>0.16</td><td>0.15</td></tr><tr><th scope="row">lifting and carrying table-105</th><td>42.93</td><td>37.52</td><td>28.43</td></tr><tr><th scope="row">lifting and checking basket 90-215</th><td>0.37</td><td>0.26</td><td>0.26</td></tr><tr><th scope="row">lifting and straightening working chair-433</th><td>4.32</td><td>0.63</td><td>0.52</td></tr><tr><th scope="row">turn on floor lamp while sitting on low chair and drinking from mug-457</th><td>50.66</td><td>39.95</td><td>3.59</td></tr><tr><th scope="row">walk with low chair-308</th><td>49.47</td><td>28.83</td><td>19.20</td></tr><tr><th scope="row">work with laptop put pen and notebooks in organizer-562</th><td>76.53</td><td>72.80</td><td>69.04</td></tr><tr><th scope="row">sub17 floorlamp 007</th><td>0.45</td><td>0.32</td><td>0.31</td></tr><tr><th scope="row">sub14 woodchair 011</th><td>33.37</td><td>33.37</td><td>11.98</td></tr><tr><th scope="row">sub16 plasticbox 038</th><td>66.47</td><td>29.50</td><td>5.39</td></tr><tr><th scope="row">sub1 suitcase 060</th><td>67.46</td><td>29.74</td><td>19.50</td></tr><tr><th scope="row">sub15 woodchair 047</th><td>20.18</td><td>17.42</td><td>1.02</td></tr><tr><th scope="row">sub11 monitor 044</th><td>63.41</td><td>55.39</td><td>25.08</td></tr><tr><th scope="row">sub12 largebox 049</th><td>83.48</td><td>61.63</td><td>6.73</td></tr><tr><th scope="row">sub9 monitor 056</th><td>102.75</td><td>81.95</td><td>27.76</td></tr><tr><th scope="row">sub4 suitcase 040</th><td>51.93</td><td>32.85</td><td>32.85</td></tr><tr><th scope="row">sub10 clothesstand 002</th><td>2.86</td><td>2.51</td><td>2.51</td></tr><tr><th scope="row">sub16 plasticbox 049</th><td>3.57</td><td>2.72</td><td>1.80</td></tr><tr><th scope="row">sub15 woodchair 053</th><td>0.87</td><td>0.84</td><td>0.84</td></tr><tr><th scope="row">sub8 plasticbox 052</th><td>13.75</td><td>12.69</td><td>11.58</td></tr><tr><th scope="row">sub13 whitechair 069</th><td>22.13</td><td>22.13</td><td>22.13</td></tr><tr><th scope="row">sub15 plasticbox 019</th><td>Not available</td><td>Not available</td><td>1.98</td></tr><tr><th scope="row">sub12 tripod 023</th><td>33.88</td><td>31.23</td><td>6.93</td></tr><tr><th scope="row">sub1 largetable 015</th><td>Not available</td><td>Not available</td><td>1.65</td></tr><tr><th scope="row">sub6 whitechair 052</th><td>Not available</td><td>Not available</td><td>1.88</td></tr><tr><th scope="row">sub4 whitechair 039</th><td>Not available</td><td>Not available</td><td>25.02</td></tr><tr><th scope="row">sub1 plasticbox 006</th><td>Not available</td><td>Not available</td><td>5.14</td></tr></tbody></table></div></div>
+<p>The final, separate-run semantic comparison has six Codex-only successes and three swarm-only successes. The judges describe missing rotation, transport or placement in the six gains, and incomplete release or loss of the object in the three regressions. This describes the final videos. It does not establish when those actions first became successful within the longer runs.</p>
+</details>
+<details class="appendix-faq" id="results-budget-evidence">
+<summary>What is matched in the compute–time comparison?</summary>
+<p>The collaborative swarm receives four 30-minute worker budgets, totalling two agent-hours. The longer Codex condition receives one 120-minute budget, also totalling two agent-hours. Allocated agent-hours do not equate token counts, simulation counts, accelerator usage or native delegated-agent work.</p>
+<p>The final semantic comparison includes all 40 tasks and counts the incomplete two-hour submission as unsuccessful. Tracking uses the same 39 valid final executions for both methods: 13.00 cm ADD for the collaborative swarm and 12.63 cm for two-hour Codex. The within-run table above uses different, retrospective selections and must not be substituted for these final submitted results.</p>
+<p>Each condition has one recorded run per task. Differences between conditions combine workflow, budget and sampling effects. The within-run analysis tests whether later recorded outputs improve over earlier ones, but repeated runs would be needed to establish how reliably a workflow produces that improvement.</p>
+</details>
+<!-- analysis-proof:end -->
 </section>
 <section id="citation" class="outline-section blog-citation">
 <h2 id="cite-this-blog">Cite this blog</h2>
@@ -540,10 +775,11 @@
   </main>
   <script src="article.js?v=four-agent-workflows-1"></script>
   <script src="walkthrough.js?v=humotar-story-2"></script>
-<script src="dynamics-showcase.js?v=captions-4" defer></script>
+<script src="dynamics-showcase.js?v=results-six-methods-1" defer></script>
 <script src="kinematic-showcase.js?v=humotar-story-2" defer></script>
 <script src="experience-story.js?v=renumber-9" defer></script>
 <script src="text-motion.js?v=1" defer></script>
+<script src="results-evidence.js?v=1" defer></script>
 <script src="autoplay.js?v=1" defer></script>
 </body>
 </html>
