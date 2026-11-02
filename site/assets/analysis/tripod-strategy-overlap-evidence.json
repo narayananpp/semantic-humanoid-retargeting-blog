@@ -1,6 +1,48 @@
 {
   "task": "sub12_tripod_023",
-  "scope": "Selected reports; first 8 minutes omitted. Times relative to each worker session. Two-hand grasp overlap is not identical experiments or measured wasted time. Arrows link sharing, verification, refinement and replay of named controller artifacts.",
+  "scope": "Selected reports, not a complete inventory of trials. Roles summarize work agents explicitly took on during the run, not preset assignments. Times relative to each worker session. Two-hand grasp overlap is not identical experiments or measured wasted time. Cross-agent arrows show verified reuse; same-agent arrows show subsequent refinements.",
+  "links": [
+    {
+      "source": "collaborative-0-328",
+      "target": "collaborative-3-410"
+    },
+    {
+      "source": "collaborative-3-410",
+      "target": "collaborative-3-701"
+    },
+    {
+      "source": "collaborative-3-701",
+      "target": "collaborative-2-747"
+    },
+    {
+      "source": "collaborative-2-747",
+      "target": "collaborative-2-1154"
+    },
+    {
+      "source": "collaborative-2-1154",
+      "target": "collaborative-1-1519"
+    },
+    {
+      "source": "collaborative-1-1519",
+      "target": "collaborative-0-1592"
+    },
+    {
+      "source": "collaborative-1-1519",
+      "target": "collaborative-2-1770"
+    },
+    {
+      "source": "collaborative-2-1770",
+      "target": "collaborative-2-2041"
+    },
+    {
+      "source": "collaborative-2-2041",
+      "target": "collaborative-1-1980"
+    },
+    {
+      "source": "collaborative-2-2041",
+      "target": "collaborative-3-2019"
+    }
+  ],
   "outcomes": {
     "independent": {
       "clip": "sub12_tripod_023",
@@ -39,7 +81,7 @@
       "worker": 0,
       "line": 1350,
       "minute": 28.18689703333333,
-      "label": "No release",
+      "label": "Still holding",
       "quote": "I\u2019m stopping trial work and saving the best tested controller and reference. The selected run achieved mean ADD 0.128 m, position error 0.083 m, and orientation error 20.65\u00b0. I\u2019ll document that it remained upright with sustained grasp contact, but did not accurately complete the curve or achieve independent final support.",
       "source": "job/call/events.jsonl",
       "source_sha256": "a040eac1cd002c516e811b978ad19568d289390af892774dceb7eb4124741fb5"
@@ -50,7 +92,7 @@
       "worker": 1,
       "line": 1260,
       "minute": 27.724770116666665,
-      "label": "No release",
+      "label": "Still holding",
       "quote": "The best tested rollout so far has mean ADD **0.191 m**, position error **0.158 m**, and orientation error **25.1\u00b0** over the complete scored curves. The robot stays upright, but the tripod does not complete the target pose curve or finish in the required independently supported pose. I\u2019m saving that controller and running its final reproducibility check, with those limitations documented.",
       "source": "job/call/events.jsonl",
       "source_sha256": "66c81b4862620c8e4de422dbb8136034f7dec8b12c33b66e900b50cc520db6b6"
@@ -72,7 +114,7 @@
       "worker": 2,
       "line": 1391,
       "minute": 28.451518500000002,
-      "label": "No release",
+      "label": "Still holding",
       "quote": "I\u2019m stopping trials and saving the best tested 10-second rollout with stable robot and object motion. Its mean errors are 0.106 m ADD, 0.091 m position, and 25.2\u00b0 orientation. It still relies on hand contact at the endpoint, so independent release remains an unmet requirement.",
       "source": "job/call/events.jsonl",
       "source_sha256": "35c224fc18b67ab455417ca157ef409c62e74169ca86366ae5ef4938180a3e6a"
@@ -94,10 +136,32 @@
       "worker": 3,
       "line": 1489,
       "minute": 27.165554316666665,
-      "label": "Lost grasp",
+      "label": "Loses grasp",
       "quote": "The best tested candidate has mean ADD 0.248 m, mean position error 0.201 m, and mean orientation error 81.6\u00b0. It keeps the robot upright, but loses controlled support of the tripod late in the motion, so it does not satisfy the full task. I\u2019m saving that candidate and running a final reproducibility check with full command recordings.",
       "source": "job/call/events.jsonl",
       "source_sha256": "85084f15a3ca1481b671206f08db65be218ce65d64d3814ba3dac251720710dc"
+    },
+    {
+      "id": "collaborative-0-328",
+      "mode": "collaborative",
+      "worker": 0,
+      "line": 328,
+      "minute": 3.1108632,
+      "label": "Share grasp",
+      "quote": "Published prepare.py initial_state.npz grasp.npz in finding9; read_peer_updates should deliver. Includes complete supported collision-free state, shaft-local right grasp transform. IK fingers optimized using mj_geomDistance. Dynamics not yet tested.",
+      "source": "job/candidates/00/call/events.jsonl",
+      "source_sha256": "899f4e7d978db67ccf09b83007fcf057e87e768c4abde1ff20c002fa4761fdf4"
+    },
+    {
+      "id": "collaborative-0-410",
+      "mode": "collaborative",
+      "worker": 0,
+      "line": 410,
+      "minute": 3.5063061166666665,
+      "label": "Grasp and fingers",
+      "quote": "I will focus stationary grasp holding/finger closure tuning first (3sec static SONIC) so your moving native gait + online IK branch differentiates. Please test full path; send feedback re grasp loss.",
+      "source": "job/candidates/00/call/events.jsonl",
+      "source_sha256": "899f4e7d978db67ccf09b83007fcf057e87e768c4abde1ff20c002fa4761fdf4"
     },
     {
       "id": "collaborative-0-1592",
@@ -105,10 +169,21 @@
       "worker": 0,
       "line": 1592,
       "minute": 20.619033233333333,
-      "label": "Verify release",
+      "label": "Test placement",
       "quote": "Independently reproduced peer01 release09 exact: ADD .100554,pos .085860,rot18.88deg. Verified final2s zero handforce, floor4.905N, object speedmax4.9e-14, all3feet contacts (soft penetrations18/58/30micrometres), pelvismin.70765. Complete independent support confirmed. Integrating sweep15 prepath and retaining this as valid fallback.",
       "source": "job/candidates/00/call/events.jsonl",
       "source_sha256": "899f4e7d978db67ccf09b83007fcf057e87e768c4abde1ff20c002fa4761fdf4"
+    },
+    {
+      "id": "collaborative-1-968",
+      "mode": "collaborative",
+      "worker": 1,
+      "line": 968,
+      "minute": 10.241577116666667,
+      "label": "Final placement",
+      "quote": "Bimanual gait fell even with matching static upper policy ref; abandoning. I will focus endpoint independent release + stable hold, applying your bal02 if artifacts available. Could you share code? Others optimizing object feedback.",
+      "source": "job/candidates/01/call/events.jsonl",
+      "source_sha256": "dc536d44ad88b109c015345353017d1e84033dc49cf928173ccd175ec629440e"
     },
     {
       "id": "collaborative-1-1519",
@@ -116,10 +191,65 @@
       "worker": 1,
       "line": 1519,
       "minute": 19.25089815,
-      "label": "Share release",
+      "label": "Share upright\nplacement",
       "quote": "SUCCESS independent placement release09! Tested14s: balance11 path then stable-end target correction3.2-4.2s, integral WORLD XY orientation error gain1 after3.5s capped\u00b1.4rad added to .5 orientation feedback; release10s, fingers open.6s, thumb1+.4 at10.8-11.6; wrist fixed atrelease. At12-14s all3foot gaps~0, zero handforce, floor4.9N, object velocity4.6e-14. Objectfinal[1.013,.177,.525], minpelvis.70765m. No drop/fall. Source+ref attached; noenv needed defaults. Scoring next.",
       "source": "job/candidates/01/call/events.jsonl",
       "source_sha256": "dc536d44ad88b109c015345353017d1e84033dc49cf928173ccd175ec629440e"
+    },
+    {
+      "id": "collaborative-1-1980",
+      "mode": "collaborative",
+      "worker": 1,
+      "line": 1980,
+      "minute": 27.250344266666666,
+      "label": "Test improvement",
+      "quote": "Independent packaged full-command20s replay of peer02 refine45_1 EXACT: trials/final_refined ADD .08200549164,pos .06873734274,rot16.74915026; finalADD.03330551,minpelvis.714763. Selected controller.py now deterministic .45feedback,1.5 integral capxy.6/z1.2, release12s, local20s reference. Final support checks/documentation underway. Previous verified .09075 fallback retained.",
+      "source": "job/candidates/01/call/events.jsonl",
+      "source_sha256": "dc536d44ad88b109c015345353017d1e84033dc49cf928173ccd175ec629440e"
+    },
+    {
+      "id": "collaborative-2-668",
+      "mode": "collaborative",
+      "worker": 2,
+      "line": 668,
+      "minute": 6.380620783333333,
+      "label": "Tripod position and rotation",
+      "quote": "I tested free shaft yaw wrist orientation, slightly better ADD .394 but much worse rotation84deg. I will adopt/retest peer03 waist yaw fix .129 ADD and focus residual object feedback/preload tuning; please continue bimanual independently.",
+      "source": "job/candidates/02/call/events.jsonl",
+      "source_sha256": "3e56fdd8733d57025ef09211a641d372db98d02c2120188e6094f265644e0fe1"
+    },
+    {
+      "id": "collaborative-2-747",
+      "mode": "collaborative",
+      "worker": 2,
+      "line": 747,
+      "minute": 7.681143033333333,
+      "label": "Test body\ncontroller",
+      "quote": "Independent exact replay of peer03 waist01 succeeded identically: trials/waist_peer mean ADD .1291003m, position .109329m, rotation36.656deg, min pelvis .733422m. My delayed/offline-arm-IK reference worsened to ADD .1582/rot81deg. Exact supplied peer reference matters. Sweeping finger preload and residual object pose feedback now.",
+      "source": "job/candidates/02/call/events.jsonl",
+      "source_sha256": "3e56fdd8733d57025ef09211a641d372db98d02c2120188e6094f265644e0fe1"
+    },
+    {
+      "id": "collaborative-2-1154",
+      "mode": "collaborative",
+      "worker": 2,
+      "line": 1154,
+      "minute": 12.570293566666667,
+      "label": "Correct tripod\nmotion",
+      "quote": "TESTED combined lean/object feedback improvement: trials/balance11 ADD .1018907m,pos .086372m,rot15.0867deg, min pelvis .70765m. Exact peer31 reference/start, lean k=.2 d=.1, finger kp5 kd.15 close increment .2, online object rot correction .5*log(Rtarget Ractual^-1) premultiplied target before wrist IK. No position feedback. This improves all three over .129 baseline. Controller attached (grasp.npz resource finding9). Still 3.734s, no release yet.",
+      "source": "job/candidates/02/call/events.jsonl",
+      "source_sha256": "3e56fdd8733d57025ef09211a641d372db98d02c2120188e6094f265644e0fe1"
+    },
+    {
+      "id": "collaborative-2-1158",
+      "mode": "collaborative",
+      "worker": 2,
+      "line": 1158,
+      "minute": 12.5703464,
+      "label": "Share motion controller",
+      "quote": "Please try release with just-published balance11 controller: meanADD .10189 pos.08637 rot15.09, lean .2/.1 and object rotational feedback.5 with closure.2. Could reduce endpoint yaw drift substantially vs your release baseline.",
+      "source": "job/candidates/02/call/events.jsonl",
+      "source_sha256": "3e56fdd8733d57025ef09211a641d372db98d02c2120188e6094f265644e0fe1"
     },
     {
       "id": "collaborative-2-1770",
@@ -127,7 +257,7 @@
       "worker": 2,
       "line": 1770,
       "minute": 21.559960166666666,
-      "label": "Verify release",
+      "label": "Test placement",
       "quote": "Independent release09 replay successful: ADD .1005535,pos .0858602,rot18.8798. Final2s exactly zero hand force, floor4.905N, object speed<5e-14; all3feet softcontact; pelvismin.70765. Rejected attempted smooth20+integral and twist+integral transfers: drift/drop. Own incremental endpoint improved final pose but strictgate neverreleased by24s; not viable final. Replaying full xyz integral next, then small final refinements.",
       "source": "job/candidates/02/call/events.jsonl",
       "source_sha256": "3e56fdd8733d57025ef09211a641d372db98d02c2120188e6094f265644e0fe1"
@@ -138,10 +268,32 @@
       "worker": 2,
       "line": 2041,
       "minute": 26.26986583333333,
-      "label": "Refine release",
+      "label": "Improve placement",
       "quote": "NEW VALID improved full release: local trials/refine45_1 mean ADD .08200549164m,pos .06873734274m,rot16.74915026deg. Original valid initial/grasp,20sref. Changed proportional rot_feedback .45 (from.5), end integral gain1.5 all axes, capsxy\u00b1.6 z\u00b11.2, release12s. Last2s maxhandforce0, maxobjvelocity2.14e-14, minpelvis.714763m,objminz.486669. Source/reference attached. Selecting and full-recording replay now.",
       "source": "job/candidates/02/call/events.jsonl",
       "source_sha256": "3e56fdd8733d57025ef09211a641d372db98d02c2120188e6094f265644e0fe1"
+    },
+    {
+      "id": "collaborative-3-410",
+      "mode": "collaborative",
+      "worker": 3,
+      "line": 410,
+      "minute": 3.1748830666666668,
+      "label": "Use shared\ngrasp",
+      "quote": "Adopting your grasp and validating locally. My native SONIC trial remains upright but open hand drops pole. Will test online right-arm world-frame IK target=reference object*grasp, with arm gains and finger closure; native gait unchanged initially. What control branch are you testing so I can differentiate?",
+      "source": "job/candidates/03/call/events.jsonl",
+      "source_sha256": "523ce4fc2d3e199b4506688ea0866d3e825150d8bfd053a1bc6c841c76006ce9"
+    },
+    {
+      "id": "collaborative-3-701",
+      "mode": "collaborative",
+      "worker": 3,
+      "line": 701,
+      "minute": 6.246807766666667,
+      "label": "Add body\ncoordination",
+      "quote": "TESTED major improvement: adding waist yaw DOF to online fixed-grip wrist IK and clamping right shoulder roll <=-.05 avoids torso blockage. trials/waist01 ADD .1291m, pos .1093m, rot36.66deg; stable min pelvis .733m. Full path translation substantially improved. Final yaw slip remains large~94deg, final ADD .153m. Code attached, requires same grasp.npz resource from finding9.",
+      "source": "job/candidates/03/call/events.jsonl",
+      "source_sha256": "523ce4fc2d3e199b4506688ea0866d3e825150d8bfd053a1bc6c841c76006ce9"
     },
     {
       "id": "collaborative-3-2019",
@@ -149,7 +301,7 @@
       "worker": 3,
       "line": 2019,
       "minute": 27.11501265,
-      "label": "Verify refinement",
+      "label": "Test improvement",
       "quote": "Independently reproduced peer02 refine45_1 via packaged deterministic controller and full20s recording: ADD .08200549164,pos .06873734274,rot16.74915026, finalADD .03330551; minpelvis .714763. Source constants same .45 feedback,1.5 integral capxy\u00b1.6,z\u00b11.2,release12. Retaining this improved final candidate. Full metrics/force checks being documented.",
       "source": "job/candidates/03/call/events.jsonl",
       "source_sha256": "523ce4fc2d3e199b4506688ea0866d3e825150d8bfd053a1bc6c841c76006ce9"
