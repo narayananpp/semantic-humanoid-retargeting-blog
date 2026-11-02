@@ -16,9 +16,15 @@ We first evaluate our agentic retargeting approach, **HuMoTAR, against HOI-Retar
 
 ### 5.2 Matched time: single-agent refinement versus swarms {#matched-time}
 
+We compare a single Codex agent with the [independent](#configuration-ensemble) and [collaborative](#configuration-collaborative) agentic swarms under the same **30-minute time budget**. Each swarm runs four agents, so it uses four times the allocated agent-hours.
+
 ::: component results-matched-time
 
+**Agentic swarms improve retargeting within the same time budget, with the strongest task-completion results from inter-agent communication.** Running four independent agents can help reduce **“seed luck”** and improve **reliability**, since one agent may find a solution that another misses. Here, the independent swarm improves object tracking, but completes no more tasks overall than a single agent.
+
 ### 5.3 The effect of inter-agent communication {#inter-agent-communication}
+
+**Inter-agent communication raises semantic success from 47.5% to 67.5%.** Agents share code that worked, split the next tests and check each other’s results. They also flag failures that another agent missed.
 
 ::: component results-communication
 

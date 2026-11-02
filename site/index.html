@@ -287,6 +287,7 @@
 
 <p><strong>HOI-Retarget + SPIDER and Astra one-shot achieve semantic success rates of 5% and 2.5%, respectively. With iterative simulation feedback, a single Codex agent achieves 47.5%.</strong> Mean object-tracking error also decreases from <strong>52.48 cm for HOI-Retarget + SPIDER</strong> and <strong>62.98 cm for Astra one-shot</strong> to <strong>23.74 cm for Codex</strong>. These results highlight the importance of <strong>iterative refinement with simulation feedback</strong> for successful physical execution.</p>
 <h3 id="matched-time">5.2 Matched time: single-agent refinement versus swarms</h3>
+<p>We compare a single Codex agent with the <a href="#configuration-ensemble">independent</a> and <a href="#configuration-collaborative">collaborative</a> agentic swarms under the same <strong>30-minute time budget</strong>. Each swarm runs four agents, so it uses four times the allocated agent-hours.</p>
 
 
 <div class="matched-time-visuals" data-matched-time-curves>
@@ -306,42 +307,11 @@
       <div role="tabpanel" id="add-panel-all" aria-labelledby="add-tab-all" tabindex="0"><figure class="results-plot"><picture><source data-add-mobile="all" media="(max-width: 760px)" srcset="assets/analysis/results/matched-time-add-all-mobile.svg"><img data-add-image="all" src="assets/analysis/results/matched-time-add-all.svg" alt="Overall: overlaid best-so-far mean ADD curves for Codex, independent swarm and collaborative swarm across 40 tasks, through 30 minutes." loading="lazy" width="740" height="480"></picture></figure></div>
     </div>
   </div>
-</div><div class="table-wrap results-table"><table id="matched-time-table" aria-label="Tracking error and semantic success"><thead><tr><th scope="col">Method</th><th scope="col">Tracking tasks</th><th scope="col">Mean ADD (cm) ↓</th><th scope="col">Position error (cm) ↓</th><th scope="col">Orientation error (°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody>
-<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">HUMOTO · 20 tasks</th></tr>
-<tr><th scope="row">Codex · 30 min</th><td>20</td>
-<td>20.96</td>
-<td>19.19</td>
-<td>29.32</td>
-<td>11/20 · 55.0%</td></tr>
-<tr><th scope="row">Independent swarm · 30 min</th><td>20</td>
-<td>14.30</td>
-<td>13.87</td>
-<td>22.07</td>
-<td>9/20 · 45.0%</td></tr>
-<tr><th scope="row">Collaborative swarm · 30 min</th><td>20</td>
-<td><strong>13.45</strong></td>
-<td><strong>13.07</strong></td>
-<td><strong>21.59</strong></td>
-<td><strong>12/20 · 60.0%</strong></td></tr>
-<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">OMOMO · 20 tasks</th></tr>
-<tr><th scope="row">Codex · 30 min</th><td>20</td>
-<td>26.51</td>
-<td>23.70</td>
-<td>28.32</td>
-<td>8/20 · 40.0%</td></tr>
-<tr><th scope="row">Independent swarm · 30 min</th><td>20</td>
-<td>19.61</td>
-<td>17.06</td>
-<td>27.07</td>
-<td>10/20 · 50.0%</td></tr>
-<tr><th scope="row">Collaborative swarm · 30 min</th><td>20</td>
-<td><strong>12.84</strong></td>
-<td><strong>10.26</strong></td>
-<td><strong>22.21</strong></td>
-<td><strong>15/20 · 75.0%</strong></td></tr>
-</tbody></table></div>
+</div>
 
+<p><strong>Agentic swarms improve retargeting within the same time budget, with the strongest task-completion results from inter-agent communication.</strong> Running four independent agents can help reduce <strong>“seed luck”</strong> and improve <strong>reliability</strong>, since one agent may find a solution that another misses. Here, the independent swarm improves object tracking, but completes no more tasks overall than a single agent.</p>
 <h3 id="inter-agent-communication">5.3 The effect of inter-agent communication</h3>
+<p><strong>Inter-agent communication raises semantic success from 47.5% to 67.5%.</strong> Agents share code that worked, split the next tests and check each other’s results. They also flag failures that another agent missed.</p>
 
 
 <figure class="results-plot"><img src="assets/analysis/results/communication.svg" alt="Independent and collaborative final executions compared task by task for semantic outcomes and mean ADD." loading="lazy" width="1100" height="410"></figure>
