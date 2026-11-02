@@ -8,7 +8,7 @@
   <meta name="description" content="From human demonstrations to executable humanoid interactions: a study of agentic refinement, simulation feedback and transferable experience.">
   <title>HuMoTAR: Physics-Aware Agentic Retargeting for Humanoid–Object Interaction</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
-  <link rel="stylesheet" href="styles.css?v=baseline-tables-1">
+  <link rel="stylesheet" href="styles.css?v=showcase-height-2">
   <link rel="stylesheet" href="experience.css?v=shelf-connected-6">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -249,6 +249,10 @@
 <span id="study-design" class="section-anchor"></span>
 
 <h3 id="comparison-results">5.1 Comparison with existing approaches</h3>
+
+
+<div id="dynamics-showcase" class="dynamics-showcase" aria-label="Selected task executions"></div>
+
 <p>We first evaluate our agentic retargeting approach, <strong>HuMoTAR, against HOI-Retarget + SPIDER</strong> on <strong>20 HUMOTO and 20 OMOMO tasks</strong>. For this comparison, we consider the <a href="#configuration-plain">single-Codex configuration</a> and include <strong>Astra one-shot</strong> to examine performance without iterative refinement.</p>
 
 
@@ -280,10 +284,6 @@
 <td><strong>28.32</strong></td>
 <td><strong>8/20<br>40.0%</strong></td></tr></tbody></table></div>
 </div>
-
-
-
-<div id="dynamics-showcase" class="dynamics-showcase" aria-label="Selected task executions"></div>
 
 <p><strong>HOI-Retarget + SPIDER and Astra one-shot achieve semantic success rates of 5% and 2.5%, respectively. With iterative simulation feedback, a single Codex agent achieves 47.5%.</strong> Mean object-tracking error also decreases from <strong>52.48 cm for HOI-Retarget + SPIDER</strong> and <strong>62.98 cm for Astra one-shot</strong> to <strong>23.74 cm for Codex</strong>. These results highlight the importance of <strong>iterative refinement with simulation feedback</strong> for successful physical execution.</p>
 <h3 id="matched-time">5.2 Matched time: single-agent refinement versus swarms</h3>
@@ -753,7 +753,7 @@ Return:
   </main>
   <script src="article.js?v=workflow-links-2"></script>
   <script src="walkthrough.js?v=humotar-story-2"></script>
-<script src="dynamics-showcase.js?v=results-six-methods-1" defer></script>
+<script src="dynamics-showcase.js?v=aligned-viewer-2" defer></script>
 <script src="kinematic-showcase.js?v=humotar-story-2" defer></script>
 <script src="experience-story.js?v=renumber-9" defer></script>
 <script src="text-motion.js?v=1" defer></script>
