@@ -25,3 +25,5 @@ We posit that **frontier agentic models provide useful priors for making these c
 ### Lift, carry and place a clothes stand
 
 ::: video intro-stand-comparison
+
+The above examples illustrate the gap between kinematic retargeting and physical execution. We execute the kinematic references provided by HOI-Retarget using SPIDER in physics simulation and compare them with HuMoTAR’s references. SPIDER fails to complete either task, while HuMoTAR achieves successful execution in physics simulation in both cases.
