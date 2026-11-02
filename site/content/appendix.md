@@ -52,6 +52,20 @@ We give a single Codex agent a detailed task description, the scene and an initi
 
 </details>
 
+<details class="appendix-faq" id="simulation-feedback">
+<summary>What simulation feedback can the agents inspect?</summary>
+
+After a rollout, agents can inspect rendered views and numerical measurements from the recorded execution:
+
+- **Robot and object motion:** images of the execution and recorded poses and joint states.
+- **Object tracking:** mean ADD, position error and orientation error relative to the target object trajectory.
+- **Contact:** contact locations, normals and forces, including which robot and object surfaces touch.
+- **Geometry and motion checks:** contact gaps, penetration, joint-limit margins and differences between reference and executed motion.
+
+Agents can inspect these outputs with code and request further views or measurements. The observations they use depend on the trial; each iteration does not necessarily inspect every measurement.
+
+</details>
+
 <details class="appendix-faq" id="retargeting-tools">
 <summary>Which tools and control interfaces can the agents use?</summary>
 
