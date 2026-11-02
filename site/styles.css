@@ -604,3 +604,9 @@ html { scroll-padding-top: 90px; }
 .four-way-comparison .execution-success,.four-way-comparison .execution-failure {top:64px;right:10px;font-size:34px;}
 @media(max-width:1000px) {.four-way-comparison .authored-video-views {grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:520px) {.four-way-comparison .authored-video-views {grid-template-columns:1fr;}}
+
+/* Opening human demonstrations: one row on desktop, stacked on phones. */
+[data-media-id="intro-human-demonstrations"] .authored-video-views {grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+[data-media-id="intro-human-demonstrations"] .execution-panel > p {margin:0 0 10px;line-height:1.4;}
+[data-media-id="intro-human-demonstrations"] video {width:100%;aspect-ratio:16/10;object-fit:contain;background:#dedede;}
+@media(max-width:680px) {[data-media-id="intro-human-demonstrations"] .authored-video-views {grid-template-columns:1fr;}}

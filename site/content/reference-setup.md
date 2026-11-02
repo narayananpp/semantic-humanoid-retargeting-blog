@@ -1,23 +1,19 @@
-## 1. Does humanoid retargeting survive physics?
+## 1. Rethinking humanoid retargeting
 
 ::: anchor hoi-reference
 ::: anchor kinematic-setup
 
-**Humanoid motion retargeting adapts a human demonstration to the robot’s body.** A kinematic replay can reproduce the intended poses even when the robot cannot generate the contacts and forces needed to move the object. Executing the reference in simulation tests whether the robot can maintain balance, support the load and complete the interaction.
+::: video intro-human-demonstrations
 
-[HOI-Retarget](https://arxiv.org/abs/2609.34674) optimizes humanoid motion to preserve the demonstration's body motion and object-relative contacts. We test these references in simulation with [SPIDER](https://arxiv.org/abs/2511.09484), which optimizes the controls used to track the motion. **HuMoTAR instead uses agentic refinement to revise both the motion reference and manipulation controller.** The comparisons below follow each task from the human demonstration to execution by [Unitree G1](https://www.unitree.com/g1/) with Dex3 hands.
+Consider the human demonstrations above, in which a person carries a chair, moves a clothes stand and tilts a bin with one foot. For a humanoid to perform these tasks, each demonstration must first be adapted to its body, since a *humanoid differs from a human in proportions, joint limits and actuation*. Current human-to-humanoid retargeting methods largely formulate it as a **kinematic problem**, in which the human’s motion is fitted to the robot while relevant contacts with the environment are preserved. [**HOI-Retarget**](https://arxiv.org/abs/2609.34674), for example, optimizes the robot’s motion to match the demonstration’s body poses and object-relative contacts. This raises the question of *what a humanoid should preserve from a demonstration*.
+
+We argue that **retargeting should preserve the intended task rather than the precise movements a human uses to perform it**. Take, for example, a person who carries and places a chair with one hand. The goal is to carry the chair to a target location and place it there, not to reproduce a one-handed grasp. A humanoid may use both hands if its morphology and physical limits allow it, since the task is unchanged even though the grasp and posture differ from the demonstration. In our experiments, the demonstrated object trajectory, scaled to the size of the robot, specifies the desired object motion, while the robot’s contact strategy, posture and controller are free to change.
 
 ::: anchor execution-setup
 ::: anchor dynamic-interaction
 
-<h3>Carry and place a chair</h3>
-
-::: video intro-chair-comparison
-
-<h3>Lift, carry and place a clothes stand</h3>
-
-::: video intro-stand-comparison
+**A kinematically feasible reference is not necessarily dynamically feasible.** [**SPIDER**](https://arxiv.org/abs/2511.09484) addresses this by posing retargeting as a constrained optimization over the robot’s motor commands. It samples many candidate command sequences in a physics simulator and keeps the ones whose simulated motion stays closest to the reference. In our HOI-Retarget + SPIDER comparison, **the reference stays fixed**: SPIDER optimizes the controls used to execute the motion supplied by HOI-Retarget.
 
 ::: anchor execution-task
 
-**We posit that retargeting should preserve what the human accomplishes, while allowing the robot to change how it moves.** In HuMoTAR, the demonstrated object trajectory, scaled for G1, defines the interaction goal. The agents can revise posture, contacts, timing and control to follow that trajectory in simulation. The resulting references can also provide training data for downstream whole-body policies, as studied in [GMR](https://arxiv.org/abs/2510.02252).
+We posit that **frontier agentic models provide useful priors for making these changes**. We explore the usage of LLM agents to write, test and iteratively revise motion and control code through **closed-loop simulation feedback**.

@@ -78,5 +78,26 @@
       }
     ],
     "caption": "Fig. 10. Human demonstration and HuMoTAR execution of the plate-swirling task. The robot partially lifts the plate but does not complete the demonstrated swirling motion."
+  },
+  "intro-human-demonstrations": {
+    "label": "Human demonstrations (SMPL)",
+    "views": [
+      {
+        "label": "Carry and place a chair",
+        "src": "source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910",
+        "poster": "assets/source-humans/sub15_woodchair_047-454ce8c120.jpg"
+      },
+      {
+        "label": "Move a clothes stand",
+        "src": "source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa",
+        "poster": "assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg"
+      },
+      {
+        "label": "Tilt a bin with one foot",
+        "src": "source-human-media/humoto/tilting_trash_can_with_right_foot-985.mp4",
+        "poster": "assets/source-humans/tilting_trash_can_with_right_foot-985.jpg"
+      }
+    ],
+    "caption": "Human demonstrations (SMPL)"
   }
 }

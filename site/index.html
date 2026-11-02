@@ -20,7 +20,7 @@
     <aside class="contents" aria-label="Contents">
       <button class="contents-toggle" aria-expanded="false" aria-controls="contents-links">Contents <span aria-hidden="true">＋</span></button>
       <nav id="contents-links" aria-label="Article sections"><a href="#overview">TL;DR</a>
-<a href="#reference-setup">1. Does humanoid retargeting survive physics?</a>
+<a href="#reference-setup">1. Rethinking humanoid retargeting</a>
 <a href="#method">2. What is the best way to do agentic retargeting?</a>
 <a href="#refinement-results">3. Dynamic retargeting results</a>
 <a class="subsection" href="#experimental-setup">Experimental setup</a>
@@ -91,7 +91,7 @@
 
 </section>
 <section id="reference-setup" class="outline-section">
-<h2 id="1-does-humanoid-retargeting-survive-physics">1. Does humanoid retargeting survive physics?</h2>
+<h2 id="1-rethinking-humanoid-retargeting">1. Rethinking humanoid retargeting</h2>
 
 
 <span id="hoi-reference" class="section-anchor"></span>
@@ -100,8 +100,12 @@
 
 <span id="kinematic-setup" class="section-anchor"></span>
 
-<p><strong>Humanoid motion retargeting adapts a human demonstration to the robot’s body.</strong> A kinematic replay can reproduce the intended poses even when the robot cannot generate the contacts and forces needed to move the object. Executing the reference in simulation tests whether the robot can maintain balance, support the load and complete the interaction.</p>
-<p><a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> optimizes humanoid motion to preserve the demonstration's body motion and object-relative contacts. We test these references in simulation with <a href="https://arxiv.org/abs/2511.09484">SPIDER</a>, which optimizes the controls used to track the motion. <strong>HuMoTAR instead uses agentic refinement to revise both the motion reference and manipulation controller.</strong> The comparisons below follow each task from the human demonstration to execution by <a href="https://www.unitree.com/g1/">Unitree G1</a> with Dex3 hands.</p>
+
+
+<figure class="authored-video" data-media-id="intro-human-demonstrations"><div class="authored-video-views"><div class="execution-panel"><p>Carry and place a chair</p><video controls muted playsinline preload="none" aria-label="Carry and place a chair" poster="assets/source-humans/sub15_woodchair_047-454ce8c120.jpg" src="source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910"></video></div><div class="execution-panel"><p>Move a clothes stand</p><video controls muted playsinline preload="none" aria-label="Move a clothes stand" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa"></video></div><div class="execution-panel"><p>Tilt a bin with one foot</p><video controls muted playsinline preload="none" aria-label="Tilt a bin with one foot" poster="assets/source-humans/tilting_trash_can_with_right_foot-985.jpg" src="source-human-media/humoto/tilting_trash_can_with_right_foot-985.mp4"></video></div></div><figcaption>Human demonstrations (SMPL)</figcaption></figure>
+
+<p>Consider the human demonstrations above, in which a person carries a chair, moves a clothes stand and tilts a bin with one foot. For a humanoid to perform these tasks, each demonstration must first be adapted to its body, since a <em>humanoid differs from a human in proportions, joint limits and actuation</em>. Current human-to-humanoid retargeting methods largely formulate it as a <strong>kinematic problem</strong>, in which the human’s motion is fitted to the robot while relevant contacts with the environment are preserved. <a href="https://arxiv.org/abs/2609.34674"><strong>HOI-Retarget</strong></a>, for example, optimizes the robot’s motion to match the demonstration’s body poses and object-relative contacts. This raises the question of <em>what a humanoid should preserve from a demonstration</em>.</p>
+<p>We argue that <strong>retargeting should preserve the intended task rather than the precise movements a human uses to perform it</strong>. Take, for example, a person who carries and places a chair with one hand. The goal is to carry the chair to a target location and place it there, not to reproduce a one-handed grasp. A humanoid may use both hands if its morphology and physical limits allow it, since the task is unchanged even though the grasp and posture differ from the demonstration. In our experiments, the demonstrated object trajectory, scaled to the size of the robot, specifies the desired object motion, while the robot’s contact strategy, posture and controller are free to change.</p>
 
 
 <span id="execution-setup" class="section-anchor"></span>
@@ -110,21 +114,12 @@
 
 <span id="dynamic-interaction" class="section-anchor"></span>
 
-<h3>Carry and place a chair</h3>
-
-
-<figure class="authored-video four-way-comparison" data-media-id="intro-chair-comparison"><div class="authored-video-views"><div class="execution-panel"><p>Human reference · SMPL<span class="video-mode" aria-hidden="true">&nbsp;</span></p><video controls muted playsinline preload="none" aria-label="Human reference · SMPL" poster="assets/source-humans/sub15_woodchair_047-454ce8c120.jpg" src="source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910"></video></div><div class="execution-panel"><p>Kinematic reference<span class="video-mode">HOI-Retarget · no physics</span></p><video controls muted playsinline preload="none" aria-label="Kinematic reference" poster="intro-media/chair.jpg" src="intro-media/chair.mp4?v=be4d8e70e9"></video></div><div class="execution-panel"><p>HOI-Retarget + SPIDER<span class="video-mode">Physics execution</span></p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="HOI-Retarget + SPIDER" poster="intro-media/chair-spider.jpg" src="intro-media/chair-spider.mp4"></video></div><div class="execution-panel"><p>HuMoTAR<span class="video-mode">Physics execution</span></p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub15_woodchair_047.jpg" src="dynamics-showcase-media/omomo/sub15_woodchair_047.mp4"></video></div></div><figcaption>Fig. 1. Carrying and placing a wooden chair. The kinematic replay follows the prescribed motion without physics. With HOI-Retarget + SPIDER, the robot falls and the chair tips over; HuMoTAR carries and places it. Videos retain each method’s execution timing.</figcaption></figure>
-
-<h3>Lift, carry and place a clothes stand</h3>
-
-
-<figure class="authored-video four-way-comparison" data-media-id="intro-stand-comparison"><div class="authored-video-views"><div class="execution-panel"><p>Human reference · SMPL<span class="video-mode" aria-hidden="true">&nbsp;</span></p><video controls muted playsinline preload="none" aria-label="Human reference · SMPL" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa"></video></div><div class="execution-panel"><p>Kinematic reference<span class="video-mode">HOI-Retarget · no physics</span></p><video controls muted playsinline preload="none" aria-label="Kinematic reference" poster="intro-media/stand-kinematic.jpg" src="intro-media/stand-kinematic.mp4"></video></div><div class="execution-panel"><p>HOI-Retarget + SPIDER<span class="video-mode">Physics execution</span></p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="HOI-Retarget + SPIDER" poster="intro-media/spider.jpg" src="intro-media/spider.mp4?v=39e4853555"></video></div><div class="execution-panel"><p>HuMoTAR<span class="video-mode">Physics execution</span></p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub10_clothesstand_002.jpg" src="dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d"></video></div></div><figcaption>Fig. 2. Lifting and transporting a clothes stand. The kinematic reference prescribes the interaction without physics; HOI-Retarget + SPIDER loses balance and tips the stand, while HuMoTAR lifts, carries and places it.</figcaption></figure>
-
+<p><strong>A kinematically feasible reference is not necessarily dynamically feasible.</strong> <a href="https://arxiv.org/abs/2511.09484"><strong>SPIDER</strong></a> addresses this by posing retargeting as a constrained optimization over the robot’s motor commands. It samples many candidate command sequences in a physics simulator and keeps the ones whose simulated motion stays closest to the reference. In our HOI-Retarget + SPIDER comparison, <strong>the reference stays fixed</strong>: SPIDER optimizes the controls used to execute the motion supplied by HOI-Retarget.</p>
 
 
 <span id="execution-task" class="section-anchor"></span>
 
-<p><strong>We posit that retargeting should preserve what the human accomplishes, while allowing the robot to change how it moves.</strong> In HuMoTAR, the demonstrated object trajectory, scaled for G1, defines the interaction goal. The agents can revise posture, contacts, timing and control to follow that trajectory in simulation. The resulting references can also provide training data for downstream whole-body policies, as studied in <a href="https://arxiv.org/abs/2510.02252">GMR</a>.</p>
+<p>We posit that <strong>frontier agentic models provide useful priors for making these changes</strong>. We explore the usage of LLM agents to write, test and iteratively revise motion and control code through <strong>closed-loop simulation feedback</strong>.</p>
 </section>
 <section id="method" class="outline-section">
 <h2 id="2-what-is-the-best-way-to-do-agentic-retargeting">2. What is the best way to do agentic retargeting?</h2>
