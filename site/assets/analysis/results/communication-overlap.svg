@@ -119,7 +119,7 @@ L 395.427349 15.12
      </g>
     </g>
     <g id="text_6">
-     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #59665f" x="301.32" y="239.718438" transform="rotate(-0 301.32 239.718438)">Tasks with verified evidence (out of 40)</text>
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #59665f" x="301.32" y="239.718438" transform="rotate(-0 301.32 239.718438)">Number of tasks (out of 40)</text>
     </g>
    </g>
    <g id="matplotlib.axis_2">
