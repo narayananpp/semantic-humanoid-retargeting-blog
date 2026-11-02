@@ -75,39 +75,91 @@
   }
 })();
 
-/* Original trace excerpts for the communication timeline. */
+/* All-task audit: original evidence, not summaries inferred from outcomes. */
 (() => {
-  const roots = [...document.querySelectorAll('[data-communication-trace]')];
-  if (!roots.length) return;
-  const data = fetch('assets/analysis/communication-trace.json').then(response => {
-    if (!response.ok) throw Error(response.status);
-    return response.json();
+  const root = document.querySelector('[data-communication-audit]');
+  if (!root) return;
+  const details = root.querySelector('[data-audit-evidence]');
+  const browser = root.querySelector('[data-audit-browser]');
+  const el = (tag, text, cls) => {
+    const node = document.createElement(tag);
+    if (text !== undefined) node.textContent = text;
+    if (cls) node.className = cls;
+    return node;
+  };
+  let loaded = false;
+  details.addEventListener('toggle', async () => {
+    if (!details.open || loaded) return;
+    loaded = true;
+    browser.textContent = 'Loading recorded evidence…';
+    try {
+      const response = await fetch('assets/analysis/communication-behavior.json?v=1');
+      if (!response.ok) throw Error(response.status);
+      const data = await response.json();
+      const controls = el('div', undefined, 'communication-audit-controls');
+      const category = el('select'), dataset = el('select');
+      category.setAttribute('aria-label', 'Audited behavior');
+      dataset.setAttribute('aria-label', 'Trace dataset');
+      for (const [key, item] of Object.entries(data.categories)) {
+        const option = el('option', `${item.group === 'independent' ? 'Independent' : 'Collaborative'}: ${item.label}`);
+        option.value = key; category.append(option);
+      }
+      category.value = 'reuse';
+      for (const [key, title] of [['all', 'All tasks'], ['humoto', 'HUMOTO'], ['omomo', 'OMOMO']]) {
+        const option = el('option', title); option.value = key; dataset.append(option);
+      }
+      const behaviorLabel = el('label', 'Behavior '), datasetLabel = el('label', 'Dataset ');
+      behaviorLabel.append(category); datasetLabel.append(dataset);
+      controls.append(behaviorLabel, datasetLabel);
+      const definition = el('p', undefined, 'communication-audit-definition');
+      const count = el('p', undefined, 'communication-audit-count');
+      const list = el('div', undefined, 'results-task-list');
+      browser.replaceChildren(controls, definition, count, list);
+      function render() {
+        const key = category.value;
+        definition.textContent = data.categories[key].definition;
+        const records = data.records.filter(r => dataset.value === 'all' || r.dataset === dataset.value);
+        const verified = records.filter(r => r.findings[key].status === 'verified');
+        count.textContent = `${verified.length} of ${records.length} tasks verified. Remaining tasks have no qualifying evidence in this audit; this does not establish that the behavior was absent.`;
+        list.replaceChildren();
+        for (const row of [...verified, ...records.filter(r => r.findings[key].status !== 'verified')]) {
+          const finding = row.findings[key];
+          const task = el('details'), summary = el('summary');
+          const title = row.clip.replace(/^sub\d+_/, '').replace(/[-_]\d+$/, '').replaceAll('_', ' ');
+          summary.append(el('span', title), el('span', finding.status === 'verified' ? 'Verified' : 'Not established', 'results-verdicts'));
+          task.append(summary);
+          const body = el('div', undefined, 'communication-audit-task');
+          body.append(el('div', row.clip, 'communication-audit-source'));
+          body.append(el('p', `${row.dataset.toUpperCase()} · Independent: ${row.independent_success ? 'PASS' : 'FAIL'} · Collaborative: ${row.collaborative_success ? 'PASS' : 'FAIL'}`));
+          if (key === 'reuse' && finding.status === 'verified') {
+            body.append(el('strong', `Agent ${Number(finding.sender) + 1} → Agent ${Number(finding.receiver) + 1} · Completed test at ${finding.first_verified_minute.toFixed(1)} min`));
+          }
+          for (const id of finding.evidence || []) {
+            const evidence = data.evidence[id];
+            const section = el('section', undefined, 'communication-audit-quote');
+            const heading = evidence.kind === 'received peer message'
+              ? `Agent ${Number(evidence.sender) + 1} → Agent ${evidence.worker + 1} · Received message`
+              : `Agent ${evidence.worker + 1} · ${evidence.kind === 'commandExecution' ? 'Executed command (excerpt)' : evidence.kind === 'dynamicToolCall' ? 'Communication tool record' : evidence.kind === 'analysis report' ? 'Saved report' : 'Recorded message'}`;
+            section.append(el('strong', heading));
+            section.append(el('blockquote', evidence.quote));
+            section.append(el('div', `${evidence.file}:${evidence.line}`, 'communication-audit-source'));
+            const provenance = el('details'), title = el('summary', 'Source fingerprint');
+            provenance.append(title, el('code', evidence.source_sha256)); section.append(provenance);
+            body.append(section);
+          }
+          if (finding.simulation_status) {
+            const record = el('details'); record.append(el('summary', 'Saved simulation completion record'));
+            record.append(el('p', `${finding.simulation_status} · ${finding.simulation_finished_at}`));
+            record.append(el('div', finding.manifest, 'communication-audit-source'));
+            record.append(el('code', finding.manifest_sha256)); body.append(record);
+          }
+          task.append(body); list.append(task);
+        }
+      }
+      category.addEventListener('change', render); dataset.addEventListener('change', render); render();
+    } catch (_) {
+      loaded = false;
+      browser.textContent = 'The evidence could not be loaded. Close and reopen this panel to retry.';
+    }
   });
-  for (const root of roots) {
-    const details = root.querySelector('.communication-trace-source');
-    const panel = root.querySelector('[data-communication-detail]');
-    async function show(node) {
-      details.open = true;
-      panel.textContent = 'Loading original excerpt…';
-      for (const other of root.querySelectorAll('[data-communication-event]')) other.classList.toggle('is-selected', other === node);
-      try {
-        const trace = await data;
-        const event = trace.events.find(item => item.id === node.dataset.communicationEvent);
-        if (!node.classList.contains('is-selected')) return;
-        const heading = document.createElement('strong');
-        heading.textContent = `${event.mode === 'independent' ? 'Independent' : 'Collaborative'} swarm · Worker ${event.worker + 1} · ${event.minute.toFixed(1)} min`;
-        const quote = document.createElement('blockquote'); quote.textContent = event.quote;
-        const source = document.createElement('div'); source.className = 'communication-trace-provenance';
-        source.textContent = `${event.tool} · Worker ${String(event.worker).padStart(2, '0')} · ${event.source}:${event.line}`;
-        const hash = document.createElement('div'); hash.className = 'communication-trace-provenance'; hash.textContent = `Source SHA-256: ${event.source_sha256}`;
-        panel.replaceChildren(heading, quote, source, hash);
-      } catch (_) { panel.textContent = 'The original excerpt could not be loaded. Please reload the page.'; }
-    }
-    for (const node of root.querySelectorAll('[data-communication-event]')) {
-      node.addEventListener('click', () => show(node));
-      node.addEventListener('keydown', event => {
-        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); show(node); }
-      });
-    }
-  }
 })();
