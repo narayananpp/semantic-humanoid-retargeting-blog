@@ -1,4 +1,4 @@
-### 4.4 How much refinement can a shorter budget retain? {#early-stopping}
+### 3.4 How much refinement can a shorter budget retain? {#early-stopping}
 
 ::: component early-stopping-plot
 

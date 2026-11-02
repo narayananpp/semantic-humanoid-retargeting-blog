@@ -1,4 +1,4 @@
-## 3. Retargeting results and analysis
+## 4. Retargeting results and analysis
 
 ::: anchor agent-comparison
 
@@ -18,26 +18,26 @@ All three errors are averaged equally across tasks. **Lower is better.**
 
 **Semantic success.** Astra compares the human demonstration with the robot execution and judges whether the intended object interaction is completed. Exact timing, posture and grasp need not match. We report the percentage of tasks judged PASS, after a separate review for obvious initial hand–object penetration. Incomplete executions count as unsuccessful. **Higher is better.** The [evaluation protocol](#semantic-evaluation) includes the judge prompt and review criteria.
 
-### 3.1 Comparison with existing approaches {#comparison-results}
+### 4.1 Comparison with existing approaches {#comparison-results}
 
 ::: component dynamics-videos
 
 ::: component dynamics-results
 
-### 3.2 Matched time: single-agent refinement versus swarms {#matched-time}
+### 4.2 Matched time: single-agent refinement versus swarms {#matched-time}
 
 ::: component results-matched-time
 
-### 3.3 The effect of inter-agent communication {#inter-agent-communication}
+### 4.3 The effect of inter-agent communication {#inter-agent-communication}
 
 ::: component results-communication
 
-### 3.4 Matched compute: longer iterative refinement {#matched-agent-hours}
+### 4.4 Matched compute: longer iterative refinement {#matched-agent-hours}
 
 ::: component results-agent-hours
 
 ::: component results-within-run
 
-### 3.5 The compute–time tradeoff {#compute-time-tradeoff}
+### 4.5 The compute–time tradeoff {#compute-time-tradeoff}
 
 ::: component results-tradeoff

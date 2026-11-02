@@ -1,4 +1,4 @@
-### 4.3 Tracking error during refinement {#refinement-progress}
+### 3.3 Tracking error during refinement {#refinement-progress}
 
 ::: component aggregate-refinement-plot
 

@@ -100,20 +100,6 @@
       "label_shift": 0
     },
     {
-      "id": "independent-3-893",
-      "mode": "independent",
-      "worker": 3,
-      "minute": 16.953439799999998,
-      "label": "Walking fails",
-      "kind": "failure",
-      "quote": "The longer tests exposed two problems: the side grasp eventually slips, and the first walking reference drove the legs into poor configurations. I\u2019ve corrected the leg reference and am testing a top-edge grasp, where the thumb and fingers can contact opposite faces of the monitor.",
-      "source": "job/call/events.jsonl",
-      "line": 893,
-      "source_sha256": "ec2ab75967c71aae1861b2670eae6c51bb3018705a4cc827999c0c4a76bab680",
-      "tool": "agent message",
-      "label_shift": 0
-    },
-    {
       "id": "independent-0-1210",
       "mode": "independent",
       "worker": 0,
@@ -323,6 +309,48 @@
       "source": "job/candidates/02/call/events.jsonl",
       "line": 876,
       "source_sha256": "d87034d7914d6ccc37010d22451ed45a967d2cfc0300ca8cff1c36dc7dca1dd2",
+      "tool": "publish_findings",
+      "label_shift": 0
+    },
+    {
+      "id": "independent-0-297",
+      "mode": "independent",
+      "worker": 0,
+      "minute": 3.286221033333332,
+      "label": "Builds a top-edge grasp",
+      "kind": "grasp",
+      "quote": "I\u2019ve inspected the initial scene visually. I\u2019m building a two-hand grasp around the monitor\u2019s upper edge, with the fingers clear at initialization and joint actuation providing the closing force. The first test will check whether that grasp can hold the object under gravity.",
+      "source": "job/call/events.jsonl",
+      "line": 297,
+      "source_sha256": "06dee70fa51b1edcb32822579f5795b02124a9d2bcaf8e1250577463fa1f60fe",
+      "tool": "agent message",
+      "label_shift": 0
+    },
+    {
+      "id": "independent-3-893",
+      "mode": "independent",
+      "worker": 3,
+      "minute": 16.953439799999998,
+      "label": "Reports side-grasp slip",
+      "kind": "grasp",
+      "quote": "The longer tests exposed two problems: the side grasp eventually slips, and the first walking reference drove the legs into poor configurations. I\u2019ve corrected the leg reference and am testing a top-edge grasp, where the thumb and fingers can contact opposite faces of the monitor.",
+      "source": "job/call/events.jsonl",
+      "line": 893,
+      "source_sha256": "ec2ab75967c71aae1861b2670eae6c51bb3018705a4cc827999c0c4a76bab680",
+      "tool": "agent message",
+      "label_shift": 0
+    },
+    {
+      "id": "collaborative-0-2049",
+      "mode": "collaborative",
+      "worker": 0,
+      "minute": 27.459814416666667,
+      "label": "Reports body-correction tests",
+      "kind": "coordinate",
+      "quote": "Final full-record replay matches selected setdown1.4 exactly: ADD .249942366, position .194644327, orientation63.674110. Initialstate integrity true/exactzero; COM53.045mm inside soles, footclearance numerical0, no limits or penetratingcontacts. submission.json/controller/reference/initialstate/analysis saved. Explicit limitation: drop~7.1 followed physicalrecontact/pushing; no fullcontrolled/no-drop success. Late-only strongerroot50/80 worsenedADD .314/.336.",
+      "source": "job/candidates/00/call/events.jsonl",
+      "line": 2049,
+      "source_sha256": "d1ce4b75576b4eca70fa0cc5aa1b76bfd632ef5b74a83546fb3a6bc6c22d5707",
       "tool": "publish_findings",
       "label_shift": 0
     }

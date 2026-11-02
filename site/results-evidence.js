@@ -183,8 +183,8 @@
     for (const other of buttons) other.setAttribute('aria-expanded', String(other === button));
     details.open = true;
     panel.textContent = 'Loading original records…';
-    details.querySelector('summary').textContent = button.closest('.communication-example-step').querySelector('h6').textContent + ' · Original logs';
-    if (!promise) promise = fetch('assets/analysis/communication-trace.json?v=example-2').then(response => {
+    details.querySelector('summary').textContent = button.dataset.exampleLabel + ' · Original logs';
+    if (!promise) promise = fetch('assets/analysis/communication-trace.json?v=strategies-3').then(response => {
       if (!response.ok) throw Error(response.status);
       return response.json();
     }).catch(error => { promise = undefined; throw error; });
@@ -207,6 +207,12 @@
       details.querySelector('summary').focus({preventScroll: true});
     } catch (_) {
       if (active === button) panel.textContent = 'The records could not be loaded. Select the step again to retry.';
+    }
+  });
+  for (const button of buttons) button.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
     }
   });
   details.addEventListener('toggle', () => {
