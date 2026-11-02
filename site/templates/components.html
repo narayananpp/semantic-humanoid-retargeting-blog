@@ -2,9 +2,9 @@
 <aside class="takeaways-message" aria-label="Key takeaways">
   <ul>
     <li>Existing human-to-humanoid retargeting methods optimize kinematic alignment, which does not guarantee that a motion’s semantic intent is preserved under physical execution. We posit that <strong>frontier agentic models can capture both the semantic intent and physical requirements of a motion</strong> for generalizable retargeting.</li>
-    <li>Closed loop simulation feedback allows LLM agents to iteratively refine the robot motion and control. We evaluate humanoid retargeting through object-tracking errors and semantic scoring (LLM-as-Judge) to measure motion fidelity and completion of the intended task.</li>
-    <li>We study the compute-time tradeoff between deploying an agentic swarm and longer single-agent iterative refinement. Under a fixed time budget, a four-agent swarm outperforms a single Codex agent by 20% in LLM-scored semantic success rate, but a compute-matched Codex agent surpasses the swarm by 7.5% , at the cost of 4x the time.</li>
-    <li>Experience from related tasks, stored as summaries of tested strategies and their outcomes, improves task success on new interactions. For a novel humanoid-object interaction task, conditioning on prior furniture-moving experience reduces mean object-tracking error from 23.35 cm to 7.77 cm and improves the semantic judgment from FAIL to PASS at equal compute and time.</li>
+    <li><strong>Closed loop simulation feedback</strong> allows LLM agents to iteratively refine the robot motion and control. We evaluate humanoid retargeting through <strong>object-tracking errors and semantic scoring (LLM-as-Judge)</strong> to measure motion fidelity and completion of the intended task.</li>
+    <li>We study the <strong>compute-time tradeoff</strong> between deploying an agentic swarm and longer single-agent iterative refinement. Under a fixed time budget, a four-agent swarm outperforms a single Codex agent by <strong>20% in LLM-scored semantic success rate</strong>, but a compute-matched Codex agent surpasses the swarm by <strong>7.5%</strong>, at <strong>4x the time</strong>.</li>
+    <li><strong>Experience from related tasks</strong>, stored as summaries of tested strategies and their outcomes, improves success on new tasks. On a novel humanoid-object task, prior furniture-moving experience reduces mean object-tracking error from <strong>23.35 cm to 7.77 cm</strong> and turns a semantic <strong>FAIL into a PASS</strong> at equal compute and time.</li>
   </ul>
 </aside>
 <!-- /component -->
