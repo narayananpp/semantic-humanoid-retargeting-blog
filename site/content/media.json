@@ -29,7 +29,7 @@
         "sublabel": "Physics execution"
       }
     ],
-    "caption": "Fig. 1. Carrying and placing a wooden chair. The kinematic replay follows the prescribed motion without physics. With HOI-Retarget + SPIDER, the robot falls and the chair tips over; HuMoTAR carries and places it. Videos retain each method\u2019s execution timing."
+    "caption": "Fig. 1. Carrying and placing a chair. SPIDER loses balance; HuMoTAR completes the task."
   },
   "intro-stand-comparison": {
     "label": "Lift, carry and place a clothes stand",
@@ -61,7 +61,7 @@
         "sublabel": "Physics execution"
       }
     ],
-    "caption": "Fig. 2. Lifting and transporting a clothes stand. The kinematic reference prescribes the interaction without physics; HOI-Retarget + SPIDER loses balance and tips the stand, while HuMoTAR lifts, carries and places it."
+    "caption": "Fig. 2. Lifting and transporting a clothes stand. SPIDER tips the stand; HuMoTAR completes the task."
   },
   "discussion-plate": {
     "label": "Swirl a plate",

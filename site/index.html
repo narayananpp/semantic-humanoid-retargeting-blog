@@ -8,7 +8,7 @@
   <meta name="description" content="From human demonstrations to executable humanoid interactions: a study of agentic refinement, simulation feedback and transferable experience.">
   <title>HuMoTAR: Physics-Aware Agentic Retargeting for Humanoid–Object Interaction</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
-  <link rel="stylesheet" href="styles.css?v=intro-paragraph-spacing-2">
+  <link rel="stylesheet" href="styles.css?v=four-agent-workflows-1">
   <link rel="stylesheet" href="experience.css?v=shelf-connected-6">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -123,12 +123,12 @@
 <h3 id="carry-and-place-a-chair">Carry and place a chair</h3>
 
 
-<figure class="authored-video four-way-comparison" data-media-id="intro-chair-comparison"><div class="authored-video-views"><div class="execution-panel"><p>Human reference · SMPL<span class="video-mode" aria-hidden="true">&nbsp;</span></p><video controls muted playsinline preload="none" aria-label="Human reference · SMPL" poster="assets/source-humans/sub15_woodchair_047-454ce8c120.jpg" src="source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910"></video></div><div class="execution-panel"><p>Kinematic reference<span class="video-mode">HOI-Retarget · no physics</span></p><video controls muted playsinline preload="none" aria-label="Kinematic reference" poster="intro-media/chair.jpg" src="intro-media/chair.mp4?v=be4d8e70e9"></video></div><div class="execution-panel"><p>SPIDER<span class="video-mode">Physics execution</span></p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="SPIDER" poster="intro-media/chair-spider.jpg" src="intro-media/chair-spider.mp4"></video></div><div class="execution-panel"><p>HuMoTAR<span class="video-mode">Physics execution</span></p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub15_woodchair_047.jpg" src="dynamics-showcase-media/omomo/sub15_woodchair_047.mp4"></video></div></div><figcaption>Fig. 1. Carrying and placing a wooden chair. The kinematic replay follows the prescribed motion without physics. With HOI-Retarget + SPIDER, the robot falls and the chair tips over; HuMoTAR carries and places it. Videos retain each method’s execution timing.</figcaption></figure>
+<figure class="authored-video four-way-comparison" data-media-id="intro-chair-comparison"><div class="authored-video-views"><div class="execution-panel"><p>Human reference · SMPL<span class="video-mode" aria-hidden="true">&nbsp;</span></p><video controls muted playsinline preload="none" aria-label="Human reference · SMPL" poster="assets/source-humans/sub15_woodchair_047-454ce8c120.jpg" src="source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910"></video></div><div class="execution-panel"><p>Kinematic reference<span class="video-mode">HOI-Retarget · no physics</span></p><video controls muted playsinline preload="none" aria-label="Kinematic reference" poster="intro-media/chair.jpg" src="intro-media/chair.mp4?v=be4d8e70e9"></video></div><div class="execution-panel"><p>SPIDER<span class="video-mode">Physics execution</span></p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="SPIDER" poster="intro-media/chair-spider.jpg" src="intro-media/chair-spider.mp4"></video></div><div class="execution-panel"><p>HuMoTAR<span class="video-mode">Physics execution</span></p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub15_woodchair_047.jpg" src="dynamics-showcase-media/omomo/sub15_woodchair_047.mp4"></video></div></div><figcaption>Fig. 1. Carrying and placing a chair. SPIDER loses balance; HuMoTAR completes the task.</figcaption></figure>
 
 <h3 id="lift-carry-and-place-a-clothes-stand">Lift, carry and place a clothes stand</h3>
 
 
-<figure class="authored-video four-way-comparison" data-media-id="intro-stand-comparison"><div class="authored-video-views"><div class="execution-panel"><p>Human reference · SMPL<span class="video-mode" aria-hidden="true">&nbsp;</span></p><video controls muted playsinline preload="none" aria-label="Human reference · SMPL" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa"></video></div><div class="execution-panel"><p>Kinematic reference<span class="video-mode">HOI-Retarget · no physics</span></p><video controls muted playsinline preload="none" aria-label="Kinematic reference" poster="intro-media/stand-kinematic.jpg" src="intro-media/stand-kinematic.mp4"></video></div><div class="execution-panel"><p>SPIDER<span class="video-mode">Physics execution</span></p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="SPIDER" poster="intro-media/spider.jpg" src="intro-media/spider.mp4?v=39e4853555"></video></div><div class="execution-panel"><p>HuMoTAR<span class="video-mode">Physics execution</span></p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub10_clothesstand_002.jpg" src="dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d"></video></div></div><figcaption>Fig. 2. Lifting and transporting a clothes stand. The kinematic reference prescribes the interaction without physics; HOI-Retarget + SPIDER loses balance and tips the stand, while HuMoTAR lifts, carries and places it.</figcaption></figure>
+<figure class="authored-video four-way-comparison" data-media-id="intro-stand-comparison"><div class="authored-video-views"><div class="execution-panel"><p>Human reference · SMPL<span class="video-mode" aria-hidden="true">&nbsp;</span></p><video controls muted playsinline preload="none" aria-label="Human reference · SMPL" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa"></video></div><div class="execution-panel"><p>Kinematic reference<span class="video-mode">HOI-Retarget · no physics</span></p><video controls muted playsinline preload="none" aria-label="Kinematic reference" poster="intro-media/stand-kinematic.jpg" src="intro-media/stand-kinematic.mp4"></video></div><div class="execution-panel"><p>SPIDER<span class="video-mode">Physics execution</span></p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="SPIDER" poster="intro-media/spider.jpg" src="intro-media/spider.mp4?v=39e4853555"></video></div><div class="execution-panel"><p>HuMoTAR<span class="video-mode">Physics execution</span></p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub10_clothesstand_002.jpg" src="dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d"></video></div></div><figcaption>Fig. 2. Lifting and transporting a clothes stand. SPIDER tips the stand; HuMoTAR completes the task.</figcaption></figure>
 <p>The above examples illustrate the gap between kinematic retargeting and physical execution. We execute the kinematic references provided by HOI-Retarget using SPIDER in physics simulation and compare them with HuMoTAR’s references. SPIDER fails to complete either task, while HuMoTAR achieves successful execution in physics simulation in both cases.</p>
 </section>
 <section id="method" class="outline-section">
@@ -137,22 +137,23 @@
 
 <span id="configurations" class="section-anchor"></span>
 
-<p><strong>HuMoTAR combines independent agentic refinement with simulation feedback.</strong> Each agent receives the human-motion reference, task scene and robot interfaces, then writes and tests motion and control code. We use the off-the-shelf <a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra</a> model and compare HuMoTAR with two simpler configurations to examine the contributions of iterative feedback and multiple agents.</p>
+<p><strong>HuMoTAR uses agentic refinement with simulation feedback.</strong> Each agent receives the human-motion reference, task scene and robot interfaces, then writes and tests motion and control code. We use the off-the-shelf <a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra</a> model to compare four workflows.</p>
 <ul>
-<li><strong>Astra one-shot</strong> produces a motion and controller in one response.</li>
+<li><strong>Astra one-shot</strong> produces a motion and controller in one response, without tool calls or further model revisions.</li>
 <li><strong><a href="https://github.com/openai/codex">Codex</a></strong> works in a persistent coding session, executing and revising its solution.</li>
-<li><strong>HuMoTAR</strong>, our harness, runs four independent Codex agents within a 30-minute refinement budget and retains the valid final execution with the lowest mean ADD. Two agents also receive optional retargeting tools for contact, geometry and tracking analysis. All four explore their own solutions without exchanging intermediate results.</li>
+<li><strong>Independent agentic swarm</strong> runs four Codex agents with a 30-minute refinement budget. Each develops its own solution without exchanging intermediate results.</li>
+<li><strong>Collaborative agentic swarm</strong> uses the same four-agent setup, but agents can share findings, request help and critique each other’s strategies during refinement. Each agent decides when to communicate and tests changes in its own simulation.</li>
 </ul>
+<p>Both swarms retain the valid final execution with the lowest mean object-tracking error (ADD).</p>
 <p>Executions combine the generated manipulation controller with <a href="https://arxiv.org/abs/2511.07820">SONIC</a> for whole-body tracking in <a href="https://mujoco.org/">MuJoCo</a>.</p>
 
 
 <figure id="refinement-loop" class="configuration-figure">
             <div class="configuration-grid" id="configuration-diagrams"></div>
-            <noscript><p class="comparison">Enable JavaScript to step through the three configurations. Their inputs and feedback loops are described above.</p></noscript>
-            <figcaption><strong>Fig. 3.</strong> Agent configurations evaluated in this study. Astra one-shot generates a motion and controller in one response. Codex iteratively revises its solution. HuMoTAR runs four independent agents, two with optional retargeting tools, and selects the final execution with the lowest mean ADD.</figcaption>
+            <noscript><p class="comparison">Enable JavaScript to step through the four configurations. Their inputs and feedback loops are described above.</p></noscript>
+            <figcaption><strong>Fig. 3.</strong> Four agentic workflows. Astra one-shot proposes once; Codex tests and revises. Both swarms run four Codex agents and select the best valid final execution. Only the collaborative swarm exchanges findings and critiques between agents.</figcaption>
           </figure>
 
-<p>Agents can write their own analysis and control code. Two ensemble agents also receive optional retargeting helpers for contact, geometry and motion analysis. See <a href="#retargeting-tools">the tool interfaces in the appendix</a> for details.</p>
 </section>
 <section id="refinement-results" class="outline-section">
 <h2 id="3-dynamic-retargeting-results">3. Dynamic retargeting results</h2>
@@ -525,7 +526,7 @@
     </div>
     <footer class="publication-footer"><span>HuMoTAR</span><a href="#top">Back to top ↑</a></footer>
   </main>
-  <script src="article.js?v=optional-retargeting-tools-2"></script>
+  <script src="article.js?v=four-agent-workflows-1"></script>
   <script src="walkthrough.js?v=humotar-story-2"></script>
 <script src="dynamics-showcase.js?v=captions-4" defer></script>
 <script src="kinematic-showcase.js?v=humotar-story-2" defer></script>

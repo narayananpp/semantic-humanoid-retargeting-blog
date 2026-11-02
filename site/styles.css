@@ -143,7 +143,7 @@ caption { caption-side: bottom; text-align: left; padding: 12px 0; color: var(--
 .metric-note { font-size: 12px; color: var(--muted); }
 /* Agent diagrams keep their existing interactive nodes. */
 .configuration-figure { padding: 24px; background: var(--surface); }
-.configuration-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.configuration-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
 .configuration-card { min-width: 0; background: var(--background); border: 1px solid var(--line); }
 .configuration-card header { padding: 24px 24px 0; min-height: 100px; }
 .configuration-card h4 { font: 24px/1.2 var(--serif); margin: 0 0 10px; }
@@ -167,8 +167,10 @@ caption { caption-side: bottom; text-align: left; padding: 12px 0; color: var(--
 .tool-icon path,.tool-icon circle { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .diagram-edge { fill: none; stroke: #a1aa99; stroke-width: 1.5; }
 .diagram-edge.is-active { stroke: #53694e; stroke-width: 2.5; }
+.peer-messages .diagram-edge { stroke: #9daab7; stroke-width: 1.2; stroke-dasharray: 3 3; }
+.peer-messages .diagram-edge.is-active { stroke: #58738b; stroke-width: 2; }
 .configuration-card marker path { fill: #7a8972; }
-.step-controls { display: flex; align-items: center; gap: 12px; padding: 16px 24px; border-top: 1px solid var(--line); }
+.step-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 16px 24px; border-top: 1px solid var(--line); }
 .step-controls button { padding: 8px 11px; background: none; border: 1px solid var(--line); font-size: 12px; }
 .step-controls button:last-child { margin-left: auto; }
 .step-count { font-size: 11px; color: var(--muted); }

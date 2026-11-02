@@ -19,12 +19,22 @@ const configurations = [
     ],
   },
   {
-    id: "ensemble", title: "Orchestration", subtitle: "Four agents, optional retargeting tools",
+    id: "ensemble", title: "Independent agentic swarm", subtitle: "Four Codex agents, separate refinement histories",
     steps: [
-      ["workers", "Start four independent refinements", "Each sandbox receives the same task and references. Two sessions use standard coding tools; two also receive optional retargeting tools for contact, geometry and tracking analysis, which they may use, modify or replace."],
+      ["workers", "Start four independent refinements", "Each agent receives the same task and references, with its own workspace and execution history."],
       ["simulation", "Test and revise independently", "Each session chooses its own trials and revises its controller or references. It keeps its own history and receives feedback from its executions."],
       ["feedback", "Continue refinement", "Evidence returns to the session that produced the trial. Discoveries are not shared between the four sessions."],
       ["evidence", "Select one final submission", "Python compares the independently evaluated final submissions and selects the valid execution with the lowest mean ADD. Position and orientation errors are reported for that same motion."],
+    ],
+  },
+  {
+    id: "collaborative", title: "Collaborative agentic swarm", subtitle: "Four Codex agents, shared findings and critiques",
+    steps: [
+      ["workers", "Start four refinements", "Four Codex agents receive the same task and references. Each has its own workspace and execution history."],
+      ["simulation", "Test a candidate", "Each agent runs its motion and controller in MuJoCo with SONIC, then inspects its own simulation feedback."],
+      ["communication", "Share findings and critique", "Agents decide when to send findings, ask peers for help or critique a proposed strategy. They can read these messages during refinement; there is no fixed exchange schedule."],
+      ["feedback", "Revise with peer feedback", "Each agent can use a peer’s findings to revise its own motion or controller, then test the change in simulation. Their code and execution histories remain separate."],
+      ["evidence", "Select one final submission", "The evaluator selects the valid final execution with the lowest mean ADD across the four agents, using the same selection rule as the independent swarm."],
     ],
   },
 ];
@@ -62,13 +72,19 @@ function diagram(config) {
       node("agent", "agent", 85, 140, 250, "Astra") + runtime +
       edge("agent", "M210 87 V137") + edge("simulation", "M210 192 V292") +
       edge("evidence", "M210 347 V372");
-  } else if (id === "ensemble") {
+  } else if (id === "ensemble" || id === "collaborative") {
+    const collaborative = id === "collaborative";
     flow = node("inputs", "artifact", 85, 25, 250, "Task and references", "", 45) +
-      '<rect class="diagram-scope" x="50" y="99" width="304" height="167" rx="14"/><text class="scope-label" x="66" y="117">Four isolated Codex sessions</text>' +
-      node("plain1", "agent", 61, 131, 136, "Codex", "") +
-      node("plain2", "agent", 208, 131, 136, "Codex", "") +
-      node("tools1", "agent", 61, 200, 136, "Codex", "") +
-      node("tools2", "agent", 208, 200, 136, "Codex", "") +
+      `<rect class="diagram-scope" x="50" y="99" width="304" height="167" rx="14"/><text class="scope-label" x="66" y="117">${collaborative ? "Four connected Codex sessions" : "Four isolated Codex sessions"}</text>` +
+      node("plain1", "agent", 61, 131, 120, "Codex", "") +
+      node("plain2", "agent", 222, 131, 120, "Codex", "") +
+      node("tools1", "agent", 61, 200, 120, "Codex", "") +
+      node("tools2", "agent", 222, 200, 120, "Codex", "") +
+      (collaborative ? `<g class="peer-messages" aria-label="Messages between agents">
+        <path data-edge="communication" class="diagram-edge" d="M185 157 H218" marker-start="url(#peer-${id})" marker-end="url(#peer-${id})"/>
+        <path data-edge="communication" class="diagram-edge" d="M185 226 H218" marker-start="url(#peer-${id})" marker-end="url(#peer-${id})"/>
+        <path data-edge="communication" class="diagram-edge" d="M201.5 157 V226"/>
+      </g>` : "") +
       node("simulation", "simulation", 85, 300, 250, "Simulation") +
       node("evidence", "evidence", 85, 381, 250, "Select one submission", "Python: lowest valid mean ADD") +
       edge("workers", "M210 70 V96") + edge("simulation", "M210 266 V297") +
@@ -84,7 +100,8 @@ function diagram(config) {
 
   }
   return `<svg viewBox="0 0 390 445" role="img" aria-label="${config.title} workflow">
-    <defs><marker id="arrow-${id}" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z"/></marker></defs>
+    <defs><marker id="arrow-${id}" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z"/></marker>
+    <marker id="peer-${id}" markerWidth="4" markerHeight="4" refX="3.5" refY="2" orient="auto-start-reverse"><path d="M0 0 L4 2 L0 4 Z"/></marker></defs>
     ${flow}
   </svg>`;
 }
@@ -93,12 +110,14 @@ const highlights = {
   agent: ["agent"], tools: ["agent"],
   simulation: ["simulation"], evidence: ["evidence"], feedback: ["agent"], revision: ["agent"],
   workers: ["plain1", "plain2", "tools1", "tools2"],
+  communication: ["plain1", "plain2", "tools1", "tools2"],
 };
 
 const configurationRoot = document.querySelector("#configuration-diagrams");
 for (const config of configurationRoot ? configurations : []) {
   const card = document.createElement("article");
   card.className = "configuration-card";
+  card.dataset.configuration = config.id;
   card.innerHTML = `<header><h4>${config.title}</h4><p>${config.subtitle}</p></header>
     ${diagram(config)}
     <div class="step-controls"><button type="button" data-step="previous" aria-label="Previous step in ${config.title}">←</button>
@@ -123,7 +142,7 @@ for (const config of configurationRoot ? configurations : []) {
   }, 3200);
   function showStep() {
     const [key, title, description] = config.steps[current];
-    const active = config.id === "ensemble" && key === "feedback" ? highlights.workers : highlights[key];
+    const active = ["ensemble", "collaborative"].includes(config.id) && key === "feedback" ? highlights.workers : highlights[key];
     card.querySelectorAll("[data-node]").forEach(el => el.classList.toggle("is-active", active.includes(el.dataset.node)));
     card.querySelectorAll("[data-edge]").forEach(el => el.classList.toggle("is-active", el.dataset.edge === key));
     card.querySelector(".step-count").textContent = `${current + 1} / ${config.steps.length}`;
@@ -131,7 +150,7 @@ for (const config of configurationRoot ? configurations : []) {
     card.querySelector(".step-description p").textContent = description;
     card.querySelector('[data-step="previous"]').disabled = current === 0;
     const next = card.querySelector('[data-step="next"]');
-    const restartLabel = config.id === "one-shot" || config.id === "ensemble" ? "Replay steps ↺" : "Next iteration ↺";
+    const restartLabel = config.id !== "plain" ? "Replay steps ↺" : "Next iteration ↺";
     next.textContent = current === config.steps.length - 1 ? restartLabel : "Step through →";
     next.setAttribute("aria-label", `${next.textContent} in ${config.title}`);
   }
