@@ -143,6 +143,6 @@
       "title": "Set down a floor lamp"
     }
   ],
-  "caption": "HuMoTAR refinement pipeline and six examples of contact and control adjustments. Astra generates motion and controller code, evaluates it in simulation and revises it using execution feedback. Panels (a\u2013f) show starting-pose correction, foot contact, grasp retention, coordinated transport, phase timing and object release.",
+  "caption": "Contact and control adjustments across six interactions: starting pose, contact acquisition, grasp retention, whole-body coordination, motion timing and release.",
   "heading": "Refining contact, support and motion"
 }

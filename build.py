@@ -152,7 +152,7 @@ class PageLinks(HTMLParser):
             self.images.append(attrs["src"])
 
 
-def refinement_panel():
+def refinement_architecture():
     """Render evidence-backed stills; editable copy and callouts live in content/."""
     data = read_json(CONTENT / "refinement-panel.json")
     pipeline = data.get("pipeline")
@@ -165,6 +165,13 @@ def refinement_panel():
             f'<img src="{escape(pipeline["image"])}" alt="{escape(pipeline["alt"])}" '
             f'width="{pipeline["width"]}" height="{pipeline["height"]}" loading="lazy"></a>'
         )
+    return ('<figure class="refinement-panel">' + pipeline_html
+            + '<figcaption><strong>HuMoTAR architecture.</strong> Motion and control refinement through simulation feedback.</figcaption></figure>')
+
+
+def refinement_panel():
+    """Render contact and motion examples separately from the architecture."""
+    data = read_json(CONTENT / "refinement-panel.json")
     cards = []
     for number, card in enumerate(data["cards"], 1):
         letter = chr(ord("a") + number - 1)
@@ -192,8 +199,6 @@ def refinement_panel():
         )
     return (
         '<figure class="refinement-panel" id="refinement-figure-5">'
-        f'{pipeline_html}'
-        f'<h3 class="refinement-examples-heading">{escape(data.get("heading", "Refining contact, support and motion"))}</h3>'
         f'<div class="consideration-grid">{"".join(cards)}</div>'
         f'<figcaption><strong>Figure 5.</strong> {escape(data["caption"])}</figcaption></figure>'
     )
@@ -209,6 +214,7 @@ def render_pages():
             re.S,
         )
     )
+    components["refinement-architecture"] = refinement_architecture()
     components["refinement-considerations"] = refinement_panel()
     parts, headings, introductions = {}, {}, {}
     for page, spec in config["pages"].items():
