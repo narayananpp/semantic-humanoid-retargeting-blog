@@ -27,8 +27,6 @@
 <a href="#agent-diagnosis">3. Inside the refinement process</a>
 <a class="subsection" href="#kinematic-to-dynamic">3.1 How does the agent refine an interaction in simulation?</a>
 <a class="subsection" href="#agentic-refinement-walkthrough">3.2 Agentic refinement walkthrough</a>
-<a class="subsection" href="#refinement-progress">3.3 Tracking error during refinement</a>
-<a class="subsection" href="#early-stopping">3.4 How much refinement can a shorter budget retain?</a>
 <a href="#refinement-results">4. Retargeting results and analysis</a>
 <a class="subsection" href="#dynamics-metrics">Evaluation metrics</a>
 <a class="subsection" href="#comparison-results">4.1 Comparison with existing approaches</a>
@@ -224,30 +222,8 @@
 </div>
 <p><strong>Fig. 6 (continued).</strong> Initial and refined references for the clothes-stand interaction. The figure includes physical execution; the video shows reference geometry without online controller corrections.</p>
 </section>
-<section id="refinement-progress-panel" class="outline-section execution-analysis">
-<h3 id="refinement-progress">3.3 Tracking error during refinement</h3>
 
 
-<figure class="aggregate-refinement-plot" id="aggregate-refinement-plot">
-  <img src="assets/refinement/aggregate-tracking.svg" width="1320" height="410" loading="lazy" alt="Three side-by-side step plots of mean ADD, position error and orientation error across all 40 benchmark tasks. Dark curves show the overall mean; light curves show each dataset. The view spans 30 minutes, including no-experience continuations for the staged searches.">
-  <figcaption><strong>Fig. 7.</strong> Mean tracking errors during 30 minutes of iterative refinement on 20 HUMOTO and 20 OMOMO tasks. The dark curve averages all 40 tasks; the lighter curves show each dataset.</figcaption>
-</figure>
-
-<p>A kinematic reference specifies the intended motion, but execution can produce large errors when contact fails or the robot cannot support the load. Figure 7 follows the performance of the iterative refinement process over a 30-minute budget. Each step reflects a new best execution as the agent revises the motion or controller. The dark curve averages across all tasks; the lighter curves show HUMOTO and OMOMO separately. The larger drops indicate substantial improvements, followed by smaller corrections as refinement progresses.</p>
-<p>Mean ADD selects the best execution at each point; position and orientation report that same execution. The curves begin when all tasks have a scored execution; the unrefined kinematic replay was not recorded consistently enough to mark a shared starting value.</p>
-</section>
-<section id="early-stopping-panel" class="outline-section execution-analysis">
-<h3 id="early-stopping">3.4 How much refinement can a shorter budget retain?</h3>
-
-
-<figure id="early-stopping-figure">
-<img src="assets/refinement/early-stopping.svg" width="1320" height="470" loading="lazy" alt="Mean tracking errors over 30 minutes, with dotted lines marking average times to 90, 95 and 99 percent of recorded mean ADD reduction.">
-<figcaption><strong>Fig. 8.</strong> Tracking errors and refinement milestones across 20 HUMOTO and 20 OMOMO tasks. Vertical dotted lines mark the average time to achieve 90%, 95% and 99% of each task’s 30-minute ADD reduction: <strong>20.4, 22.3 and 23.3 minutes</strong>, respectively. Milestones are computed from mean ADD and repeated across the three metric panels.</figcaption>
-</figure>
-
-<p><strong>Early stopping limits the time spent on iterative refinement while retaining the best reference motion output obtained so far.</strong> Here, the stopping condition is elapsed refinement time: at a chosen cutoff, we retain the reference motion output and its controller from the refinement stage with the lowest measured mean ADD for each task. We evaluate this condition retrospectively using the recorded executions and token usage from the full 30-minute runs.</p>
-<p>Figure 8 marks the average time each task takes to reach <strong>90%, 95% and 99% of its recorded ADD reduction</strong>. The <strong>95% milestone averages 22.3 minutes</strong>, which motivates a 22.3-minute early-stopping cutoff. Stopping every task at that time retains <strong>88.4% of the improvement on average</strong>, because individual tasks reach their milestones at different times.</p>
-</section>
 <section id="refinement-results" class="outline-section">
 <h2 id="4-retargeting-results-and-analysis">4. Retargeting results and analysis</h2>
 

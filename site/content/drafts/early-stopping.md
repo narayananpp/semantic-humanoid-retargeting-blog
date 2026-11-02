@@ -1,3 +1,9 @@
+<!-- Parked for later placement. Not included in site.json or the published page.
+Original section: 3.4, id=early-stopping-panel, class=outline-section execution-analysis.
+The early-stopping-plot component and assets/refinement/early-stopping.svg remain in place.
+To restore, add this file to site.json and update its section and figure numbering.
+-->
+
 ### 3.4 How much refinement can a shorter budget retain? {#early-stopping}
 
 ::: component early-stopping-plot
