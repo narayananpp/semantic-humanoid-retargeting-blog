@@ -143,7 +143,7 @@
 <li><strong>Astra one-shot</strong> generates motion and control code in one response, without tool calls or further revisions.</li>
 <li><strong><a href="https://github.com/openai/codex">Codex</a></strong> tests and revises its solution in a persistent coding session.</li>
 <li><strong>Independent agentic swarm</strong> runs four Codex agents that develop their solutions independently.</li>
-<li><strong>Collaborative agentic swarm</strong> runs four Codex agents that can share findings, request help and critique each other’s strategies.</li>
+<li><strong>Collaborative agentic swarm</strong> runs four Codex agents that can communicate directly with one another to share findings, request help and critique strategies.</li>
 </ul>
 <p>For each task, the inputs to <strong>HuMoTAR</strong> are the human demonstration in SMPL format, an initial kinematic reference from HOI-Retarget, the task scene and the target object trajectory. The object trajectory is scaled for the robot and specifies the desired object motion. The agents write Python code to generate and refine <em>a reference motion for the whole body and hands</em>, which is the output of the framework.</p>
 <p>The motion references and control code are executed in <strong><a href="https://mujoco.org/">MuJoCo</a></strong> with <strong><a href="https://arxiv.org/abs/2511.07820">SONIC</a> as the whole-body controller</strong>. After each simulation, the agent inspects <strong>images of the execution, object-tracking errors and contact measurements</strong>. The available feedback is described in the <a href="#simulation-feedback">appendix</a>.</p>
