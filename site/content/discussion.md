@@ -1,4 +1,4 @@
-## 6. Discussion
+## 7. Discussion
 
 ### Limits of the metrics {#metric-limitations}
 

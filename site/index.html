@@ -24,19 +24,19 @@
 <a class="subsection" href="#carry-and-place-a-chair">Carry and place a chair</a>
 <a class="subsection" href="#lift-carry-and-place-a-clothes-stand">Lift, carry and place a clothes stand</a>
 <a href="#method">2. Comparing agentic workflows for humanoid retargeting</a>
-<a href="#agent-diagnosis">3. Inside the refinement process</a>
-<a class="subsection" href="#kinematic-to-dynamic">3.1 How does the agent refine an interaction in simulation?</a>
-<a class="subsection" href="#agentic-refinement-walkthrough">3.2 Agentic refinement walkthrough</a>
-<a href="#refinement-results">4. Retargeting results and analysis</a>
-<a class="subsection" href="#dynamics-metrics">Evaluation metrics</a>
-<a class="subsection" href="#comparison-results">4.1 Comparison with existing approaches</a>
-<a class="subsection" href="#matched-time">4.2 Matched time: single-agent refinement versus swarms</a>
-<a class="subsection" href="#inter-agent-communication">4.3 The effect of inter-agent communication</a>
-<a class="subsection" href="#matched-agent-hours">4.4 Matched compute: longer iterative refinement</a>
-<a class="subsection" href="#compute-time-tradeoff">4.5 The compute–time tradeoff</a>
-<a href="#experience">5. Does experience matter?</a>
+<a href="#evaluation-metrics">3. Evaluation metrics</a>
+<a href="#agent-diagnosis">4. Inside the refinement process</a>
+<a class="subsection" href="#kinematic-to-dynamic">4.1 How does the agent refine an interaction in simulation?</a>
+<a class="subsection" href="#agentic-refinement-walkthrough">4.2 Agentic refinement walkthrough</a>
+<a href="#refinement-results">5. Retargeting results and analysis</a>
+<a class="subsection" href="#comparison-results">5.1 Comparison with existing approaches</a>
+<a class="subsection" href="#matched-time">5.2 Matched time: single-agent refinement versus swarms</a>
+<a class="subsection" href="#inter-agent-communication">5.3 The effect of inter-agent communication</a>
+<a class="subsection" href="#matched-agent-hours">5.4 Matched compute: longer iterative refinement</a>
+<a class="subsection" href="#compute-time-tradeoff">5.5 The compute–time tradeoff</a>
+<a href="#experience">6. Does experience matter?</a>
 <a class="subsection" href="#comparing-refinement-with-and-without-experience">Comparing refinement with and without experience</a>
-<a href="#discussion">6. Discussion</a>
+<a href="#discussion">7. Discussion</a>
 <a class="subsection" href="#metric-limitations">Limits of the metrics</a>
 <a class="subsection" href="#rl-fine-tuning">RL fine-tuning</a>
 <a class="subsection" href="#failure-analysis">Failure cases in dynamic retargeting</a>
@@ -160,13 +160,24 @@
           </figure>
 
 </section>
+<section id="evaluation-metrics" class="outline-section">
+<h2 id="dynamics-metrics">3. Evaluation metrics</h2>
+<p>We evaluate <strong>20 HUMOTO and 20 OMOMO tasks</strong> using object-tracking errors and semantic success. Object tracking compares the simulated object motion with the demonstrated trajectory scaled for G1. We do not require the object to reach each position at the same time in the human demonstration and the robot execution, since the robot may move at a different speed. Instead, we compare corresponding stages of the object’s motion.</p>
+<ul>
+<li><strong>Mean ADD (cm):</strong> The average distance between corresponding points on the object at aligned poses. It captures both position and orientation error. <strong>Lower is better.</strong></li>
+<li><strong>Position error (cm):</strong> The average distance between the simulated and target object positions. <strong>Lower is better.</strong></li>
+<li><strong>Orientation error (°):</strong> The average angular difference between the simulated and target object orientations. <strong>Lower is better.</strong></li>
+<li><strong>Semantic success:</strong> Astra compares the human SMPL video with the executed robot video and judges whether the robot completes the intended task. Each task receives a <strong>PASS or FAIL</strong> judgment. Across tasks, we report the percentage that pass. <strong>Higher is better.</strong></li>
+</ul>
+<p>Object-tracking errors are averaged equally across tasks. The <a href="#semantic-evaluation">evaluation protocol</a> provides the judge prompt and review criteria.</p>
+</section>
 <section id="agent-diagnosis" class="outline-section execution-analysis">
-<h2 id="3-inside-the-refinement-process">3. Inside the refinement process</h2>
+<h2 id="4-inside-the-refinement-process">4. Inside the refinement process</h2>
 
 
 <span id="reference-deviation" class="section-anchor"></span>
 
-<h3 id="kinematic-to-dynamic">3.1 How does the agent refine an interaction in simulation?</h3>
+<h3 id="kinematic-to-dynamic">4.1 How does the agent refine an interaction in simulation?</h3>
 <p>We begin with a human demonstration and an initial G1 motion from HOI-Retarget. The scaled object trajectory defines the interaction goal, while the robot's motion and controller remain open to refinement. Figure 5 shows how Astra turns this starting reference into a program that can be executed, inspected and revised in simulation.</p>
 <p><strong>Astra writes executable Python code.</strong> The code can construct wrist trajectories, solve inverse kinematics for arm and waist joints, adjust finger targets, and change the duration of individual motion phases. Across the recorded runs, agents also implement joint-impedance control, object-pose feedback and contact-dependent transitions; some try constrained inverse dynamics to compute joint torques. These strategies are implemented in the generated program, together with any revised reference trajectories and initialization.</p>
 <p>Physical execution requires whole-body control to support the robot and hand control to manipulate the object. We use <strong><a href="https://arxiv.org/abs/2511.07820">SONIC</a> as a frozen whole-body policy</strong>, tracking a motion reference at 50 Hz. Its 29 body joints include the arms and wrists, but not the Dex3 fingers. To control the interaction, Astra writes a <strong>custom hand and arm controller in Python</strong>. This controller commands the fingers and, when needed, replaces SONIC’s arm commands with targets, gains and feedforward torques suited to the task.</p>
@@ -178,7 +189,7 @@
 
 </section>
 <section id="refinement-walkthrough-panel" class="outline-section execution-analysis">
-<h3 id="agentic-refinement-walkthrough">3.2 Agentic refinement walkthrough</h3>
+<h3 id="agentic-refinement-walkthrough">4.2 Agentic refinement walkthrough</h3>
 <p>Here we follow the agent selected by our orchestrator harness through a complete refinement of the clothes-stand interaction from <strong>Figure 5</strong>. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved revisions trace how the agent resolves a slipping grasp, brings the body into the motion and completes release.</p>
 <p><a class="trace-explorer-link" href="trace-explorer.html"><span><strong>Explore the recorded run</strong><span>Rotate the robot view, replay saved trials, and inspect the original calls and code.</span></span><span aria-hidden="true">↗</span></a></p>
 <div class="refinement-walkthrough" id="clothesstand-walkthrough" data-refinement-walkthrough>
@@ -226,7 +237,7 @@
 
 
 <section id="refinement-results" class="outline-section">
-<h2 id="4-retargeting-results-and-analysis">4. Retargeting results and analysis</h2>
+<h2 id="5-retargeting-results-and-analysis">5. Retargeting results and analysis</h2>
 
 
 <span id="agent-comparison" class="section-anchor"></span>
@@ -235,17 +246,7 @@
 
 <span id="study-design" class="section-anchor"></span>
 
-<h3 id="dynamics-metrics">Evaluation metrics</h3>
-<p>Results cover <strong>20 HUMOTO and 20 OMOMO tasks</strong>. We report <strong>object-tracking errors</strong> and <strong>semantic success</strong> for each comparison.</p>
-<p><strong>Object tracking.</strong> We compare the object’s pose in the simulated execution with the human-reference object trajectory scaled for G1. The target trajectory stays fixed, and the object’s size is unchanged. We align the two paths by progress through translation and rotation rather than elapsed time, so the robot can move at a different speed or pause.</p>
-<ul>
-<li><strong>Mean ADD (cm):</strong> at each aligned pair of object poses, we measure the distances between corresponding points on the object. The average over points and the trajectory captures both position and orientation error.</li>
-<li><strong>Position error (cm):</strong> the average distance between the simulated and target object origins.</li>
-<li><strong>Orientation error (°):</strong> the average angle between the simulated and target object orientations.</li>
-</ul>
-<p>All three errors are averaged equally across tasks. <strong>Lower is better.</strong></p>
-<p><strong>Semantic success.</strong> Astra compares the human demonstration with the robot execution and judges whether the intended object interaction is completed. Exact timing, posture and grasp need not match. We report the percentage of tasks judged PASS, after a separate review for obvious initial hand–object penetration. Incomplete executions count as unsuccessful. <strong>Higher is better.</strong> The <a href="#semantic-evaluation">evaluation protocol</a> includes the judge prompt and review criteria.</p>
-<h3 id="comparison-results">4.1 Comparison with existing approaches</h3>
+<h3 id="comparison-results">5.1 Comparison with existing approaches</h3>
 
 
 <div id="dynamics-showcase" class="dynamics-showcase" aria-label="Selected task executions"></div>
@@ -287,7 +288,7 @@
 <td><strong>8/20 · 40.0%</strong></td></tr>
 </tbody></table></div>
 
-<h3 id="matched-time">4.2 Matched time: single-agent refinement versus swarms</h3>
+<h3 id="matched-time">5.2 Matched time: single-agent refinement versus swarms</h3>
 
 
 <div class="matched-time-visuals" data-matched-time-curves>
@@ -342,7 +343,7 @@
 <td><strong>15/20 · 75.0%</strong></td></tr>
 </tbody></table></div>
 
-<h3 id="inter-agent-communication">4.3 The effect of inter-agent communication</h3>
+<h3 id="inter-agent-communication">5.3 The effect of inter-agent communication</h3>
 
 
 <figure class="results-plot"><img src="assets/analysis/results/communication.svg" alt="Independent and collaborative final executions compared task by task for semantic outcomes and mean ADD." loading="lazy" width="1100" height="410"></figure>
@@ -388,7 +389,7 @@
 </div>
 </details>
 
-<h3 id="matched-agent-hours">4.4 Matched compute: longer iterative refinement</h3>
+<h3 id="matched-agent-hours">5.4 Matched compute: longer iterative refinement</h3>
 
 
 <figure class="results-plot"><img src="assets/analysis/results/agent-hours.svg?v=curves-2" alt="Final semantic success on 40 tasks and recorded ADD curves on 35 paired tasks against allocated agent-hours, comparing the collaborative swarm with longer Codex refinement." loading="lazy" width="1100" height="410"></figure><div class="table-wrap results-table"><table id="agent-hours-table" aria-label="Tracking error and semantic success"><thead><tr><th scope="col">Method</th><th scope="col">Tracking tasks</th><th scope="col">Mean ADD (cm) ↓</th><th scope="col">Position error (cm) ↓</th><th scope="col">Orientation error (°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody>
@@ -421,14 +422,14 @@
 
 <figure class="results-plot"><img src="assets/analysis/results/within-run-tracking.svg" width="1200" height="360" loading="lazy" alt="Recorded tracking errors throughout two-hour Codex refinement. Faint lines show individual tasks; the teal mean follows the same 35 tasks from 30 to 120 minutes."></figure>
 
-<h3 id="compute-time-tradeoff">4.5 The compute–time tradeoff</h3>
+<h3 id="compute-time-tradeoff">5.5 The compute–time tradeoff</h3>
 
 
 <figure class="results-plot"><img src="assets/analysis/results/tradeoff.svg?v=curves-2" alt="Final semantic success on 40 tasks and overlaid recorded ADD curves on 35 paired tasks against refinement time, comparing Codex, independent swarm, collaborative swarm and two-hour Codex." loading="lazy" width="1100" height="410"></figure>
 
 </section>
 <section id="experience">
-<h2 id="5-does-experience-matter">5. Does experience matter?</h2>
+<h2 id="6-does-experience-matter">6. Does experience matter?</h2>
 <p><strong>Yes, related experience helps in the shelf-righting example, but the benefit depends on what transfers to the new task.</strong> Reports from other furniture interactions help G1 complete the lift, reducing mean ADD from <strong>23.35 to 7.77 cm</strong> compared with continuing without experience. Both continuations start from the same checkpoint and receive the same refinement time.</p>
 </section>
 <section id="experience-setup" class=" inline-experience">
@@ -444,7 +445,7 @@
 
 </article>
 <section id="discussion" class="outline-section">
-<h2 id="6-discussion">6. Discussion</h2>
+<h2 id="7-discussion">7. Discussion</h2>
 <h3 id="metric-limitations">Limits of the metrics</h3>
 <p><strong>We posit that retargeting should be evaluated by the successful transfer of an interaction’s semantic intent.</strong> In this study, object tracking provides a measurable objective for preserving the intended object motion. It is possible, however, for executions with similar tracking errors to differ in how fully they accomplish the task. User studies could complement these measurements by assessing whether the intended interaction is preserved. LLM-based judges could also supply semantic feedback during refinement and evaluation. We encourage the community to explore these directions and assess their agreement with human judgments.</p>
 <h3 id="rl-fine-tuning">RL fine-tuning</h3>

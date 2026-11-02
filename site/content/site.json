@@ -26,6 +26,12 @@
           "class": "outline-section"
         },
         {
+          "file": "evaluation-metrics.md",
+          "tag": "section",
+          "id": "evaluation-metrics",
+          "class": "outline-section"
+        },
+        {
           "file": "agent-diagnosis.md",
           "tag": "section",
           "id": "agent-diagnosis",

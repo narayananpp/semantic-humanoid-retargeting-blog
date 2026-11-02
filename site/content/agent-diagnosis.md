@@ -1,8 +1,8 @@
-## 3. Inside the refinement process
+## 4. Inside the refinement process
 
 ::: anchor reference-deviation
 
-### 3.1 How does the agent refine an interaction in simulation? {#kinematic-to-dynamic}
+### 4.1 How does the agent refine an interaction in simulation? {#kinematic-to-dynamic}
 
 We begin with a human demonstration and an initial G1 motion from HOI-Retarget. The scaled object trajectory defines the interaction goal, while the robot's motion and controller remain open to refinement. Figure 5 shows how Astra turns this starting reference into a program that can be executed, inspected and revised in simulation.
 
