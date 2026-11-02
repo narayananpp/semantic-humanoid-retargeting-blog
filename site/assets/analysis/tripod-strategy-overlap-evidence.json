@@ -1,22 +1,235 @@
 {
   "task": "sub12_tripod_023",
-  "scope": "Selected reports, not a complete inventory of trials. Roles summarize work agents explicitly took on during the run, not preset assignments. Times relative to each worker session. Two-hand grasp overlap is not identical experiments or measured wasted time. Cross-agent arrows show verified reuse; same-agent arrows show subsequent refinements.",
+  "scope": "Qualitative stages, not elapsed time, utilization, or a complete inventory of trials. Roles summarize work agents explicitly took on during the run, not preset assignments. Blue cells show two independent two-hand-grasp tests; shared strategy is not identical experiments or measured wasted time. Collaborative arrows show verified code handoffs.",
+  "nodes": [
+    {
+      "mode": "independent",
+      "worker": 0,
+      "stage": 0,
+      "label": "One-hand grasp",
+      "events": [
+        "independent-0-501"
+      ]
+    },
+    {
+      "mode": "independent",
+      "worker": 0,
+      "stage": 1,
+      "label": "Change stance",
+      "events": [
+        "independent-0-1081"
+      ]
+    },
+    {
+      "mode": "independent",
+      "worker": 0,
+      "stage": 2,
+      "label": "Still holding",
+      "events": [
+        "independent-0-1350"
+      ]
+    },
+    {
+      "mode": "independent",
+      "worker": 1,
+      "stage": 0,
+      "label": "Balance test",
+      "events": [
+        "independent-1-580"
+      ]
+    },
+    {
+      "mode": "independent",
+      "worker": 1,
+      "stage": 1,
+      "label": "Walking tests",
+      "events": [
+        "independent-1-1059"
+      ]
+    },
+    {
+      "mode": "independent",
+      "worker": 1,
+      "stage": 2,
+      "label": "Still holding",
+      "events": [
+        "independent-1-1260"
+      ]
+    },
+    {
+      "mode": "independent",
+      "worker": 2,
+      "stage": 0,
+      "label": "Two-hand grasp",
+      "events": [
+        "independent-2-743"
+      ]
+    },
+    {
+      "mode": "independent",
+      "worker": 2,
+      "stage": 1,
+      "label": "One-hand grasp",
+      "events": [
+        "independent-2-983"
+      ]
+    },
+    {
+      "mode": "independent",
+      "worker": 2,
+      "stage": 2,
+      "label": "Still holding",
+      "events": [
+        "independent-2-1391"
+      ]
+    },
+    {
+      "mode": "independent",
+      "worker": 3,
+      "stage": 0,
+      "label": "Two-hand grasp",
+      "events": [
+        "independent-3-893"
+      ]
+    },
+    {
+      "mode": "independent",
+      "worker": 3,
+      "stage": 1,
+      "label": "Lower one-hand\ngrasp",
+      "events": [
+        "independent-3-1210"
+      ]
+    },
+    {
+      "mode": "independent",
+      "worker": 3,
+      "stage": 2,
+      "label": "Loses grasp",
+      "events": [
+        "independent-3-1489"
+      ]
+    },
+    {
+      "mode": "collaborative",
+      "worker": 0,
+      "stage": 0,
+      "label": "Grasp &\nfingers",
+      "events": [
+        "collaborative-0-410"
+      ]
+    },
+    {
+      "mode": "collaborative",
+      "worker": 1,
+      "stage": 0,
+      "label": "Final\nplacement",
+      "events": [
+        "collaborative-1-968"
+      ]
+    },
+    {
+      "mode": "collaborative",
+      "worker": 2,
+      "stage": 0,
+      "label": "Tripod position\n& rotation",
+      "events": [
+        "collaborative-2-668"
+      ]
+    },
+    {
+      "mode": "collaborative",
+      "worker": 3,
+      "stage": 0,
+      "label": "Body\ncoordination",
+      "events": [
+        "collaborative-3-410"
+      ]
+    },
+    {
+      "mode": "collaborative",
+      "worker": 0,
+      "stage": 1,
+      "label": "Share grasp",
+      "events": [
+        "collaborative-0-328"
+      ]
+    },
+    {
+      "mode": "collaborative",
+      "worker": 1,
+      "stage": 1,
+      "label": "Share upright\nplacement",
+      "events": [
+        "collaborative-1-1519"
+      ]
+    },
+    {
+      "mode": "collaborative",
+      "worker": 2,
+      "stage": 1,
+      "label": "Test body control\nCorrect tripod motion",
+      "events": [
+        "collaborative-2-747",
+        "collaborative-2-1154"
+      ]
+    },
+    {
+      "mode": "collaborative",
+      "worker": 3,
+      "stage": 1,
+      "label": "Use shared grasp\nAdd body control",
+      "events": [
+        "collaborative-3-410",
+        "collaborative-3-701"
+      ]
+    },
+    {
+      "mode": "collaborative",
+      "worker": 0,
+      "stage": 2,
+      "label": "Test shared\nplacement",
+      "events": [
+        "collaborative-0-1592"
+      ]
+    },
+    {
+      "mode": "collaborative",
+      "worker": 1,
+      "stage": 2,
+      "label": "Test improved\nplacement",
+      "events": [
+        "collaborative-1-1980"
+      ]
+    },
+    {
+      "mode": "collaborative",
+      "worker": 2,
+      "stage": 2,
+      "label": "Improve\nplacement",
+      "events": [
+        "collaborative-2-1770",
+        "collaborative-2-2041"
+      ]
+    },
+    {
+      "mode": "collaborative",
+      "worker": 3,
+      "stage": 2,
+      "label": "Test improved\nplacement",
+      "events": [
+        "collaborative-3-2019"
+      ]
+    }
+  ],
   "links": [
     {
       "source": "collaborative-0-328",
       "target": "collaborative-3-410"
     },
     {
-      "source": "collaborative-3-410",
-      "target": "collaborative-3-701"
-    },
-    {
       "source": "collaborative-3-701",
       "target": "collaborative-2-747"
-    },
-    {
-      "source": "collaborative-2-747",
-      "target": "collaborative-2-1154"
     },
     {
       "source": "collaborative-2-1154",
@@ -29,10 +242,6 @@
     {
       "source": "collaborative-1-1519",
       "target": "collaborative-2-1770"
-    },
-    {
-      "source": "collaborative-2-1770",
-      "target": "collaborative-2-2041"
     },
     {
       "source": "collaborative-2-2041",
@@ -75,6 +284,72 @@
     }
   },
   "events": [
+    {
+      "id": "independent-0-501",
+      "mode": "independent",
+      "worker": 0,
+      "line": 501,
+      "minute": 8.31257385,
+      "label": "One-hand grasp",
+      "quote": "The first rollout kept the robot upright and moved the tripod about 1.23 m, but the grasp slipped and the tripod drifted sideways and tilted. Its full-curve mean ADD was 0.414 m. I\u2019m adjusting wrist tracking and grip strength to reduce that drift and maintain control.",
+      "source": "job/call/events.jsonl",
+      "source_sha256": "a040eac1cd002c516e811b978ad19568d289390af892774dceb7eb4124741fb5"
+    },
+    {
+      "id": "independent-0-1081",
+      "mode": "independent",
+      "worker": 0,
+      "line": 1081,
+      "minute": 23.032686833333333,
+      "label": "Change stance",
+      "quote": "Rotating the starting stance improved the walking direction: mean ADD is now 0.133 m, position error 0.096 m, and orientation error 17.71\u00b0, with the robot upright throughout. The remaining endpoint error appears tied to the right arm reaching across the torso. I\u2019m testing a torso-yaw adjustment and stronger grasp correction.",
+      "source": "job/call/events.jsonl",
+      "source_sha256": "a040eac1cd002c516e811b978ad19568d289390af892774dceb7eb4124741fb5"
+    },
+    {
+      "id": "independent-1-580",
+      "mode": "independent",
+      "worker": 1,
+      "line": 580,
+      "minute": 10.789936083333334,
+      "label": "Balance test",
+      "quote": "The revised balance controller held the corrected standing posture for three seconds with about 1 mm of root-position error and no self-contact. I\u2019m now testing slower steps that shift weight onto the supporting foot before each swing. SONIC remains active as a posture reference, while joint torques control balance and hand tracking.",
+      "source": "job/call/events.jsonl",
+      "source_sha256": "66c81b4862620c8e4de422dbb8136034f7dec8b12c33b66e900b50cc520db6b6"
+    },
+    {
+      "id": "independent-1-1059",
+      "mode": "independent",
+      "worker": 1,
+      "line": 1059,
+      "minute": 23.790715766666665,
+      "label": "Walking tests",
+      "quote": "The custom walking trials still fail during later support transfers. I\u2019m returning to the SONIC-based rollout that stayed upright, adding object-slip feedback and a standing finish. I\u2019ll select the final submission from measured complete rollouts and state explicitly if it does not complete the task.",
+      "source": "job/call/events.jsonl",
+      "source_sha256": "66c81b4862620c8e4de422dbb8136034f7dec8b12c33b66e900b50cc520db6b6"
+    },
+    {
+      "id": "independent-2-983",
+      "mode": "independent",
+      "worker": 2,
+      "line": 983,
+      "minute": 20.31921901666667,
+      "label": "One-hand grasp",
+      "quote": "Restoring the source walking cadence made a large difference. The latest single-hand rollout moved the object about 1.01 m, kept the robot upright, and reduced the time-based position RMSE to 0.118 m. I\u2019m now checking the required full-curve scores and tuning this candidate.",
+      "source": "job/call/events.jsonl",
+      "source_sha256": "35c224fc18b67ab455417ca157ef409c62e74169ca86366ae5ef4938180a3e6a"
+    },
+    {
+      "id": "independent-3-1210",
+      "mode": "independent",
+      "worker": 3,
+      "line": 1210,
+      "minute": 21.637583533333334,
+      "label": "Lower one-hand grasp",
+      "quote": "The waist-assisted test caused a fall and is rejected. The lower grasp kept the robot upright but still lifted and rotated the tripod incorrectly. I\u2019m testing one final posture change: start facing along the main walking direction, which should reduce the early sideways drift, with a mid-height grasp and fresh clearance checks.",
+      "source": "job/call/events.jsonl",
+      "source_sha256": "85084f15a3ca1481b671206f08db65be218ce65d64d3814ba3dac251720710dc"
+    },
     {
       "id": "independent-0-1350",
       "mode": "independent",
