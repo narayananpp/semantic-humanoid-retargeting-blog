@@ -38,3 +38,76 @@
     }
   }).catch(()=>roots.forEach(root=>root.append(el('p','The recorded results could not be loaded. Please reload the page.'))));
 })();
+
+/* Dataset tabs for the recorded matched-time ADD histories. */
+(() => {
+  for (const root of document.querySelectorAll('[data-matched-time-curves]')) {
+    const tabs = [...root.querySelectorAll('[data-add-dataset]')];
+    const individual = root.querySelector('[data-add-individual]');
+    function select(tab, focus = false) {
+      for (const item of tabs) {
+        const active = item === tab;
+        item.setAttribute('aria-selected', String(active));
+        item.tabIndex = active ? 0 : -1;
+        document.getElementById(item.getAttribute('aria-controls')).hidden = !active;
+      }
+      if (focus) tab.focus();
+    }
+    for (const tab of tabs) {
+      tab.addEventListener('click', () => select(tab));
+      tab.addEventListener('keydown', event => {
+        const index = tabs.indexOf(tab);
+        let next;
+        if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = tabs.length - 1;
+        if (next !== undefined) { event.preventDefault(); select(tabs[next], true); }
+      });
+    }
+    individual.addEventListener('change', () => {
+      for (const img of root.querySelectorAll('[data-add-image]')) {
+        const base = `assets/analysis/results/matched-time-add-${img.dataset.addImage}${individual.checked ? '-tasks' : ''}`;
+        img.src = `${base}.svg`;
+        img.closest('picture').querySelector('source').srcset = `${base}-mobile.svg`;
+      }
+    });
+  }
+})();
+
+/* Original trace excerpts for the communication timeline. */
+(() => {
+  const roots = [...document.querySelectorAll('[data-communication-trace]')];
+  if (!roots.length) return;
+  const data = fetch('assets/analysis/communication-trace.json').then(response => {
+    if (!response.ok) throw Error(response.status);
+    return response.json();
+  });
+  for (const root of roots) {
+    const details = root.querySelector('.communication-trace-source');
+    const panel = root.querySelector('[data-communication-detail]');
+    async function show(node) {
+      details.open = true;
+      panel.textContent = 'Loading original excerpt…';
+      for (const other of root.querySelectorAll('[data-communication-event]')) other.classList.toggle('is-selected', other === node);
+      try {
+        const trace = await data;
+        const event = trace.events.find(item => item.id === node.dataset.communicationEvent);
+        if (!node.classList.contains('is-selected')) return;
+        const heading = document.createElement('strong');
+        heading.textContent = `${event.mode === 'independent' ? 'Independent' : 'Collaborative'} swarm · Worker ${event.worker + 1} · ${event.minute.toFixed(1)} min`;
+        const quote = document.createElement('blockquote'); quote.textContent = event.quote;
+        const source = document.createElement('div'); source.className = 'communication-trace-provenance';
+        source.textContent = `${event.tool} · Worker ${String(event.worker).padStart(2, '0')} · ${event.source}:${event.line}`;
+        const hash = document.createElement('div'); hash.className = 'communication-trace-provenance'; hash.textContent = `Source SHA-256: ${event.source_sha256}`;
+        panel.replaceChildren(heading, quote, source, hash);
+      } catch (_) { panel.textContent = 'The original excerpt could not be loaded. Please reload the page.'; }
+    }
+    for (const node of root.querySelectorAll('[data-communication-event]')) {
+      node.addEventListener('click', () => show(node));
+      node.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); show(node); }
+      });
+    }
+  }
+})();
