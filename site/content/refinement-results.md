@@ -1,4 +1,4 @@
-## 5. Retargeting results and analysis
+## 5. Quantitative results
 
 ::: anchor agent-comparison
 
