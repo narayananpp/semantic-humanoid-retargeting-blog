@@ -183,8 +183,7 @@
 
 <figure class="refinement-panel"><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/agentic-pipeline.png" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/agentic-pipeline.png" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="7440" height="3400" loading="lazy"></a><figcaption><strong>HuMoTAR architecture.</strong> Motion and control refinement through simulation feedback.</figcaption></figure>
 
-<p>The architecture above takes a human demonstration and an initial kinematic reference through code generation, simulation and iterative refinement. Simulation feedback returns to the agent to guide the next revision.</p>
-<p>We now examine how the agents use simulation feedback to improve an interaction. Astra refines both the motion reference and the code that controls the interaction. Its revisions include changes to grasp placement, body posture and the timing of lifting or release. Each revision is tested in simulation before the next decision. The examples below show these changes, the feedback that prompted them and their effect on execution.</p>
+<p>The architecture above shows how Astra uses a human demonstration and an initial kinematic reference to generate motion and control code. The agent tests each revision in simulation and uses the feedback to adjust grasp placement, body posture and the timing of lifting or release. The examples below show these changes, the feedback that prompted them and their effect on execution.</p>
 <h3 id="refining-contact-support-motion">4.2 Refining contact, support and motion</h3>
 
 
