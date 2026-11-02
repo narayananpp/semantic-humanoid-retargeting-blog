@@ -699,3 +699,60 @@ html { scroll-padding-top: 90px; }
  .communication-audit-controls label { margin-bottom:12px; }
  .communication-audit-methods,[data-audit-browser] { padding:4px 10px 14px; }
 }
+
+/* Concrete independent/collaborative example with inspectable recorded events. */
+.communication-example { margin:28px 0; padding:22px; background:#faf9f6; border:1px solid var(--line); border-radius:10px; }
+.communication-example-heading { display:flex; align-items:center; gap:22px; margin-bottom:24px; }
+.communication-example-heading img { width:170px; height:108px; object-fit:cover; border-radius:6px; flex:none; }
+.communication-example-kicker { color:var(--muted); font-size:11px; letter-spacing:.04em; }
+.communication-example-heading h4 { margin:5px 0 8px; font-size:22px; line-height:1.3; }
+.communication-example-heading p { margin:0!important; font-size:13px; line-height:1.6; }
+.communication-example-lanes { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+.communication-example-lane { --lane:#62768d; display:grid; grid-template-rows:auto repeat(3,1fr) auto; gap:24px; min-width:0; }
+.communication-example-lane.collaborative { --lane:#237461; }
+.communication-example-lane > header { padding:0 4px 10px; border-bottom:3px solid var(--lane); }
+.communication-example-lane h5 { margin:0 0 5px; font-size:18px; line-height:1.3; color:var(--lane); }
+.communication-example-lane > header > span { font-size:12px; color:var(--muted); }
+.communication-example-step { position:relative; padding:18px; border:1px solid #d8ded7; border-radius:7px; background:#fff; display:flex; flex-direction:column; align-items:flex-start; gap:10px; }
+.communication-example-step::after { content:'↓'; position:absolute; bottom:-24px; left:calc(50% - 8px); color:var(--lane); font-size:20px; line-height:23px; }
+.communication-example-time { font-size:11px; color:var(--lane); font-variant-numeric:tabular-nums; }
+.communication-example-step h6 { margin:0; font-size:16px; line-height:1.4; color:#293e34; }
+.communication-example-step p { margin:0!important; font-size:13px; line-height:1.65; }
+.communication-agent-row { display:flex; gap:6px; flex-wrap:wrap; }
+.communication-agent-row span { padding:5px 9px; background:#edf0f4; border-radius:4px; font-size:11px; color:#465c75; }
+.communication-example-step button { margin-top:auto; padding:6px 0 0; border:0; border-bottom:1px solid transparent; background:transparent; color:var(--lane); font:inherit; font-size:12px; text-align:left; cursor:pointer; }
+.communication-example-step button:hover { border-bottom-color:var(--lane); }
+.communication-example-step button:focus-visible { outline:2px solid var(--lane); outline-offset:4px; }
+.communication-example-step button[aria-expanded="true"] { font-weight:700; }
+.communication-handoff { display:flex; align-items:center; gap:10px; width:100%; font-size:12px; color:#236452; }
+.communication-handoff span:not([aria-hidden]) { padding:7px 9px; background:#eaf3ee; border-radius:4px; }
+.communication-test-split { display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; }
+.communication-test-split > div { display:flex; flex-direction:column; gap:5px; padding:10px; border-top:2px solid #81a695; background:#f0f6f2; border-radius:0 0 4px 4px; font-size:12px; line-height:1.5; }
+.communication-test-split b { color:#236452; }
+.communication-review-chain { margin:0; padding-left:18px; font-size:13px; line-height:1.65; }
+.communication-review-chain li { padding:3px 0; }
+.communication-example-lane > footer { display:flex; flex-direction:column; align-items:center; gap:5px; padding:14px; background:#edf0eb; border-radius:6px; font-size:12px; }
+.communication-example-lane > footer > strong { font-size:23px; color:var(--lane); }
+.communication-example-lane > footer b { color:#815b46; }
+.communication-example > figcaption { margin-top:22px; font-size:12px; line-height:1.7; }
+.communication-example-source { margin-top:18px; border-top:1px solid var(--line); scroll-margin-top:100px; }
+.communication-example-source > summary { padding:14px 0; font-size:13px; font-weight:600; cursor:pointer; }
+.communication-example-record { padding:14px 0; font-size:13px; }
+.communication-example-record blockquote { margin:10px 0; padding:12px 16px; background:#fff; border-left:3px solid #81a695; font-size:12px; line-height:1.7; white-space:pre-wrap; overflow-wrap:anywhere; }
+.communication-example-record code { font-size:11px; overflow-wrap:anywhere; }
+.communication-example-record details > summary { font-size:11px; cursor:pointer; }
+.communication-supporting-audit > .communication-audit { padding:0 16px; }
+.communication-supporting-audit > .communication-audit > .results-plot { max-width:620px; margin:16px auto; }
+@media(max-width:760px) {
+ .communication-example { padding:14px; }
+ .communication-example-heading { gap:12px; align-items:flex-start; }
+ .communication-example-heading img { width:92px; height:90px; }
+ .communication-example-heading h4 { font-size:18px; }
+ .communication-example-heading p { font-size:12px; }
+ .communication-example-lanes { grid-template-columns:1fr; gap:30px; }
+ .communication-example-lane { grid-template-rows:auto; gap:22px; }
+ .communication-example-step { padding:14px; }
+ .communication-example-step::after { bottom:-22px; }
+ .communication-example-step button { margin-top:4px; }
+ .communication-supporting-audit > .communication-audit { padding:0 8px; }
+}

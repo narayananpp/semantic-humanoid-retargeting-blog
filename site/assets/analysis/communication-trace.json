@@ -311,6 +311,20 @@
       "source_sha256": "bf366f681f12f8e26e331339b5a3f2725b825399a352310eed1f58b0f26beaf9",
       "tool": "publish_findings",
       "label_shift": -9
+    },
+    {
+      "id": "collaborative-2-876",
+      "mode": "collaborative",
+      "worker": 2,
+      "minute": 10.927954199999999,
+      "label": "Shares a tested five-second hold",
+      "kind": "reuse",
+      "quote": "Improvement TESTED: tight initial + v3 actual-object feedback + finger curls at1.0rad over .1s retains monitor for5s, object final displacement .144m, pelvis>=.6987. Curl.6 also holds but sags .206m; curl.3 fails/ejects. Tiny finger self contacts .8mm. Checking force/end state now then full-curve testing. Finger target left middle/index0/1=-1.0, right=+1.0; thumb unchanged.",
+      "source": "job/candidates/02/call/events.jsonl",
+      "line": 876,
+      "source_sha256": "d87034d7914d6ccc37010d22451ed45a967d2cfc0300ca8cff1c36dc7dca1dd2",
+      "tool": "publish_findings",
+      "label_shift": 0
     }
   ],
   "protocol": "Selected events from original recorded traces. Independent timestamps are relative to each worker session, not a shared wall clock. Direct-message arrows use recorded sender and recipient. Labels summarize the attached original excerpts. This figure does not measure saved compute, avoided trials, or causal effects on final success."

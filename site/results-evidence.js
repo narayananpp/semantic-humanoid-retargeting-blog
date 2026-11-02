@@ -163,3 +163,53 @@
     }
   });
 })();
+
+/* A concrete communication example, with original records behind each step. */
+(() => {
+  const root = document.querySelector('[data-communication-example]');
+  if (!root) return;
+  const details = root.querySelector('.communication-example-source');
+  const panel = root.querySelector('[data-example-source]');
+  const buttons = [...root.querySelectorAll('[data-example-events]')];
+  const el = (tag, text, cls) => {
+    const node = document.createElement(tag);
+    node.textContent = text;
+    if (cls) node.className = cls;
+    return node;
+  };
+  let promise, active;
+  for (const button of buttons) button.addEventListener('click', async () => {
+    active = button;
+    for (const other of buttons) other.setAttribute('aria-expanded', String(other === button));
+    details.open = true;
+    panel.textContent = 'Loading original records…';
+    details.querySelector('summary').textContent = button.closest('.communication-example-step').querySelector('h6').textContent + ' · Original logs';
+    if (!promise) promise = fetch('assets/analysis/communication-trace.json?v=example-2').then(response => {
+      if (!response.ok) throw Error(response.status);
+      return response.json();
+    }).catch(error => { promise = undefined; throw error; });
+    try {
+      const data = await promise;
+      if (active !== button) return;
+      panel.replaceChildren();
+      for (const id of button.dataset.exampleEvents.split(',')) {
+        const event = data.events.find(e => e.id === id);
+        if (!event) throw Error('Missing event');
+        const item = document.createElement('div'); item.className = 'communication-example-record';
+        item.append(el('strong', `${event.mode === 'independent' ? 'Independent' : 'Collaborative'} · Agent ${event.worker + 1} · ${event.minute.toFixed(1)} min`));
+        item.append(el('blockquote', event.quote));
+        item.append(el('div', `${event.tool} · ${event.source}:${event.line}`, 'communication-audit-source'));
+        const fingerprint = document.createElement('details');
+        fingerprint.append(el('summary', 'Source fingerprint'), el('code', event.source_sha256));
+        item.append(fingerprint); panel.append(item);
+      }
+      details.scrollIntoView({behavior: 'instant', block: 'start'});
+      details.querySelector('summary').focus({preventScroll: true});
+    } catch (_) {
+      if (active === button) panel.textContent = 'The records could not be loaded. Select the step again to retry.';
+    }
+  });
+  details.addEventListener('toggle', () => {
+    if (!details.open) for (const button of buttons) button.setAttribute('aria-expanded', 'false');
+  });
+})();
