@@ -744,3 +744,17 @@ html { scroll-padding-top: 90px; }
  .strategy-mobile svg + svg { margin-top:20px; border-top:1px solid var(--line); padding-top:12px; }
  .strategy-outcomes { flex-direction:column; font-size:12px; }
 }
+
+/* Dataset comparisons share a row on desktop and stack on smaller screens. */
+.baseline-dataset-tables { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin:24px 0; }
+.baseline-dataset-tables .results-table { min-width:0; margin:0; }
+.baseline-dataset-tables table { min-width:0; table-layout:fixed; }
+.baseline-dataset-tables caption { caption-side:top; border:0; padding:12px 8px; color:var(--ink); font-size:15px; font-weight:600; }
+.baseline-dataset-tables th,.baseline-dataset-tables td { padding:12px 8px; font-size:12px; overflow-wrap:break-word; }
+.baseline-dataset-tables th:first-child { width:27%; }
+.configuration-card { scroll-margin-top:24px; }
+@media(max-width:1000px) { .baseline-dataset-tables { grid-template-columns:1fr; } }
+@media(max-width:600px) {
+  .baseline-dataset-tables th,.baseline-dataset-tables td { padding:10px 4px; font-size:11px; overflow-wrap:normal; }
+  .baseline-dataset-tables th:first-child { width:25%; }
+}

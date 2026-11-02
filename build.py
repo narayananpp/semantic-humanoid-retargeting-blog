@@ -166,7 +166,7 @@ def refinement_architecture():
             f'width="{pipeline["width"]}" height="{pipeline["height"]}" loading="lazy"></a>'
         )
     return ('<figure class="refinement-panel">' + pipeline_html
-            + '<figcaption><strong>HuMoTAR architecture.</strong> Motion and control refinement through simulation feedback.</figcaption></figure>')
+            + '<figcaption><strong>Figure 4.</strong> HuMoTAR architecture for motion and control refinement through simulation feedback.</figcaption></figure>')
 
 
 def refinement_panel():

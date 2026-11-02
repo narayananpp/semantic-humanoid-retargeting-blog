@@ -115,8 +115,9 @@ const highlights = {
 
 const configurationRoot = document.querySelector("#configuration-diagrams");
 for (const config of configurationRoot ? configurations : []) {
-  const card = document.createElement("article");
+  const card = document.getElementById(`configuration-${config.id}`) || document.createElement("article");
   card.className = "configuration-card";
+  card.id = `configuration-${config.id}`;
   card.dataset.configuration = config.id;
   card.innerHTML = `<header><h4>${config.title}</h4><p>${config.subtitle}</p></header>
     ${diagram(config)}

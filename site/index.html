@@ -8,7 +8,7 @@
   <meta name="description" content="From human demonstrations to executable humanoid interactions: a study of agentic refinement, simulation feedback and transferable experience.">
   <title>HuMoTAR: Physics-Aware Agentic Retargeting for Humanoid–Object Interaction</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
-  <link rel="stylesheet" href="styles.css?v=communication-strategies-6">
+  <link rel="stylesheet" href="styles.css?v=baseline-tables-1">
   <link rel="stylesheet" href="experience.css?v=shelf-connected-6">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -155,7 +155,7 @@
 
 
 <figure id="refinement-loop" class="configuration-figure">
-            <div class="configuration-grid" id="configuration-diagrams"></div>
+            <div class="configuration-grid" id="configuration-diagrams"><article id="configuration-one-shot" class="configuration-card"></article><article id="configuration-plain" class="configuration-card"></article><article id="configuration-ensemble" class="configuration-card"></article><article id="configuration-collaborative" class="configuration-card"></article></div>
             <noscript><p class="comparison">Enable JavaScript to step through the four configurations. Their inputs and feedback loops are described above.</p></noscript>
             <figcaption><strong>Fig. 3.</strong> Four agentic workflows. Astra one-shot proposes once; Codex tests and revises. Both swarms run four Codex agents and select the best valid final execution. Only the collaborative swarm exchanges findings and critiques between agents.</figcaption>
           </figure>
@@ -181,7 +181,7 @@
 <h3 id="kinematic-to-dynamic">4.1 Iterative refinement of motion and control</h3>
 
 
-<figure class="refinement-panel"><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/agentic-pipeline.png" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/agentic-pipeline.png" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="7440" height="3400" loading="lazy"></a><figcaption><strong>HuMoTAR architecture.</strong> Motion and control refinement through simulation feedback.</figcaption></figure>
+<figure class="refinement-panel"><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/agentic-pipeline.png" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/agentic-pipeline.png" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="7440" height="3400" loading="lazy"></a><figcaption><strong>Figure 4.</strong> HuMoTAR architecture for motion and control refinement through simulation feedback.</figcaption></figure>
 
 <p>The architecture above shows how Astra uses a human demonstration and an initial kinematic reference to generate motion and control code. The agent tests each revision in simulation and uses the feedback to adjust grasp placement, body posture and the timing of lifting or release. The examples below show these changes, the feedback that prompted them and their effect on execution.</p>
 <h3 id="refining-contact-support-motion">4.2 Refining contact, support and motion</h3>
@@ -249,47 +249,43 @@
 <span id="study-design" class="section-anchor"></span>
 
 <h3 id="comparison-results">5.1 Comparison with existing approaches</h3>
+<p>We first evaluate our agentic retargeting approach, <strong>HuMoTAR, against HOI-Retarget + SPIDER</strong> on <strong>20 HUMOTO and 20 OMOMO tasks</strong>. For this comparison, we consider the <a href="#configuration-plain">single-Codex configuration</a> and include <strong>Astra one-shot</strong> to examine performance without iterative refinement.</p>
+
+
+<div class="baseline-dataset-tables" id="dynamics-results-table">
+<div class="table-wrap results-table"><table aria-label="HUMOTO: object-tracking errors and semantic success"><caption>HUMOTO · 20 tasks</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean ADD<br>(cm) ↓</th><th scope="col">Position error<br>(cm) ↓</th><th scope="col">Orientation error<br>(°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody><tr><th scope="row">HOI-Retarget + SPIDER</th>
+<td>56.66</td>
+<td>55.49</td>
+<td>51.22</td>
+<td>0/20<br>0.0%</td></tr><tr><th scope="row">Astra one-shot</th>
+<td>56.09</td>
+<td>55.03</td>
+<td>62.88</td>
+<td>1/20<br>5.0%</td></tr><tr><th scope="row">Codex<br>30 min</th>
+<td><strong>20.96</strong></td>
+<td><strong>19.19</strong></td>
+<td><strong>29.32</strong></td>
+<td><strong>11/20<br>55.0%</strong></td></tr></tbody></table></div>
+<div class="table-wrap results-table"><table aria-label="OMOMO: object-tracking errors and semantic success"><caption>OMOMO · 20 tasks</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean ADD<br>(cm) ↓</th><th scope="col">Position error<br>(cm) ↓</th><th scope="col">Orientation error<br>(°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody><tr><th scope="row">HOI-Retarget + SPIDER</th>
+<td>48.31</td>
+<td>43.36</td>
+<td>52.07</td>
+<td>2/20<br>10.0%</td></tr><tr><th scope="row">Astra one-shot</th>
+<td>69.87</td>
+<td>65.61</td>
+<td>58.35</td>
+<td>0/20<br>0.0%</td></tr><tr><th scope="row">Codex<br>30 min</th>
+<td><strong>26.51</strong></td>
+<td><strong>23.70</strong></td>
+<td><strong>28.32</strong></td>
+<td><strong>8/20<br>40.0%</strong></td></tr></tbody></table></div>
+</div>
+
 
 
 <div id="dynamics-showcase" class="dynamics-showcase" aria-label="Selected task executions"></div>
 
-
-
-<div class="table-wrap results-table"><table id="dynamics-results-table" aria-label="Tracking error and semantic success"><thead><tr><th scope="col">Method</th><th scope="col">Tracking tasks</th><th scope="col">Mean ADD (cm) ↓</th><th scope="col">Position error (cm) ↓</th><th scope="col">Orientation error (°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody>
-<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">HUMOTO · 20 tasks</th></tr>
-<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td>
-<td>56.66</td>
-<td>55.49</td>
-<td>51.22</td>
-<td>0/20 · 0.0%</td></tr>
-<tr><th scope="row">Astra one-shot</th><td>20</td>
-<td>56.09</td>
-<td>55.03</td>
-<td>62.88</td>
-<td>1/20 · 5.0%</td></tr>
-<tr><th scope="row">Codex · 30 min</th><td>20</td>
-<td><strong>20.96</strong></td>
-<td><strong>19.19</strong></td>
-<td><strong>29.32</strong></td>
-<td><strong>11/20 · 55.0%</strong></td></tr>
-<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">OMOMO · 20 tasks</th></tr>
-<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td>
-<td>48.31</td>
-<td>43.36</td>
-<td>52.07</td>
-<td>2/20 · 10.0%</td></tr>
-<tr><th scope="row">Astra one-shot</th><td>20</td>
-<td>69.87</td>
-<td>65.61</td>
-<td>58.35</td>
-<td>0/20 · 0.0%</td></tr>
-<tr><th scope="row">Codex · 30 min</th><td>20</td>
-<td><strong>26.51</strong></td>
-<td><strong>23.70</strong></td>
-<td><strong>28.32</strong></td>
-<td><strong>8/20 · 40.0%</strong></td></tr>
-</tbody></table></div>
-
+<p><strong>HOI-Retarget + SPIDER and Astra one-shot achieve semantic success rates of 5% and 2.5%, respectively. With iterative simulation feedback, a single Codex agent achieves 47.5%.</strong> Mean object-tracking error also decreases from <strong>52.48 cm for HOI-Retarget + SPIDER</strong> and <strong>62.98 cm for Astra one-shot</strong> to <strong>23.74 cm for Codex</strong>. These results highlight the importance of <strong>iterative refinement with simulation feedback</strong> for successful physical execution.</p>
 <h3 id="matched-time">5.2 Matched time: single-agent refinement versus swarms</h3>
 
 
@@ -755,7 +751,7 @@ Return:
     </div>
     <footer class="publication-footer"><span>HuMoTAR</span><a href="#top">Back to top ↑</a></footer>
   </main>
-  <script src="article.js?v=four-agent-workflows-1"></script>
+  <script src="article.js?v=workflow-links-2"></script>
   <script src="walkthrough.js?v=humotar-story-2"></script>
 <script src="dynamics-showcase.js?v=results-six-methods-1" defer></script>
 <script src="kinematic-showcase.js?v=humotar-story-2" defer></script>

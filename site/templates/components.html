@@ -19,7 +19,7 @@
 
 <!-- component: refinement-loop -->
 <figure id="refinement-loop" class="configuration-figure">
-            <div class="configuration-grid" id="configuration-diagrams"></div>
+            <div class="configuration-grid" id="configuration-diagrams"><article id="configuration-one-shot" class="configuration-card"></article><article id="configuration-plain" class="configuration-card"></article><article id="configuration-ensemble" class="configuration-card"></article><article id="configuration-collaborative" class="configuration-card"></article></div>
             <noscript><p class="comparison">Enable JavaScript to step through the four configurations. Their inputs and feedback loops are described above.</p></noscript>
             <figcaption><strong>Fig. 3.</strong> Four agentic workflows. Astra one-shot proposes once; Codex tests and revises. Both swarms run four Codex agents and select the best valid final execution. Only the collaborative swarm exchanges findings and critiques between agents.</figcaption>
           </figure>
@@ -38,40 +38,34 @@
 <!-- /component -->
 
 <!-- component: dynamics-results -->
-<div class="table-wrap results-table"><table id="dynamics-results-table" aria-label="Tracking error and semantic success"><thead><tr><th scope="col">Method</th><th scope="col">Tracking tasks</th><th scope="col">Mean ADD (cm) ↓</th><th scope="col">Position error (cm) ↓</th><th scope="col">Orientation error (°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody>
-<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">HUMOTO · 20 tasks</th></tr>
-<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td>
+<div class="baseline-dataset-tables" id="dynamics-results-table">
+<div class="table-wrap results-table"><table aria-label="HUMOTO: object-tracking errors and semantic success"><caption>HUMOTO · 20 tasks</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean ADD<br>(cm) ↓</th><th scope="col">Position error<br>(cm) ↓</th><th scope="col">Orientation error<br>(°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody><tr><th scope="row">HOI-Retarget + SPIDER</th>
 <td>56.66</td>
 <td>55.49</td>
 <td>51.22</td>
-<td>0/20 · 0.0%</td></tr>
-<tr><th scope="row">Astra one-shot</th><td>20</td>
+<td>0/20<br>0.0%</td></tr><tr><th scope="row">Astra one-shot</th>
 <td>56.09</td>
 <td>55.03</td>
 <td>62.88</td>
-<td>1/20 · 5.0%</td></tr>
-<tr><th scope="row">Codex · 30 min</th><td>20</td>
+<td>1/20<br>5.0%</td></tr><tr><th scope="row">Codex<br>30 min</th>
 <td><strong>20.96</strong></td>
 <td><strong>19.19</strong></td>
 <td><strong>29.32</strong></td>
-<td><strong>11/20 · 55.0%</strong></td></tr>
-<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">OMOMO · 20 tasks</th></tr>
-<tr><th scope="row">HOI-Retarget + SPIDER</th><td>20</td>
+<td><strong>11/20<br>55.0%</strong></td></tr></tbody></table></div>
+<div class="table-wrap results-table"><table aria-label="OMOMO: object-tracking errors and semantic success"><caption>OMOMO · 20 tasks</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean ADD<br>(cm) ↓</th><th scope="col">Position error<br>(cm) ↓</th><th scope="col">Orientation error<br>(°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody><tr><th scope="row">HOI-Retarget + SPIDER</th>
 <td>48.31</td>
 <td>43.36</td>
 <td>52.07</td>
-<td>2/20 · 10.0%</td></tr>
-<tr><th scope="row">Astra one-shot</th><td>20</td>
+<td>2/20<br>10.0%</td></tr><tr><th scope="row">Astra one-shot</th>
 <td>69.87</td>
 <td>65.61</td>
 <td>58.35</td>
-<td>0/20 · 0.0%</td></tr>
-<tr><th scope="row">Codex · 30 min</th><td>20</td>
+<td>0/20<br>0.0%</td></tr><tr><th scope="row">Codex<br>30 min</th>
 <td><strong>26.51</strong></td>
 <td><strong>23.70</strong></td>
 <td><strong>28.32</strong></td>
-<td><strong>8/20 · 40.0%</strong></td></tr>
-</tbody></table></div>
+<td><strong>8/20<br>40.0%</strong></td></tr></tbody></table></div>
+</div>
 <!-- /component -->
 
 <!-- component: experience-frame -->
