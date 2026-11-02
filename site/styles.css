@@ -610,3 +610,6 @@ html { scroll-padding-top: 90px; }
 [data-media-id="intro-human-demonstrations"] .execution-panel > p {margin:0 0 10px;line-height:1.4;}
 [data-media-id="intro-human-demonstrations"] video {width:100%;aspect-ratio:16/10;object-fit:contain;background:#dedede;}
 @media(max-width:680px) {[data-media-id="intro-human-demonstrations"] .authored-video-views {grid-template-columns:1fr;}}
+
+/* Preserve paragraph spacing across the introduction’s navigation anchors. */
+#reference-setup > .section-anchor + p { margin-top: 18px; }

@@ -17,3 +17,11 @@ We argue that **retargeting should preserve the intended task rather than the pr
 ::: anchor execution-task
 
 We posit that **frontier agentic models provide useful priors for making these changes**. We explore the usage of LLM agents to write, test and iteratively revise motion and control code through **closed-loop simulation feedback**.
+
+### Carry and place a chair
+
+::: video intro-chair-comparison
+
+### Lift, carry and place a clothes stand
+
+::: video intro-stand-comparison
