@@ -15,7 +15,7 @@
         "sublabel": "HOI-Retarget \u00b7 no physics"
       },
       {
-        "label": "HOI-Retarget + SPIDER",
+        "label": "SPIDER",
         "src": "intro-media/chair-spider.mp4",
         "poster": "intro-media/chair-spider.jpg",
         "outcome": "failure",
@@ -47,7 +47,7 @@
         "sublabel": "HOI-Retarget \u00b7 no physics"
       },
       {
-        "label": "HOI-Retarget + SPIDER",
+        "label": "SPIDER",
         "src": "intro-media/spider.mp4?v=39e4853555",
         "poster": "intro-media/spider.jpg",
         "outcome": "failure",

@@ -12,7 +12,7 @@ We argue that **retargeting should preserve the intended task rather than the pr
 ::: anchor execution-setup
 ::: anchor dynamic-interaction
 
-**A kinematically feasible reference is not necessarily dynamically feasible.** [**SPIDER**](https://arxiv.org/abs/2511.09484) addresses this by posing retargeting as a constrained optimization over the robot’s motor commands. It samples many candidate command sequences in a physics simulator and keeps the ones whose simulated motion stays closest to the reference. In our HOI-Retarget + SPIDER comparison, **the reference stays fixed**: SPIDER optimizes the controls used to execute the motion supplied by HOI-Retarget.
+**A kinematically feasible reference is not necessarily dynamically feasible.** [**SPIDER**](https://arxiv.org/abs/2511.09484) addresses this by posing retargeting as a constrained optimization over the robot’s motor commands. It samples many candidate command sequences in a physics simulator and keeps the ones whose simulated motion stays closest to the reference. However, errors in the input motion reference can lead SPIDER to the wrong contact strategy. Its open-loop execution is also sensitive to the robot’s starting pose.
 
 ::: anchor execution-task
 
