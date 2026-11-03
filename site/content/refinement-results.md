@@ -34,4 +34,4 @@ In the previous section, we compared HuMoTAR configurations under the same time 
 
 ::: component results-agent-hours
 
-The two settings achieve similar object-tracking accuracy, but **longer single-agent refinement achieves higher overall semantic success: 75% versus 67.5%**. The longer iterative loop completes three additional tasks, at four times the elapsed time.
+We make the observation that **longer single-agent refinement outperforms the collaborative swarm in semantic success, achieving 75% versus 67.5%**, at the cost of **4× the elapsed time**.
