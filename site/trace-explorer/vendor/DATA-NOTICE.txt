@@ -1,0 +1,29 @@
+Recorded clothes-stand interaction: sources and attribution
+
+The human demonstration and underlying object geometry originate with:
+Jiaman Li, Jiajun Wu, C. Karen Liu. Object Motion Guided Human Motion Synthesis.
+ACM Transactions on Graphics (SIGGRAPH Asia), 2023.
+https://lijiaman.github.io/projects/omomo/
+
+The object asset was processed by InterMimic:
+Sirui Xu, Hung Yu Ling, Yu-Xiong Wang, Liang-Yan Gui. InterMimic: Towards
+Universal Whole-Body Control for Physics-Based Human-Object Interactions.
+CVPR, 2025. https://github.com/Sirui-Xu/InterMimic
+The corresponding MIT object-asset notices are in OMOMO-OBJECTS-LICENSE.txt.
+
+Initial retargeting reference: HOI-Retarget: Contact-Centric Retargeting for
+Human-Object Interaction. Jihwan Shin, Adria Lopez Escoriza, Junzhe He,
+Matthias Heyrman, Marco Hutter, 2026.
+https://github.com/leggedrobotics/hoi-retarget
+https://huggingface.co/datasets/leggedrobotics/hoi-retarget
+The upstream motion dataset is distributed under CC BY-NC-SA 4.0. The
+source-derived playback data here is shared under those same terms:
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+The recorded robot motions result from HuMoTAR controller execution or verified
+replays. Geometry transforms are packed and interpolated for browser playback;
+inspected images are resized and compressed. Source human body models, model
+weights and raw experiment archives are not included.
+
+G1 robot assets: Unitree Robotics; see UNITREE-LICENSE.txt (BSD-3-Clause).
+Three.js and OrbitControls: see THREE-LICENSE.txt (MIT).
+These data and asset terms do not change the licenses of the viewer libraries.

@@ -190,18 +190,17 @@
 </section>
 <section id="refinement-walkthrough-panel" class="outline-section execution-analysis">
 <h3 id="agentic-refinement-walkthrough">4.3 Agentic refinement walkthrough</h3>
-<p>Here we follow the agent selected by our orchestrator harness through a complete refinement of the clothes-stand interaction from <strong>Figure 5</strong>. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved revisions trace how the agent resolves a slipping grasp, brings the body into the motion and completes release.</p>
-<p><a class="trace-explorer-link" href="trace-explorer.html"><span><strong>Explore the recorded run</strong><span>Rotate the robot view, replay saved trials, and inspect the original calls and code.</span></span><span aria-hidden="true">↗</span></a></p>
+<p>Here we follow the agent selected by the <strong>collaborative four-agent swarm</strong> through refinement of the clothes-stand interaction. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved trials show how the agent establishes a grasp, improves the carry and completes placement, including an unsuccessful controller revision. <a href="#collaborative-agent-trace">Appendix A2</a> provides the detailed trace, with recorded tools, inspected images and exchanges between agents.</p>
 <div class="refinement-walkthrough" id="clothesstand-walkthrough" data-refinement-walkthrough>
   <div class="walkthrough-origins">
     <figure><img class="walkthrough-public-still" src="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" alt="Human source motion"><video controls muted playsinline preload="none" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=4fbe6f93d1" aria-label="Human source motion, SMPL-X"></video><figcaption>Human reference · <a href="https://smpl-x.is.tue.mpg.de/">SMPL-X</a></figcaption></figure>
-    <figure><img class="walkthrough-public-still" src="assets/refinement/walkthrough/clothesstand-selected/final.jpg" alt="G1 places and releases the clothes stand"><video controls muted playsinline preload="none" poster="assets/refinement/walkthrough/clothesstand-selected/final.jpg" src="walkthrough-media/clothesstand-selected/final/video.mp4" aria-label="HuMoTAR selected final execution"></video><figcaption>HuMoTAR · final execution</figcaption></figure>
+    <figure><img class="walkthrough-public-still" src="trace-explorer/collaborative/posters/final.jpg" alt="G1 places and releases the clothes stand"><video controls muted playsinline preload="none" poster="trace-explorer/collaborative/posters/final.jpg" src="trace-explorer/collaborative/videos/final.mp4" aria-label="HuMoTAR selected final execution"></video><figcaption>HuMoTAR · final execution</figcaption></figure>
   </div>
   <div class="walkthrough-stage-tabs" role="group" aria-label="Refinement stages"></div>
   <div class="walkthrough-main">
     <div class="walkthrough-motion">
       <div class="walkthrough-stage-heading"><span data-walkthrough-step></span><h4 data-walkthrough-title></h4></div>
-      <img class="walkthrough-public-still" data-walkthrough-still src="assets/refinement/walkthrough/clothesstand-selected/001.jpg" alt="Selected refinement stage">
+      <img class="walkthrough-public-still" data-walkthrough-still src="trace-explorer/collaborative/posters/00--baseline.jpg" alt="Selected refinement stage">
       <video data-walkthrough-video controls muted playsinline preload="metadata" aria-label="Selected refinement stage execution"></video>
     </div>
     <aside class="walkthrough-curve-panel" aria-label="Refinement error curve">
@@ -218,9 +217,9 @@
   <div class="walkthrough-controls"><button type="button" data-walkthrough-prev>← Previous</button><button type="button" data-walkthrough-tour aria-pressed="false">Play walkthrough</button><button type="button" data-walkthrough-next>Next →</button></div>
   <p class="walkthrough-error" hidden></p>
 </div>
-<p class="publication-caption"><strong>Fig. 6.</strong> Five successive revisions of the clothes-stand interaction, with simulated executions and mean ADD.</p>
+<p class="publication-caption"><strong>Fig. 6.</strong> Five selected trials from the collaborative swarm, with simulated executions and mean ADD.</p>
 <h3 id="how-does-the-reference-change">4.4 How does the reference change?</h3>
-<p>We overlay the <strong>initial kinematic reference in purple</strong> and the <strong>refined reference in blue</strong> with the <strong>physical execution in solid gray</strong>. Their spatial separation shows where the prescribed and executed robot poses differ at corresponding motion phases. The refined hand path follows the executed grasp more closely; body posture can still differ as the controller maintains balance.</p>
+<p>For the independent run, we overlay the <strong>initial kinematic reference in purple</strong> and the <strong>refined reference in blue</strong> with the <strong>physical execution in solid gray</strong>. Their spatial separation shows where the prescribed and executed robot poses differ at corresponding motion phases. The refined hand path follows the executed grasp more closely; body posture can still differ as the controller maintains balance.</p>
 <div class="reference-overlay-media">
   <figure>
     <a href="assets/refinement/reference-overlay/clothesstand-overlay.png" aria-label="Open the reference and execution overlay at full resolution"><img src="assets/refinement/reference-overlay/clothesstand-overlay.png" alt="Pickup, transport and placement: purple initial reference and blue refined reference overlaid on the solid gray simulated G1" loading="lazy" width="3414" height="2499" style="width:100%;max-width:100%;height:auto;object-fit:contain"></a>
@@ -232,7 +231,7 @@
     <figcaption><strong>(b) Reference finger-pad paths.</strong> Initial and refined paths relative to the object, shown at 0.5× speed.</figcaption>
   </figure>
 </div>
-<p class="publication-caption"><strong>Fig. 7.</strong> Clothes-stand reference refinement. The image includes physical execution. The video shows reference geometry, not measured contacts.</p>
+<p class="publication-caption"><strong>Fig. 7.</strong> Reference refinement in the independent run. The image includes physical execution. The video shows reference geometry, not measured contacts.</p>
 </section>
 <section id="refinement-results" class="outline-section">
 <h2 id="5-quantitative-results">5. Quantitative results</h2>
@@ -369,7 +368,7 @@
 <section id="appendix" class="outline-section">
 <h2 id="appendix-questions">Appendix</h2>
 <details class="appendix-faq" id="text-to-trajectory">
-<summary id="text-to-trajectory-question">Can a text description replace a motion reference?</summary>
+<summary id="text-to-trajectory-question">A1. Can a text description replace a motion reference?</summary>
 <p>We give a single Codex agent a detailed task description, the scene and an initial robot–object state, without a human motion reference or target object trajectory. The agent has <strong>30 minutes</strong> to refine an execution that follows the description, using <strong>SONIC for the legs and waist</strong> and custom arm and hand control. These five examples show the supplied commands and the resulting simulated motions.</p>
 <div class="text-motion-showcase" data-text-motion-showcase>
   <label class="text-motion-picker">Task <select data-text-motion-select aria-label="Choose a text-to-trajectory task">
@@ -402,6 +401,12 @@
 </div>
 <p class="publication-caption"><strong>Fig. A1.</strong> Simulated executions generated from text descriptions.</p>
 </details>
+<details class="appendix-faq" id="collaborative-agent-trace">
+<summary>A2. Collaborative agent trace</summary>
+<p>Replay the clothes-stand interaction and inspect the recorded tools, images and exchanges from all four agents. The six featured stages follow the selected agent from the initial reference through trials 001, 004, 055 and 090 to its final execution.</p>
+<p class="trace-launch"><a href="trace-explorer.html" target="_blank" rel="noopener">Open the explorer in a new tab ↗</a></p>
+<iframe class="trace-explorer-frame" data-trace-explorer-src="trace-explorer.html" title="Collaborative four-agent trace explorer" loading="lazy" allow="fullscreen"></iframe>
+</details>
 </section>
 <section id="citation" class="outline-section blog-citation">
 <h2 id="cite-this-blog">Cite this blog</h2>
@@ -421,8 +426,8 @@
     </div>
     <footer class="publication-footer"><span>HuMoTAR</span><a href="#top">Back to top ↑</a></footer>
   </main>
-  <script src="article.js?v=workflow-links-2"></script>
-  <script src="walkthrough.js?v=humotar-story-2"></script>
+  <script src="article.js?v=collaborative-appendix-1"></script>
+  <script src="walkthrough.js?v=collaborative-stages-1"></script>
 <script src="dynamics-showcase.js?v=aligned-viewer-2" defer></script>
 <script src="kinematic-showcase.js?v=humotar-story-2" defer></script>
 <script src="experience-story.js?v=numbered-captions-1" defer></script>

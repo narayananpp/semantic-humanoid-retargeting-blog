@@ -1,7 +1,7 @@
 ## Appendix {#appendix-questions}
 
 <details class="appendix-faq" id="text-to-trajectory">
-<summary id="text-to-trajectory-question">Can a text description replace a motion reference?</summary>
+<summary id="text-to-trajectory-question">A1. Can a text description replace a motion reference?</summary>
 
 We give a single Codex agent a detailed task description, the scene and an initial robot–object state, without a human motion reference or target object trajectory. The agent has **30 minutes** to refine an execution that follows the description, using **SONIC for the legs and waist** and custom arm and hand control. These five examples show the supplied commands and the resulting simulated motions.
 
@@ -36,5 +36,15 @@ We give a single Codex agent a detailed task description, the scene and an initi
 </div>
 
 <p><strong>Fig. A1.</strong> Simulated executions generated from text descriptions.</p>
+
+</details>
+
+<details class="appendix-faq" id="collaborative-agent-trace">
+<summary>A2. Collaborative agent trace</summary>
+
+Replay the clothes-stand interaction and inspect the recorded tools, images and exchanges from all four agents. The six featured stages follow the selected agent from the initial reference through trials 001, 004, 055 and 090 to its final execution.
+
+<p class="trace-launch"><a href="trace-explorer.html" target="_blank" rel="noopener">Open the explorer in a new tab ↗</a></p>
+<iframe class="trace-explorer-frame" data-trace-explorer-src="trace-explorer.html" title="Collaborative four-agent trace explorer" loading="lazy" allow="fullscreen"></iframe>
 
 </details>

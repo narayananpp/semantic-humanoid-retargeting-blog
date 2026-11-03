@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Inside a collaborative run · HuMoTAR</title>
+  <meta name="description" content="Explore how four agents share findings, test motions and refine a clothes-stand interaction.">
+  <link rel="stylesheet" href="trace-explorer/explorer.css?v=collaborative-3">
+  <script type="importmap">{"imports":{"three":"./trace-explorer/vendor/three.module.js"}}</script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">HuMoTAR<span>/</span><span class="brand-section">Run explorer</span></a>
+    <nav><a href="index.html#agentic-refinement-walkthrough">Back to the walkthrough ↗</a><button id="about-button" class="quiet">About this recording</button></nav>
+  </header>
+  <main>
+    <div class="heading">
+      <div><p class="eyebrow">COLLABORATIVE SWARM / OMOMO</p><h1>Lift, carry and place a clothes stand.</h1><p class="intro">Explore six stages, from the initial reference to the final execution. Inspect the agents’ tools, images and conversations.</p></div>
+      <div class="agent-picker"><label for="agent">Recorded agent</label><select id="agent"><option value="0">Agent 0 · selected final result</option><option value="1">Agent 1</option><option value="2">Agent 2</option><option value="3">Agent 3</option></select><span id="agent-meta">Loading the recorded run…</span></div>
+    </div>
+    <div id="app-error" class="app-error" role="alert" hidden></div>
+    <section class="stages-card" aria-label="Six key replay stages"><div class="section-heading"><h2>Initial reference → refinement → final execution</h2><span>Agent 0 · selected trials and final execution</span></div><div id="key-stages" class="key-stages"></div><div id="agent-finals" class="agent-finals" aria-label="Final executions from all four agents"></div></section>
+    <div class="workspace">
+      <section class="visual-column" aria-label="Recorded robot motion">
+        <div class="viewer-card">
+          <div class="viewer-heading"><div><span class="status-dot"></span><span id="trial-label">Trial 001</span><span class="mode-tag">Recorded simulation</span></div><button id="reset-camera" class="quiet">Reset view ↺</button></div>
+          <div id="viewport">
+            <div id="loading" class="viewer-notice"><span class="spinner"></span>Loading recorded motion</div>
+            <div id="no-motion" class="viewer-notice" hidden><strong>Analysis is available for this trial.</strong><p>This trial is outside the six prepared replay stages. Inspect its agent activity, images and measurements on the right.</p><button id="nearest-replay">Open nearest available replay</button></div>
+            <div class="view-cameras" role="group" aria-label="Camera presets"><button class="active" data-camera="wide">Full scene</button><button data-camera="hands">Hands</button><button data-camera="side">Side</button></div>
+            <div class="viewer-hint" id="viewer-hint">Drag to orbit · Scroll to zoom · Right-drag to pan</div>
+            <div class="motion-stat"><span>Mean object-tracking error</span><strong id="add-value">—<small> cm</small></strong></div>
+          </div>
+          <div class="transport">
+            <button id="play" class="play" aria-label="Play recorded rollout" disabled>▶</button>
+            <label class="sr-only" for="scrubber">Time within the recorded rollout</label><input id="scrubber" type="range" min="0" max="1" step="0.001" value="0" disabled>
+            <span id="motion-time">0.00 / 0.00 s</span><label class="sr-only" for="speed">Playback speed</label><select id="speed"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
+          </div>
+          <div class="overlay-bar"><span>SHOW</span><label><input type="checkbox" id="paths-toggle"><i class="path-key"></i>Object paths</label><label><input type="checkbox" id="contacts-toggle"><i class="contact-key"></i>Contact points</label><span id="contacts-state"></span></div>
+          <div id="overlay-legend" hidden><span class="target-key">Desired path</span><span class="actual-key">Executed path</span><span>Full spatial paths; not time-aligned.</span></div>
+        </div>
+        <details id="video-card" class="video-card" hidden><summary>Rendered video <span>Play this stage</span></summary><video id="stage-video" controls controlslist="nodownload" playsinline preload="none"></video></details>
+        <section class="history-card" aria-label="Refinement history">
+          <div class="section-heading"><div><h2>Refinement history</h2><p>Select a point to replay that stage.</p></div><button id="tour" class="primary" disabled>▶ Play six stages</button></div>
+          <div class="chart-wrap"><svg id="error-chart" viewBox="0 0 800 190" role="group" aria-label="Mean object-tracking error by refinement time"></svg></div>
+          <div class="chart-legend"><span><i class="line-key"></i>Object-tracking error</span><span><i class="ring-key"></i>Playable stage</span><span id="trial-count"></span></div>
+          <div class="trial-rail" id="trial-rail" aria-label="Select a recorded trial"></div>
+        </section>
+      </section>
+      <aside class="evidence-card" aria-label="Original recorded evidence">
+        <div class="evidence-heading"><div><p class="eyebrow">FROM THE RECORDING</p><h2 id="evidence-title">Trial 001</h2></div><span id="refinement-time">— min</span></div>
+        <div class="evidence-tabs" role="tablist" aria-label="Evidence type"><button role="tab" aria-selected="true" id="tab-activity" aria-controls="evidence-content" data-tab="activity">Activity</button><button role="tab" aria-selected="false" id="tab-exchanges" aria-controls="evidence-content" data-tab="exchanges">Exchanges</button><button role="tab" aria-selected="false" id="tab-measurements" aria-controls="evidence-content" data-tab="measurements">Results</button><button role="tab" aria-selected="false" id="tab-images" aria-controls="evidence-content" data-tab="images">Images</button></div>
+        <div id="evidence-content" role="tabpanel" aria-labelledby="tab-activity" tabindex="0"></div>
+        <div class="evidence-footer"><span id="evidence-source">Recorded messages and tool outputs</span><button id="copy-link" class="quiet">Copy link ↗</button></div>
+      </aside>
+    </div>
+    <footer class="page-footer"><span>Simulation playback, not a new agent run. Two clocks: refinement in minutes; robot motion in seconds.</span><span><kbd>Space</kbd> play / pause <kbd>←</kbd><kbd>→</kbd> trial <kbd>R</kbd> reset camera</span></footer>
+  </main>
+  <dialog id="about"><button id="close-about" class="dialog-close" aria-label="Close">×</button><p class="eyebrow">THE RECORDED EXPERIMENT</p><h2>Four agents, one interaction.</h2><p>The agents refine the clothes-stand interaction with frozen SONIC whole-body control and custom manipulation controllers. They can message one another, share controller files and test one another’s proposals. Agent 0 supplied the selected final execution.</p><p>Six 3D stages follow Agent 0: the initial reference, trials 001 and 004, an improved trial (055), a later regression (090), and the final execution. These are selected trials, not consecutive iterations. Intermediate replays are checked against the original object-tracking scores. The initial reference was evaluated separately with SONIC. The final motion is the original saved validation rollout.</p><p>All four agents’ final executions, trial scores and visible activity remain available. Tool labels describe recorded operations. Agent messages are quoted, with private paths and account identifiers removed. Images are the views actually inspected by the agents. The explorer does not run new simulations.</p><p><a href="trace-explorer/vendor/THREE-LICENSE.txt">Three.js license</a> · <a href="trace-explorer/vendor/UNITREE-LICENSE.txt">G1 asset notice</a> · <a href="trace-explorer/vendor/OMOMO-OBJECTS-LICENSE.txt">Object asset notice</a> · <a href="trace-explorer/vendor/DATA-NOTICE.txt">Data attribution</a></p></dialog>
+  <noscript>This explorer needs JavaScript. The <a href="index.html#agentic-refinement-walkthrough">video walkthrough</a> is also available in the article.</noscript>
+  <script type="module" src="trace-explorer/explorer.js?v=collaborative-3"></script>
+</body>
+</html>

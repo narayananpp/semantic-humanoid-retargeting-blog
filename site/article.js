@@ -213,3 +213,14 @@ function revealAppendixTarget() {
 }
 addEventListener('hashchange', revealAppendixTarget);
 revealAppendixTarget();
+
+// Load the detailed trace only when its appendix is opened.
+document.querySelectorAll('[data-trace-explorer-src]').forEach(frame => {
+  const section = frame.closest('details');
+  const load = () => {
+    if (section.open && !frame.hasAttribute('src')) frame.src = frame.dataset.traceExplorerSrc;
+    if (!section.open && frame.contentDocument) frame.contentDocument.dispatchEvent(new Event('trace-pause'));
+  };
+  section.addEventListener('toggle', load);
+  load();
+});

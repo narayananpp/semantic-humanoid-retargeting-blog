@@ -1,17 +1,17 @@
 ### 4.3 Agentic refinement walkthrough {#agentic-refinement-walkthrough}
 
-Here we follow the agent selected by our orchestrator harness through a complete refinement of the clothes-stand interaction from **Figure 5**. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved revisions trace how the agent resolves a slipping grasp, brings the body into the motion and completes release.
+Here we follow the agent selected by the **collaborative four-agent swarm** through refinement of the clothes-stand interaction. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved trials show how the agent establishes a grasp, improves the carry and completes placement, including an unsuccessful controller revision. [Appendix A2](#collaborative-agent-trace) provides the detailed trace, with recorded tools, inspected images and exchanges between agents.
 
 <div class="refinement-walkthrough" id="clothesstand-walkthrough" data-refinement-walkthrough>
   <div class="walkthrough-origins">
     <figure><img class="walkthrough-public-still" src="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" alt="Human source motion"><video controls muted playsinline preload="none" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=4fbe6f93d1" aria-label="Human source motion, SMPL-X"></video><figcaption>Human reference · <a href="https://smpl-x.is.tue.mpg.de/">SMPL-X</a></figcaption></figure>
-    <figure><img class="walkthrough-public-still" src="assets/refinement/walkthrough/clothesstand-selected/final.jpg" alt="G1 places and releases the clothes stand"><video controls muted playsinline preload="none" poster="assets/refinement/walkthrough/clothesstand-selected/final.jpg" src="walkthrough-media/clothesstand-selected/final/video.mp4" aria-label="HuMoTAR selected final execution"></video><figcaption>HuMoTAR · final execution</figcaption></figure>
+    <figure><img class="walkthrough-public-still" src="trace-explorer/collaborative/posters/final.jpg" alt="G1 places and releases the clothes stand"><video controls muted playsinline preload="none" poster="trace-explorer/collaborative/posters/final.jpg" src="trace-explorer/collaborative/videos/final.mp4" aria-label="HuMoTAR selected final execution"></video><figcaption>HuMoTAR · final execution</figcaption></figure>
   </div>
   <div class="walkthrough-stage-tabs" role="group" aria-label="Refinement stages"></div>
   <div class="walkthrough-main">
     <div class="walkthrough-motion">
       <div class="walkthrough-stage-heading"><span data-walkthrough-step></span><h4 data-walkthrough-title></h4></div>
-      <img class="walkthrough-public-still" data-walkthrough-still src="assets/refinement/walkthrough/clothesstand-selected/001.jpg" alt="Selected refinement stage">
+      <img class="walkthrough-public-still" data-walkthrough-still src="trace-explorer/collaborative/posters/00--baseline.jpg" alt="Selected refinement stage">
       <video data-walkthrough-video controls muted playsinline preload="metadata" aria-label="Selected refinement stage execution"></video>
     </div>
     <aside class="walkthrough-curve-panel" aria-label="Refinement error curve">
@@ -29,11 +29,11 @@ Here we follow the agent selected by our orchestrator harness through a complete
   <p class="walkthrough-error" hidden></p>
 </div>
 
-**Fig. 6.** Five successive revisions of the clothes-stand interaction, with simulated executions and mean ADD.
+**Fig. 6.** Five selected trials from the collaborative swarm, with simulated executions and mean ADD.
 
 ### 4.4 How does the reference change? {#how-does-the-reference-change}
 
-We overlay the **initial kinematic reference in purple** and the **refined reference in blue** with the **physical execution in solid gray**. Their spatial separation shows where the prescribed and executed robot poses differ at corresponding motion phases. The refined hand path follows the executed grasp more closely; body posture can still differ as the controller maintains balance.
+For the independent run, we overlay the **initial kinematic reference in purple** and the **refined reference in blue** with the **physical execution in solid gray**. Their spatial separation shows where the prescribed and executed robot poses differ at corresponding motion phases. The refined hand path follows the executed grasp more closely; body posture can still differ as the controller maintains balance.
 
 <div class="reference-overlay-media">
   <figure>
@@ -47,4 +47,4 @@ We overlay the **initial kinematic reference in purple** and the **refined refer
   </figure>
 </div>
 
-**Fig. 7.** Clothes-stand reference refinement. The image includes physical execution. The video shows reference geometry, not measured contacts.
+**Fig. 7.** Reference refinement in the independent run. The image includes physical execution. The video shows reference geometry, not measured contacts.

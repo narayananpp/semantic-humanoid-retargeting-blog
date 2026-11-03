@@ -1,0 +1,17 @@
+{
+  "upstream_mesh_sha256": "60a20e223309f3f85bdcbb270a6eaaef657fbe90a83339795059395b7ee8a46d",
+  "compiled_scene_sha256": "606db132e6d149b0b63797b6c8b7e8735f95859c92667f29ddb55b23738fd9b7",
+  "upstream_vertices": 17996,
+  "compiled_vertices": 17996,
+  "max_vertex_distance_m": 9.345315263370908e-08,
+  "mean_vertex_distance_m": 1.777441566654629e-08,
+  "mesh_scale": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "source_mesh": "https://huggingface.co/datasets/leggedrobotics/hoi-retarget/blob/main/assets/objects/objects/clothesstand/clothesstand.obj",
+  "source_notice": "https://github.com/leggedrobotics/hoi-retarget/blob/main/assets/objects/LICENSE-OBJECTS",
+  "verification": "Compiled geometry transformed back into the source mesh frame; bidirectional nearest-vertex comparison, with no fitting or scaling.",
+  "checked_on": "2026-11-02"
+}

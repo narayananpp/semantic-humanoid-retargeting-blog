@@ -1,4 +1,4 @@
-/* The selected agent’s evidence-backed refinement sequence. Copy and metrics live in walkthrough.json?v=humotar-names-3. */
+/* The selected agent’s evidence-backed refinement sequence. Copy and metrics live in walkthrough.json?v=collaborative-stages-1. */
 (() => {
   const root = document.querySelector('[data-refinement-walkthrough]');
   if (!root) return;
@@ -83,7 +83,7 @@
     get('time').textContent=`${stage.time_min.toFixed(1)} min of refinement`;
     svg.setAttribute('aria-label', `Recorded refinement curve. Selected stage: ${stage.time_min.toFixed(1)} minutes, mean ADD ${stage.add_cm.toFixed(2)} centimetres.`);
     get('quote').textContent='“'+stage.quote+'”';get('description').textContent=stage.description;
-    const tag=get('tag');tag.href='#'+stage.anchor;tag.textContent=stage.tag+' ↗';
+    const tag=get('tag');tag.href=stage.trace_url||'#'+stage.anchor;tag.textContent=stage.tag+' ↗';
     root.querySelectorAll('.walkthrough-stage-tabs button').forEach((b,j)=>b.setAttribute('aria-pressed',String(index===j)));
     get('prev').disabled=index===0;get('next').disabled=index===data.stages.length-1;
     progress.setAttribute('d',path(data.trials.filter(trial=>trial.time_min<=stage.time_min+1e-6)));
@@ -102,7 +102,7 @@
   video.addEventListener('ended',()=>{if(touring){if(index<data.stages.length-1)select(index+1,true);else stopTour();}});
   video.addEventListener('error',()=>{stopTour();const e=root.querySelector('.walkthrough-error');e.textContent='This video is unavailable in this preview.';e.hidden=false;});
   document.addEventListener('visibilitychange',()=>{if(document.hidden){video.pause();stopTour();}});
-  fetch('walkthrough.json?v=humotar-names-3').then(response=>{if(!response.ok)throw new Error(response.status);return response.json();})
+  fetch('walkthrough.json?v=collaborative-stages-1').then(response=>{if(!response.ok)throw new Error(response.status);return response.json();})
     .then(result=>{data=result;draw();select(0);})
     .catch(()=>{root.querySelector('.walkthrough-error').textContent='The walkthrough data could not be loaded.';root.querySelector('.walkthrough-error').hidden=false;});
 })();

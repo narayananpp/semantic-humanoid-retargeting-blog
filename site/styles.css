@@ -770,3 +770,5 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 :root { --caption-font-size:13px; }
 
 .matched-time-plots .publication-caption { text-align:center; }
+
+.trace-explorer-frame{display:block;width:100%;height:1040px;border:1px solid var(--line,#ddd);border-radius:10px;background:#f5f6f4}.trace-launch{margin:16px 0;text-align:right}.trace-launch a{font-size:14px}@media(max-width:850px){.trace-explorer-frame{height:900px}}
