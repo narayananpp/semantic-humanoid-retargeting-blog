@@ -1,4 +1,4 @@
-/* The selected agent’s evidence-backed refinement sequence. Copy and metrics live in walkthrough.json?v=collaborative-stages-hq-1. */
+/* The selected agent’s evidence-backed refinement sequence. Copy and metrics live in walkthrough.json?v=collaborative-stages-hq-3. */
 (() => {
   const root = document.querySelector('[data-refinement-walkthrough]');
   if (!root) return;
@@ -99,10 +99,10 @@
     touring=true;get('tour').textContent='Pause walkthrough';get('tour').setAttribute('aria-pressed','true');
     select(index===data.stages.length-1?0:index,true);
   });
-  video.addEventListener('ended',()=>{if(touring){if(index<data.stages.length-1)select(index+1,true);else stopTour();}});
+  video.addEventListener('ended',()=>{if(touring)select(index<data.stages.length-1?index+1:0,true);});
   video.addEventListener('error',()=>{stopTour();const e=root.querySelector('.walkthrough-error');e.textContent='This video is unavailable in this preview.';e.hidden=false;});
-  document.addEventListener('visibilitychange',()=>{if(document.hidden){video.pause();stopTour();}});
-  fetch('walkthrough.json?v=collaborative-stages-hq-1').then(response=>{if(!response.ok)throw new Error(response.status);return response.json();})
-    .then(result=>{data=result;draw();select(0);})
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)video.pause();});
+  fetch('walkthrough.json?v=collaborative-stages-hq-3').then(response=>{if(!response.ok)throw new Error(response.status);return response.json();})
+    .then(result=>{data=result;draw();select(0);touring=mediaEnabled;})
     .catch(()=>{root.querySelector('.walkthrough-error').textContent='The walkthrough data could not be loaded.';root.querySelector('.walkthrough-error').hidden=false;});
 })();
