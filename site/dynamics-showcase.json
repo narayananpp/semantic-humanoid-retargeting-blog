@@ -46,11 +46,11 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/tilting_trash_can_with_right_foot-985/hoi_spider.mp4?v=7c52f6b2e2",
-          "poster": "results-showcase-media/tilting_trash_can_with_right_foot-985/hoi_spider.jpg?v=7c52f6b2e2",
-          "video_sha256": "7c52f6b2e22c21285fe51003531ebb1311f534d5122c6bb5e4be452f41f13d2d",
+          "video": "results-showcase-media/tilting_trash_can_with_right_foot-985/hoi_spider.mp4?v=3163bd00a2",
+          "poster": "results-showcase-media/tilting_trash_can_with_right_foot-985/hoi_spider.jpg?v=3163bd00a2",
+          "video_sha256": "3163bd00a24c9fbd97fffe0f3d38ccbfcb63b25b45cb3e1122417d982a7e02de",
           "label": "HOI-Retarget + SPIDER",
-          "source_motion_sha256": "a39adabf80db72cec9a49372aada5107e42e2008a6ea7176dc10a01cdabbbb2b",
+          "source_motion_sha256": "bdac2153bdcf6459d574af67dcbe47df1e794233590101522dff495cce2d266f",
           "source_scene_sha256": "ff794dd0e58085a830106ceaf452182555d37bb94cc5034e42bc1d474cbf78c3",
           "render": {
             "renderer": "Blender",
@@ -61,7 +61,13 @@
             "fps": 24,
             "samples": 24,
             "physics_reexecuted": false
-          }
+          },
+          "metrics": {
+            "mean_add_m": 0.007569898961381696,
+            "position_mean_m": 0.006355022252428231,
+            "orientation_mean_deg": 2.304555488277267
+          },
+          "semantic": "PASS"
         },
         "communicating": {
           "status": "ready",
@@ -125,11 +131,11 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/carrying_mixing_bowl_with_both_hands-134/hoi_spider.mp4?v=8eedeeda0a",
-          "poster": "results-showcase-media/carrying_mixing_bowl_with_both_hands-134/hoi_spider.jpg?v=8eedeeda0a",
-          "video_sha256": "8eedeeda0a485801d30d2e930ad898001192f9fb5cb1267b23f64abc8bd7f723",
+          "video": "results-showcase-media/carrying_mixing_bowl_with_both_hands-134/hoi_spider.mp4?v=b3f17a6325",
+          "poster": "results-showcase-media/carrying_mixing_bowl_with_both_hands-134/hoi_spider.jpg?v=b3f17a6325",
+          "video_sha256": "b3f17a63253dbec2c266ba5e33f12ac1d2e88a46fc9351fa5565373ad8b12320",
           "label": "HOI-Retarget + SPIDER",
-          "source_motion_sha256": "84e8b322b1d7b05375a2b1e4098de66bbf00afbfda262dbc37de88e31bd499b8",
+          "source_motion_sha256": "e4a9679d75418a3f6401e47dd16fe2184e804eadc2b9dbb2830e1135743dc22e",
           "source_scene_sha256": "c0415dac7178f0543970bc48f24e2080e0a5970a585d70179dbef5e20dd0c4f2",
           "render": {
             "renderer": "Blender",
@@ -140,7 +146,13 @@
             "fps": 24,
             "samples": 24,
             "physics_reexecuted": false
-          }
+          },
+          "metrics": {
+            "mean_add_m": 0.12682831730716568,
+            "position_mean_m": 0.11951199121065542,
+            "orientation_mean_deg": 23.391640285389844
+          },
+          "semantic": "PASS"
         },
         "communicating": {
           "status": "ready",
@@ -205,11 +217,11 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/lifting_and_checking_basket_90-215/hoi_spider.mp4?v=9ebe596e8e",
-          "poster": "results-showcase-media/lifting_and_checking_basket_90-215/hoi_spider.jpg?v=9ebe596e8e",
-          "video_sha256": "9ebe596e8e44587afd6c01a112865fdb22344bf8b0437385d8c8c89633c47711",
+          "video": "results-showcase-media/lifting_and_checking_basket_90-215/hoi_spider.mp4?v=6f1866b415",
+          "poster": "results-showcase-media/lifting_and_checking_basket_90-215/hoi_spider.jpg?v=6f1866b415",
+          "video_sha256": "6f1866b415456f6df13b425cab5d4e70982c10b3635043849595d3bde90e3a24",
           "label": "HOI-Retarget + SPIDER",
-          "source_motion_sha256": "bbffcb7d47df9408cd284b176f6ed6afe3076bbe73cdf6dde5ed2226d7572aca",
+          "source_motion_sha256": "647c545719a5f177e13d8158880d4847d7d98d8ddc14a5f586fde62b684c9acf",
           "source_scene_sha256": "cd2ec49dcd8a2c2d1064b7a85c2a233d6bfef1cca22ae94e545c1a45306bd33f",
           "render": {
             "renderer": "Blender",
@@ -220,7 +232,13 @@
             "fps": 24,
             "samples": 24,
             "physics_reexecuted": false
-          }
+          },
+          "metrics": {
+            "mean_add_m": 0.6278014669759754,
+            "position_mean_m": 0.6257476803725464,
+            "orientation_mean_deg": 30.436471083658034
+          },
+          "semantic": "FAIL"
         },
         "communicating": {
           "status": "ready",
@@ -287,11 +305,11 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/lifting_side_table_and_putting_down-362/hoi_spider.mp4?v=5938d996e6",
-          "poster": "results-showcase-media/lifting_side_table_and_putting_down-362/hoi_spider.jpg?v=5938d996e6",
-          "video_sha256": "5938d996e67b256c3e6b1bd2385d2b0b96f2438420ba0a287b574ae925e0213e",
+          "video": "results-showcase-media/lifting_side_table_and_putting_down-362/hoi_spider.mp4?v=dd0548a152",
+          "poster": "results-showcase-media/lifting_side_table_and_putting_down-362/hoi_spider.jpg?v=dd0548a152",
+          "video_sha256": "dd0548a152b0e651b04a11ce69c77801f854f5f1bcbb200638c0c7a5b301f9a3",
           "label": "HOI-Retarget + SPIDER",
-          "source_motion_sha256": "0cd0760716b805f17418a718b46fe25693f4b0de33da9b35b28da69a22811923",
+          "source_motion_sha256": "c00f60984b03e2985f89ff634737f22f26545b32ad8254eda1f30bcd76aab97c",
           "source_scene_sha256": "e9ad7208e6ac4af04429f7d791a3afd49d19cda98420fe57d36a6763d0f7caf2",
           "render": {
             "renderer": "Blender",
@@ -302,7 +320,13 @@
             "fps": 24,
             "samples": 24,
             "physics_reexecuted": false
-          }
+          },
+          "metrics": {
+            "mean_add_m": 0.10346235466280769,
+            "position_mean_m": 0.09448630472980896,
+            "orientation_mean_deg": 16.055617279202252
+          },
+          "semantic": "PASS"
         },
         "communicating": {
           "status": "ready",
@@ -369,11 +393,11 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/carry_side_table_with_both_hands_walk_around-536/hoi_spider.mp4?v=ba54fc08dc",
-          "poster": "results-showcase-media/carry_side_table_with_both_hands_walk_around-536/hoi_spider.jpg?v=ba54fc08dc",
-          "video_sha256": "ba54fc08dc9ee222fde5f5c45dccdf0407d58288a47b9211146fff2af3875315",
+          "video": "results-showcase-media/carry_side_table_with_both_hands_walk_around-536/hoi_spider.mp4?v=326e54c802",
+          "poster": "results-showcase-media/carry_side_table_with_both_hands_walk_around-536/hoi_spider.jpg?v=326e54c802",
+          "video_sha256": "326e54c8023256b2272ea133be903bc7a37380ec7c69580666de93e6eb17400c",
           "label": "HOI-Retarget + SPIDER",
-          "source_motion_sha256": "0fd9e74b6ff0e80c83678853add6355398d95d9089ba3b1a21b748c08c89bede",
+          "source_motion_sha256": "d547b31d0ad300816cf3b08d735c355116634db9b3858ecf7dfde27c3575ac3c",
           "source_scene_sha256": "f2ed68ac4204d597a082c372d5cbf59b0d5e057db2de7454614976da4bd6764d",
           "render": {
             "renderer": "Blender",
@@ -384,7 +408,13 @@
             "fps": 24,
             "samples": 24,
             "physics_reexecuted": false
-          }
+          },
+          "metrics": {
+            "mean_add_m": 1.0907860816068309,
+            "position_mean_m": 1.1008160988505662,
+            "orientation_mean_deg": 105.2693614333952
+          },
+          "semantic": "FAIL"
         },
         "communicating": {
           "status": "ready",
@@ -449,11 +479,11 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/sub17_floorlamp_007/hoi_spider.mp4?v=d4e59ccde2",
-          "poster": "results-showcase-media/sub17_floorlamp_007/hoi_spider.jpg?v=d4e59ccde2",
-          "video_sha256": "d4e59ccde21d1f7187d98412b5b516734f80b95d0c3997e5e172d028e1afe41f",
+          "video": "results-showcase-media/sub17_floorlamp_007/hoi_spider.mp4?v=71049d1bbe",
+          "poster": "results-showcase-media/sub17_floorlamp_007/hoi_spider.jpg?v=71049d1bbe",
+          "video_sha256": "71049d1bbebd5f6a90d8c0b1027458b80416afbd55ec14adbf51e6ba772f932f",
           "label": "HOI-Retarget + SPIDER",
-          "source_motion_sha256": "6bd0982807ac2f2e0ddcbd1125a6477a5b7f9ebf9f646acf61f7fa9063d993be",
+          "source_motion_sha256": "f49af6a8952322a8a35a5c50c65d1e469f92dced85dcc115919f53ba48c52946",
           "source_scene_sha256": "e91a5715a7243753a5954e5e14cf367a43c056b76d6c62b7ecd209a15b29d120",
           "render": {
             "renderer": "Blender",
@@ -464,7 +494,13 @@
             "fps": 24,
             "samples": 24,
             "physics_reexecuted": false
-          }
+          },
+          "metrics": {
+            "mean_add_m": 1.1118386466592398,
+            "position_mean_m": 0.9617223580523275,
+            "orientation_mean_deg": 101.23342528043229
+          },
+          "semantic": "FAIL"
         },
         "communicating": {
           "status": "ready",
@@ -531,9 +567,28 @@
         "hoi_spider": {
           "status": "ready",
           "label": "HOI-Retarget + SPIDER",
-          "video": "intro-media/spider.mp4?v=39e4853555",
-          "poster": "intro-media/spider.jpg",
-          "presentation_trim_start_s": 0.125
+          "video": "intro-media/spider.mp4?v=62831f7717",
+          "poster": "intro-media/spider.jpg?v=62831f7717",
+          "presentation_trim_start_s": 0.125,
+          "video_sha256": "62831f7717073a4e9a16827d47db40d9661b5cebcbccb3c5c03275094f497a66",
+          "source_motion_sha256": "87f05debd08c318e5d93ccdde179609df86077fd572c5a5f7aedab524ebbb3a3",
+          "source_scene_sha256": "606db132e6d149b0b63797b6c8b7e8735f95859c92667f29ddb55b23738fd9b7",
+          "metrics": {
+            "mean_add_m": 0.34473808762296954,
+            "position_mean_m": 0.2699985577198724,
+            "orientation_mean_deg": 45.5039305731232
+          },
+          "semantic": "FAIL",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "communicating": {
           "status": "ready",
@@ -600,8 +655,27 @@
         "hoi_spider": {
           "status": "ready",
           "label": "HOI-Retarget + SPIDER",
-          "video": "intro-media/chair-spider.mp4",
-          "poster": "intro-media/chair-spider.jpg"
+          "video": "intro-media/chair-spider.mp4?v=7b08bf894a",
+          "poster": "intro-media/chair-spider.jpg?v=7b08bf894a",
+          "video_sha256": "7b08bf894a3ba06660333d8e1d7cf71cdd7b2fe71300991c9db31ff6a18e1b34",
+          "source_motion_sha256": "def43ae97d121d07fb5396641b92ab200f2bc50cf3fea7523c27de1facdc2be1",
+          "source_scene_sha256": "8a8dbe41c31f5d7e3143e43b818b78c3a7dd445baf09a110ec40ce47e9d6d568",
+          "metrics": {
+            "mean_add_m": 0.5020122828845612,
+            "position_mean_m": 0.4031332608515443,
+            "orientation_mean_deg": 81.44809461084424
+          },
+          "semantic": "FAIL",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "communicating": {
           "status": "ready",
@@ -667,11 +741,11 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/sub15_woodchair_053/hoi_spider.mp4?v=3a7115a4f7",
-          "poster": "results-showcase-media/sub15_woodchair_053/hoi_spider.jpg?v=3a7115a4f7",
-          "video_sha256": "3a7115a4f77071cd592fa8c9bbec8b608145488a25ce213de06c9540991efbc8",
+          "video": "results-showcase-media/sub15_woodchair_053/hoi_spider.mp4?v=62a7596e29",
+          "poster": "results-showcase-media/sub15_woodchair_053/hoi_spider.jpg?v=62a7596e29",
+          "video_sha256": "62a7596e29a0b15c4da77b8058f6949135106419e518a6e4037b598631eeff4b",
           "label": "HOI-Retarget + SPIDER",
-          "source_motion_sha256": "8d8e2eb29f59e0fc9bdf0eae875614827c5cbc09af651f9c2cee03b942079ff4",
+          "source_motion_sha256": "58a085f8f2d75b82edb0a24b7a3829e810a0eb7ca5b4282e32746a7f40ae4db7",
           "source_scene_sha256": "24d4f47b187f3d2d26856d49cf72815bfb525c9dc86a449fb4488f6d7981d5a4",
           "render": {
             "renderer": "Blender",
@@ -682,7 +756,13 @@
             "fps": 24,
             "samples": 24,
             "physics_reexecuted": false
-          }
+          },
+          "metrics": {
+            "mean_add_m": 0.09531139302951104,
+            "position_mean_m": 0.0814826742786624,
+            "orientation_mean_deg": 11.761437975439124
+          },
+          "semantic": "PASS"
         },
         "communicating": {
           "status": "ready",
@@ -735,11 +815,11 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/sub12_largebox_049/hoi_spider.mp4?v=ea7d32b598",
-          "poster": "results-showcase-media/sub12_largebox_049/hoi_spider.jpg?v=ea7d32b598",
-          "video_sha256": "ea7d32b598193094170f2fccc1c2dcb83bafeadd6be6530651324c29fbbf73bf",
+          "video": "results-showcase-media/sub12_largebox_049/hoi_spider.mp4?v=9427c60ebc",
+          "poster": "results-showcase-media/sub12_largebox_049/hoi_spider.jpg?v=9427c60ebc",
+          "video_sha256": "9427c60ebc886347952866f2b8041cf717dedc274861271bec56fd526cd721e4",
           "label": "HOI-Retarget + SPIDER",
-          "source_motion_sha256": "a537fda75b120f2aff98e4a74a0bdf61c29927000fb9e49ea59c39b44a1e8874",
+          "source_motion_sha256": "90fe4cffb050cc03dc18c054e365126921ed01fa10fe1573971483efad834385",
           "source_scene_sha256": "4df0c23484de71a8e227be3fd535acc3d490ffea5c83efeb9dd5733a4d7f7cd6",
           "render": {
             "renderer": "Blender",
@@ -750,7 +830,13 @@
             "fps": 24,
             "samples": 24,
             "physics_reexecuted": false
-          }
+          },
+          "metrics": {
+            "mean_add_m": 0.6422783739299892,
+            "position_mean_m": 0.616579695491178,
+            "orientation_mean_deg": 60.77292122915946
+          },
+          "semantic": "FAIL"
         },
         "communicating": {
           "status": "ready",
@@ -794,11 +880,11 @@
       "methods": {
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/lifting_and_carrying_table-105/hoi_spider.mp4?v=6cc19d53f6",
-          "poster": "results-showcase-media/lifting_and_carrying_table-105/hoi_spider.jpg?v=6cc19d53f6",
-          "video_sha256": "6cc19d53f668f4a8e2a01044103e2322a429cbc9e8551b8636f6da454e36984f",
+          "video": "results-showcase-media/lifting_and_carrying_table-105/hoi_spider.mp4?v=cf2e38e3af",
+          "poster": "results-showcase-media/lifting_and_carrying_table-105/hoi_spider.jpg?v=cf2e38e3af",
+          "video_sha256": "cf2e38e3af55753f9a88e0ef06b79dfeeaefc91c3391fb87126afafed58b5cf0",
           "label": "HOI-Retarget + SPIDER",
-          "source_motion_sha256": "94ed7450f4ce31b375909e8fc88863beb3712cc738419bca76b7f81e1fe5abf0",
+          "source_motion_sha256": "dc907d75583d9f64cfbc95484ca0a97941049020c541d69d0fb6bdc121b582bb",
           "source_scene_sha256": "a1774e962be6f3f199ace6e369b9dd50b93ffa211e4759046897238522208b7d",
           "render": {
             "renderer": "Blender",
@@ -809,7 +895,13 @@
             "fps": 24,
             "samples": 24,
             "physics_reexecuted": false
-          }
+          },
+          "metrics": {
+            "mean_add_m": 0.4176355669928356,
+            "position_mean_m": 0.4208530836824568,
+            "orientation_mean_deg": 37.41405067699698
+          },
+          "semantic": "FAIL"
         },
         "zero_shot": {
           "status": "ready",
@@ -864,11 +956,11 @@
       "methods": {
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/examining_cutting_board-141/hoi_spider.mp4?v=1430c9eb26",
-          "poster": "results-showcase-media/examining_cutting_board-141/hoi_spider.jpg?v=1430c9eb26",
-          "video_sha256": "1430c9eb2666cd2dc41ab7583b9dea7464516ae274324ccb0a30a96414c4471b",
+          "video": "results-showcase-media/examining_cutting_board-141/hoi_spider.mp4?v=2ae1a8deb8",
+          "poster": "results-showcase-media/examining_cutting_board-141/hoi_spider.jpg?v=2ae1a8deb8",
+          "video_sha256": "2ae1a8deb8058f3573fcdbb1b03610e67fbb4fb6a5d5214fa20a5213cbd59e44",
           "label": "HOI-Retarget + SPIDER",
-          "source_motion_sha256": "12578d7dd8ec850a980d8ce45c6c0d967ef0690cb889df295263dd5f997ed07a",
+          "source_motion_sha256": "39ca6db341e1279e288e066eece9b0d2420b06b979b1c73091d65dca347b4034",
           "source_scene_sha256": "126b5aade5c938806f89f7321ba9ac450d458afa2e4220547a64c1b01241d811",
           "render": {
             "renderer": "Blender",
@@ -879,7 +971,13 @@
             "fps": 24,
             "samples": 24,
             "physics_reexecuted": false
-          }
+          },
+          "metrics": {
+            "mean_add_m": 0.28176706997532686,
+            "position_mean_m": 0.2866646254114855,
+            "orientation_mean_deg": 31.02886860133495
+          },
+          "semantic": "FAIL"
         },
         "zero_shot": {
           "status": "ready",
@@ -934,11 +1032,11 @@
       "methods": {
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/sub11_monitor_044/hoi_spider.mp4?v=1e525f90b4",
-          "poster": "results-showcase-media/sub11_monitor_044/hoi_spider.jpg?v=1e525f90b4",
-          "video_sha256": "1e525f90b40459d09b8d16e63b242c201d2467e959d372352688ac3b1c37777f",
+          "video": "results-showcase-media/sub11_monitor_044/hoi_spider.mp4?v=363fe21677",
+          "poster": "results-showcase-media/sub11_monitor_044/hoi_spider.jpg?v=363fe21677",
+          "video_sha256": "363fe21677643980ca95925648590d1914a7d6695ae8b53288b36644b06df2dc",
           "label": "HOI-Retarget + SPIDER",
-          "source_motion_sha256": "e05d660891729b866ab2aeee2804ae47864f46338eed1848c741fd0d46d5fb7a",
+          "source_motion_sha256": "af67f08ee8d1e1ad1fd43a0e0149829b4f9d6dd02e1420ce2d888b32369f5cee",
           "source_scene_sha256": "a7eb2f77c307bace048da64486665ae4e2c4119785cb1f2c8f971034d1610233",
           "render": {
             "renderer": "Blender",
@@ -949,7 +1047,13 @@
             "fps": 24,
             "samples": 24,
             "physics_reexecuted": false
-          }
+          },
+          "metrics": {
+            "mean_add_m": 0.8602210852008125,
+            "position_mean_m": 0.8432126729085038,
+            "orientation_mean_deg": 42.137938073731966
+          },
+          "semantic": "FAIL"
         },
         "zero_shot": {
           "status": "ready",
@@ -1004,11 +1108,11 @@
       "methods": {
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/sub16_plasticbox_038/hoi_spider.mp4?v=7254005fd1",
-          "poster": "results-showcase-media/sub16_plasticbox_038/hoi_spider.jpg?v=7254005fd1",
-          "video_sha256": "7254005fd1aabfaaf215d4b7e7b314a06e1da5bdfe3577148102903fcf6a3d84",
+          "video": "results-showcase-media/sub16_plasticbox_038/hoi_spider.mp4?v=1a125b9d86",
+          "poster": "results-showcase-media/sub16_plasticbox_038/hoi_spider.jpg?v=1a125b9d86",
+          "video_sha256": "1a125b9d86e484c0712eb7a768ff0ea37d836946392721080dad5361f8d75aa6",
           "label": "HOI-Retarget + SPIDER",
-          "source_motion_sha256": "66ecdc82aac4b6e574eefb6afc6fdc315a2445ba1606c6f993df1c57af0fcc1e",
+          "source_motion_sha256": "d9318f032d7c2fec26d95715f790e0958ac308e0a70f72d574ad37b121043f2b",
           "source_scene_sha256": "8a5b4c9285de4fa54c663c84d2d13799b37f0e5f1867e36525bab0069dfbce98",
           "render": {
             "renderer": "Blender",
@@ -1019,7 +1123,13 @@
             "fps": 24,
             "samples": 24,
             "physics_reexecuted": false
-          }
+          },
+          "metrics": {
+            "mean_add_m": 0.43987512043827437,
+            "position_mean_m": 0.3248268675561291,
+            "orientation_mean_deg": 108.35395271206238
+          },
+          "semantic": "FAIL"
         },
         "zero_shot": {
           "status": "ready",

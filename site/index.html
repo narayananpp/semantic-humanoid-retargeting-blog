@@ -81,7 +81,7 @@
 <aside class="takeaways-message" aria-label="Key takeaways">
   <ul>
     <li>With <strong>HuMoTAR</strong>, we posit that <strong>frontier agentic models can capture both the semantic intent and physical requirements of a motion</strong> for generalizable humanoid retargeting.</li>
-    <li><strong>Closed-loop simulation feedback raises dynamics-aware semantic success from 5% (HOI-Retarget + SPIDER) to 47.5% with a single Codex agent</strong>, by letting agents iteratively refine motion and control.</li>
+    <li><strong>Closed-loop simulation feedback raises dynamics-aware semantic success from 17.5% (HOI-Retarget + SPIDER) to 47.5% with a single Codex agent</strong>, by letting agents iteratively refine motion and control.</li>
     <li><strong>An agentic swarm beats a single Codex agent by 20 percentage points under a fixed time budget</strong>, but compute-matched Codex surpasses it by 7.5 percentage points, at the cost of 4× the elapsed time.</li>
     <li><strong>Prior experience cuts object-tracking error from 23.35 to 7.77 cm in a shelf-righting task</strong>, with the experience stored as summaries of strategies and outcomes from related tasks, at equal compute and time.</li>
   </ul>
@@ -121,12 +121,12 @@
 <h3 id="carry-and-place-a-chair">Carry and place a chair</h3>
 
 
-<figure class="authored-video four-way-comparison" data-media-id="intro-chair-comparison"><div class="authored-video-views"><div class="execution-panel"><p>Human<span class="video-mode">Demonstration</span></p><video controls muted playsinline preload="none" aria-label="Human" poster="assets/source-humans/sub15_woodchair_047-454ce8c120.jpg" src="source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910"></video></div><div class="execution-panel"><p>HOI-Retarget<span class="video-mode">Kinematic replay</span></p><video controls muted playsinline preload="none" aria-label="HOI-Retarget" poster="intro-media/chair.jpg" src="intro-media/chair.mp4?v=be4d8e70e9"></video></div><div class="execution-panel"><p>SPIDER<span class="video-mode">Physics execution</span></p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="SPIDER" poster="intro-media/chair-spider.jpg" src="intro-media/chair-spider.mp4"></video></div><div class="execution-panel"><p>HuMoTAR<span class="video-mode">Physics execution</span></p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub15_woodchair_047.jpg" src="dynamics-showcase-media/omomo/sub15_woodchair_047.mp4"></video></div></div><figcaption class="publication-caption"><strong>Fig. 1.</strong> Chair carrying and placement: kinematic reference and simulated executions.</figcaption></figure>
+<figure class="authored-video four-way-comparison" data-media-id="intro-chair-comparison"><div class="authored-video-views"><div class="execution-panel"><p>Human<span class="video-mode">Demonstration</span></p><video controls muted playsinline preload="none" aria-label="Human" poster="assets/source-humans/sub15_woodchair_047-454ce8c120.jpg" src="source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910"></video></div><div class="execution-panel"><p>HOI-Retarget<span class="video-mode">Kinematic replay</span></p><video controls muted playsinline preload="none" aria-label="HOI-Retarget" poster="intro-media/chair.jpg" src="intro-media/chair.mp4?v=be4d8e70e9"></video></div><div class="execution-panel"><p>SPIDER<span class="video-mode">Physics execution</span></p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="SPIDER" poster="intro-media/chair-spider.jpg?v=7b08bf894a" src="intro-media/chair-spider.mp4?v=7b08bf894a"></video></div><div class="execution-panel"><p>HuMoTAR<span class="video-mode">Physics execution</span></p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub15_woodchair_047.jpg" src="dynamics-showcase-media/omomo/sub15_woodchair_047.mp4"></video></div></div><figcaption class="publication-caption"><strong>Fig. 1.</strong> Chair carrying and placement: kinematic reference and simulated executions.</figcaption></figure>
 
 <h3 id="lift-carry-and-place-a-clothes-stand">Lift, carry and place a clothes stand</h3>
 
 
-<figure class="authored-video four-way-comparison" data-media-id="intro-stand-comparison"><div class="authored-video-views"><div class="execution-panel"><p>Human<span class="video-mode">Demonstration</span></p><video controls muted playsinline preload="none" aria-label="Human" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa"></video></div><div class="execution-panel"><p>HOI-Retarget<span class="video-mode">Kinematic replay</span></p><video controls muted playsinline preload="none" aria-label="HOI-Retarget" poster="intro-media/stand-kinematic.jpg" src="intro-media/stand-kinematic.mp4"></video></div><div class="execution-panel"><p>SPIDER<span class="video-mode">Physics execution</span></p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="SPIDER" poster="intro-media/spider.jpg" src="intro-media/spider.mp4?v=39e4853555"></video></div><div class="execution-panel"><p>HuMoTAR<span class="video-mode">Physics execution</span></p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub10_clothesstand_002.jpg" src="dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d"></video></div></div><figcaption class="publication-caption"><strong>Fig. 2.</strong> Clothes-stand transport: kinematic reference and simulated executions.</figcaption></figure>
+<figure class="authored-video four-way-comparison" data-media-id="intro-stand-comparison"><div class="authored-video-views"><div class="execution-panel"><p>Human<span class="video-mode">Demonstration</span></p><video controls muted playsinline preload="none" aria-label="Human" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa"></video></div><div class="execution-panel"><p>HOI-Retarget<span class="video-mode">Kinematic replay</span></p><video controls muted playsinline preload="none" aria-label="HOI-Retarget" poster="intro-media/stand-kinematic.jpg" src="intro-media/stand-kinematic.mp4"></video></div><div class="execution-panel"><p>SPIDER<span class="video-mode">Physics execution</span></p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="SPIDER" poster="intro-media/spider.jpg?v=62831f7717" src="intro-media/spider.mp4?v=62831f7717"></video></div><div class="execution-panel"><p>HuMoTAR<span class="video-mode">Physics execution</span></p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub10_clothesstand_002.jpg" src="dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d"></video></div></div><figcaption class="publication-caption"><strong>Fig. 2.</strong> Clothes-stand transport: kinematic reference and simulated executions.</figcaption></figure>
 
 <p><strong>HOI-Retarget + SPIDER fails both tasks, while HuMoTAR completes both.</strong> We execute the kinematic references from HOI-Retarget<sup><a href="#ref-1">1</a></sup> with SPIDER<sup><a href="#ref-3">3</a></sup> and compare them with HuMoTAR’s executions in physics simulation.</p>
 </section>
@@ -152,7 +152,7 @@
 </ul>
 <p>The classical baseline (B0) optimizes the robot’s motion directly; the open-loop agentic baseline (B1) uses the same model as HuMoTAR without its closed refinement loop:</p>
 <ul>
-<li><strong>B0 · HOI-Retarget + SPIDER (classical)</strong> executes HOI-Retarget<sup><a href="#ref-1">1</a></sup> references with SPIDER<sup><a href="#ref-3">3</a></sup>.</li>
+<li><strong>B0 · HOI-Retarget + SPIDER (classical)</strong> executes HOI-Retarget<sup><a href="#ref-1">1</a></sup> references with SPIDER<sup><a href="#ref-3">3</a></sup>, which we adapt to G1 with Dex3.</li>
 <li><strong>B1 · Astra one-shot (open-loop agentic)</strong> generates motion and control code in one response, without tool calls or further revisions.</li>
 </ul>
 
@@ -183,14 +183,14 @@
 
 <span id="study-design" class="section-anchor"></span>
 
-<p><strong>HuMoTAR raises semantic success from 5% for HOI-Retarget + SPIDER (B0) to 47.5% with its simplest configuration, a single Codex agent (A1).</strong> Fig. 5 shows example tasks from HUMOTO and OMOMO. Select a dataset, then a method, to compare its execution with the human demonstration: HOI-Retarget + SPIDER (B0), Astra one-shot (B1), the single Codex agent (A1) after 30 and 120 minutes, or the independent (A2) and collaborative (A3) swarms. The subsections below take these comparisons one question at a time.</p>
+<p><strong>HuMoTAR raises semantic success from 17.5% for HOI-Retarget + SPIDER (B0) to 47.5% with its simplest configuration, a single Codex agent (A1).</strong> Fig. 5 shows example tasks from HUMOTO and OMOMO. Select a dataset, then a method, to compare its execution with the human demonstration: HOI-Retarget + SPIDER (B0), Astra one-shot (B1), the single Codex agent (A1) after 30 and 120 minutes, or the independent (A2) and collaborative (A3) swarms. The subsections below take these comparisons one question at a time.</p>
 
 
 <div id="dynamics-showcase" class="dynamics-showcase" aria-label="Selected task executions"></div>
 <p class="publication-caption"><strong>Fig. 5.</strong> Selected humanoid–object executions across retargeting configurations.</p>
 
 <h3 id="comparison-results">3.1 How much does closed-loop simulation feedback help?</h3>
-<p><strong>The gain comes from iterative refinement, not from the model alone: Astra one-shot (B1) does no better than HOI-Retarget + SPIDER (B0), while HuMoTAR’s single Codex agent (A1) reaches 47.5%.</strong> We compare the <a href="#configuration-plain">single Codex agent (A1)</a> with HOI-Retarget + SPIDER (B0) on all 40 tasks, and include Astra one-shot (B1) to measure performance without iterative refinement.</p>
+<p><strong>The gain comes from iterative refinement, not from the model alone: Astra one-shot (B1) does worse than HOI-Retarget + SPIDER (B0), while HuMoTAR’s single Codex agent (A1) reaches 47.5%.</strong> We compare the <a href="#configuration-plain">single Codex agent (A1)</a> with HOI-Retarget + SPIDER (B0) on all 40 tasks, and include Astra one-shot (B1) to measure performance without iterative refinement.</p>
 </section>
 <section id="agent-diagnosis" class="outline-section execution-analysis">
 
@@ -236,17 +236,17 @@
   <p class="walkthrough-error" hidden></p>
 </div>
 <p class="publication-caption"><strong>Fig. 7.</strong> Five selected trials from the collaborative swarm (A3), with simulated executions, mean ADD and the agent’s log at each step.</p>
-<p><strong>Quantitative results.</strong> Across all 40 tasks, HOI-Retarget + SPIDER (B0) and Astra one-shot (B1) reach 5% and 2.5% semantic success, while the single Codex agent (A1) reaches 47.5%. Mean object-tracking error falls from 52.48 cm for HOI-Retarget + SPIDER (B0) and 62.98 cm for Astra one-shot (B1) to 23.74 cm for the single Codex agent (A1). Tables 1–2 break these results down by dataset.</p>
+<p><strong>Quantitative results.</strong> Across all 40 tasks, HOI-Retarget + SPIDER (B0) and Astra one-shot (B1) reach 17.5% and 2.5% semantic success, while the single Codex agent (A1) reaches 47.5%. Mean object-tracking error falls from 42.87 cm for HOI-Retarget + SPIDER (B0) and 62.98 cm for Astra one-shot (B1) to 23.74 cm for the single Codex agent (A1). Tables 1–2 break these results down by dataset.</p>
 <details class="appendix-faq" id="per-dataset-results">
 <summary>Per-dataset results (Tables 1–2)</summary>
 
 
 <div class="baseline-dataset-tables" id="dynamics-results-table">
 <div class="table-wrap results-table"><table aria-label="HUMOTO: object-tracking errors and semantic success"><caption class="publication-caption"><strong>Table 1.</strong> Object-tracking errors and semantic success on HUMOTO (20 tasks).</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean ADD<br>(cm) ↓</th><th scope="col">Position error<br>(cm) ↓</th><th scope="col">Orientation error<br>(°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody><tr><th scope="row">HOI-Retarget + SPIDER (B0)</th>
-<td>56.66</td>
-<td>55.49</td>
-<td>51.22</td>
-<td>0/20<br>0.0%</td></tr><tr><th scope="row">Astra one-shot (B1)</th>
+<td>44.96</td>
+<td>45.11</td>
+<td>42.98</td>
+<td>5/20<br>25.0%</td></tr><tr><th scope="row">Astra one-shot (B1)</th>
 <td>56.09</td>
 <td>55.03</td>
 <td>62.88</td>
@@ -256,9 +256,9 @@
 <td><strong>29.32</strong></td>
 <td><strong>11/20<br>55.0%</strong></td></tr></tbody></table></div>
 <div class="table-wrap results-table"><table aria-label="OMOMO: object-tracking errors and semantic success"><caption class="publication-caption"><strong>Table 2.</strong> Object-tracking errors and semantic success on OMOMO (20 tasks).</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean ADD<br>(cm) ↓</th><th scope="col">Position error<br>(cm) ↓</th><th scope="col">Orientation error<br>(°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody><tr><th scope="row">HOI-Retarget + SPIDER (B0)</th>
-<td>48.31</td>
-<td>43.36</td>
-<td>52.07</td>
+<td>40.77</td>
+<td>35.62</td>
+<td>55.97</td>
 <td>2/20<br>10.0%</td></tr><tr><th scope="row">Astra one-shot (B1)</th>
 <td>69.87</td>
 <td>65.61</td>
@@ -335,7 +335,7 @@
 <section id="discussion" class="outline-section">
 <h2 id="4-discussion-limitations-and-future-work">4. Discussion, limitations and future work</h2>
 <h3 id="refinement-and-swarms">4.1 Findings and failure cases</h3>
-<p><strong>The difference is closed loop versus open loop.</strong> Run open loop, Astra one-shot (B1) does no better than HOI-Retarget + SPIDER (B0). Closing the loop with simulation feedback lets the same model iteratively refine motion and control, raising dynamics-aware semantic success to 47.5% with a single Codex agent (A1). How best to spend the agents’ budget then depends on what is scarce. The collaborative swarm (A3) reaches good solutions fastest, while the single Codex agent (A1), given the same compute over a longer run, reaches better ones. We encourage the community to study this compute–time tradeoff across more interactions, and to investigate how communication and shared experience make better use of a limited refinement budget.</p>
+<p><strong>The difference is closed loop versus open loop.</strong> Run open loop, Astra one-shot (B1) does worse than HOI-Retarget + SPIDER (B0). Closing the loop with simulation feedback lets the same model iteratively refine motion and control, raising dynamics-aware semantic success to 47.5% with a single Codex agent (A1). How best to spend the agents’ budget then depends on what is scarce. The collaborative swarm (A3) reaches good solutions fastest, while the single Codex agent (A1), given the same compute over a longer run, reaches better ones. We encourage the community to study this compute–time tradeoff across more interactions, and to investigate how communication and shared experience make better use of a limited refinement budget.</p>
 
 
 <span id="failure-analysis" class="section-anchor"></span>
@@ -456,11 +456,11 @@
   </main>
   <script src="article.js?v=collaborative-appendix-1"></script>
   <script src="walkthrough.js?v=collaborative-stages-hq-3"></script>
-<script src="dynamics-showcase.js?v=spider-blender-1" defer></script>
+<script src="dynamics-showcase.js?v=spider-full-20261102" defer></script>
 <script src="kinematic-showcase.js?v=humotar-story-2" defer></script>
 <script src="experience-story.js?v=numbered-captions-1" defer></script>
 <script src="text-motion.js?v=1" defer></script>
-<script src="results-evidence.js?v=dataset-tabs-8" defer></script>
+<script src="results-evidence.js?v=spider-full-20261102" defer></script>
 <script src="autoplay.js?v=1" defer></script>
 </body>
 </html>

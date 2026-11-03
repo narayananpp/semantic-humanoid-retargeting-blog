@@ -13,280 +13,360 @@
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.6186078953217181,
-        "position_mean_m": 0.614468663579325,
-        "orientation_mean_deg": 56.69340744851883
+        "mean_add_m": 0.854590148350776,
+        "position_mean_m": 0.8464808070527043,
+        "orientation_mean_deg": 96.41145635661266
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate remains at the desk throughout, with the flat orange object still on the tabletop at 26.708 s. It never transfers that object to the shelf box or lifts the box to a higher shelf, both central parts of the reference interaction.",
+      "source_motion_sha256": "8d9700e4bdfef40c35d73e5ac5e13221b4412ece53414e6ea19ea7fb9cf54eaf",
+      "source_scene_sha256": "a72d1421565744fc82266da5dc5b344f33470d23d57eb58769cb585ea1b59197",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "lifting_side_table_and_putting_down-362",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.13528969324176723,
-        "position_mean_m": 0.13469071978390357,
-        "orientation_mean_deg": 7.345522259569793
+        "mean_add_m": 0.10346235466280769,
+        "position_mean_m": 0.09448630472980896,
+        "orientation_mean_deg": 16.055617279202252
       },
-      "semantic": "FAIL",
-      "raw_semantic": "FAIL",
+      "semantic": "PASS",
+      "raw_semantic": "PASS",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "PASS",
+      "judge_reason": "The robot raises and slightly tilts the chair while holding its back and seat area, then returns it upright to the floor and releases it by about 8 seconds. It grasps and raises the chair again at 12\u201313.6 seconds, matching the reference\u2019s repeated lifting interaction despite a smaller lift and more wobble.",
+      "source_motion_sha256": "c00f60984b03e2985f89ff634737f22f26545b32ad8254eda1f30bcd76aab97c",
+      "source_scene_sha256": "e9ad7208e6ac4af04429f7d791a3afd49d19cda98420fe57d36a6763d0f7caf2",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "pulling_and_pushing_the_dining_chair_from_back_post-203",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.31289895750261393,
-        "position_mean_m": 0.2724617863488,
-        "orientation_mean_deg": 38.68926083500639
+        "mean_add_m": 0.07629380907385908,
+        "position_mean_m": 0.07190873094209628,
+        "orientation_mean_deg": 4.59338572705363
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate mainly rocks the chair: around 1\u20132.5 s and again at 9\u201311.2 s, the backrest tilts while the front feet remain nearly in place. It does not substantially pull the chair toward the robot and then move it away, as shown in the reference.",
+      "source_motion_sha256": "631a74b3eae4d54d053bc0c9aef85f66dd86c9b3cf43db97ba8cf143e8090324",
+      "source_scene_sha256": "cab837d0b2ce5a1ff8bde2f174ed28753589cff845e8bf40fdc84ecc7a228ccf",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "carry_side_table_with_both_hands_walk_around-536",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 1.15228378696237,
-        "position_mean_m": 1.1598488665415911,
-        "orientation_mean_deg": 112.73644781531699
+        "mean_add_m": 1.0907860816068309,
+        "position_mean_m": 1.1008160988505662,
+        "orientation_mean_deg": 105.2693614333952
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate initially carries the chair, but by 3.0\u20133.5 s it tips onto its side as the robot falls. By 7.0 s the chair is fully separated and remains on the floor, so the sustained carrying and turning shown in the reference is not completed.",
+      "source_motion_sha256": "d547b31d0ad300816cf3b08d735c355116634db9b3858ecf7dfde27c3575ac3c",
+      "source_scene_sha256": "f2ed68ac4204d597a082c372d5cbf59b0d5e057db2de7454614976da4bd6764d",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "examining_cutting_board-141",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.260161138405765,
-        "position_mean_m": 0.26475831789342036,
-        "orientation_mean_deg": 32.9959618583431
+        "mean_add_m": 0.28176706997532686,
+        "position_mean_m": 0.2866646254114855,
+        "orientation_mean_deg": 31.02886860133495
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The board remains flat and unmoved on the tabletop throughout the candidate; the robot never lifts or rotates it as in the reference. By 3.5 s, the robot has fallen backward and stays on the floor through the ending, leaving the interaction unperformed.",
+      "source_motion_sha256": "39ca6db341e1279e288e066eece9b0d2420b06b979b1c73091d65dca347b4034",
+      "source_scene_sha256": "126b5aade5c938806f89f7321ba9ac450d458afa2e4220547a64c1b01241d811",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "lift_shelf_lie_to_stand-867",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.9735970329316345,
-        "position_mean_m": 0.9673112187771208,
-        "orientation_mean_deg": 96.45996367356292
+        "mean_add_m": 0.7170837131471768,
+        "position_mean_m": 1.016066390911641,
+        "orientation_mean_deg": 54.71917745711256
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate rocks the shelving unit sideways from about 3.5\u20138 seconds but never rotates its long axis upright. At 9.208 seconds it remains on its long side with the robot down behind it, missing the reference\u2019s essential outcome of standing the shelf vertically on its feet.",
+      "source_motion_sha256": "71553c77b495191a2b10d9086340bb68d6e77db0ddbf39cf8a0c28c93ddf7862",
+      "source_scene_sha256": "09c0b6fd7f7efddfec28a8934cea6556a0df24930df0609d70d0ed5310dd054b",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "turn_on_floor_lamp_while_sitting_on_low_chair_and_drinking_from_mug-457",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.7752634827565426,
-        "position_mean_m": 0.7719852135293538,
-        "orientation_mean_deg": 44.67020741609071
+        "mean_add_m": 0.10127653851233415,
+        "position_mean_m": 0.09807353782760472,
+        "orientation_mean_deg": 36.469620593764844
       },
-      "semantic": "FAIL",
-      "raw_semantic": "FAIL",
+      "semantic": "PASS",
+      "raw_semantic": "PASS",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "PASS",
+      "judge_reason": "The robot retains the mug while sitting, then raises and tilts it toward its face at 5.5\u20136.5 s, substantially reproducing the drinking motion. At 7.5\u20139.125 s it lowers the mug upright onto the side table\u2019s edge without losing it, matching the reference\u2019s main object interaction.",
+      "source_motion_sha256": "9681e03288a14acf309187932d1b80998380b997d1398cfe9fc9eaf727e09204",
+      "source_scene_sha256": "06a11c8aa8ad8170b3119252bd21139ef87949f409dc9347976ac04f33481b2c",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "subject_holding_plastic_bowl_walk_back_and_fourth-039",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.784346629887918,
-        "position_mean_m": 0.7835534092057274,
-        "orientation_mean_deg": 90.52591165882515
+        "mean_add_m": 0.8254244095959915,
+        "position_mean_m": 0.8227919456941041,
+        "orientation_mean_deg": 83.6385204181149
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate carries the bowl briefly, but it falls from the raised hand between 1.5 and 2.0 seconds and remains on the floor for the rest of the sequence. The robot never recovers it, so it does not complete the reference\u2019s sustained carrying interaction.",
+      "source_motion_sha256": "dba1e2353d169f5bcf60cc733118216f6d9d247a9506270e8bf9f92cf7c3e0a4",
+      "source_scene_sha256": "9a8821411f2dc73dff7efc49b6e4ac7320ad8ddbecf041e378c07793d9b09ce2",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "rearranging_the_vase_from_next_to_last_shelf_to_two_shelves_above-640",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.5262659409092395,
-        "position_mean_m": 0.5240602759554209,
-        "orientation_mean_deg": 29.10971042158575
+        "mean_add_m": 0.5261668421781391,
+        "position_mean_m": 0.5239547379694152,
+        "orientation_mean_deg": 29.453554788414515
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The robot reaches toward the vase around 1\u20131.5 s, but raises its hand empty while the vase remains on the lower shelf throughout the candidate. The essential transfer to the higher shelf shown in the reference never occurs.",
+      "source_motion_sha256": "7e9dbc11287ccf06051553dc2617fdffcc6f9586d427807d371aed0bee85b603",
+      "source_scene_sha256": "ac043c76c2a45b7dd1faa3f3d72b3e97c83d29be85408a502526ddbf6a3396f5",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "lifting_and_carrying_table-105",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.4535730231596125,
-        "position_mean_m": 0.5005879568424328,
-        "orientation_mean_deg": 25.337912215982538
+        "mean_add_m": 0.4176355669928356,
+        "position_mean_m": 0.4208530836824568,
+        "orientation_mean_deg": 37.41405067699698
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate pushes and turns the table along the floor at roughly 1\u20136 s rather than lifting and carrying it as in the reference. By 12\u201315 s the robot has slipped beneath the table, without completing the substantial lift-and-set-down interaction.",
+      "source_motion_sha256": "dc907d75583d9f64cfbc95484ca0a97941049020c541d69d0fb6bdc121b582bb",
+      "source_scene_sha256": "a1774e962be6f3f199ace6e369b9dd50b93ffa211e4759046897238522208b7d",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "lifting_dining_chair_from_backrest_and_placing_back_with_right_hand_on_ground-595",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.39034462877778875,
-        "position_mean_m": 0.3901772313350348,
-        "orientation_mean_deg": 24.37139646610191
+        "mean_add_m": 0.1990553739388566,
+        "position_mean_m": 0.19236913794567778,
+        "orientation_mean_deg": 20.820813455961186
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate lifts and slightly turns the chair around 1.5\u20133.5 s, but sets it back down essentially in the same spot beside the robot by 6.5 s. It does not substantially relocate the chair from beside the actor to in front, as the reference does.",
+      "source_motion_sha256": "e4af17781383a494a9f2c2737661cf53313d406a1416c028c9fc92717f87328c",
+      "source_scene_sha256": "abfd3d66663284528a0c452893fea3bf3bf4e9944d6b49a5841622dd287d0ef3",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "drag_wash_tub_on_ground_while_walking-176",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.6977480069525479,
-        "position_mean_m": 0.6915590103132889,
-        "orientation_mean_deg": 57.0612110471269
+        "mean_add_m": 0.5927363747698143,
+        "position_mean_m": 0.5899313386734788,
+        "orientation_mean_deg": 45.40052511640657
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate nudges the bowl along the floor, but at 8.5\u20139.0 s it sends the bowl far away, tipping and rolling through the final frames. This loses the object rather than completing the reference\u2019s controlled movement with the bowl remaining upright nearby.",
+      "source_motion_sha256": "684a95f5aa9d28134f46d3d91663df2dc7f8be4ea0d45852aa00568d293770cb",
+      "source_scene_sha256": "92f1cf9a878944470e44d8ea160c7b112f8ee51909475feec4d6817c4e4cbd6c",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "walk_with_low_chair-308",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.8763535374667766,
-        "position_mean_m": 0.8351398274998566,
-        "orientation_mean_deg": 75.96075589253564
+        "mean_add_m": 1.1480513135943966,
+        "position_mean_m": 1.115579352729803,
+        "orientation_mean_deg": 67.97590679449625
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The robot falls at about 2.0 s, tipping the chair, and loses contact with it by 2.5 s. The chair settles separately while the robot remains on the floor, so the sustained lifting and carrying shown in the reference is not achieved.",
+      "source_motion_sha256": "bbd38732535e80a67141ff100a190cbbd21aa8adfe6d558c5b37dea92755e045",
+      "source_scene_sha256": "56534e3698e5beebe67d8dce92fe96de85cb0d827407a000a47cbcc950fddf57",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "lifting_and_checking_basket_90-215",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.46381615906414847,
-        "position_mean_m": 0.4557700367610187,
-        "orientation_mean_deg": 39.09096334010045
+        "mean_add_m": 0.6278014669759754,
+        "position_mean_m": 0.6257476803725464,
+        "orientation_mean_deg": 30.436471083658034
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The robot contacts the basket handle around 1\u20131.5 s, but by 2 s its hand has moved away while the basket remains on the floor. The basket stays there through the end, so the reference\u2019s sustained lift and subsequent tilting/rotation are not achieved.",
+      "source_motion_sha256": "647c545719a5f177e13d8158880d4847d7d98d8ddc14a5f586fde62b684c9acf",
+      "source_scene_sha256": "cd2ec49dcd8a2c2d1064b7a85c2a233d6bfef1cca22ae94e545c1a45306bd33f",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "tilting_trash_can_with_right_foot-985",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.007567873548792441,
-        "position_mean_m": 0.006352901110177386,
-        "orientation_mean_deg": 2.30470291578962
+        "mean_add_m": 0.007569898961381696,
+        "position_mean_m": 0.006355022252428231,
+        "orientation_mean_deg": 2.304555488277267
       },
-      "semantic": "FAIL",
-      "raw_semantic": "FAIL",
+      "semantic": "PASS",
+      "raw_semantic": "PASS",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "PASS",
+      "judge_reason": "At 1.0\u20131.5 s, the robot raises its foot to the bucket\u2019s upper edge and then withdraws it, substantially matching the reference\u2019s brief foot contact. The bucket remains upright and in place through the ending, as in the reference.",
+      "source_motion_sha256": "bdac2153bdcf6459d574af67dcbe47df1e794233590101522dff495cce2d266f",
+      "source_scene_sha256": "ff794dd0e58085a830106ceaf452182555d37bb94cc5034e42bc1d474cbf78c3",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "lifting_and_tilting_table-304",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.2538786608132005,
-        "position_mean_m": 0.15432815287495374,
-        "orientation_mean_deg": 39.47975964245724
+        "mean_add_m": 0.2421925842567868,
+        "position_mean_m": 0.13351738593747192,
+        "orientation_mean_deg": 52.73323605758928
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate briefly tilts the table around 5.5 s but returns it upright by 6.0 s, and it remains upright through the final frame. It never completes the reference\u2019s main interaction of rotating the table onto its side with the tabletop vertical.",
+      "source_motion_sha256": "c0f362f70be3fc862dd36bf796306f4d712d17eaa32729d7e1fb9f8caaacfe56",
+      "source_scene_sha256": "b3fd7e26205ced19408e2a6e33138dad58982bb9e7983cb4e81ff97b4fc2dda7",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "carry_wok_turner_right_hand_walk_around-968",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.8352099616160332,
-        "position_mean_m": 0.8221723486437159,
-        "orientation_mean_deg": 98.70450758861779
+        "mean_add_m": 0.6816297472844128,
+        "position_mean_m": 0.6711450329374136,
+        "orientation_mean_deg": 62.524235126610535
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The robot initially carries the spatula, but falls and loses it at about 2.0 s. The spatula remains on the floor through the final frame, so the sustained carrying interaction shown in the reference is not completed.",
+      "source_motion_sha256": "3e63c026f5d1a4486276e9fb175891f58a42dd8cee4ba656b55c85950b79f64f",
+      "source_scene_sha256": "cd6ff72dc652d42f9bb61474cd079067baf578d2b2b14894809fa85017ed43d8",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "carrying_mixing_bowl_with_both_hands-134",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.7170338491342679,
-        "position_mean_m": 0.7035114402089032,
-        "orientation_mean_deg": 63.074182615220664
+        "mean_add_m": 0.12682831730716568,
+        "position_mean_m": 0.11951199121065542,
+        "orientation_mean_deg": 23.391640285389844
       },
-      "semantic": "FAIL",
-      "raw_semantic": "FAIL",
+      "semantic": "PASS",
+      "raw_semantic": "PASS",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "PASS",
+      "judge_reason": "The robot carries the bowl while stepping and turning throughout the sequence, including the turn at 3.5\u20134.5 s and continued movement through 9.542 s. The bowl tilts slightly but remains supported and generally upright, substantially matching the reference\u2019s sustained carrying interaction.",
+      "source_motion_sha256": "e4a9679d75418a3f6401e47dd16fe2184e804eadc2b9dbb2830e1135743dc22e",
+      "source_scene_sha256": "c0415dac7178f0543970bc48f24e2080e0a5970a585d70179dbef5e20dd0c4f2",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "lift_and_push_utility_cart_and_walk-692",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.8142869736825726,
-        "position_mean_m": 0.8134648152952749,
-        "orientation_mean_deg": 32.10792474892619
+        "mean_add_m": 0.18324048384936303,
+        "position_mean_m": 0.16989159655691685,
+        "orientation_mean_deg": 15.95815615915802
       },
-      "semantic": "FAIL",
-      "raw_semantic": "FAIL",
+      "semantic": "PASS",
+      "raw_semantic": "PASS",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "PASS",
+      "judge_reason": "The robot lifts and tilts the cart while repositioning it around 2\u20134 seconds, then returns it upright and pushes it forward through the final frames. Despite more wobble than the reference, the cart remains controlled and the overall lift/reposition-and-push interaction is substantially achieved.",
+      "source_motion_sha256": "c3fc5cac2ee256afe433be065d36d44055d60bdd280b12fd110668cd313e0012",
+      "source_scene_sha256": "02c6c943064f1ab354fb35743e4061fb092e72bb514c48f2d86f26c708b43a54",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "lifting_and_straightening_working_chair-433",
       "dataset": "humoto",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.28390889660496793,
-        "position_mean_m": 0.23263515182912747,
-        "orientation_mean_deg": 57.77485556559034
+        "mean_add_m": 0.18911878483546085,
+        "position_mean_m": 0.11577149683356382,
+        "orientation_mean_deg": 42.94700256143838
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate shifts the chair slightly around 2.5 s, but it remains on its side with the seat nearly vertical through the final frame. It never rights the chair onto its legs, which is the main interaction achieved in the reference.",
+      "source_motion_sha256": "cef847707d4aa9749a1818a46bf4abee4d83cd212c74cd50c8a50afbca420e33",
+      "source_scene_sha256": "db7be0ef6a2919eb5ee9278b9ac4af86b6c8585d7345776c1dae0b3c0463baaf",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "carry_side_table_with_both_hands_walk_around-536",
@@ -1155,280 +1235,360 @@
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.6721666575299081,
-        "position_mean_m": 0.6630673897909463,
-        "orientation_mean_deg": 44.841808015993614
+        "mean_add_m": 0.6422783739299892,
+        "position_mean_m": 0.616579695491178,
+        "orientation_mean_deg": 60.77292122915946
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate briefly raises and tilts the box around 1.5\u20132.0 s, but never completes the sustained lift-and-carry shown in the reference. Instead, the box stays near the floor and tumbles away from the robot around 5.5\u20137.0 s rather than being carried and deliberately set down.",
+      "source_motion_sha256": "90fe4cffb050cc03dc18c054e365126921ed01fa10fe1573971483efad834385",
+      "source_scene_sha256": "4df0c23484de71a8e227be3fd535acc3d490ffea5c83efeb9dd5733a4d7f7cd6",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub8_plasticbox_052",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.37417343532862274,
-        "position_mean_m": 0.3245093314949495,
-        "orientation_mean_deg": 55.083293081059296
+        "mean_add_m": 0.20842522678825595,
+        "position_mean_m": 0.19244844135544545,
+        "orientation_mean_deg": 24.103961651649335
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate moves the crate left during 0.5\u20133.0 s, but never completes the substantial return movement shown in the reference. From 5.0 s onward the crate instead tilts increasingly against the fallen robot and ends on an edge, rather than being left upright after the back-and-forth movement.",
+      "source_motion_sha256": "b56ffdc0bd7e692e77ca524c33790c92774fa554f02795f50c259b0da564f44d",
+      "source_scene_sha256": "351a3460cd36739c4773857bfcc9899b6440a70d68bd67e208dd6ccb7a647395",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub4_whitechair_039",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.4734471040904516,
-        "position_mean_m": 0.4691216659730699,
-        "orientation_mean_deg": 15.904590252188004
+        "mean_add_m": 0.20469404481208758,
+        "position_mean_m": 0.14708422113493158,
+        "orientation_mean_deg": 40.14131384169037
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate moves the chair left and turns it behind the robot, but from 5.5 s through the final frame it remains strongly tilted and elevated. It never completes the upright set-down shown at the end of the reference.",
+      "source_motion_sha256": "e229569fa9c897de6c8a0fe897b057e0709d461877fa41c41efe06f239d680e9",
+      "source_scene_sha256": "fc6c00a346b916b4e52424390f98adc0a1a3959396b5fef261b8a032e632c79d",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub4_suitcase_040",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.5482861434222296,
-        "position_mean_m": 0.5221390051566798,
-        "orientation_mean_deg": 57.146419869545824
+        "mean_add_m": 0.4537458691428884,
+        "position_mean_m": 0.4120999085345351,
+        "orientation_mean_deg": 60.36617089937781
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate initially moves the suitcase along, but it tips progressively at 2\u20132.5 s and falls onto its side by 3 s. The robot then collapses and leaves it there, losing control before completing the reference\u2019s upright transport and placement.",
+      "source_motion_sha256": "5946e43946d9c64c6b541eb33ddb7a08adf0fbe5250c03bad9d936eae42ce0a3",
+      "source_scene_sha256": "b50ff09f225533e01653f81e49197f81b812f47031d0949c54543ea7756e782b",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub1_largetable_015",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.5240552818048207,
-        "position_mean_m": 0.5074132087602871,
-        "orientation_mean_deg": 29.132146665019892
+        "mean_add_m": 0.5892965799765282,
+        "position_mean_m": 0.5110306778236022,
+        "orientation_mean_deg": 93.74765793374607
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate moves and tilts the table around 2\u20133.5 s, but it tips onto its side at 4 s and remains there through the final frame. It never completes the reference\u2019s upright set-down at the new location.",
+      "source_motion_sha256": "882ed457c21a1de050e497a6d1c7c7015721d3709ac2059eb8882604527127ae",
+      "source_scene_sha256": "ca0cac21b9bf41ea80d716ac0e3ad10aa64cc06c563681820fa395990dd1bf65",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub1_suitcase_060",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.22758714645609943,
-        "position_mean_m": 0.13417811383643838,
-        "orientation_mean_deg": 59.086346125756194
+        "mean_add_m": 0.27079467815681646,
+        "position_mean_m": 0.23580914632044853,
+        "orientation_mean_deg": 48.02470870203871
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The reference moves the suitcase along the floor while keeping it upright, then leaves it standing. In the candidate, the suitcase tips sideways by 3.0 s and tumbles over the collapsing robot around 5.0\u20135.7 s, rather than completing the controlled floor movement.",
+      "source_motion_sha256": "2092e6fc4be7bd483dc0a16f5dbcabac767378f3a6df2adc1d297794f9a41626",
+      "source_scene_sha256": "4f5725b8506915e4f3c5a13f8f3191d47dfa6396a0a400c45022e650209377a7",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub16_plasticbox_049",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.14125986521580827,
-        "position_mean_m": 0.1322626834745428,
-        "orientation_mean_deg": 11.516934976608079
+        "mean_add_m": 0.13874625067877516,
+        "position_mean_m": 0.13539592848653081,
+        "orientation_mean_deg": 6.265012274318412
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The robot falls beside the basket by 1.0 s and remains on the floor through 5.0 s, while the basket stays near its starting location with only minor shifts. It does not accomplish the substantial sideways relocation shown in the reference.",
+      "source_motion_sha256": "6f3c9c14ac2f12da19c9b6a416cbe20527717776b2abdb103bcd1e7116d51df1",
+      "source_scene_sha256": "259bca9b43b281a396940801c1d03ae5a6a282502f971664c27fd4f817b65b19",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub1_plasticbox_006",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.34563139854899994,
-        "position_mean_m": 0.3292106337637772,
-        "orientation_mean_deg": 24.36590132988011
+        "mean_add_m": 0.1784489296326831,
+        "position_mean_m": 0.15828043621826282,
+        "orientation_mean_deg": 25.823769148676895
       },
       "semantic": "PASS",
       "raw_semantic": "PASS",
       "opening_disqualified": false,
-      "reviewed_semantic": "PASS"
+      "reviewed_semantic": "PASS",
+      "judge_reason": "The candidate moves the crate from its starting position and visibly turns it during the 1.0\u20133.5 s sequence, keeping the opening upright. By 4.0\u20134.417 s, the crate rests on the floor at a new location; the robot\u2019s awkward leaning finish does not undo the main object interaction.",
+      "source_motion_sha256": "185854a30a2c5f91e0f8a03c6b3793478c83ebada43d5c4eb7141303ef246e6a",
+      "source_scene_sha256": "f8f0fd8d24f7338dc9e4cfd8fe027bbeced1012b291c120041203d818548c34d",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub17_floorlamp_007",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 1.1263184916395428,
-        "position_mean_m": 0.9730689824950592,
-        "orientation_mean_deg": 99.1243486268878
+        "mean_add_m": 1.1118386466592398,
+        "position_mean_m": 0.9617223580523275,
+        "orientation_mean_deg": 101.23342528043229
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate loses control of the pole as it tilts between 0.5 and 1.0 s, then falls onto its side by 1.5 s and remains there. It does not complete the reference\u2019s upright carry and controlled upright set-down.",
+      "source_motion_sha256": "f49af6a8952322a8a35a5c50c65d1e469f92dced85dcc115919f53ba48c52946",
+      "source_scene_sha256": "e91a5715a7243753a5954e5e14cf367a43c056b76d6c62b7ecd209a15b29d120",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub15_woodchair_047",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.46542639994673,
-        "position_mean_m": 0.37073897949213264,
-        "orientation_mean_deg": 72.97472141701941
+        "mean_add_m": 0.5020122828845612,
+        "position_mean_m": 0.4031332608515443,
+        "orientation_mean_deg": 81.44809461084424
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate loses control of the chair around 1.0 s; it tumbles onto its back by 2.5 s and remains overturned through the end. This does not complete the reference\u2019s carry-and-turn motion followed by an upright set-down.",
+      "source_motion_sha256": "def43ae97d121d07fb5396641b92ab200f2bc50cf3fea7523c27de1facdc2be1",
+      "source_scene_sha256": "8a8dbe41c31f5d7e3143e43b818b78c3a7dd445baf09a110ec40ce47e9d6d568",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub15_plasticbox_019",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.3452316880682249,
-        "position_mean_m": 0.3096270225595535,
-        "orientation_mean_deg": 59.741852998605346
+        "mean_add_m": 0.34678207572197617,
+        "position_mean_m": 0.3112591445307285,
+        "orientation_mean_deg": 59.96876677703086
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "By 0.500 s, the crate has fallen from the robot\u2019s raised hands onto its side and remains there through the end. The candidate does not complete the reference\u2019s held rotation, controlled lowering with the opening upward, and subsequent lift.",
+      "source_motion_sha256": "490d95cf22027ce69f3545097377c2d26067db3ed532dc3046c208a9f72ee00c",
+      "source_scene_sha256": "6bf5097c95ebe79d1f812a622cd22bbd867fe456acddb975363047ce6fb59ae4",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub12_tripod_023",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.3521923303973282,
-        "position_mean_m": 0.2536395909580095,
-        "orientation_mean_deg": 52.24123894546437
+        "mean_add_m": 0.1060031433792114,
+        "position_mean_m": 0.07849532571634718,
+        "orientation_mean_deg": 10.788151326458157
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate tilts and moves the stand during 0.5\u20132.0 s, but never returns it to an upright, freestanding position as in the reference. At 3.5\u20133.833 s, the stand remains substantially diagonal against the robot as its hands withdraw.",
+      "source_motion_sha256": "6e9748fcc2648c140f72e0fc3cab137bdf3423966bda506da5ec937bb07b2156",
+      "source_scene_sha256": "de2f08572b5405c1b59115fff2ccd2c0c20ddc09fd41f607f544e9eebc4bca49",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub15_woodchair_053",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.06162443241728675,
-        "position_mean_m": 0.05655230927950945,
-        "orientation_mean_deg": 5.674298614014285
+        "mean_add_m": 0.09531139302951104,
+        "position_mean_m": 0.0814826742786624,
+        "orientation_mean_deg": 11.761437975439124
       },
       "semantic": "PASS",
       "raw_semantic": "PASS",
       "opening_disqualified": false,
-      "reviewed_semantic": "PASS"
+      "reviewed_semantic": "PASS",
+      "judge_reason": "The candidate rotates the initially tilted chair upright by 0.5\u20131.0 s and leaves it standing on its legs through the final frame, substantially matching the reference\u2019s set-down. The robot subsequently falls backward, but the chair remains upright and the object interaction is already complete.",
+      "source_motion_sha256": "58a085f8f2d75b82edb0a24b7a3829e810a0eb7ca5b4282e32746a7f40ae4db7",
+      "source_scene_sha256": "24d4f47b187f3d2d26856d49cf72815bfb525c9dc86a449fb4488f6d7981d5a4",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub9_monitor_056",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.6775251735775987,
-        "position_mean_m": 0.6517742976217736,
-        "orientation_mean_deg": 63.05536238182225
+        "mean_add_m": 0.6058226594892422,
+        "position_mean_m": 0.5642781728687566,
+        "orientation_mean_deg": 88.88452301702547
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The robot falls by 1.5 s, leaving the object behind rather than lifting and carrying it as in the reference. Around 4.5\u20136.5 s, the object is knocked away, rotates, and lands flat instead of being carried and deliberately set down upright.",
+      "source_motion_sha256": "066294831501039805f6888cdfefce927317db19efe5b73ebc7fed8955735913",
+      "source_scene_sha256": "97fc06960626396e7b54177903c988f4003cd0bd5bd287baccff793903f4de7f",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub6_whitechair_052",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.21796433220821926,
-        "position_mean_m": 0.20847108715299134,
-        "orientation_mean_deg": 22.161169187643836
+        "mean_add_m": 0.1863257165093567,
+        "position_mean_m": 0.17651737518287416,
+        "orientation_mean_deg": 22.298420032657845
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "From about 1.0 s onward, the robot rests its torso across the chair while the chair remains essentially upright and grounded. It never performs the reference\u2019s substantial lift and tilt of the chair followed by lowering it back down.",
+      "source_motion_sha256": "7a1aa28b795e6ac54a81f015553d6b5b45e0f771a76aaf14b912eeba85692e42",
+      "source_scene_sha256": "da18d1d203dcceb0d89eb48553bde5e1bba56362ece3eb8cfd11b0961c039156",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub14_woodchair_011",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.6247350936957975,
-        "position_mean_m": 0.5475774626222383,
-        "orientation_mean_deg": 107.44476894059096
+        "mean_add_m": 0.49752756137217097,
+        "position_mean_m": 0.38162610516534545,
+        "orientation_mean_deg": 120.92995296680019
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate moves and tilts the chair, but from 3.5\u20134.5 s it topples sideways along with the robot and remains on its side through the final frame. It does not complete the reference\u2019s relocation and upright set-down.",
+      "source_motion_sha256": "6545e283d412a1d934916d04e6afeb587aa34fd74b3bca77b5eca112cf5970da",
+      "source_scene_sha256": "085cf1b977fd7c8db8deb448c0c59b4b49a94c18281a6e6fbc985fb1de357ad8",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub10_clothesstand_002",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.6133454918522899,
-        "position_mean_m": 0.45722524139468085,
-        "orientation_mean_deg": 65.23516089917182
+        "mean_add_m": 0.34473808762296954,
+        "position_mean_m": 0.2699985577198724,
+        "orientation_mean_deg": 45.5039305731232
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate loses control of the coat stand: it tilts at 3.0 s and falls onto its side by 3.5 s, remaining down through the endpoint. This does not achieve the reference\u2019s relocation and upright set-down.",
+      "source_motion_sha256": "87f05debd08c318e5d93ccdde179609df86077fd572c5a5f7aedab524ebbb3a3",
+      "source_scene_sha256": "606db132e6d149b0b63797b6c8b7e8735f95859c92667f29ddb55b23738fd9b7",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub16_plasticbox_038",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.6311677738999623,
-        "position_mean_m": 0.5859800370368782,
-        "orientation_mean_deg": 88.67976232480096
+        "mean_add_m": 0.43987512043827437,
+        "position_mean_m": 0.3248268675561291,
+        "orientation_mean_deg": 108.35395271206238
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The crate tips steeply with the robot from 1.0\u20132.5 s, then separates and lands to the right by 3.0 s rather than being carried and deliberately set down as in the reference. Although it ends upright, control of the object is lost before the placement is completed.",
+      "source_motion_sha256": "d9318f032d7c2fec26d95715f790e0958ac308e0a70f72d574ad37b121043f2b",
+      "source_scene_sha256": "8a5b4c9285de4fa54c663c84d2d13799b37f0e5f1867e36525bab0069dfbce98",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub11_monitor_044",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.8417083513266507,
-        "position_mean_m": 0.8251141263632262,
-        "orientation_mean_deg": 41.55863840487453
+        "mean_add_m": 0.8602210852008125,
+        "position_mean_m": 0.8432126729085038,
+        "orientation_mean_deg": 42.137938073731966
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "By 0.5 s the candidate\u2019s object is already resting on its stand, and it stays in that same location and orientation while the robot moves away through 8.417 s. The reference\u2019s essential carrying and reorientation before setting the object down elsewhere are missing.",
+      "source_motion_sha256": "af67f08ee8d1e1ad1fd43a0e0149829b4f9d6dd02e1420ce2d888b32369f5cee",
+      "source_scene_sha256": "a7eb2f77c307bace048da64486665ae4e2c4119785cb1f2c8f971034d1610233",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub13_whitechair_069",
       "dataset": "omomo",
       "method": "hoi_spider",
       "metrics": {
-        "mean_add_m": 0.3976176038374128,
-        "position_mean_m": 0.3500358005048115,
-        "orientation_mean_deg": 66.38703494798648
+        "mean_add_m": 0.3709015643355632,
+        "position_mean_m": 0.31789264293705277,
+        "orientation_mean_deg": 66.89449032250796
       },
       "semantic": "FAIL",
       "raw_semantic": "FAIL",
       "opening_disqualified": false,
-      "reviewed_semantic": "FAIL"
+      "reviewed_semantic": "FAIL",
+      "judge_reason": "The candidate\u2019s chair remains upright with its legs pointing down from 1.0 s through the final frame, while the robot moves its hands around it. It never achieves the reference\u2019s essential interaction of lifting and rotating the chair upside down.",
+      "source_motion_sha256": "b34c95d3bf074022715bc5cd67c4b49a0637caa46e967d771709c508fe128f07",
+      "source_scene_sha256": "5fc62f2fe563e11dff2c7609f5e77805a7c40c784fe2ba3636f6f6e3230ff187",
+      "protocol_sha256": "fa7031f818d7a6e7d6fadc1fb7ab53e4d271acfd486a146c62e27ad4a663c1b4"
     },
     {
       "clip": "sub10_clothesstand_002",
@@ -3573,11 +3733,11 @@
       "dataset": "humoto",
       "tasks": 20,
       "tracking_tasks": 20,
-      "pass": 0,
+      "pass": 5,
       "metrics": {
-        "mean_add_m": 0.5666218064370139,
-        "position_mean_m": 0.5549418672164224,
-        "orientation_mean_deg": 51.224728271263444
+        "mean_add_m": 0.4496355439934846,
+        "position_mean_m": 0.45109581492609196,
+        "orientation_mean_deg": 42.97730777304939
       }
     },
     {
@@ -3647,9 +3807,9 @@
       "tracking_tasks": 20,
       "pass": 2,
       "metrics": {
-        "mean_add_m": 0.48307320976319923,
-        "position_mean_m": 0.43358534848657776,
-        "orientation_mean_deg": 52.06778990024665
+        "mean_add_m": 0.40768946448804566,
+        "position_mean_m": 0.35615868065665396,
+        "orientation_mean_deg": 55.972429967438536
       }
     },
     {
@@ -3717,11 +3877,11 @@
       "dataset": "all",
       "tasks": 40,
       "tracking_tasks": 40,
-      "pass": 2,
+      "pass": 7,
       "metrics": {
-        "mean_add_m": 0.5248475081001065,
-        "position_mean_m": 0.4942636078515001,
-        "orientation_mean_deg": 51.64625908575505
+        "mean_add_m": 0.42866250424076513,
+        "position_mean_m": 0.40362724779137293,
+        "orientation_mean_deg": 49.47486887024397
       }
     },
     {
@@ -3788,6 +3948,7 @@
   "protocol": {
     "semantic": "Original Astra judgments; incomplete execution counted as unsuccessful. The separate initial-penetration review is retained in reviewed_semantic and opening_disqualified, and is not applied to the reported semantic success rates.",
     "tracking": "Full-target object_path_v1 metrics; equal task weight.",
-    "codex120_tracking": "One incomplete execution omitted from tracking averages. Paired comparisons exclude that task from both methods."
+    "codex120_tracking": "One incomplete execution omitted from tracking averages. Paired comparisons exclude that task from both methods.",
+    "hoi_spider": "Our adaptation of SPIDER to G1 with Dex3. Full-cohort rerun: fixed seed 0, 1-second planning horizon, 2048 samples and 16 optimization iterations; original HOI references, scenes, initial states and object targets retained. New executions rendered in Blender and reevaluated with the unchanged Astra judge prompt. Earlier results are superseded."
   }
 }
