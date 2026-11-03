@@ -70,7 +70,11 @@
       if(condition!=='with_experience'||!example.prior)return box;
       const context=node('div','experience-message-context'),link=node('a','experience-prior-node');
       link.href='#'+priorId;
-      link.append(node('span','prior-node-label','Prior strategy'),node('strong','','Adjust wrist orientation to oppose tipping'),node('span','',example.prior.peer_title),node('span','prior-node-action','View the source human and robot motions ↓'));
+      link.append(node('span','prior-node-label','Prior strategy'),node('strong','','Adjust wrist orientation to oppose tipping'),node('span','',example.prior.peer_title),node('span','prior-node-action','View the source human and robot motions →'));
+      link.addEventListener('click',()=>{
+        const target=document.getElementById(priorId);
+        if(target)target.open=true;
+      });
       context.append(box,link);return context;
     };
     const overview=node('div','experience-outcomes');overview.setAttribute('aria-label','Human reference and final outcomes');
@@ -80,8 +84,8 @@
     root.append(node('h4','experience-progression-heading','Refinement from the shared checkpoint'));
     const tabs=node('div','experience-stages');tabs.setAttribute('role','tablist');tabs.setAttribute('aria-label','Experience refinement stages');root.append(tabs);
     const clock=node('p','experience-clock');root.append(clock);
-    const layout=node('div','experience-stage-layout'),panel=node('div','experience-stage-panel'),plot=node('div','experience-trace');
-    panel.id='experience-stage-'+example.clip;panel.setAttribute('role','tabpanel');layout.append(panel,plot);root.append(layout);
+    const layout=node('div','experience-stage-layout'),panel=node('div','experience-stage-panel'),plot=node('div','experience-trace'),aside=node('div','experience-stage-aside');
+    panel.id='experience-stage-'+example.clip;panel.setAttribute('role','tabpanel');aside.append(plot);layout.append(panel,aside);root.append(layout);
     const draw=chart(plot,task),legend=node('div','experience-legend');
     for(const [condition,label] of [['base','Initial refinement'],...Object.entries(labels)]){
       const item=node('span','',label);item.style.setProperty('--trace',colors[condition]);legend.append(item);
@@ -129,19 +133,33 @@
         event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?stages.length-1:(index+(event.key==='ArrowRight'?1:-1)+stages.length)%stages.length;show(next);buttons[next].focus();
       });buttons.push(b);tabs.append(b);
     });
-    const alignPlot=()=>{
-      const video=panel.querySelector('video');
-      const offset=video && getComputedStyle(layout).gridTemplateColumns.split(' ').length>1
-        ? video.getBoundingClientRect().top-panel.getBoundingClientRect().top : 0;
-      plot.style.paddingTop=`${Math.max(0,offset)}px`;
-    };
-    new ResizeObserver(alignPlot).observe(panel);
-    show(0);
-    alignPlot();
+    let prior;
     if(example.prior){
-      const prior=node('div','experience-prior');prior.id=priorId;prior.tabIndex=-1;prior.append(node('h4','prior-heading',`From the supplied experience: ${example.prior.peer_title}`));
-      const pair=node('div','source-motion-pair');if(example.prior.human)pair.append(videoCard(example.prior.human,'Human reference'));pair.append(videoCard(example.prior.media,'Prior robot execution'));prior.append(pair,node('p','prior-excerpt',`“${example.prior.text}”`));root.append(prior);
+      prior=node('details','experience-prior');prior.id=priorId;prior.tabIndex=-1;prior.append(node('summary','prior-heading',`Prior experience: ${example.prior.peer_title}`));
+      const pair=node('div','source-motion-pair');if(example.prior.human)pair.append(videoCard(example.prior.human,'Human reference'));pair.append(videoCard(example.prior.media,'Prior robot execution'));const content=node('div','experience-prior-content');content.append(pair,node('p','prior-excerpt',`“${example.prior.text}”`));prior.append(content);aside.append(prior);
+      prior.addEventListener('toggle',()=>{if(!prior.open)pause(prior);});
     }
+    const arrow=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    arrow.classList.add('experience-prior-arrow');arrow.setAttribute('aria-hidden','true');layout.append(arrow);
+    const markerId='prior-arrow-'+example.clip;
+    arrow.innerHTML=`<defs><marker id="${markerId}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#618c82" stroke-width="1.5"/></marker></defs><path class="prior-connector" fill="none" stroke="#618c82" stroke-width="1.5" marker-end="url(#${markerId})"/>`;
+    const alignLayout=()=>{
+      const video=panel.querySelector('video'),wide=getComputedStyle(layout).gridTemplateColumns.split(' ').length>1;
+      const offset=video && wide ? video.getBoundingClientRect().top-panel.getBoundingClientRect().top : 0;
+      plot.style.paddingTop=`${Math.max(0,offset)}px`;
+      const link=panel.querySelector('.experience-prior-node');
+      arrow.style.display=wide && prior && link ? 'block' : 'none';
+      if(!wide || !prior || !link)return;
+      const bounds=layout.getBoundingClientRect(),from=link.getBoundingClientRect(),to=prior.getBoundingClientRect();
+      const x1=from.right-bounds.left+3,y1=from.top+from.height/2-bounds.top;
+      const x2=to.left-bounds.left-5,y2=to.top+26-bounds.top;
+      const gutter=(panel.getBoundingClientRect().right+to.left)/2-bounds.left;
+      arrow.setAttribute('viewBox',`0 0 ${bounds.width} ${bounds.height}`);
+      arrow.querySelector('.prior-connector').setAttribute('d',`M${x1},${y1} H${gutter} V${y2} H${x2}`);
+    };
+    const observer=new ResizeObserver(alignLayout);observer.observe(panel);observer.observe(aside);
+    show(0);
+    alignLayout();
     root.append(node('p','experience-trace-caption','Fig. 7. Shelf righting with and without related experience under equal refinement budgets.'));
   }
   fetch('experience-story.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(data=>{
