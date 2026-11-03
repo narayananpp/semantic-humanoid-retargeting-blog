@@ -657,10 +657,6 @@ Return:
 </details>
 <details class="appendix-faq" id="results-longer-evidence">
 <summary>What improves within the same two-hour run?</summary>
-
-
-<figure class="results-plot"><img src="assets/analysis/results/within-run-tracking.svg" width="1200" height="360" loading="lazy" alt="Recorded tracking errors throughout two-hour Codex refinement. Faint lines show individual tasks; the teal mean follows the same 35 tasks from 30 to 120 minutes."></figure>
-
 <p>For each cutoff, we retrospectively select the lowest-ADD recorded execution that had finished by that time. It must have completed its reference and passed the recorded initial-object-pose and zero-velocity checks. The framework scores every trial against the same complete target trajectory. All three displayed errors come from the execution selected by ADD. Position and orientation errors can therefore increase even when ADD decreases.</p>
 <p>Active time is reconstructed from the original call and each resume's stated remaining budget. Documented interruption gaps are excluded. Independently generated final verification replays are excluded from intermediate selection. This is a retrospective analysis of saved outputs, not a claim that an agent had computed every comparison score at that instant.</p>
 <p>35 tasks have an eligible output by 30 minutes. On that fixed paired set, mean ADD falls from 30.17 to 10.65 cm and 33 tasks improve. Comparing the selected 30- and 120-minute manifests, reference-file hashes change on 31 tasks and initial-state hashes on 26. A changed hash establishes an artifact change, not its purpose or a semantic improvement. The other five tasks remain visible below without an invented early value.</p>

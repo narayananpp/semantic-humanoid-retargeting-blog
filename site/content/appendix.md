@@ -255,8 +255,6 @@ The collaborative swarm gains eight successes and loses two relative to the inde
 <details class="appendix-faq" id="results-longer-evidence">
 <summary>What improves within the same two-hour run?</summary>
 
-::: component results-within-run
-
 For each cutoff, we retrospectively select the lowest-ADD recorded execution that had finished by that time. It must have completed its reference and passed the recorded initial-object-pose and zero-velocity checks. The framework scores every trial against the same complete target trajectory. All three displayed errors come from the execution selected by ADD. Position and orientation errors can therefore increase even when ADD decreases.
 
 Active time is reconstructed from the original call and each resume's stated remaining budget. Documented interruption gaps are excluded. Independently generated final verification replays are excluded from intermediate selection. This is a retrospective analysis of saved outputs, not a claim that an agent had computed every comparison score at that instant.
