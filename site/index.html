@@ -21,25 +21,25 @@
     <aside class="contents" aria-label="Contents">
       <button class="contents-toggle" aria-expanded="false" aria-controls="contents-links">Contents <span aria-hidden="true">＋</span></button>
       <nav id="contents-links" aria-label="Article sections"><a href="#overview">Key Takeaways</a>
-<a href="#reference-setup">1. Rethinking humanoid retargeting</a>
+<a href="#reference-setup">1. Retargeting should preserve the task, not the motion</a>
 <a class="subsection" href="#carry-and-place-a-chair">Carry and place a chair</a>
 <a class="subsection" href="#lift-carry-and-place-a-clothes-stand">Lift, carry and place a clothes stand</a>
-<a href="#method">2. Comparing agentic workflows for humanoid retargeting</a>
+<a href="#method">2. Agents refine motion and control through simulation feedback</a>
 <a href="#evaluation-metrics">3. Evaluation metrics</a>
-<a href="#agent-diagnosis">4. Qualitative results</a>
-<a class="subsection" href="#kinematic-to-dynamic">4.1 Iterative refinement of motion and control</a>
-<a class="subsection" href="#refining-contact-support-motion">4.2 Refining contact, support and motion</a>
-<a class="subsection" href="#agentic-refinement-walkthrough">4.3 Agentic refinement walkthrough</a>
-<a class="subsection" href="#how-does-the-reference-change">4.4 How does the reference change?</a>
-<a href="#refinement-results">5. Quantitative results</a>
-<a class="subsection" href="#comparison-results">5.1 Comparison with existing approaches</a>
-<a class="subsection" href="#matched-time">5.2 Matched time: single-agent refinement versus swarms</a>
-<a class="subsection" href="#matched-agent-hours">5.3 Matched compute: more refinement time versus more agents</a>
-<a href="#experience">6. Exploring how prior experience improves retargeting</a>
+<a href="#agent-diagnosis">4. Simulation feedback guides grasp, posture and timing</a>
+<a class="subsection" href="#kinematic-to-dynamic">4.1 Agents revise motion and control code after each simulation</a>
+<a class="subsection" href="#refining-contact-support-motion">4.2 Revisions correct contact, support and motion</a>
+<a class="subsection" href="#agentic-refinement-walkthrough">4.3 One agent progresses from grasp to placement</a>
+<a class="subsection" href="#how-does-the-reference-change">4.4 Refined references follow the executed grasp more closely</a>
+<a href="#refinement-results">5. Iterative refinement drives retargeting success</a>
+<a class="subsection" href="#comparison-results">5.1 Simulation feedback raises semantic success from 17.5% to 47.5%</a>
+<a class="subsection" href="#matched-time">5.2 At matched time, collaborative swarms outperform a single agent</a>
+<a class="subsection" href="#matched-agent-hours">5.3 At matched compute, longer single-agent refinement wins</a>
+<a href="#experience">6. Prior experience improves refinement on new tasks</a>
 <a href="#discussion">7. Discussion</a>
-<a class="subsection" href="#refinement-and-swarms">Iterative refinement and agentic swarms</a>
-<a class="subsection" href="#rl-fine-tuning">RL fine-tuning</a>
-<a class="subsection" href="#failure-analysis">Failure cases in dynamic retargeting</a>
+<a class="subsection" href="#refinement-and-swarms">Swarms trade compute for time</a>
+<a class="subsection" href="#rl-fine-tuning">Refined references can support RL fine-tuning</a>
+<a class="subsection" href="#failure-analysis">Hand morphology limits some interactions</a>
 <a href="#references">References</a>
 <a href="#appendix">Appendix</a>
 <a href="#citation">Cite this blog</a></nav>
@@ -86,16 +86,16 @@
 
 <aside class="takeaways-message" aria-label="Key takeaways">
   <ul>
-    <li>We posit that <strong>frontier agentic models can capture both the semantic intent and physical requirements of a motion</strong> for generalizable humanoid retargeting.</li>
-    <li><strong>Closed-loop simulation feedback</strong> lets LLM agents iteratively refine motion and control, scored by object-tracking error and an LLM judge.</li>
-    <li><strong>Agentic swarm vs. longer iterative refinement.</strong> A four-agent swarm beats a single Codex agent by 20% under a fixed time budget, but compute-matched Codex surpasses it by 7.5 percentage points, at the cost of 4× the elapsed time.</li>
-    <li><strong>Experience from related tasks.</strong> Prior experience, stored as summaries of strategies and outcomes, cuts object-tracking error on a new humanoid-object task from 23.35 to 7.77 cm at equal compute and time.</li>
+    <li><strong>Agentic models as retargeting priors.</strong> We posit that frontier agentic models can capture both the semantic intent and physical requirements of a motion, enabling generalizable humanoid retargeting.</li>
+    <li><strong>Closed-loop simulation feedback.</strong> LLM agents iteratively refine motion and control code, scored by object-tracking error and an LLM judge.</li>
+    <li><strong>Agentic swarm vs. longer iterative refinement.</strong> A four-agent swarm beats a single Codex agent by 20% (67.5% vs. 47.5%) under a fixed time budget, but compute-matched Codex surpasses it by 7.5% (75% vs. 67.5%), at the cost of 4× the runtime.</li>
+    <li><strong>Experience from related tasks.</strong> Prior experience, stored as summaries of strategies and outcomes, cuts object-tracking error on a new humanoid-object task from 23.35 to 7.77 cm at equal compute and time budgets.</li>
   </ul>
 </aside>
 
 </section>
 <section id="reference-setup" class="outline-section">
-<h2 id="1-rethinking-humanoid-retargeting">1. Rethinking humanoid retargeting</h2>
+<h2 id="1-rethinking-humanoid-retargeting">1. Retargeting should preserve the task, not the motion</h2>
 
 
 <span id="hoi-reference" class="section-anchor"></span>
@@ -112,9 +112,9 @@
 
 <span id="execution-task" class="section-anchor"></span>
 
-<p>We propose <strong>HuMoTAR, an agentic approach to semantic humanoid retargeting</strong>. The agents write, test and iteratively revise motion and control code through <strong>closed-loop simulation feedback</strong>. We posit that frontier agentic models provide useful priors for preserving a motion’s semantic intent while meeting the robot’s physical requirements.</p>
-<p>The video examples above show human demonstrations of carrying a chair and moving a clothes stand alongside their retargeted humanoid motions. For a humanoid to perform these tasks, each demonstration must first be adapted to its body, since a <em>humanoid differs from a human in proportions, joint limits and actuation</em>. Current human-to-humanoid retargeting methods largely formulate this as a <strong>kinematic problem</strong>, in which the human’s motion is fitted to the robot while relevant contacts with the environment are preserved. <a href="https://arxiv.org/abs/2609.34674"><strong>HOI-Retarget</strong></a>, for example, optimizes the robot’s motion to match the demonstration’s body poses and object-relative contacts. This raises the question of <em>what a humanoid should preserve from a demonstration</em>.</p>
-<p>We argue that <strong>retargeting should preserve the intended task rather than the precise movements a human uses to perform it</strong>. Take, for example, a person who carries and places a chair with one hand. The goal is to carry the chair to a target location and place it there, not to exactly reproduce the one-handed grasp motion. A humanoid may use both hands if that better suits its morphology and physical limits, since the task is unchanged even though the grasp and posture differ from the demonstration. In our experiments, we scale the demonstrated object trajectory to the robot’s size and use it as the target motion. The robot’s contact strategy, posture and controller are free to change.</p>
+<p>We propose <strong>HuMoTAR, an agentic approach to semantic humanoid retargeting</strong>. HuMoTAR agents write, test and iteratively revise motion and control code through <strong>closed-loop simulation feedback</strong>. We posit that frontier agentic models provide useful priors for preserving a motion’s semantic intent while satisfying the robot’s physical constraints.</p>
+<p>The videos above pair human demonstrations of carrying a chair and moving a clothes stand with their retargeted humanoid motions. Since a <em>humanoid differs from a human in proportions, joint limits and actuation</em>, each demonstration must first be adapted to the robot’s body. Existing human-to-humanoid retargeting methods largely formulate this as a <strong>kinematic problem</strong>, fitting the human’s motion to the robot while preserving relevant contacts with the environment. For example, <a href="https://arxiv.org/abs/2609.34674"><strong>HOI-Retarget</strong></a> optimizes the robot’s motion to match the demonstration’s body poses and object-relative contacts. However, this raises the question of <em>what a humanoid should preserve from a demonstration</em>.</p>
+<p>We argue that <strong>retargeting should preserve the intended task rather than the precise movements a human uses to perform it</strong>. Consider a person who carries and places a chair with one hand. The goal is to carry the chair to a target location and place it there, not to reproduce the one-handed grasp. A humanoid may instead use both hands if that better suits its morphology and physical limits. The grasp and posture differ from the demonstration, but the task is unchanged. Concretely, we scale the demonstrated object trajectory to the robot’s size and use it as the target motion, leaving the robot’s contact strategy, posture and controller free to change.</p>
 
 
 <span id="execution-setup" class="section-anchor"></span>
@@ -123,7 +123,7 @@
 
 <span id="dynamic-interaction" class="section-anchor"></span>
 
-<p><strong>A kinematically feasible reference is not necessarily dynamically feasible.</strong> <a href="https://arxiv.org/abs/2511.09484"><strong>SPIDER</strong></a> addresses this by posing retargeting as a constrained optimization over the robot’s motor commands. It samples many candidate command sequences in a physics simulator and keeps the ones whose simulated motion stays closest to the reference. However, errors in the input motion reference can lead SPIDER to the wrong contact strategy. Its open-loop execution is also sensitive to the robot’s starting pose. <strong>HuMoTAR revises both the motion reference and control code based on the resulting physical execution.</strong></p>
+<p><strong>A kinematically feasible reference is not necessarily dynamically feasible.</strong> <a href="https://arxiv.org/abs/2511.09484"><strong>SPIDER</strong></a> addresses this gap by posing retargeting as a constrained optimization over the robot’s motor commands. Specifically, it samples many candidate command sequences in a physics simulator and keeps those whose simulated motion stays closest to the reference. However, errors in the input reference can lead SPIDER to an incorrect contact strategy, and its open-loop execution is sensitive to the robot’s starting pose. In contrast, <strong>HuMoTAR revises both the motion reference and control code based on the resulting physical execution.</strong></p>
 <h3 id="carry-and-place-a-chair">Carry and place a chair</h3>
 
 
@@ -134,24 +134,24 @@
 
 <figure class="authored-video four-way-comparison" data-media-id="intro-stand-comparison"><div class="authored-video-views"><div class="execution-panel"><p>Human<span class="video-mode">Demonstration</span></p><video controls muted playsinline preload="none" aria-label="Human" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa"></video></div><div class="execution-panel"><p>HOI-Retarget<span class="video-mode">Kinematic replay</span></p><video controls muted playsinline preload="none" aria-label="HOI-Retarget" poster="intro-media/stand-kinematic.jpg" src="intro-media/stand-kinematic.mp4"></video></div><div class="execution-panel"><p>SPIDER<span class="video-mode">Physics execution</span></p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="SPIDER" poster="intro-media/spider.jpg?v=62831f7717" src="intro-media/spider.mp4?v=62831f7717"></video></div><div class="execution-panel"><p>HuMoTAR<span class="video-mode">Physics execution</span></p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub10_clothesstand_002.jpg" src="dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d"></video></div></div><figcaption class="publication-caption"><strong>Fig. 2.</strong> Clothes-stand transport: kinematic reference and simulated executions.</figcaption></figure>
 
-<p>The above examples illustrate the gap between kinematic retargeting and physical execution. We execute the kinematic references provided by HOI-Retarget using SPIDER in physics simulation and compare them with HuMoTAR’s references. SPIDER fails to complete either task, while HuMoTAR achieves successful execution in physics simulation in both cases.</p>
+<p>These examples illustrate the gap between kinematic retargeting and physical execution. We execute HOI-Retarget’s kinematic references with SPIDER in physics simulation and compare against HuMoTAR (Figs. 1 and 2). We find that SPIDER fails to complete either task, while HuMoTAR successfully executes both.</p>
 </section>
 <section id="method" class="outline-section">
-<h2 id="2-comparing-agentic-workflows-for-humanoid-retargeting">2. Comparing agentic workflows for humanoid retargeting</h2>
+<h2 id="2-comparing-agentic-workflows-for-humanoid-retargeting">2. Agents refine motion and control through simulation feedback</h2>
 
 
 <span id="configurations" class="section-anchor"></span>
 
-<p>We compare <strong>HuMoTAR, our general approach to agentic semantic retargeting,</strong> with <a href="https://arxiv.org/abs/2511.09484">SPIDER</a>’s execution of the kinematic references generated by <a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a>. Using <strong><a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra</a></strong>, we study iterative refinement with simulation feedback in three configurations of HuMoTAR: <em>a single Codex agent, an independent agentic swarm and a collaborative agentic swarm</em>. We also evaluate <em>Astra one-shot</em> without tool calls or iterative refinement.</p>
-<p>We compare these configurations under <strong>a fixed time budget</strong> and <strong>an equal compute budget measured in agent-hours</strong> to study the <em>compute–time tradeoff between agentic swarms and longer single-agent iterative refinement</em>.</p>
+<p>We compare <strong>HuMoTAR, our general approach to agentic semantic retargeting,</strong> against <a href="https://arxiv.org/abs/2511.09484">SPIDER</a>’s execution of kinematic references generated by <a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a>. Specifically, we use <strong><a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra</a></strong> to study iterative refinement with simulation feedback in three HuMoTAR configurations: <em>a single Codex agent, an independent agentic swarm and a collaborative agentic swarm</em>. We also evaluate <em>Astra one-shot</em>, which generates a solution without tool calls or iterative refinement.</p>
+<p>We compare these configurations under both <strong>a fixed time budget</strong> and <strong>an equal compute budget measured in agent-hours</strong>. This lets us study the <em>compute–time tradeoff between agentic swarms and longer single-agent iterative refinement</em>.</p>
 <ul>
 <li><strong>Astra one-shot</strong> generates motion and control code in one response, without tool calls or further revisions.</li>
 <li><strong><a href="https://github.com/openai/codex">Codex</a></strong> tests and revises its solution in a persistent coding session.</li>
 <li><strong>Independent agentic swarm</strong> runs four Codex agents that develop their solutions independently.</li>
 <li><strong>Collaborative agentic swarm</strong> runs four Codex agents that can communicate directly with one another to share findings, request help and critique strategies.</li>
 </ul>
-<p>For each task, the inputs to <strong>HuMoTAR</strong> are the human demonstration in SMPL format, an initial kinematic reference from HOI-Retarget, the task scene and the target object trajectory. The object trajectory is scaled for the robot and specifies the desired object motion. The agents write Python code to generate and refine <em>a reference motion for the whole body and hands</em>, which is the output of the framework.</p>
-<p>The motion references and control code are executed in <strong><a href="https://mujoco.org/">MuJoCo</a></strong> with <strong><a href="https://arxiv.org/abs/2511.07820">SONIC</a> as the whole-body controller</strong>. After each simulation, the agent inspects <strong>images of the execution, object-tracking errors and contact measurements</strong>.</p>
+<p>For each task, <strong>HuMoTAR</strong> takes as input the human demonstration in SMPL format, an initial kinematic reference from HOI-Retarget, the task scene and the target object trajectory. The object trajectory specifies the desired object motion, scaled to the robot’s size. The agents then write Python code to generate and refine <em>a reference motion for the whole body and hands</em>, which serves as the framework’s output.</p>
+<p>We execute the motion references and control code in <strong><a href="https://mujoco.org/">MuJoCo</a></strong>, using <strong><a href="https://arxiv.org/abs/2511.07820">SONIC</a> as the whole-body controller</strong>. After each simulation, the agent inspects <strong>images of the execution, object-tracking errors and contact measurements</strong> before revising its solution.</p>
 
 
 <figure id="refinement-loop" class="configuration-figure">
@@ -163,36 +163,36 @@
 </section>
 <section id="evaluation-metrics" class="outline-section">
 <h2 id="dynamics-metrics">3. Evaluation metrics</h2>
-<p>We evaluate <strong>20 HUMOTO and 20 OMOMO tasks</strong> using object-tracking errors and semantic success. Object tracking compares the simulated object motion with the demonstrated trajectory scaled for G1. We do not require the object to reach each position at the same time in the human demonstration and the robot execution, since the robot may move at a different speed. Instead, we compare corresponding stages of the object’s motion.</p>
+<p>We evaluate all methods on <strong>20 HUMOTO and 20 OMOMO tasks</strong> using object-tracking error and semantic success. Object tracking compares the simulated object motion with the demonstrated trajectory scaled for G1. However, the robot may move at a different speed than the human, so we do not require the object to reach each position at the same time as in the human demonstration. Instead, we compare corresponding stages of the object’s motion.</p>
 <ul>
 <li><strong>Mean ADD (cm):</strong> The average distance between corresponding points on the object at aligned poses. It captures both position and orientation error. <strong>Lower is better.</strong></li>
 <li><strong>Position error (cm):</strong> The average distance between the simulated and target object positions. <strong>Lower is better.</strong></li>
 <li><strong>Orientation error (°):</strong> The average angular difference between the simulated and target object orientations. <strong>Lower is better.</strong></li>
 <li><strong>Semantic success:</strong> Astra compares the human SMPL video with the executed robot video and judges whether the robot completes the intended task. Each task receives a <strong>PASS or FAIL</strong> judgment. Across tasks, we report the percentage that pass. <strong>Higher is better.</strong></li>
 </ul>
-<p>Object-tracking errors are averaged equally across tasks.</p>
+<p>We average object-tracking errors equally across tasks.</p>
 </section>
 <section id="agent-diagnosis" class="outline-section execution-analysis">
-<h2 id="4-qualitative-results">4. Qualitative results</h2>
+<h2 id="4-qualitative-results">4. Simulation feedback guides grasp, posture and timing</h2>
 
 
 <span id="reference-deviation" class="section-anchor"></span>
 
-<h3 id="kinematic-to-dynamic">4.1 Iterative refinement of motion and control</h3>
+<h3 id="kinematic-to-dynamic">4.1 Agents revise motion and control code after each simulation</h3>
 
 
 <figure class="refinement-panel" data-architecture><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/agentic-pipeline.png" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/agentic-pipeline.png" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="7440" height="3400" loading="lazy"></a><figcaption class="publication-caption"><strong>Fig. 4.</strong> HuMoTAR architecture for iterative motion and control refinement.</figcaption></figure>
 
-<p>The architecture above shows how Astra uses a human demonstration and an initial kinematic reference to generate motion and control code. The agent tests each revision in simulation and uses the feedback to adjust grasp placement, body posture and the timing of lifting or release. The examples below show these changes, the feedback that prompted them and their effect on execution.</p>
-<h3 id="refining-contact-support-motion">4.2 Refining contact, support and motion</h3>
+<p>The architecture above shows how Astra generates motion and control code from a human demonstration and an initial kinematic reference (Fig. 4). The agent tests each revision in simulation and uses the resulting feedback to adjust grasp placement, body posture and the timing of lifting or release. The examples below show these changes, the feedback that prompted them and their effect on execution.</p>
+<h3 id="refining-contact-support-motion">4.2 Revisions correct contact, support and motion</h3>
 
 
 <figure class="refinement-panel" id="refinement-figure-5"><div class="consideration-grid"><article class="consideration-card" id="refinement-5a"><div class="consideration-label"><span>(a)</span> Starting pose</div><a class="consideration-image" href="assets/refinement/consideration-1.png" aria-label="Enlarge: Clothes stand · before execution: Feet fitted to the floor."><img src="assets/refinement/consideration-1.png" alt="Clothes stand · before execution: Feet fitted to the floor." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="54" cy="70.5" rx="8" ry="3.75"/><path d="M 25 59.25 L 54 70.5"/><circle cx="25" cy="59.25" r="3.2"/><text x="25" y="59.25">a</text></svg></a><h4>Prepare the clothes-stand lift</h4><p class="consideration-decision">The agent corrects foot support and hand clearance before stepping. Root height, leg posture and finger placement change while the object’s initial pose stays fixed.</p></article><article class="consideration-card" id="refinement-5b"><div class="consideration-label"><span>(b)</span> Contact acquisition</div><a class="consideration-image" href="assets/refinement/consideration-footcontact-v2.png" aria-label="Enlarge: Right foot contacts the bin near its rim."><img src="assets/refinement/consideration-footcontact-v2.png" alt="Right foot contacts the bin near its rim." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="60" cy="41.25" rx="10" ry="9.0"/><path d="M 24 20.25 L 60 41.25"/><circle cx="24" cy="20.25" r="3.2"/><text x="24" y="20.25">b</text></svg></a><h4>Tilt a bin with the right foot</h4><p class="consideration-decision">Foot placement and leg motion establish contact near the rim to tilt the bin. The other foot provides support while the right foot directs the interaction.</p></article><article class="consideration-card" id="refinement-5c"><div class="consideration-label"><span>(c)</span> Maintaining contact</div><a class="consideration-image" href="assets/refinement/consideration-boxhold-v2.png" aria-label="Enlarge: Fingers and palm support the box during lifting."><img src="assets/refinement/consideration-boxhold-v2.png" alt="Fingers and palm support the box during lifting." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="54" cy="40.5" rx="10" ry="9.75"/><path d="M 23 22.5 L 54 40.5"/><circle cx="23" cy="22.5" r="3.2"/><text x="23" y="22.5">c</text></svg></a><h4>Lift and turn a large box</h4><p class="consideration-decision">Both hands support the raised box through object-relative arm targets. The controller maintains the grip as the load transfers from the floor to the arms.</p></article><article class="consideration-card" id="refinement-5d"><div class="consideration-label"><span>(d)</span> Whole-body coordination</div><a class="consideration-image" href="assets/refinement/consideration-coordination-v2.png" aria-label="Enlarge: Upright G1 steps while carrying a wooden chair by its backrest."><img src="assets/refinement/consideration-coordination-v2.png" alt="Upright G1 steps while carrying a wooden chair by its backrest." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="56" cy="40.5" rx="18" ry="20.25"/><path d="M 83 15.75 L 56 40.5"/><circle cx="83" cy="15.75" r="3.2"/><text x="83" y="15.75">d</text></svg></a><h4>Carry and place a wooden chair</h4><p class="consideration-decision">Pelvis-position feedback steers the whole-body reference while arm IK follows the backrest rail. The body advances with the chair while the hand maintains its grasp.</p></article><article class="consideration-card" id="refinement-5e"><div class="consideration-label"><span>(e)</span> Timing and feedback</div><a class="consideration-image" href="assets/refinement/consideration-timing-v2.png" aria-label="Enlarge: Bimanual contact during the slower rocking phase."><img src="assets/refinement/consideration-timing-v2.png" alt="Bimanual contact during the slower rocking phase." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="39" cy="42.75" rx="10" ry="7.5"/><path d="M 79 21.75 L 39 42.75"/><circle cx="79" cy="21.75" r="3.2"/><text x="79" y="21.75">e</text></svg></a><h4>Rock a wooden chair</h4><p class="consideration-decision">The agent slows the rocking phase and uses object-pose feedback to follow the tilt. Hand opening is staggered as the chair returns upright.</p></article><article class="consideration-card" id="refinement-5f"><div class="consideration-label"><span>(f)</span> Placement and release</div><a class="consideration-image" href="assets/refinement/consideration-6.png" aria-label="Enlarge: Floor lamp · after release: Open hand after placement."><img src="assets/refinement/consideration-6.png" alt="Floor lamp · after release: Open hand after placement." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="40" cy="32.25" rx="21" ry="10.5"/><path d="M 18 14.25 L 40 32.25"/><circle cx="18" cy="14.25" r="3.2"/><text x="18" y="14.25">f</text></svg></a><h4>Set down a floor lamp</h4><p class="consideration-decision">The agent adjusts the base orientation and waits for the lamp to settle before opening the fingers. The hand then withdraws while the floor supports the lamp.</p></article></div><figcaption class="publication-caption"><strong>Fig. 5.</strong> Motion and control revisions across six humanoid–object interactions.</figcaption></figure>
 
 </section>
 <section id="refinement-walkthrough-panel" class="outline-section execution-analysis">
-<h3 id="agentic-refinement-walkthrough">4.3 Agentic refinement walkthrough</h3>
-<p>Here we follow the agent selected by the <strong>collaborative four-agent swarm</strong> through refinement of the clothes-stand interaction. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved trials show how the agent establishes a grasp, improves the carry and completes placement, including an unsuccessful controller revision. <a href="#collaborative-agent-trace">Appendix A2</a> provides the detailed trace, with recorded tools, inspected images and exchanges between agents.</p>
+<h3 id="agentic-refinement-walkthrough">4.3 One agent progresses from grasp to placement</h3>
+<p>We inspect the intermediate output of the <strong>collaborative four-agent swarm</strong> as it refines the clothes-stand interaction. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved trials show how the agent establishes a grasp, improves the carry and completes placement. Notably, these trials include an unsuccessful controller revision. <a href="#collaborative-agent-trace">Appendix A2</a> provides the detailed trace, including recorded tools, inspected images and exchanges between agents.</p>
 <div class="refinement-walkthrough" id="clothesstand-walkthrough" data-refinement-walkthrough>
   <div class="walkthrough-stage-tabs" role="group" aria-label="Refinement stages"></div>
   <div class="walkthrough-main">
@@ -216,8 +216,8 @@
   <p class="walkthrough-error" hidden></p>
 </div>
 <p class="publication-caption"><strong>Fig. 6.</strong> Five selected trials from the collaborative swarm, with simulated executions and mean ADD.</p>
-<h3 id="how-does-the-reference-change">4.4 How does the reference change?</h3>
-<p>For the independent run, we overlay the <strong>initial kinematic reference in purple</strong> and the <strong>refined reference in blue</strong> with the <strong>physical execution in solid gray</strong>. Their spatial separation shows where the prescribed and executed robot poses differ at corresponding motion phases. The refined hand path follows the executed grasp more closely; body posture can still differ as the controller maintains balance.</p>
+<h3 id="how-does-the-reference-change">4.4 Refined references follow the executed grasp more closely</h3>
+<p>We overlay the <strong>initial kinematic reference in purple</strong> and the <strong>refined reference in blue</strong> with the <strong>physical execution in solid gray</strong>. The spatial separation between them shows where the prescribed and executed robot poses differ at corresponding motion phases. We find that the refined hand path follows the executed grasp more closely. However, body posture can still differ, since the controller must maintain balance.</p>
 <div class="reference-overlay-media">
   <figure>
     <a href="assets/refinement/reference-overlay/clothesstand-overlay.png" aria-label="Open the reference and execution overlay at full resolution"><img src="assets/refinement/reference-overlay/clothesstand-overlay.png" alt="Pickup, transport and placement: purple initial reference and blue refined reference overlaid on the solid gray simulated G1" loading="lazy" width="3414" height="2499" style="width:100%;max-width:100%;height:auto;object-fit:contain"></a>
@@ -232,7 +232,7 @@
 <p class="publication-caption"><strong>Fig. 7.</strong> Reference refinement in the independent run. The image includes physical execution. The video shows reference geometry, not measured contacts.</p>
 </section>
 <section id="refinement-results" class="outline-section">
-<h2 id="5-quantitative-results">5. Quantitative results</h2>
+<h2 id="5-quantitative-results">5. Iterative refinement drives retargeting success</h2>
 
 
 <span id="agent-comparison" class="section-anchor"></span>
@@ -241,13 +241,13 @@
 
 <span id="study-design" class="section-anchor"></span>
 
-<h3 id="comparison-results">5.1 Comparison with existing approaches</h3>
+<h3 id="comparison-results">5.1 Simulation feedback raises semantic success from 17.5% to 47.5%</h3>
 
 
 <div id="dynamics-showcase" class="dynamics-showcase" aria-label="Selected task executions"></div>
 <p class="publication-caption"><strong>Fig. 8.</strong> Selected humanoid–object executions across retargeting configurations.</p>
 
-<p>We first evaluate our agentic retargeting approach, <strong>HuMoTAR, against HOI-Retarget + SPIDER</strong> on <strong>20 HUMOTO and 20 OMOMO tasks</strong>. For this comparison, we consider the <a href="#configuration-plain">single-Codex configuration</a> and include <strong>Astra one-shot</strong> to examine performance without iterative refinement.</p>
+<p>We first compare <strong>HuMoTAR against our adaptation of HOI-Retarget + SPIDER to G1 with Dex3</strong> on <strong>20 HUMOTO and 20 OMOMO tasks</strong>. For this comparison, we use the <a href="#configuration-plain">single-Codex configuration</a> and include <strong>Astra one-shot</strong> to measure performance without iterative refinement.</p>
 
 
 <div class="baseline-dataset-tables" id="dynamics-results-table">
@@ -279,9 +279,9 @@
 <td><strong>8/20<br>40.0%</strong></td></tr></tbody></table></div>
 </div>
 
-<p><strong>HOI-Retarget + SPIDER and Astra one-shot achieve semantic success rates of 17.5% and 2.5%, respectively. With iterative simulation feedback, a single Codex agent achieves 47.5%.</strong> Mean object-tracking error also decreases from <strong>42.87 cm for HOI-Retarget + SPIDER</strong> and <strong>62.98 cm for Astra one-shot</strong> to <strong>23.74 cm for Codex</strong>. These results highlight the importance of <strong>iterative refinement with simulation feedback</strong> for successful physical execution.</p>
-<h3 id="matched-time">5.2 Matched time: single-agent refinement versus swarms</h3>
-<p>We compare a single Codex agent with the <a href="#configuration-ensemble">independent</a> and <a href="#configuration-collaborative">collaborative</a> agentic swarms under the same <strong>30-minute time budget</strong>. Each swarm runs four agents, so it uses four times the allocated agent-hours.</p>
+<p><strong>HOI-Retarget + SPIDER, Astra one-shot and the single-Codex configuration achieve semantic success rates of 17.5%, 2.5% and 47.5%, respectively.</strong> Their mean object-tracking errors are <strong>42.87 cm</strong>, <strong>62.98 cm</strong> and <strong>23.74 cm</strong>. These results highlight the importance of <strong>iterative refinement with simulation feedback</strong> for successful physical execution.</p>
+<h3 id="matched-time">5.2 At matched time, collaborative swarms outperform a single agent</h3>
+<p>We compare a single Codex agent with the <a href="#configuration-ensemble">independent</a> and <a href="#configuration-collaborative">collaborative</a> agentic swarms under the same <strong>30-minute time budget</strong>. Since each swarm runs four agents, it uses four times as many agent-hours.</p>
 
 
 <div class="matched-time-visuals" data-matched-time-curves>
@@ -303,29 +303,29 @@
   </div>
 </div>
 
-<p><strong>Agentic swarms improve retargeting within the same time budget, with the strongest task-completion results from inter-agent communication.</strong> Running four independent agents can help reduce <strong>“seed luck”</strong> and improve <strong>reliability</strong>, since one agent may find a solution that another misses. Here, the independent swarm improves object tracking and achieves semantic success on 21 tasks, compared with 19 for a single agent.</p>
+<p><strong>Agentic swarms improve retargeting within the same time budget, and inter-agent communication yields the strongest task completion.</strong> Running four independent agents can reduce <strong>“seed luck”</strong> and improve <strong>reliability</strong>, since one agent may find a solution that another misses. We find that the independent swarm improves object tracking and achieves semantic success on 21 tasks, compared with 19 for a single agent.</p>
 
 
 <span id="inter-agent-communication" class="section-anchor"></span>
 
-<p><strong>Inter-agent communication raises semantic success from 52.5% to 67.5% with the same four-agent budget.</strong> The agents divide experiments, test and improve each other’s controllers, and share unsuccessful results so other agents know what has already been tried. They also use feedback from other agents to correct mistakes in their evaluation. In a monitor task where the robot must lift and move a monitor, one agent identifies an object drop near the end of a rollout that another had judged successful. The second agent acknowledges the missed failure and identifies controlled placement as the next step.</p>
-<p>Independent agents, on the other hand, sometimes spend part of their budget on <strong>overlapping approaches</strong>, without access to each other’s findings. In a tripod task where the robot must lift, move and place a tripod, two independent agents separately test unsuccessful two-handed grasps using closely overlapping strategies.</p>
-<h3 id="matched-agent-hours">5.3 Matched compute: more refinement time versus more agents</h3>
-<p>In the previous section, we compared HuMoTAR configurations under the same time budget. We now ask: <strong>at matched compute (agent-hours), is it better to give a single agent more time for reasoning and iterative refinement or distribute the budget across a collaborative swarm?</strong> For this study, we compare the <a href="#configuration-collaborative"><strong>collaborative swarm of four Codex agents</strong></a> running for 30 minutes each against <strong>one Codex agent running for 120 minutes</strong>. Both settings receive <em>two agent-hours</em>.</p>
+<p><strong>Inter-agent communication raises semantic success from 52.5% to 67.5% with the same four-agent budget.</strong> Specifically, the agents divide experiments, test and improve each other’s controllers, and share unsuccessful results so that others know what has already been tried. They also use feedback from other agents to correct mistakes in their own evaluations. For example, in a task where the robot must lift and move a monitor, one agent identifies an object drop near the end of a rollout that another had judged successful. The second agent acknowledges the missed failure and identifies controlled placement as the next step.</p>
+<p>In contrast, independent agents cannot access each other’s findings and sometimes spend part of their budget on <strong>overlapping approaches</strong>. For example, in a task where the robot must lift, move and place a tripod, two independent agents separately test closely overlapping two-handed grasps, both unsuccessfully.</p>
+<h3 id="matched-agent-hours">5.3 At matched compute, longer single-agent refinement wins</h3>
+<p>Under a fixed time budget, the collaborative swarm outperforms a single agent. However, it also uses four times the compute. <strong>At matched compute (agent-hours), is it better to give a single agent more time for reasoning and iterative refinement or to distribute the budget across a collaborative swarm?</strong> To answer this, we compare the <a href="#configuration-collaborative"><strong>collaborative swarm of four Codex agents</strong></a> running for 30 minutes each against <strong>one Codex agent running for 120 minutes</strong>. Both settings receive <em>two agent-hours</em>.</p>
 
 
 <figure class="results-plot"><img src="assets/analysis/results/agent-hours.svg?v=all-40-tasks-1" alt="Final semantic success on 40 tasks and recorded ADD curves on all 40 tasks against allocated agent-hours, comparing the collaborative swarm with longer Codex refinement." loading="lazy" width="1100" height="410"><figcaption class="publication-caption"><strong>Fig. 11.</strong> Semantic success and object-tracking error at matched compute (agent-hours).</figcaption></figure>
 
-<p>We make the observation that longer single-agent refinement outperforms the collaborative swarm in semantic success, achieving <strong>75% versus 67.5%</strong>, at the cost of <strong>4× the elapsed time</strong>.</p>
+<p>We find that longer single-agent refinement outperforms the collaborative swarm in semantic success, achieving <strong>75% versus 67.5%</strong>, at the cost of <strong>4× the elapsed time</strong>.</p>
 </section>
 <section id="experience">
-<h2 id="6-exploring-how-prior-experience-improves-retargeting">6. Exploring how prior experience improves retargeting</h2>
-<p>We find that providing <strong>related experience</strong>, in the form of summaries of tested strategies, successes and failures, <strong>aids iterative refinement on a new task</strong>. Here, we investigate this through a walkthrough of G1 raising a shelf from its side to an upright position. The prior experience comes from <strong>four other furniture interactions</strong>, including carrying a table, lifting a chair, and pulling and pushing a chair.</p>
+<h2 id="6-exploring-how-prior-experience-improves-retargeting">6. Prior experience improves refinement on new tasks</h2>
+<p>We find that providing <strong>related experience</strong>, in the form of summaries of tested strategies, successes and failures, <strong>aids iterative refinement on a new task</strong>, reducing object-tracking error from 23.35 to 7.77 cm at equal compute and time. We investigate this through a walkthrough of G1 raising a shelf from its side to an upright position. The prior experience comes from <strong>four other furniture interactions</strong>: carrying a table, lifting a chair, and pulling and pushing a chair.</p>
 
 
 <span id="experience-setup" class="section-anchor"></span>
 
-<p>We first run the four-agent collaborative swarm for <strong>15 minutes</strong> and select the best valid motion. From this shared starting solution, we run two separate <strong>15-minute continuations</strong>, one with the related experience and one without. Both receive <strong>equal time and compute budgets</strong>. This lets us examine exactly what the supplied experience changes during refinement.</p>
+<p>We first run the four-agent collaborative swarm for <strong>15 minutes</strong> and select the best valid motion. From this shared starting solution, we run two separate <strong>15-minute continuations</strong>, one with the related experience and one without. Since both receive <strong>equal time and compute budgets</strong>, this comparison isolates the impact of experience on refinement.</p>
 </section>
 <article id="experience-shelf-walkthrough" class="proof-example inline-experience" data-example="shelf-walkthrough">
 <h4 id="righting-a-shelf-with-related-experience">Righting a shelf with related experience</h4>
@@ -336,12 +336,12 @@
 </article>
 <section id="discussion" class="outline-section">
 <h2 id="7-discussion">7. Discussion</h2>
-<h3 id="refinement-and-swarms">Iterative refinement and agentic swarms</h3>
-<p><strong>Iterative refinement with simulation feedback improves both object tracking and semantic success over one-shot generation.</strong> The agents test their proposed motions, inspect the resulting executions and revise the motion and control code. These results support the use of agentic models for retargeting beyond generating an initial solution. <strong>Under a fixed time budget, the collaborative swarm outperforms a single Codex agent.</strong> At matched compute, measured in agent-hours, longer single-agent refinement achieves higher semantic success at four times the elapsed time. These results suggest that swarms are useful when a solution is needed quickly, while a longer iterative loop remains valuable when more time is available. We encourage the community to study this compute–time tradeoff across more interactions and to investigate how communication and shared experience improve the use of a limited refinement budget.</p>
-<h3 id="rl-fine-tuning">RL fine-tuning</h3>
-<p>The reference motions produced by HuMoTAR could be used to train whole-body policies for deployment. Our experiments use SONIC without task-specific policy training. A next step is to evaluate whether <strong>RL fine-tuning on these references</strong> helps the robot handle disturbances and changes in the scene. Policy training and hardware deployment remain future work.</p>
-<h3 id="failure-analysis">Failure cases in dynamic retargeting</h3>
-<p>In the example below, G1 must lift and swirl a plate to reproduce the human’s interaction. It lifts the plate but does not complete the swirling motion. The agents adjust finger placement and try two-handed support, yet the grasp remains unstable during rotation. <strong>This difficulty reflects the morphological gap between human hands and G1’s Dex3 hands:</strong> the fingers struggle to establish a stable grasp around the plate’s thin rim. The tested motion and controller revisions do not fully compensate for this mismatch.</p>
+<h3 id="refinement-and-swarms">Swarms trade compute for time</h3>
+<p><strong>Iterative refinement with simulation feedback improves both object tracking and semantic success over one-shot generation.</strong> It allows agents to optimize their proposed motions, inspect the resulting executions and revise their motion and control code. These results support using agentic models for retargeting beyond generating an initial solution. <strong>Under a fixed time budget, the collaborative swarm outperforms a single Codex agent</strong> (67.5% versus 47.5% semantic success). However, at matched compute, longer single-agent refinement achieves higher semantic success (75% versus 67.5%) at four times the runtime. This suggests that swarms are useful when a solution is needed quickly, while a longer iterative loop remains valuable when more time is available. We encourage the community to study this compute–time tradeoff across more interactions, and to investigate how communication and shared experience can make better use of a limited refinement budget.</p>
+<h3 id="rl-fine-tuning">Refined references could support RL fine-tuning</h3>
+<p>Although the reference motions produced by HuMoTAR could be used to train whole-body policies for deployment, our experiments use SONIC without task-specific policy training. A natural next step is to evaluate whether <strong>RL fine-tuning on these references</strong> helps the robot handle disturbances and changes in the scene. Policy training and hardware deployment remain future work.</p>
+<h3 id="failure-analysis">Hand morphology limits some interactions</h3>
+<p>In the example below, G1 must lift and swirl a plate to reproduce the human’s interaction. Although it lifts the plate, it does not complete the swirling motion. The agents adjust finger placement and try two-handed support, yet the grasp remains unstable during rotation. <strong>This difficulty reflects the morphological gap between human hands and G1’s Dex3 hands</strong>, where the fingers struggle to establish a stable grasp around the plate’s thin rim. Notably, the tested motion and controller revisions do not fully compensate for this mismatch.</p>
 
 
 <figure class="authored-video" data-media-id="discussion-plate"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="intro-media/plate-human.jpg" src="intro-media/plate-human.mp4?v=1ce87eb92b"></video></div><div class="execution-panel"><p>HuMoTAR</p><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="intro-media/plate-robot.jpg" src="intro-media/plate-robot.mp4?v=c85e205f9b"></video></div></div><figcaption class="publication-caption"><strong>Fig. 12.</strong> Plate swirling: human demonstration and incomplete HuMoTAR execution.</figcaption></figure>
@@ -367,7 +367,7 @@
 <h2 id="appendix-questions">Appendix</h2>
 <details class="appendix-faq" id="text-to-trajectory">
 <summary id="text-to-trajectory-question">A1. Can a text description replace a motion reference?</summary>
-<p>We give a single Codex agent a detailed task description, the scene and an initial robot–object state, without a human motion reference or target object trajectory. The agent has <strong>30 minutes</strong> to refine an execution that follows the description, using <strong>SONIC for the legs and waist</strong> and custom arm and hand control. These five examples show the supplied commands and the resulting simulated motions.</p>
+<p>Rather than providing a human motion reference or target object trajectory, we give a single Codex agent a detailed task description, the scene and an initial robot–object state. The agent has <strong>30 minutes</strong> to refine an execution that follows the description, using <strong>SONIC for the legs and waist</strong> and custom arm and hand control. These five examples show the supplied commands and the resulting simulated motions.</p>
 <div class="text-motion-showcase" data-text-motion-showcase>
   <label class="text-motion-picker">Task <select data-text-motion-select aria-label="Choose a text-to-trajectory task">
 <option value="lifting_and_checking_basket_90-215">Lift and inspect a basket</option>
@@ -401,7 +401,7 @@
 </details>
 <details class="appendix-faq" id="collaborative-agent-trace">
 <summary>A2. Collaborative agent trace</summary>
-<p>Replay the clothes-stand interaction at different stages of refinement. Explore the agent’s tool use, inspected images and conversations with the other agents.</p>
+<p>Replay Agent 0’s clothes-stand interaction and inspect its recorded tools and images, alongside exchanges between all four agents. The six featured stages follow the selected agent from the initial reference through trials 001, 004, 055 and 090 to its final execution.</p>
 <p class="trace-launch"><a href="trace-explorer.html" target="_blank" rel="noopener">Open the explorer in a new tab ↗</a></p>
 <iframe class="trace-explorer-frame" data-trace-explorer-src="trace-explorer.html" title="Collaborative four-agent trace explorer" loading="lazy" allow="fullscreen"></iframe>
 </details>
