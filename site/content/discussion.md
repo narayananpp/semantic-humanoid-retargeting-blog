@@ -2,9 +2,7 @@
 
 ### Iterative refinement and agentic swarms {#refinement-and-swarms}
 
-**Iterative refinement with simulation feedback improves both object tracking and semantic success over one-shot generation.** The agents test their proposed motions, inspect the resulting executions and revise the motion and control code. These results support the use of agentic models for retargeting beyond generating an initial solution.
-
-**Under a fixed time budget, the collaborative swarm outperforms a single Codex agent.** At matched compute, measured in agent-hours, longer single-agent refinement achieves higher semantic success at four times the elapsed time. These results suggest that swarms are useful when a solution is needed quickly, while a longer iterative loop remains valuable when more time is available. We encourage the community to study this compute–time tradeoff across more interactions and to investigate how communication and shared experience improve the use of a limited refinement budget.
+**Iterative refinement with simulation feedback improves both object tracking and semantic success over one-shot generation.** The agents test their proposed motions, inspect the resulting executions and revise the motion and control code. These results support the use of agentic models for retargeting beyond generating an initial solution. **Under a fixed time budget, the collaborative swarm outperforms a single Codex agent.** At matched compute, measured in agent-hours, longer single-agent refinement achieves higher semantic success at four times the elapsed time. These results suggest that swarms are useful when a solution is needed quickly, while a longer iterative loop remains valuable when more time is available. We encourage the community to study this compute–time tradeoff across more interactions and to investigate how communication and shared experience improve the use of a limited refinement budget.
 
 ### RL fine-tuning {#rl-fine-tuning}
 
