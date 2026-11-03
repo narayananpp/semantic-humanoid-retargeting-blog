@@ -87,25 +87,25 @@
         "label": "Carry and place a chair",
         "src": "source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910",
         "poster": "assets/source-humans/sub15_woodchair_047-454ce8c120.jpg",
-        "sublabel": "Human \u00b7 SMPL"
+        "sublabel": "Human"
       },
       {
         "label": "Carry and place a chair",
         "src": "intro-media/chair.mp4?v=be4d8e70e9",
         "poster": "intro-media/chair.jpg",
-        "sublabel": "Humanoid \u00b7 HOI-Retarget"
+        "sublabel": "Humanoid"
       },
       {
         "label": "Move a clothes stand",
         "src": "source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa",
         "poster": "assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg",
-        "sublabel": "Human \u00b7 SMPL"
+        "sublabel": "Human"
       },
       {
         "label": "Move a clothes stand",
         "src": "intro-media/stand-kinematic.mp4",
         "poster": "intro-media/stand-kinematic.jpg",
-        "sublabel": "Humanoid \u00b7 HOI-Retarget"
+        "sublabel": "Humanoid"
       }
     ],
     "caption": "Human demonstrations paired with HOI-Retarget kinematic references."
