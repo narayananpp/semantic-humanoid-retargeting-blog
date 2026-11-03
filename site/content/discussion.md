@@ -10,6 +10,6 @@ The reference motions produced by HuMoTAR could be used to train whole-body poli
 
 ### Failure cases in dynamic retargeting {#failure-analysis}
 
-In the example shown below, G1 must lift and swirl a plate to reproduce the human’s interaction. It lifts the plate but does not complete the swirling motion. The agents adjust finger placement and try supporting the plate with both hands, but the grasp remains unstable during rotation. **The plate’s thin rim is difficult to grasp with Dex3 fingers.** The tested motion and controller revisions do not overcome this difficulty.
+In the example below, G1 must lift and swirl a plate to reproduce the human’s interaction. It lifts the plate but does not complete the swirling motion. The agents adjust finger placement and try two-handed support, yet the grasp remains unstable during rotation. **This difficulty reflects the morphological gap between human hands and G1’s Dex3 hands:** the fingers struggle to establish a stable grasp around the plate’s thin rim. The tested motion and controller revisions do not fully compensate for this mismatch.
 
 ::: video discussion-plate
