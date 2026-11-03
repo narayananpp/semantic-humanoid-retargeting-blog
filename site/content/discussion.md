@@ -6,10 +6,10 @@
 
 ### RL fine-tuning {#rl-fine-tuning}
 
-The reference motions produced by HuMoTAR could be used to train whole-body policies for deployment. Our experiments use SONIC without task-specific policy training. We would like to test whether **RL fine-tuning on these references** helps the robot handle disturbances and changes in the scene. Policy training and hardware deployment remain future work.
+The reference motions produced by HuMoTAR could be used to train whole-body policies for deployment. Our experiments use SONIC without task-specific policy training. A next step is to evaluate whether **RL fine-tuning on these references** helps the robot handle disturbances and changes in the scene. Policy training and hardware deployment remain future work.
 
 ### Failure cases in dynamic retargeting {#failure-analysis}
 
-In the plate task, G1 lifts the plate but fails to complete the demonstrated swirling motion. The agents adjust finger placement and try supporting the plate with both hands, but the grasp remains unstable during rotation. **The plate’s thin rim is difficult to grasp with Dex3 fingers.** The tested motion and controller revisions do not overcome this difficulty.
+In the example shown below, G1 must lift and swirl a plate to reproduce the human’s interaction. It lifts the plate but does not complete the swirling motion. The agents adjust finger placement and try supporting the plate with both hands, but the grasp remains unstable during rotation. **The plate’s thin rim is difficult to grasp with Dex3 fingers.** The tested motion and controller revisions do not overcome this difficulty.
 
 ::: video discussion-plate
