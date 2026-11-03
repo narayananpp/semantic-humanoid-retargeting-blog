@@ -8,10 +8,10 @@
 
 ### RL fine-tuning {#rl-fine-tuning}
 
-Humanoid references can serve as training data for downstream whole-body policies. **Our results demonstrate the promise of agentic refinement using off-the-shelf models and low-level controllers**, without training a new policy for each interaction. Reinforcement-learning fine-tuning could build on these references to improve robustness to disturbances and variation in the task scene. Downstream policy training and deployment remain to be evaluated. We hope this work encourages the community to investigate agentic methods as a source of reference motions for learning interactive humanoid systems.
+The reference motions produced by HuMoTAR could be used to train whole-body policies for deployment. Our experiments use SONIC without task-specific policy training. We would like to test whether **RL fine-tuning on these references** helps the robot handle disturbances and changes in the scene. Policy training and hardware deployment remain future work.
 
 ### Failure cases in dynamic retargeting {#failure-analysis}
 
-Our approach still struggles with thin objects and difficult contact geometries. In the plate example, the robot lifts the plate but does not complete the human’s swirling motion. Across the recorded attempts, agents revise finger placement and try two-handed support, yet the grasp remains unreliable during rotation. **We observe that contact strategies must account for the robot’s hand morphology.** The Dex3 fingers must establish opposing contacts around a thin, sloped rim, which appears to contribute to the difficulty of this task. Motion and controller refinement do not yet resolve this limitation.
+In the plate task, G1 lifts the plate but fails to complete the demonstrated swirling motion. The agents adjust finger placement and try supporting the plate with both hands, but the grasp remains unstable during rotation. **The plate’s thin rim is difficult to grasp with Dex3 fingers.** The tested motion and controller revisions do not overcome this difficulty.
 
 ::: video discussion-plate
