@@ -30,7 +30,7 @@ Independent agents, on the other hand, sometimes spend part of their budget on o
 
 ### 5.3 Matched compute: longer iterative refinement {#matched-agent-hours}
 
-We compare two HuMoTAR settings: **a collaborative swarm of four Codex agents running for 30 minutes each** and **a single Codex agent running for 120 minutes**. Both receive the same allocated compute budget of *two agent-hours*. This comparison assesses whether a longer iterative loop improves on a shorter collaborative swarm.
+In the previous section, we compared HuMoTAR configurations under the same time budget. We now ask: **at matched compute (agent-hours), is it better to give a single agent more time for reasoning and iterative refinement or distribute the budget across a collaborative swarm?** For this study, we compare the [**collaborative swarm of four Codex agents**](#configuration-collaborative) running for 30 minutes each against **one Codex agent running for 120 minutes**. Both settings receive *two agent-hours*.
 
 ::: component results-agent-hours
 
