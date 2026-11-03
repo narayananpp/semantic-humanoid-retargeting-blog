@@ -2,7 +2,7 @@
 (() => {
   const root=document.querySelector('#dynamics-showcase');if(!root)return;
   const make=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;};
-  fetch('dynamics-showcase.json?v=results-six-methods-1',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(data=>{
+  fetch('dynamics-showcase.json?v=spider-blender-1',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(data=>{
     const tabs=make('div','showcase-datasets');tabs.setAttribute('role','tablist');tabs.setAttribute('aria-label','Dataset');
     const panel=make('div','showcase-content');panel.id='showcase-motion-panel';panel.setAttribute('role','tabpanel');
     const header=make('div','showcase-header'),player=make('div','showcase-player'),list=make('div','showcase-list');panel.append(header,player,list);root.prepend(tabs,panel);

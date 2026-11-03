@@ -46,11 +46,22 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/tilting_trash_can_with_right_foot-985/hoi_spider.mp4?v=cb843cbeab",
-          "poster": "results-showcase-media/tilting_trash_can_with_right_foot-985/hoi_spider.jpg",
-          "video_sha256": "cb843cbeab9504d58e10a48160d43b6adc10f833ccc1dba4b563635b3934afa9",
-          "display_note": "MuJoCo replay \u00b7 sampled at 2 fps",
-          "label": "HOI-Retarget + SPIDER"
+          "video": "results-showcase-media/tilting_trash_can_with_right_foot-985/hoi_spider.mp4?v=7c52f6b2e2",
+          "poster": "results-showcase-media/tilting_trash_can_with_right_foot-985/hoi_spider.jpg?v=7c52f6b2e2",
+          "video_sha256": "7c52f6b2e22c21285fe51003531ebb1311f534d5122c6bb5e4be452f41f13d2d",
+          "label": "HOI-Retarget + SPIDER",
+          "source_motion_sha256": "a39adabf80db72cec9a49372aada5107e42e2008a6ea7176dc10a01cdabbbb2b",
+          "source_scene_sha256": "ff794dd0e58085a830106ceaf452182555d37bb94cc5034e42bc1d474cbf78c3",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "communicating": {
           "status": "ready",
@@ -114,11 +125,22 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/carrying_mixing_bowl_with_both_hands-134/hoi_spider.mp4?v=0df00fc1af",
-          "poster": "results-showcase-media/carrying_mixing_bowl_with_both_hands-134/hoi_spider.jpg",
-          "video_sha256": "0df00fc1afb18b47dc694d3b51207a9babbc850dd45b6c28c2ec72cfcc4b5fba",
-          "display_note": "MuJoCo replay \u00b7 sampled at 2 fps",
-          "label": "HOI-Retarget + SPIDER"
+          "video": "results-showcase-media/carrying_mixing_bowl_with_both_hands-134/hoi_spider.mp4?v=8eedeeda0a",
+          "poster": "results-showcase-media/carrying_mixing_bowl_with_both_hands-134/hoi_spider.jpg?v=8eedeeda0a",
+          "video_sha256": "8eedeeda0a485801d30d2e930ad898001192f9fb5cb1267b23f64abc8bd7f723",
+          "label": "HOI-Retarget + SPIDER",
+          "source_motion_sha256": "84e8b322b1d7b05375a2b1e4098de66bbf00afbfda262dbc37de88e31bd499b8",
+          "source_scene_sha256": "c0415dac7178f0543970bc48f24e2080e0a5970a585d70179dbef5e20dd0c4f2",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "communicating": {
           "status": "ready",
@@ -183,11 +205,22 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/lifting_and_checking_basket_90-215/hoi_spider.mp4?v=5d3b912a40",
-          "poster": "results-showcase-media/lifting_and_checking_basket_90-215/hoi_spider.jpg",
-          "video_sha256": "5d3b912a404fd278249d948d02002466d1cf1d345d145f5b616bc57139cf3031",
-          "display_note": "MuJoCo replay \u00b7 sampled at 2 fps",
-          "label": "HOI-Retarget + SPIDER"
+          "video": "results-showcase-media/lifting_and_checking_basket_90-215/hoi_spider.mp4?v=9ebe596e8e",
+          "poster": "results-showcase-media/lifting_and_checking_basket_90-215/hoi_spider.jpg?v=9ebe596e8e",
+          "video_sha256": "9ebe596e8e44587afd6c01a112865fdb22344bf8b0437385d8c8c89633c47711",
+          "label": "HOI-Retarget + SPIDER",
+          "source_motion_sha256": "bbffcb7d47df9408cd284b176f6ed6afe3076bbe73cdf6dde5ed2226d7572aca",
+          "source_scene_sha256": "cd2ec49dcd8a2c2d1064b7a85c2a233d6bfef1cca22ae94e545c1a45306bd33f",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "communicating": {
           "status": "ready",
@@ -254,11 +287,22 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/lifting_side_table_and_putting_down-362/hoi_spider.mp4?v=9738c7b9ac",
-          "poster": "results-showcase-media/lifting_side_table_and_putting_down-362/hoi_spider.jpg",
-          "video_sha256": "9738c7b9ac3b0be3d0e0a53930ef463bf6b51cec308a01c7b5025f9edd0ca627",
-          "display_note": "MuJoCo replay \u00b7 sampled at 2 fps",
-          "label": "HOI-Retarget + SPIDER"
+          "video": "results-showcase-media/lifting_side_table_and_putting_down-362/hoi_spider.mp4?v=5938d996e6",
+          "poster": "results-showcase-media/lifting_side_table_and_putting_down-362/hoi_spider.jpg?v=5938d996e6",
+          "video_sha256": "5938d996e67b256c3e6b1bd2385d2b0b96f2438420ba0a287b574ae925e0213e",
+          "label": "HOI-Retarget + SPIDER",
+          "source_motion_sha256": "0cd0760716b805f17418a718b46fe25693f4b0de33da9b35b28da69a22811923",
+          "source_scene_sha256": "e9ad7208e6ac4af04429f7d791a3afd49d19cda98420fe57d36a6763d0f7caf2",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "communicating": {
           "status": "ready",
@@ -325,11 +369,22 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/carry_side_table_with_both_hands_walk_around-536/hoi_spider.mp4?v=0ed21f0de8",
-          "poster": "results-showcase-media/carry_side_table_with_both_hands_walk_around-536/hoi_spider.jpg",
-          "video_sha256": "0ed21f0de85ac3753b8a331bc8ec1ca74a12f5dd70a459b02b01867fd04ab9e9",
-          "display_note": "MuJoCo replay \u00b7 sampled at 2 fps",
-          "label": "HOI-Retarget + SPIDER"
+          "video": "results-showcase-media/carry_side_table_with_both_hands_walk_around-536/hoi_spider.mp4?v=ba54fc08dc",
+          "poster": "results-showcase-media/carry_side_table_with_both_hands_walk_around-536/hoi_spider.jpg?v=ba54fc08dc",
+          "video_sha256": "ba54fc08dc9ee222fde5f5c45dccdf0407d58288a47b9211146fff2af3875315",
+          "label": "HOI-Retarget + SPIDER",
+          "source_motion_sha256": "0fd9e74b6ff0e80c83678853add6355398d95d9089ba3b1a21b748c08c89bede",
+          "source_scene_sha256": "f2ed68ac4204d597a082c372d5cbf59b0d5e057db2de7454614976da4bd6764d",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "communicating": {
           "status": "ready",
@@ -394,11 +449,22 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/sub17_floorlamp_007/hoi_spider.mp4?v=535fffec20",
-          "poster": "results-showcase-media/sub17_floorlamp_007/hoi_spider.jpg",
-          "video_sha256": "535fffec2049a7312acc3f31ba0cae8210b9d0ac20c8ec4d92b9f17ec5bc27db",
-          "display_note": "MuJoCo replay \u00b7 sampled at 2 fps",
-          "label": "HOI-Retarget + SPIDER"
+          "video": "results-showcase-media/sub17_floorlamp_007/hoi_spider.mp4?v=d4e59ccde2",
+          "poster": "results-showcase-media/sub17_floorlamp_007/hoi_spider.jpg?v=d4e59ccde2",
+          "video_sha256": "d4e59ccde21d1f7187d98412b5b516734f80b95d0c3997e5e172d028e1afe41f",
+          "label": "HOI-Retarget + SPIDER",
+          "source_motion_sha256": "6bd0982807ac2f2e0ddcbd1125a6477a5b7f9ebf9f646acf61f7fa9063d993be",
+          "source_scene_sha256": "e91a5715a7243753a5954e5e14cf367a43c056b76d6c62b7ecd209a15b29d120",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "communicating": {
           "status": "ready",
@@ -601,11 +667,22 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/sub15_woodchair_053/hoi_spider.mp4?v=d5a5b6e22f",
-          "poster": "results-showcase-media/sub15_woodchair_053/hoi_spider.jpg",
-          "video_sha256": "d5a5b6e22f4756fd94c98de930a7f0cf2d984e0ca1c4f64aad673af0fbce311c",
-          "display_note": "MuJoCo replay \u00b7 sampled at 2 fps",
-          "label": "HOI-Retarget + SPIDER"
+          "video": "results-showcase-media/sub15_woodchair_053/hoi_spider.mp4?v=3a7115a4f7",
+          "poster": "results-showcase-media/sub15_woodchair_053/hoi_spider.jpg?v=3a7115a4f7",
+          "video_sha256": "3a7115a4f77071cd592fa8c9bbec8b608145488a25ce213de06c9540991efbc8",
+          "label": "HOI-Retarget + SPIDER",
+          "source_motion_sha256": "8d8e2eb29f59e0fc9bdf0eae875614827c5cbc09af651f9c2cee03b942079ff4",
+          "source_scene_sha256": "24d4f47b187f3d2d26856d49cf72815bfb525c9dc86a449fb4488f6d7981d5a4",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "communicating": {
           "status": "ready",
@@ -658,11 +735,22 @@
         },
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/sub12_largebox_049/hoi_spider.mp4?v=aacde46dec",
-          "poster": "results-showcase-media/sub12_largebox_049/hoi_spider.jpg",
-          "video_sha256": "aacde46dece817598507e9095d02bf07791333c9e53a3f2bfc3070e7b8291612",
-          "display_note": "MuJoCo replay \u00b7 sampled at 2 fps",
-          "label": "HOI-Retarget + SPIDER"
+          "video": "results-showcase-media/sub12_largebox_049/hoi_spider.mp4?v=ea7d32b598",
+          "poster": "results-showcase-media/sub12_largebox_049/hoi_spider.jpg?v=ea7d32b598",
+          "video_sha256": "ea7d32b598193094170f2fccc1c2dcb83bafeadd6be6530651324c29fbbf73bf",
+          "label": "HOI-Retarget + SPIDER",
+          "source_motion_sha256": "a537fda75b120f2aff98e4a74a0bdf61c29927000fb9e49ea59c39b44a1e8874",
+          "source_scene_sha256": "4df0c23484de71a8e227be3fd535acc3d490ffea5c83efeb9dd5733a4d7f7cd6",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "communicating": {
           "status": "ready",
@@ -706,11 +794,22 @@
       "methods": {
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/lifting_and_carrying_table-105/hoi_spider.mp4?v=ada7982a90",
-          "poster": "results-showcase-media/lifting_and_carrying_table-105/hoi_spider.jpg",
-          "video_sha256": "ada7982a90559ac41d0d981881edabb2b9e12a85eb1d7dd07469b628a44d3332",
-          "display_note": "MuJoCo replay \u00b7 sampled at 2 fps",
-          "label": "HOI-Retarget + SPIDER"
+          "video": "results-showcase-media/lifting_and_carrying_table-105/hoi_spider.mp4?v=6cc19d53f6",
+          "poster": "results-showcase-media/lifting_and_carrying_table-105/hoi_spider.jpg?v=6cc19d53f6",
+          "video_sha256": "6cc19d53f668f4a8e2a01044103e2322a429cbc9e8551b8636f6da454e36984f",
+          "label": "HOI-Retarget + SPIDER",
+          "source_motion_sha256": "94ed7450f4ce31b375909e8fc88863beb3712cc738419bca76b7f81e1fe5abf0",
+          "source_scene_sha256": "a1774e962be6f3f199ace6e369b9dd50b93ffa211e4759046897238522208b7d",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "zero_shot": {
           "status": "ready",
@@ -765,11 +864,22 @@
       "methods": {
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/examining_cutting_board-141/hoi_spider.mp4?v=ba8ba75adb",
-          "poster": "results-showcase-media/examining_cutting_board-141/hoi_spider.jpg",
-          "video_sha256": "ba8ba75adb9e27bcafd5d2b57c5dce006e6224bf8c0b1fab913975982e44ef62",
-          "display_note": "MuJoCo replay \u00b7 sampled at 2 fps",
-          "label": "HOI-Retarget + SPIDER"
+          "video": "results-showcase-media/examining_cutting_board-141/hoi_spider.mp4?v=1430c9eb26",
+          "poster": "results-showcase-media/examining_cutting_board-141/hoi_spider.jpg?v=1430c9eb26",
+          "video_sha256": "1430c9eb2666cd2dc41ab7583b9dea7464516ae274324ccb0a30a96414c4471b",
+          "label": "HOI-Retarget + SPIDER",
+          "source_motion_sha256": "12578d7dd8ec850a980d8ce45c6c0d967ef0690cb889df295263dd5f997ed07a",
+          "source_scene_sha256": "126b5aade5c938806f89f7321ba9ac450d458afa2e4220547a64c1b01241d811",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "zero_shot": {
           "status": "ready",
@@ -824,11 +934,22 @@
       "methods": {
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/sub11_monitor_044/hoi_spider.mp4?v=6f3614aadf",
-          "poster": "results-showcase-media/sub11_monitor_044/hoi_spider.jpg",
-          "video_sha256": "6f3614aadf8ff241f0e1d00bac834e6711bc200f7a64e313f0d365cf4ed597d8",
-          "display_note": "MuJoCo replay \u00b7 sampled at 2 fps",
-          "label": "HOI-Retarget + SPIDER"
+          "video": "results-showcase-media/sub11_monitor_044/hoi_spider.mp4?v=1e525f90b4",
+          "poster": "results-showcase-media/sub11_monitor_044/hoi_spider.jpg?v=1e525f90b4",
+          "video_sha256": "1e525f90b40459d09b8d16e63b242c201d2467e959d372352688ac3b1c37777f",
+          "label": "HOI-Retarget + SPIDER",
+          "source_motion_sha256": "e05d660891729b866ab2aeee2804ae47864f46338eed1848c741fd0d46d5fb7a",
+          "source_scene_sha256": "a7eb2f77c307bace048da64486665ae4e2c4119785cb1f2c8f971034d1610233",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "zero_shot": {
           "status": "ready",
@@ -883,11 +1004,22 @@
       "methods": {
         "hoi_spider": {
           "status": "ready",
-          "video": "results-showcase-media/sub16_plasticbox_038/hoi_spider.mp4?v=4449c17b63",
-          "poster": "results-showcase-media/sub16_plasticbox_038/hoi_spider.jpg",
-          "video_sha256": "4449c17b63575ec3085d93c5192d9dbdbd4d7e484e703567335157831833f220",
-          "display_note": "MuJoCo replay \u00b7 sampled at 2 fps",
-          "label": "HOI-Retarget + SPIDER"
+          "video": "results-showcase-media/sub16_plasticbox_038/hoi_spider.mp4?v=7254005fd1",
+          "poster": "results-showcase-media/sub16_plasticbox_038/hoi_spider.jpg?v=7254005fd1",
+          "video_sha256": "7254005fd1aabfaaf215d4b7e7b314a06e1da5bdfe3577148102903fcf6a3d84",
+          "label": "HOI-Retarget + SPIDER",
+          "source_motion_sha256": "66ecdc82aac4b6e574eefb6afc6fdc315a2445ba1606c6f993df1c57af0fcc1e",
+          "source_scene_sha256": "8a5b4c9285de4fa54c663c84d2d13799b37f0e5f1867e36525bab0069dfbce98",
+          "render": {
+            "renderer": "Blender",
+            "resolution": [
+              960,
+              600
+            ],
+            "fps": 24,
+            "samples": 24,
+            "physics_reexecuted": false
+          }
         },
         "zero_shot": {
           "status": "ready",
