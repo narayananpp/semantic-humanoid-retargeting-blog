@@ -1,0 +1,145 @@
+{
+  "size": [7440, 3400],
+  "still": "assets/refinement/agentic-pipeline.png",
+  "base": "assets/refinement/agentic-pipeline-base.png",
+  "clips": {
+    "human": {
+      "rect": [200, 350, 1240, 1425],
+      "erase": [230, 406, 1209, 1428],
+      "src": "architecture-media/human.mp4",
+      "poster": "architecture-media/human.jpg",
+      "source": "source-human-media/omomo/sub10_clothesstand_002.mp4",
+      "start": 0,
+      "end": 4.4,
+      "scale": 1.6,
+      "center": [612, 442]
+    },
+    "kinematic": {
+      "rect": [200, 1830, 1240, 3030],
+      "erase": [212, 1930, 1227, 2990],
+      "src": "architecture-media/kinematic.mp4",
+      "poster": "architecture-media/kinematic.jpg",
+      "source": "walkthrough-media/clothesstand/kinematic/video.mp4",
+      "start": 0,
+      "end": 4.4,
+      "scale": 1.35,
+      "center": [545, 461]
+    },
+    "trial-001": {
+      "rect": [1707, 1845, 2867, 2915],
+      "erase": [1809, 1914, 2766, 2824],
+      "src": "architecture-media/trial-001.mp4",
+      "poster": "architecture-media/trial-001.jpg",
+      "source": "walkthrough-media/clothesstand/001/video.mp4",
+      "start": 1.3,
+      "end": 4.7,
+      "scale": 1.25,
+      "center": [803, 566]
+    },
+    "trial-007": {
+      "rect": [3143, 1845, 4303, 2915],
+      "erase": [3245, 1934, 4202, 2913],
+      "src": "architecture-media/trial-007.mp4",
+      "poster": "architecture-media/trial-007.jpg",
+      "source": "walkthrough-media/clothesstand/007/video.mp4",
+      "start": 2,
+      "end": 7,
+      "scale": 1.25,
+      "center": [497, 487]
+    },
+    "trial-025": {
+      "rect": [4580, 1845, 5740, 2915],
+      "erase": [4681, 1931, 5638, 2913],
+      "src": "architecture-media/trial-025.mp4",
+      "poster": "architecture-media/trial-025.jpg",
+      "source": "walkthrough-media/clothesstand/025/video.mp4",
+      "start": 7.5,
+      "end": 12.5,
+      "scale": 1.25,
+      "center": [576, 525]
+    },
+    "final-transport": {
+      "rect": [6190, 390, 7313, 1630],
+      "erase": [6216, 512, 7287, 1617],
+      "src": "architecture-media/final-transport.mp4",
+      "poster": "architecture-media/final-transport.jpg",
+      "source": "walkthrough-media/clothesstand/025/video.mp4",
+      "start": 2.5,
+      "end": 7.5,
+      "scale": 1.42,
+      "center": [532, 483]
+    },
+    "final-placement": {
+      "rect": [6190, 1705, 7313, 2950],
+      "erase": [6216, 1837, 7287, 2933],
+      "src": "architecture-media/final-placement.mp4",
+      "poster": "architecture-media/final-placement.jpg",
+      "source": "walkthrough-media/clothesstand/025/video.mp4",
+      "start": 8,
+      "end": 14,
+      "scale": 1.42,
+      "center": [577, 519]
+    }
+  },
+  "nodes": {
+    "human": {"rect": [230, 372, 1210, 1418], "rx": 40},
+    "kinematic": {"rect": [230, 1842, 1210, 3018], "rx": 40},
+    "agent": {"rect": [1660, 348, 4011, 1259], "rx": 43},
+    "policy": {"rect": [4282, 562, 5765, 845], "rx": 43},
+    "controller": {"rect": [4282, 914, 5765, 1197], "rx": 43},
+    "trial-001": {"rect": [1707, 1740, 2867, 3005], "rx": 40},
+    "trial-007": {"rect": [3143, 1740, 4303, 3005], "rx": 40},
+    "trial-025": {"rect": [4580, 1740, 5740, 3005], "rx": 40},
+    "final": {"rect": [6154, 78, 7353, 3257], "rx": 44}
+  },
+  "edges": {
+    "down": {"d": "M719.5 1433V1550", "color": "#5b6870"},
+    "input": {"d": "M1262 2380H1408V855.5H1645", "color": "#346b8e"},
+    "motion": {"d": "M4017 699.5H4250", "color": "#346b8e"},
+    "code": {"d": "M4017 1055.5H4250", "color": "#b77830"},
+    "feedback": {"d": "M5024 1196V1392H4320M3703 1392H2819.5V1280", "color": "#346b8e"},
+    "save": {"d": "M5769 2307.5H6130", "color": "#347361"}
+  },
+  "stages": [
+    {
+      "title": "Human demonstration and initial robot reference",
+      "text": "Kinematic retargeting maps the SMPL-X demonstration to G1. This initial robot reference is not simulated with physics.",
+      "nodes": ["human", "kinematic"], "edges": ["down"], "clips": ["human", "kinematic"]
+    },
+    {
+      "title": "Astra writes executable code",
+      "text": "The LLM agent receives both references and writes code that solves arm poses with inverse kinematics and sets grasp, posture and motion timing.",
+      "nodes": ["agent"], "edges": ["input"], "clips": []
+    },
+    {
+      "title": "Trial 001 · Contact slips",
+      "text": "The motion reference drives SONIC’s frozen whole-body policy while the generated controller manages contact. With the initial controller, the stand slips from the grasp and falls.",
+      "nodes": ["policy", "controller", "trial-001"], "edges": ["motion", "code"], "clips": ["trial-001"]
+    },
+    {
+      "title": "Simulation feedback",
+      "text": "After each trial, the agent inspects images of the execution, object-tracking errors and contact measurements, then revises its code.",
+      "nodes": ["agent"], "edges": ["feedback"], "clips": []
+    },
+    {
+      "title": "Trial 007 · Contact holds",
+      "text": "A revised grip and body coordination keep the stand in hand as G1 lifts and carries it.",
+      "nodes": ["policy", "controller", "trial-007"], "edges": ["motion", "code"], "clips": ["trial-007"]
+    },
+    {
+      "title": "Simulation feedback",
+      "text": "The agent keeps revising between trials. Later versions add feedback and placement and release logic.",
+      "nodes": ["agent"], "edges": ["feedback"], "clips": []
+    },
+    {
+      "title": "Trial 025 · Placement completes",
+      "text": "With revised feedback and release, G1 sets the stand down upright and lets go.",
+      "nodes": ["policy", "controller", "trial-025"], "edges": ["motion", "code"], "clips": ["trial-025"]
+    },
+    {
+      "title": "Final reference",
+      "text": "The successful execution is saved as the final reference: its trajectory and replayable code.",
+      "nodes": ["final"], "edges": ["save"], "clips": ["final-transport", "final-placement"]
+    }
+  ]
+}
