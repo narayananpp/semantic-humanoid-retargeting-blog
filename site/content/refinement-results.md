@@ -24,7 +24,9 @@ We compare a single Codex agent with the [independent](#configuration-ensemble) 
 
 ### 5.3 The effect of inter-agent communication {#inter-agent-communication}
 
-**Inter-agent communication raises semantic success from 47.5% to 67.5%.** Agents share code that worked, split the next tests and check each other’s results. They also flag failures that another agent missed.
+**Inter-agent communication raises semantic success from 47.5% to 67.5% with the same four-agent budget.** The agents divide experiments, test and improve each other’s controllers, and share unsuccessful results so peers know what has already been tried. They also use peer feedback to correct mistakes in their evaluation. In a monitor task where the robot must lift and move a monitor, one agent identifies an object drop near the end of a rollout that another had judged successful. The second agent acknowledges the missed failure and identifies controlled placement as the next step.
+
+Independent agents, on the other hand, sometimes spend part of their budget on overlapping approaches, without access to each other’s findings. In a tripod task where the robot must lift, move and place a tripod, two independent agents separately test unsuccessful two-handed grasps using closely overlapping strategies.
 
 ::: component results-communication
 

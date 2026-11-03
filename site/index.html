@@ -311,7 +311,8 @@
 
 <p><strong>Agentic swarms improve retargeting within the same time budget, with the strongest task-completion results from inter-agent communication.</strong> Running four independent agents can help reduce <strong>“seed luck”</strong> and improve <strong>reliability</strong>, since one agent may find a solution that another misses. Here, the independent swarm improves object tracking, but completes no more tasks overall than a single agent.</p>
 <h3 id="inter-agent-communication">5.3 The effect of inter-agent communication</h3>
-<p><strong>Inter-agent communication raises semantic success from 47.5% to 67.5%.</strong> Agents share code that worked, split the next tests and check each other’s results. They also flag failures that another agent missed.</p>
+<p><strong>Inter-agent communication raises semantic success from 47.5% to 67.5% with the same four-agent budget.</strong> The agents divide experiments, test and improve each other’s controllers, and share unsuccessful results so peers know what has already been tried. They also use peer feedback to correct mistakes in their evaluation. In a monitor task where the robot must lift and move a monitor, one agent identifies an object drop near the end of a rollout that another had judged successful. The second agent acknowledges the missed failure and identifies controlled placement as the next step.</p>
+<p>Independent agents, on the other hand, sometimes spend part of their budget on overlapping approaches, without access to each other’s findings. In a tripod task where the robot must lift, move and place a tripod, two independent agents separately test unsuccessful two-handed grasps using closely overlapping strategies.</p>
 
 
 <figure class="results-plot"><img src="assets/analysis/results/communication.svg" alt="Independent and collaborative final executions compared task by task for semantic outcomes and mean ADD." loading="lazy" width="1100" height="410"></figure>
