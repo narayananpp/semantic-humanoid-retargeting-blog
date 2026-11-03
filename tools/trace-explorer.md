@@ -6,8 +6,8 @@ no inference, API, server-side simulation or account login is required.
 The clothes-stand recording includes all four collaborative agents. Agent 0
 provided the selected final execution. Six featured stages show the initial
 reference, four saved trials and the selected final execution.
-Every agent's final execution is also available through the agent selector and
-trial history. The six featured stages follow Agent 0: initial, 001, 004, 055, 090 and final.
+Playback and activity focus on Agent 0; the Exchanges tab keeps the messages
+across all four agents. The six featured stages follow Agent 0: initial, 001, 004, 055, 090 and final.
 Trial 055 improves object tracking; trial 090 shows a later regression. These
 are selected trials, not consecutive iterations. All recorded trial scores are retained in the data; the history chart shows only prepared replays.
 
@@ -39,7 +39,7 @@ A deep link selects an agent, trial and tab, for example:
 
 ## Validation
 
-Check all six stages, all four final motions, playback, scrub, camera presets,
+Check all six stages, Agent 0’s final motion, playback, scrub, camera presets,
 path/contact overlays, activity search, image previews, exchanges, result plots,
 automatic stage playback, deep links and mobile overflow. Check rendered MP4s
 against their corresponding motion bundles. Check public data for private paths

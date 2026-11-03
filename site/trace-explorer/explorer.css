@@ -10,3 +10,5 @@
 .video-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;align-self:start}.video-card summary{cursor:pointer;font-weight:600;font-size:13px}.video-card summary span{float:right;font-size:11px;color:var(--muted);font-weight:400}.video-card video{display:block;width:100%;max-height:520px;margin-top:14px;background:#e7ece8;border-radius:8px}.video-card>a{display:block;text-align:right;margin-top:10px;font-size:12px}
 
 .agent-finals{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}.agent-finals>span{font-size:11px;color:var(--muted);margin-right:8px}.agent-finals button{font-size:11px;padding:6px 10px}.agent-finals strong{font-weight:500;margin-left:8px;color:var(--accent)}.agent-finals button.active{border-color:var(--accent);background:var(--soft)}
+
+.agent-summary{display:grid;gap:5px;min-width:220px}.agent-summary strong{font-size:13px;font-weight:600}.agent-summary span{font-size:11px;color:var(--muted)}

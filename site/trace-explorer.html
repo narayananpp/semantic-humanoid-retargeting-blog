@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Inside a collaborative run · HuMoTAR</title>
   <meta name="description" content="Explore how four agents share findings, test motions and refine a clothes-stand interaction.">
-  <link rel="stylesheet" href="trace-explorer/explorer.css?v=collaborative-3">
+  <link rel="stylesheet" href="trace-explorer/explorer.css?v=agent-zero-1">
   <script type="importmap">{"imports":{"three":"./trace-explorer/vendor/three.module.js"}}</script>
 </head>
 <body>
@@ -15,11 +15,11 @@
   </header>
   <main>
     <div class="heading">
-      <div><p class="eyebrow">COLLABORATIVE SWARM / OMOMO</p><h1>Lift, carry and place a clothes stand.</h1><p class="intro">Explore six stages, from the initial reference to the final execution. Inspect the agents’ tools, images and conversations.</p></div>
-      <div class="agent-picker"><label for="agent">Recorded agent</label><select id="agent"><option value="0">Agent 0 · selected final result</option><option value="1">Agent 1</option><option value="2">Agent 2</option><option value="3">Agent 3</option></select><span id="agent-meta">Loading the recorded run…</span></div>
+      <div><p class="eyebrow">COLLABORATIVE SWARM / OMOMO</p><h1>Lift, carry and place a clothes stand.</h1><p class="intro">Explore six stages, from the initial reference to the final execution. Inspect Agent 0’s tools and images, alongside the swarm’s conversations.</p></div>
+      <div class="agent-summary"><strong>Agent 0 · selected execution</strong><span id="agent-meta">Six replay stages</span></div>
     </div>
     <div id="app-error" class="app-error" role="alert" hidden></div>
-    <section class="stages-card" aria-label="Six key replay stages"><div class="section-heading"><h2>Initial reference → refinement → final execution</h2><span>Agent 0 · selected trials and final execution</span></div><div id="key-stages" class="key-stages"></div><div id="agent-finals" class="agent-finals" aria-label="Final executions from all four agents"></div></section>
+    <section class="stages-card" aria-label="Six key replay stages"><div class="section-heading"><h2>Initial reference → refinement → final execution</h2><span>Agent 0 · selected trials and final execution</span></div><div id="key-stages" class="key-stages"></div></section>
     <div class="workspace">
       <section class="visual-column" aria-label="Recorded robot motion">
         <div class="viewer-card">
@@ -56,8 +56,8 @@
     </div>
     <footer class="page-footer"><span><kbd>Space</kbd> play / pause <kbd>←</kbd><kbd>→</kbd> trial <kbd>R</kbd> reset camera</span></footer>
   </main>
-  <dialog id="about"><button id="close-about" class="dialog-close" aria-label="Close">×</button><p class="eyebrow">THE RECORDED EXPERIMENT</p><h2>Four agents, one interaction.</h2><p>The agents refine the clothes-stand interaction with frozen SONIC whole-body control and custom manipulation controllers. They can message one another, share controller files and test one another’s proposals. Agent 0 supplied the selected final execution.</p><p>Six 3D stages follow Agent 0: the initial reference, trials 001 and 004, an improved trial (055), a later regression (090), and the final execution. These are selected trials, not consecutive iterations. Intermediate replays are checked against the original object-tracking scores. The initial reference was evaluated separately with SONIC. The final motion is the original saved validation rollout.</p><p>All four agents’ final executions, trial scores and visible activity remain available. Tool labels describe recorded operations. Agent messages are quoted, with private paths and account identifiers removed. Images are the views actually inspected by the agents. The explorer does not run new simulations.</p><p><a href="trace-explorer/vendor/THREE-LICENSE.txt">Three.js license</a> · <a href="trace-explorer/vendor/UNITREE-LICENSE.txt">G1 asset notice</a> · <a href="trace-explorer/vendor/OMOMO-OBJECTS-LICENSE.txt">Object asset notice</a> · <a href="trace-explorer/vendor/DATA-NOTICE.txt">Data attribution</a></p></dialog>
+  <dialog id="about"><button id="close-about" class="dialog-close" aria-label="Close">×</button><p class="eyebrow">THE RECORDED EXPERIMENT</p><h2>Four agents, one interaction.</h2><p>The agents refine the clothes-stand interaction with frozen SONIC whole-body control and custom manipulation controllers. They can message one another, share controller files and test one another’s proposals. Agent 0 supplied the selected final execution.</p><p>Six 3D stages follow Agent 0: the initial reference, trials 001 and 004, an improved trial (055), a later regression (090), and the final execution. These are selected trials, not consecutive iterations. Intermediate replays are checked against the original object-tracking scores. The initial reference was evaluated separately with SONIC. The final motion is the original saved validation rollout.</p><p>Playback and activity follow Agent 0. The Exchanges tab retains the original messages across all four agents. Tool labels describe recorded operations. Agent messages are quoted, with private paths and account identifiers removed. Images are the views actually inspected by the agents. The explorer does not run new simulations.</p><p><a href="trace-explorer/vendor/THREE-LICENSE.txt">Three.js license</a> · <a href="trace-explorer/vendor/UNITREE-LICENSE.txt">G1 asset notice</a> · <a href="trace-explorer/vendor/OMOMO-OBJECTS-LICENSE.txt">Object asset notice</a> · <a href="trace-explorer/vendor/DATA-NOTICE.txt">Data attribution</a></p></dialog>
   <noscript>This explorer needs JavaScript. The <a href="index.html#agentic-refinement-walkthrough">video walkthrough</a> is also available in the article.</noscript>
-  <script type="module" src="trace-explorer/explorer.js?v=collaborative-3"></script>
+  <script type="module" src="trace-explorer/explorer.js?v=agent-zero-1"></script>
 </body>
 </html>

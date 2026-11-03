@@ -146,13 +146,13 @@ function drawPaths(){
 }
 
 async function selectAgent(id, requestedTrial, options={}) {
+  id=0;
   const request=++state.agentRequest;
   stopTour();state.generation++;setPlaying(false);
   $('loading').hidden=false;
   if(!caches.agent.has(id))caches.agent.set(id,getJSON(DATA+`agent-${id}.json`));
   const agent=await caches.agent.get(id);if(request!==state.agentRequest)return;state.agent=agent;
-  $('agent').value=id;
-  $('agent-meta').textContent=`${agent.trials.length-1} recorded trials · ${agent.selected?'selected final result':'collaborating agent'}`;
+  $('agent-meta').textContent=`${agent.trials.filter(t=>t.motion).length} replay stages`;
   const chosen=agent.trials.find(t=>t.id===requestedTrial)||agent.trials.find(t=>t.id!=='initial'&&t.motion)||agent.trials.find(t=>t.id==='final')||agent.trials[0];
   if(!chosen)throw new Error('No scored trials were found for this agent.');
   await selectTrial(chosen.id,options);
@@ -270,8 +270,6 @@ function pathPlot(trial){
   return `<h3 class="measure-title">Object path · top view</h3><svg class="path-plot" viewBox="0 0 340 330" role="img" aria-label="Desired and executed object paths in the horizontal plane">${paths.map((points,i)=>`<path d="${points.map((p,j)=>`${j?'L':'M'}${sx(p[0]).toFixed(2)},${sy(p[1]).toFixed(2)}`).join(' ')}" fill="none" stroke="${i?'#087b68':'#a06ac4'}" stroke-width="2.5"/>`).join('')}</svg><p class="path-legend"><span>● Desired</span><span>● Executed</span></p><p class="context-note">Spatial paths from the recorded object-path analysis.</p>`;
 }
 function renderStages(){
-  $('agent-finals').innerHTML='<span>Final executions</span>'+recording.agents.map(a=>`<button data-final="${a.id}" class="${state.agent.id===a.id&&state.trial.id==='final'?'active':''}">Agent ${a.id}${a.selected?' · selected':''} <strong>${fmt(a.final_add_cm)} cm</strong></button>`).join('');
-  $('agent-finals').querySelectorAll('[data-final]').forEach(b=>b.addEventListener('click',()=>selectAgent(Number(b.dataset.final),'final').catch(report)));
   $('key-stages').innerHTML=recording.stages.map((stage,i)=>`<button data-stage="${i}" class="${state.agent.id===stage.agent&&state.trial.id===stage.trial?'active':''}"><span class="stage-index">${i+1}</span><b>${escapeHTML(stage.label)}</b><span>${stage.trial==='initial'?'Before refinement':`Agent ${stage.agent} · ${stage.time_min.toFixed(1)} min`}</span><strong>${fmt(stage.add_cm)} <small>cm ADD</small></strong></button>`).join('');
   $('key-stages').querySelectorAll('[data-stage]').forEach(button=>button.addEventListener('click',async()=>{
     const stage=recording.stages[Number(button.dataset.stage)];
@@ -295,13 +293,7 @@ function renderEvidence(){
     panel.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{state.sourceLine=null;state.filter=b.dataset.filter;renderEvidence();}));
     $('event-search').addEventListener('input',e=>{state.eventQuery=e.target.value;renderList();});renderList();
   }else if(state.tab==='exchanges'){
-    panel.innerHTML=`<p class="context-note">Recorded messages across all four agents, in time order.</p><div class="exchange-list">${recording.exchanges.map(e=>`<article class="event-card exchange-card"><div class="event-top"><b>Agent ${e.agent} → ${e.recipient===null?'All agents':'Agent '+e.recipient}</b><time>${clock(e.time_min)} min</time></div><blockquote>${escapeHTML(e.text)}</blockquote><span class="tool-name">${escapeHTML(e.tool)}</span>${e.attachments?.length?`<span class="artifact-count">${e.attachments.length} shared artifacts</span>`:''}<button class="event-play" data-exchange-agent="${e.agent}" data-exchange-minute="${e.time_min}">Inspect this agent’s trial →</button><span class="event-note">Recorded event · line ${e.line}</span></article>`).join('')}</div>`;
-    panel.querySelectorAll('[data-exchange-agent]').forEach(button=>button.addEventListener('click',async()=>{
-      const id=Number(button.dataset.exchangeAgent),minute=Number(button.dataset.exchangeMinute);
-      if(!caches.agent.has(id))caches.agent.set(id,getJSON(DATA+`agent-${id}.json`));
-      const agent=await caches.agent.get(id),trial=[...agent.trials].filter(t=>t.id!=='initial').sort((a,b)=>Math.abs(a.time_min-minute)-Math.abs(b.time_min-minute))[0];
-      state.tab='activity';state.filter='context';await selectAgent(id,trial.id);
-    }));
+    panel.innerHTML=`<p class="context-note">Recorded messages across all four agents, in time order.</p><div class="exchange-list">${recording.exchanges.map(e=>`<article class="event-card exchange-card"><div class="event-top"><b>Agent ${e.agent} → ${e.recipient===null?'All agents':'Agent '+e.recipient}</b><time>${clock(e.time_min)} min</time></div><blockquote>${escapeHTML(e.text)}</blockquote><span class="tool-name">${escapeHTML(e.tool)}</span>${e.attachments?.length?`<span class="artifact-count">${e.attachments.length} shared artifacts</span>`:''}<span class="event-note">Recorded event · line ${e.line}</span></article>`).join('')}</div>`;
   }else if(state.tab==='images'){
     const images=state.agent.events.filter(e=>e.kind==='imageView');
     panel.innerHTML=`<p class="context-note">Views actually inspected by Agent ${state.agent.id}. Click an image to enlarge it.</p><div class="inspection-gallery">${images.map(e=>`<figure>${imageMarkup(e)}<figcaption>${clock(e.time_min)} min · recorded event ${e.line}</figcaption></figure>`).join('')||'<p class="empty">No image inspections were recorded for this agent.</p>'}</div>`;
@@ -331,18 +323,20 @@ async function boot(){
   bind('about','click',e=>{if(e.target===$('about')){const r=$('about').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('about').close();}});
   recording=await getJSON(DATA+'index.json');
   await setupScene();
-  const params=new URLSearchParams(location.hash.slice(1));
-  if(['activity','exchanges','measurements','images'].includes(params.get('tab')))state.tab=params.get('tab');
-  await selectAgent(Math.max(0,Math.min(3,Number(params.get('agent'))||0)),params.get('trial')||'initial',{sourceLine:params.get('line')});
+  const readRoute=()=>{
+    const params=new URLSearchParams(location.hash.slice(1));
+    // Old links for another worker must not be reinterpreted as Agent 0's trial IDs.
+    if(params.has('agent')&&Number(params.get('agent'))!==0)return {trial:'initial',tab:'exchanges',sourceLine:null};
+    return {trial:params.get('trial')||'initial',tab:params.get('tab'),sourceLine:params.get('line')};
+  };
+  const route=readRoute();
+  if(['activity','exchanges','measurements','images'].includes(route.tab))state.tab=route.tab;
+  await selectAgent(0,route.trial,{sourceLine:route.sourceLine});
   window.addEventListener('hashchange',()=>{
-    const route=new URLSearchParams(location.hash.slice(1));
-    const id=Math.max(0,Math.min(3,Number(route.get('agent'))||0));
-    if(['activity','exchanges','measurements','images'].includes(route.get('tab')))state.tab=route.get('tab');
-    if(id!==state.agent.id)selectAgent(id,route.get('trial'),{sourceLine:route.get('line')}).catch(report);
-    else if(route.get('trial')&&state.agent.trials.some(t=>t.id===route.get('trial')))selectTrial(route.get('trial'),{sourceLine:route.get('line')}).catch(report);
-    else renderEvidence();
+    const route=readRoute();
+    if(['activity','exchanges','measurements','images'].includes(route.tab))state.tab=route.tab;
+    selectTrial(state.agent.trials.some(t=>t.id===route.trial)?route.trial:'initial',{sourceLine:route.sourceLine}).catch(report);
   });
-  bind('agent','change',e=>selectAgent(Number(e.target.value)).catch(report));
   bind('play','click',()=>{if(state.time>=state.motion.duration)state.time=0;stopTour();setPlaying(!state.playing);});
   bind('scrubber','input',e=>{stopTour();setPlaying(false);state.time=Number(e.target.value);applyFrame();updateTransport();});
   bind('reset-camera','click',()=>cameraPreset('wide'));

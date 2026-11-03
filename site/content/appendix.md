@@ -42,7 +42,7 @@ We give a single Codex agent a detailed task description, the scene and an initi
 <details class="appendix-faq" id="collaborative-agent-trace">
 <summary>A2. Collaborative agent trace</summary>
 
-Replay the clothes-stand interaction and inspect the recorded tools, images and exchanges from all four agents. The six featured stages follow the selected agent from the initial reference through trials 001, 004, 055 and 090 to its final execution.
+Replay Agent 0’s clothes-stand interaction and inspect its recorded tools and images, alongside exchanges between all four agents. The six featured stages follow the selected agent from the initial reference through trials 001, 004, 055 and 090 to its final execution.
 
 <p class="trace-launch"><a href="trace-explorer.html" target="_blank" rel="noopener">Open the explorer in a new tab ↗</a></p>
 <iframe class="trace-explorer-frame" data-trace-explorer-src="trace-explorer.html" title="Collaborative four-agent trace explorer" loading="lazy" allow="fullscreen"></iframe>
