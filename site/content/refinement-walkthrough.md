@@ -5,13 +5,13 @@ Here we follow the agent selected by the **collaborative four-agent swarm** thro
 <div class="refinement-walkthrough" id="clothesstand-walkthrough" data-refinement-walkthrough>
   <div class="walkthrough-origins">
     <figure><img class="walkthrough-public-still" src="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" alt="Human source motion"><video controls muted playsinline preload="none" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=4fbe6f93d1" aria-label="Human source motion, SMPL-X"></video><figcaption>Human reference · <a href="https://smpl-x.is.tue.mpg.de/">SMPL-X</a></figcaption></figure>
-    <figure><img class="walkthrough-public-still" src="trace-explorer/collaborative/posters/final.jpg" alt="G1 places and releases the clothes stand"><video controls muted playsinline preload="none" poster="trace-explorer/collaborative/posters/final.jpg" src="trace-explorer/collaborative/videos/final.mp4" aria-label="HuMoTAR selected final execution"></video><figcaption>HuMoTAR · final execution</figcaption></figure>
+    <figure><img class="walkthrough-public-still" src="walkthrough-media/clothesstand-collaborative/final/poster.jpg" alt="G1 places and releases the clothes stand"><video controls muted playsinline preload="none" poster="walkthrough-media/clothesstand-collaborative/final/poster.jpg" src="walkthrough-media/clothesstand-collaborative/final/video.mp4" aria-label="HuMoTAR selected final execution"></video><figcaption>HuMoTAR · final execution</figcaption></figure>
   </div>
   <div class="walkthrough-stage-tabs" role="group" aria-label="Refinement stages"></div>
   <div class="walkthrough-main">
     <div class="walkthrough-motion">
       <div class="walkthrough-stage-heading"><span data-walkthrough-step></span><h4 data-walkthrough-title></h4></div>
-      <img class="walkthrough-public-still" data-walkthrough-still src="trace-explorer/collaborative/posters/00--baseline.jpg" alt="Selected refinement stage">
+      <img class="walkthrough-public-still" data-walkthrough-still src="walkthrough-media/clothesstand-collaborative/001/poster.jpg" alt="Selected refinement stage">
       <video data-walkthrough-video controls muted playsinline preload="metadata" aria-label="Selected refinement stage execution"></video>
     </div>
     <aside class="walkthrough-curve-panel" aria-label="Refinement error curve">

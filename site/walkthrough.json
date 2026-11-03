@@ -4,7 +4,7 @@
   "selected_by_harness": true,
   "method": "HuMoTAR · collaborative four-agent swarm",
   "human_video": "source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa",
-  "final_video": "trace-explorer/collaborative/videos/final.mp4",
+  "final_video": "walkthrough-media/clothesstand-collaborative/final/video.mp4",
   "stages": [
     {
       "id": "001",
@@ -16,14 +16,23 @@
       "trace_url": "trace-explorer.html#agent=0&trial=001&tab=activity&line=471",
       "time_min": 2.8901862184206646,
       "add_cm": 79.57182631203933,
-      "video": "trace-explorer/collaborative/videos/00--baseline.mp4",
-      "poster": "trace-explorer/collaborative/posters/00--baseline.jpg",
+      "video": "walkthrough-media/clothesstand-collaborative/001/video.mp4",
+      "poster": "walkthrough-media/clothesstand-collaborative/001/poster.jpg",
       "log_line": 471,
       "log_time_min": 3.2567241350809732,
       "quote_excerpts": [
         "I’m now developing hand feedback that can compensate for body-tracking error while SONIC controls balance and stepping."
       ],
-      "source_sha256": "da8a83e8d83ea9466c333fdaf00423e0b8bc9d5ded1a7649e1099e0e01391ff2"
+      "source_sha256": "da8a83e8d83ea9466c333fdaf00423e0b8bc9d5ded1a7649e1099e0e01391ff2",
+      "render": {
+        "resolution": [
+          1440,
+          900
+        ],
+        "fps": 24,
+        "samples": 48,
+        "source_motion_sha256": "36f543444ddfa7590490f3af9c95c6c8dbc4871b7d029ac27f676aa39f6c059f"
+      }
     },
     {
       "id": "004",
@@ -35,14 +44,23 @@
       "trace_url": "trace-explorer.html#agent=0&trial=004&tab=activity&line=676",
       "time_min": 5.3442148526509605,
       "add_cm": 10.782919999785829,
-      "video": "trace-explorer/collaborative/videos/00--grasp_cart02.mp4",
-      "poster": "trace-explorer/collaborative/posters/00--grasp_cart02.jpg",
+      "video": "walkthrough-media/clothesstand-collaborative/004/video.mp4",
+      "poster": "walkthrough-media/clothesstand-collaborative/004/poster.jpg",
       "log_line": 676,
       "log_time_min": 5.886551670233408,
       "quote_excerpts": [
         "The closed grasp now lifts and carries the stand through much of the curve, and the robot stays upright."
       ],
-      "source_sha256": "da8a83e8d83ea9466c333fdaf00423e0b8bc9d5ded1a7649e1099e0e01391ff2"
+      "source_sha256": "da8a83e8d83ea9466c333fdaf00423e0b8bc9d5ded1a7649e1099e0e01391ff2",
+      "render": {
+        "resolution": [
+          1440,
+          900
+        ],
+        "fps": 24,
+        "samples": 48,
+        "source_motion_sha256": "4d7ce230c1cf6490086edc3df6cbbe155856c8b7619bf1900f8204eaf067ba00"
+      }
     },
     {
       "id": "055",
@@ -54,14 +72,23 @@
       "trace_url": "trace-explorer.html#agent=0&trial=055&tab=activity&line=1129",
       "time_min": 12.768571269512176,
       "add_cm": 6.061173068643276,
-      "video": "trace-explorer/collaborative/videos/00--ramp55.mp4",
-      "poster": "trace-explorer/collaborative/posters/00--ramp55.jpg",
+      "video": "walkthrough-media/clothesstand-collaborative/055/video.mp4",
+      "poster": "walkthrough-media/clothesstand-collaborative/055/poster.jpg",
       "log_line": 1129,
       "log_time_min": 11.988819734255474,
       "quote_excerpts": [
         "The useful range is fairly narrow: moderate arm stiffness and more pressure through the proximal finger joints improve tracking, but larger corrections often worsen it. I’m checking closure timing and a controlled set-down."
       ],
-      "source_sha256": "da8a83e8d83ea9466c333fdaf00423e0b8bc9d5ded1a7649e1099e0e01391ff2"
+      "source_sha256": "da8a83e8d83ea9466c333fdaf00423e0b8bc9d5ded1a7649e1099e0e01391ff2",
+      "render": {
+        "resolution": [
+          1440,
+          900
+        ],
+        "fps": 24,
+        "samples": 48,
+        "source_motion_sha256": "2c4823273fd05860da022c991bc18709bc9f69ccb8b0df26553bb86e76cc8d25"
+      }
     },
     {
       "id": "090",
@@ -73,14 +100,23 @@
       "trace_url": "trace-explorer.html#agent=0&trial=090&tab=activity&line=2079",
       "time_min": 24.41976356903712,
       "add_cm": 137.20195035694428,
-      "video": "trace-explorer/collaborative/videos/00--gain11final.mp4",
-      "poster": "trace-explorer/collaborative/posters/00--gain11final.jpg",
+      "video": "walkthrough-media/clothesstand-collaborative/090/video.mp4",
+      "poster": "walkthrough-media/clothesstand-collaborative/090/poster.jpg",
       "log_line": 2079,
       "log_time_min": 25.444966049989066,
       "quote_excerpts": [
         "Reject both despite no robot fall."
       ],
-      "source_sha256": "da8a83e8d83ea9466c333fdaf00423e0b8bc9d5ded1a7649e1099e0e01391ff2"
+      "source_sha256": "da8a83e8d83ea9466c333fdaf00423e0b8bc9d5ded1a7649e1099e0e01391ff2",
+      "render": {
+        "resolution": [
+          1440,
+          900
+        ],
+        "fps": 24,
+        "samples": 48,
+        "source_motion_sha256": "2f7b3fb9b3940baf0b44517f96d739ab0be932f553d161034fc0bb6878b6ff3c"
+      }
     },
     {
       "id": "final",
@@ -92,14 +128,23 @@
       "trace_url": "trace-explorer.html#agent=0&trial=final&tab=activity&line=2257",
       "time_min": 27.46145360072454,
       "add_cm": 5.35616089708897,
-      "video": "trace-explorer/collaborative/videos/final.mp4",
-      "poster": "trace-explorer/collaborative/posters/final.jpg",
+      "video": "walkthrough-media/clothesstand-collaborative/final/video.mp4",
+      "poster": "walkthrough-media/clothesstand-collaborative/final/poster.jpg",
       "log_line": 2257,
       "log_time_min": 27.034592469533283,
       "quote_excerpts": [
         "Verified a 30-second replay: robot upright, object released and stationary on independent floor support."
       ],
-      "source_sha256": "da8a83e8d83ea9466c333fdaf00423e0b8bc9d5ded1a7649e1099e0e01391ff2"
+      "source_sha256": "da8a83e8d83ea9466c333fdaf00423e0b8bc9d5ded1a7649e1099e0e01391ff2",
+      "render": {
+        "resolution": [
+          1440,
+          900
+        ],
+        "fps": 24,
+        "samples": 48,
+        "source_motion_sha256": "6de9b5b9c1bce9d05a8c95112327d0ebd7bca097e4154a97c9d83c5315ae6f8d"
+      }
     }
   ],
   "trials": [
