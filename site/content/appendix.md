@@ -167,6 +167,15 @@ The comparison changes the complete workflow, including model access to executio
 
 </details>
 
+<details class="appendix-faq" id="initial-reference-evaluation">
+<summary>What does 0 minutes represent in the matched-time curves?</summary>
+
+At 0 minutes, all three methods start from the initial kinematic reference executed with SONIC and the supplied finger targets. We evaluated these unchanged references for all 40 tasks using the original input bundles and the same object-tracking metric as the agent trials. These baseline evaluations were performed after the refinement experiments and are placed at 0 minutes to represent the reference available before refinement.
+
+Each curve then retains the lowest object-tracking error among the initial reference and the completed agent trials. Every dataset mean includes the same tasks throughout. No later agent result is moved to 0 minutes. Semantic-success bars report the original final Astra judgments, separately from these object-tracking curves.
+
+</details>
+
 <details class="appendix-faq" id="results-exploration-evidence">
 <summary>Do the independent workers produce different solutions?</summary>
 

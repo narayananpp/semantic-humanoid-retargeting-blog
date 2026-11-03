@@ -39,7 +39,7 @@
   }).catch(()=>roots.forEach(root=>root.append(el('p','The recorded results could not be loaded. Please reload the page.'))));
 })();
 
-/* Dataset tabs for the recorded matched-time ADD histories. */
+/* Shared dataset tabs for semantic success and object-tracking histories. */
 (() => {
   for (const root of document.querySelectorAll('[data-matched-time-curves]')) {
     const tabs = [...root.querySelectorAll('[data-add-dataset]')];
@@ -51,6 +51,10 @@
         item.tabIndex = active ? 0 : -1;
         document.getElementById(item.getAttribute('aria-controls')).hidden = !active;
       }
+      const semantic = root.querySelector('[data-semantic-image]');
+      const dataset = tab.dataset.addDataset;
+      semantic.src = semantic.getAttribute(`data-semantic-${dataset}-src`);
+      semantic.alt = semantic.getAttribute(`data-semantic-${dataset}-alt`);
       if (focus) tab.focus();
     }
     for (const tab of tabs) {
@@ -68,8 +72,8 @@
     individual.addEventListener('change', () => {
       for (const img of root.querySelectorAll('[data-add-image]')) {
         const base = `assets/analysis/results/matched-time-add-${img.dataset.addImage}${individual.checked ? '-tasks' : ''}`;
-        img.src = `${base}.svg`;
-        img.closest('picture').querySelector('source').srcset = `${base}-mobile.svg`;
+        img.src = `${base}.svg?v=clean-1`;
+        img.closest('picture').querySelector('source').srcset = `${base}-mobile.svg?v=clean-1`;
       }
     });
   }
