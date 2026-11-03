@@ -31,7 +31,7 @@ Here we follow the agent selected by our orchestrator harness through a complete
 
 **Fig. 6.** Five successive revisions of the clothes-stand interaction, with simulated executions and mean ADD.
 
-#### How does the reference change?
+### 4.4 How does the reference change? {#how-does-the-reference-change}
 
 We overlay the **initial kinematic reference in purple** and the **refined reference in blue** with the **physical execution in solid gray**. Their spatial separation shows where the prescribed and executed robot poses differ at corresponding motion phases. The refined hand path follows the executed grasp more closely; body posture can still differ as the controller maintains balance.
 
