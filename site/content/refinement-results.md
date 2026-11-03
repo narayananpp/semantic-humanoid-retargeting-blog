@@ -28,7 +28,7 @@ We compare a single Codex agent with the [independent](#configuration-ensemble) 
 
 Independent agents, on the other hand, sometimes spend part of their budget on **overlapping approaches**, without access to each other’s findings. In a tripod task where the robot must lift, move and place a tripod, two independent agents separately test unsuccessful two-handed grasps using closely overlapping strategies.
 
-### 5.3 Matched compute: longer iterative refinement versus collaborative exploration {#matched-agent-hours}
+### 5.3 Matched compute: more refinement time versus more agents {#matched-agent-hours}
 
 In the previous section, we compared HuMoTAR configurations under the same time budget. We now ask: **at matched compute (agent-hours), is it better to give a single agent more time for reasoning and iterative refinement or distribute the budget across a collaborative swarm?** For this study, we compare the [**collaborative swarm of four Codex agents**](#configuration-collaborative) running for 30 minutes each against **one Codex agent running for 120 minutes**. Both settings receive *two agent-hours*.
 
