@@ -1,0 +1,482 @@
+{
+  "protocol": {
+    "embodiment_type": "humanoid_object",
+    "robot_type": "unitree_g1",
+    "seed": 0,
+    "sim_dt": 0.016666666666666666,
+    "ctrl_dt": 0.1,
+    "knot_dt": 0.1,
+    "trace_dt": 0.03333333333333333,
+    "horizon": 1.0,
+    "num_samples": 2048,
+    "max_num_iterations": 16,
+    "improvement_threshold": 0.0,
+    "temperature": 1.0,
+    "joint_noise_scale": 0.1,
+    "first_ctrl_noise_scale": 0.5,
+    "last_ctrl_noise_scale": 1.0,
+    "final_noise_scale": 0.1,
+    "vel_rew_scale": 0.0,
+    "joint_rew_scale": 1.0,
+    "base_pos_rew_scale": 1.0,
+    "base_rot_rew_scale": 1.0,
+    "pos_rew_scale": 1.0,
+    "rot_rew_scale": 0.3,
+    "pair_margin_range": [
+      0.0,
+      0.0
+    ],
+    "xy_offset_range": [
+      0.0,
+      0.0
+    ],
+    "contact_guidance": false,
+    "terminate_resample": false,
+    "nconmax_per_env": 256,
+    "njmax_per_env": 1024
+  },
+  "adapter_sha256": "2cd64e330dbb21463183ed8516f6b2589e8d3fe294ac7a4d12629ba4bb072039",
+  "judge_prompt_sha256": "ed629a65d21bac644558bd80136ae89770443c679e5588e1b16910ec65671cc7",
+  "tasks": [
+    {
+      "dataset": "humoto",
+      "clip": "work_with_laptop_put_pen_and_notebooks_in_organizer-562",
+      "metrics": {
+        "mean_add_m": 0.854590148350776,
+        "position_mean_m": 0.8464808070527043,
+        "orientation_mean_deg": 96.41145635661266
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "8d9700e4bdfef40c35d73e5ac5e13221b4412ece53414e6ea19ea7fb9cf54eaf"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "carry_wok_turner_right_hand_walk_around-968",
+      "metrics": {
+        "mean_add_m": 0.6816297472844128,
+        "position_mean_m": 0.6711450329374136,
+        "orientation_mean_deg": 62.524235126610535
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "3e63c026f5d1a4486276e9fb175891f58a42dd8cee4ba656b55c85950b79f64f"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "lifting_and_carrying_table-105",
+      "metrics": {
+        "mean_add_m": 0.4176355669928356,
+        "position_mean_m": 0.4208530836824568,
+        "orientation_mean_deg": 37.41405067699698
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "dc907d75583d9f64cfbc95484ca0a97941049020c541d69d0fb6bdc121b582bb"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub12_largebox_049",
+      "metrics": {
+        "mean_add_m": 0.6422783739299892,
+        "position_mean_m": 0.616579695491178,
+        "orientation_mean_deg": 60.77292122915946
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "90fe4cffb050cc03dc18c054e365126921ed01fa10fe1573971483efad834385"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub8_plasticbox_052",
+      "metrics": {
+        "mean_add_m": 0.20842522678825595,
+        "position_mean_m": 0.19244844135544545,
+        "orientation_mean_deg": 24.103961651649335
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "b56ffdc0bd7e692e77ca524c33790c92774fa554f02795f50c259b0da564f44d"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "drag_wash_tub_on_ground_while_walking-176",
+      "metrics": {
+        "mean_add_m": 0.5927363747698143,
+        "position_mean_m": 0.5899313386734788,
+        "orientation_mean_deg": 45.40052511640657
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "684a95f5aa9d28134f46d3d91663df2dc7f8be4ea0d45852aa00568d293770cb"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "carry_side_table_with_both_hands_walk_around-536",
+      "metrics": {
+        "mean_add_m": 1.0907860816068309,
+        "position_mean_m": 1.1008160988505662,
+        "orientation_mean_deg": 105.2693614333952
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "d547b31d0ad300816cf3b08d735c355116634db9b3858ecf7dfde27c3575ac3c"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "lifting_and_tilting_table-304",
+      "metrics": {
+        "mean_add_m": 0.2421925842567868,
+        "position_mean_m": 0.13351738593747192,
+        "orientation_mean_deg": 52.73323605758928
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "c0f362f70be3fc862dd36bf796306f4d712d17eaa32729d7e1fb9f8caaacfe56"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "carrying_mixing_bowl_with_both_hands-134",
+      "metrics": {
+        "mean_add_m": 0.12682831730716568,
+        "position_mean_m": 0.11951199121065542,
+        "orientation_mean_deg": 23.391640285389844
+      },
+      "semantic": "PASS",
+      "source_motion_sha256": "e4a9679d75418a3f6401e47dd16fe2184e804eadc2b9dbb2830e1135743dc22e"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "lift_shelf_lie_to_stand-867",
+      "metrics": {
+        "mean_add_m": 0.7170837131471768,
+        "position_mean_m": 1.016066390911641,
+        "orientation_mean_deg": 54.71917745711256
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "71553c77b495191a2b10d9086340bb68d6e77db0ddbf39cf8a0c28c93ddf7862"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub1_suitcase_060",
+      "metrics": {
+        "mean_add_m": 0.27079467815681646,
+        "position_mean_m": 0.23580914632044853,
+        "orientation_mean_deg": 48.02470870203871
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "2092e6fc4be7bd483dc0a16f5dbcabac767378f3a6df2adc1d297794f9a41626"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "lifting_dining_chair_from_backrest_and_placing_back_with_right_hand_on_ground-595",
+      "metrics": {
+        "mean_add_m": 0.1990553739388566,
+        "position_mean_m": 0.19236913794567778,
+        "orientation_mean_deg": 20.820813455961186
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "e4af17781383a494a9f2c2737661cf53313d406a1416c028c9fc92717f87328c"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "turn_on_floor_lamp_while_sitting_on_low_chair_and_drinking_from_mug-457",
+      "metrics": {
+        "mean_add_m": 0.10127653851233415,
+        "position_mean_m": 0.09807353782760472,
+        "orientation_mean_deg": 36.469620593764844
+      },
+      "semantic": "PASS",
+      "source_motion_sha256": "9681e03288a14acf309187932d1b80998380b997d1398cfe9fc9eaf727e09204"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub1_plasticbox_006",
+      "metrics": {
+        "mean_add_m": 0.1784489296326831,
+        "position_mean_m": 0.15828043621826282,
+        "orientation_mean_deg": 25.823769148676895
+      },
+      "semantic": "PASS",
+      "source_motion_sha256": "185854a30a2c5f91e0f8a03c6b3793478c83ebada43d5c4eb7141303ef246e6a"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "subject_holding_plastic_bowl_walk_back_and_fourth-039",
+      "metrics": {
+        "mean_add_m": 0.8254244095959915,
+        "position_mean_m": 0.8227919456941041,
+        "orientation_mean_deg": 83.6385204181149
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "dba1e2353d169f5bcf60cc733118216f6d9d247a9506270e8bf9f92cf7c3e0a4"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub1_largetable_015",
+      "metrics": {
+        "mean_add_m": 0.5892965799765282,
+        "position_mean_m": 0.5110306778236022,
+        "orientation_mean_deg": 93.74765793374607
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "882ed457c21a1de050e497a6d1c7c7015721d3709ac2059eb8882604527127ae"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub4_suitcase_040",
+      "metrics": {
+        "mean_add_m": 0.4537458691428884,
+        "position_mean_m": 0.4120999085345351,
+        "orientation_mean_deg": 60.36617089937781
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "5946e43946d9c64c6b541eb33ddb7a08adf0fbe5250c03bad9d936eae42ce0a3"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "lifting_and_checking_basket_90-215",
+      "metrics": {
+        "mean_add_m": 0.6278014669759754,
+        "position_mean_m": 0.6257476803725464,
+        "orientation_mean_deg": 30.436471083658034
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "647c545719a5f177e13d8158880d4847d7d98d8ddc14a5f586fde62b684c9acf"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "walk_with_low_chair-308",
+      "metrics": {
+        "mean_add_m": 1.1480513135943966,
+        "position_mean_m": 1.115579352729803,
+        "orientation_mean_deg": 67.97590679449625
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "bbd38732535e80a67141ff100a190cbbd21aa8adfe6d558c5b37dea92755e045"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub16_plasticbox_038",
+      "metrics": {
+        "mean_add_m": 0.43987512043827437,
+        "position_mean_m": 0.3248268675561291,
+        "orientation_mean_deg": 108.35395271206238
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "d9318f032d7c2fec26d95715f790e0958ac308e0a70f72d574ad37b121043f2b"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "pulling_and_pushing_the_dining_chair_from_back_post-203",
+      "metrics": {
+        "mean_add_m": 0.07629380907385908,
+        "position_mean_m": 0.07190873094209628,
+        "orientation_mean_deg": 4.59338572705363
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "631a74b3eae4d54d053bc0c9aef85f66dd86c9b3cf43db97ba8cf143e8090324"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "lifting_side_table_and_putting_down-362",
+      "metrics": {
+        "mean_add_m": 0.10346235466280769,
+        "position_mean_m": 0.09448630472980896,
+        "orientation_mean_deg": 16.055617279202252
+      },
+      "semantic": "PASS",
+      "source_motion_sha256": "c00f60984b03e2985f89ff634737f22f26545b32ad8254eda1f30bcd76aab97c"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub9_monitor_056",
+      "metrics": {
+        "mean_add_m": 0.6058226594892422,
+        "position_mean_m": 0.5642781728687566,
+        "orientation_mean_deg": 88.88452301702547
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "066294831501039805f6888cdfefce927317db19efe5b73ebc7fed8955735913"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub6_whitechair_052",
+      "metrics": {
+        "mean_add_m": 0.1863257165093567,
+        "position_mean_m": 0.17651737518287416,
+        "orientation_mean_deg": 22.298420032657845
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "7a1aa28b795e6ac54a81f015553d6b5b45e0f771a76aaf14b912eeba85692e42"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub11_monitor_044",
+      "metrics": {
+        "mean_add_m": 0.8602210852008125,
+        "position_mean_m": 0.8432126729085038,
+        "orientation_mean_deg": 42.137938073731966
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "af67f08ee8d1e1ad1fd43a0e0149829b4f9d6dd02e1420ce2d888b32369f5cee"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub4_whitechair_039",
+      "metrics": {
+        "mean_add_m": 0.20469404481208758,
+        "position_mean_m": 0.14708422113493158,
+        "orientation_mean_deg": 40.14131384169037
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "e229569fa9c897de6c8a0fe897b057e0709d461877fa41c41efe06f239d680e9"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "rearranging_the_vase_from_next_to_last_shelf_to_two_shelves_above-640",
+      "metrics": {
+        "mean_add_m": 0.5261668421781391,
+        "position_mean_m": 0.5239547379694152,
+        "orientation_mean_deg": 29.453554788414515
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "7e9dbc11287ccf06051553dc2617fdffcc6f9586d427807d371aed0bee85b603"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub16_plasticbox_049",
+      "metrics": {
+        "mean_add_m": 0.13874625067877516,
+        "position_mean_m": 0.13539592848653081,
+        "orientation_mean_deg": 6.265012274318412
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "6f3c9c14ac2f12da19c9b6a416cbe20527717776b2abdb103bcd1e7116d51df1"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "lift_and_push_utility_cart_and_walk-692",
+      "metrics": {
+        "mean_add_m": 0.18324048384936303,
+        "position_mean_m": 0.16989159655691685,
+        "orientation_mean_deg": 15.95815615915802
+      },
+      "semantic": "PASS",
+      "source_motion_sha256": "c3fc5cac2ee256afe433be065d36d44055d60bdd280b12fd110668cd313e0012"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "lifting_and_straightening_working_chair-433",
+      "metrics": {
+        "mean_add_m": 0.18911878483546085,
+        "position_mean_m": 0.11577149683356382,
+        "orientation_mean_deg": 42.94700256143838
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "cef847707d4aa9749a1818a46bf4abee4d83cd212c74cd50c8a50afbca420e33"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub10_clothesstand_002",
+      "metrics": {
+        "mean_add_m": 0.34473808762296954,
+        "position_mean_m": 0.2699985577198724,
+        "orientation_mean_deg": 45.5039305731232
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "87f05debd08c318e5d93ccdde179609df86077fd572c5a5f7aedab524ebbb3a3"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "examining_cutting_board-141",
+      "metrics": {
+        "mean_add_m": 0.28176706997532686,
+        "position_mean_m": 0.2866646254114855,
+        "orientation_mean_deg": 31.02886860133495
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "39ca6db341e1279e288e066eece9b0d2420b06b979b1c73091d65dca347b4034"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub15_woodchair_047",
+      "metrics": {
+        "mean_add_m": 0.5020122828845612,
+        "position_mean_m": 0.4031332608515443,
+        "orientation_mean_deg": 81.44809461084424
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "def43ae97d121d07fb5396641b92ab200f2bc50cf3fea7523c27de1facdc2be1"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub14_woodchair_011",
+      "metrics": {
+        "mean_add_m": 0.49752756137217097,
+        "position_mean_m": 0.38162610516534545,
+        "orientation_mean_deg": 120.92995296680019
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "6545e283d412a1d934916d04e6afeb587aa34fd74b3bca77b5eca112cf5970da"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub15_plasticbox_019",
+      "metrics": {
+        "mean_add_m": 0.34678207572197617,
+        "position_mean_m": 0.3112591445307285,
+        "orientation_mean_deg": 59.96876677703086
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "490d95cf22027ce69f3545097377c2d26067db3ed532dc3046c208a9f72ee00c"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub12_tripod_023",
+      "metrics": {
+        "mean_add_m": 0.1060031433792114,
+        "position_mean_m": 0.07849532571634718,
+        "orientation_mean_deg": 10.788151326458157
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "6e9748fcc2648c140f72e0fc3cab137bdf3423966bda506da5ec937bb07b2156"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub15_woodchair_053",
+      "metrics": {
+        "mean_add_m": 0.09531139302951104,
+        "position_mean_m": 0.0814826742786624,
+        "orientation_mean_deg": 11.761437975439124
+      },
+      "semantic": "PASS",
+      "source_motion_sha256": "58a085f8f2d75b82edb0a24b7a3829e810a0eb7ca5b4282e32746a7f40ae4db7"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub17_floorlamp_007",
+      "metrics": {
+        "mean_add_m": 1.1118386466592398,
+        "position_mean_m": 0.9617223580523275,
+        "orientation_mean_deg": 101.23342528043229
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "f49af6a8952322a8a35a5c50c65d1e469f92dced85dcc115919f53ba48c52946"
+    },
+    {
+      "dataset": "omomo",
+      "clip": "sub13_whitechair_069",
+      "metrics": {
+        "mean_add_m": 0.3709015643355632,
+        "position_mean_m": 0.31789264293705277,
+        "orientation_mean_deg": 66.89449032250796
+      },
+      "semantic": "FAIL",
+      "source_motion_sha256": "b34c95d3bf074022715bc5cd67c4b49a0637caa46e967d771709c508fe128f07"
+    },
+    {
+      "dataset": "humoto",
+      "clip": "tilting_trash_can_with_right_foot-985",
+      "metrics": {
+        "mean_add_m": 0.007569898961381696,
+        "position_mean_m": 0.006355022252428231,
+        "orientation_mean_deg": 2.304555488277267
+      },
+      "semantic": "PASS",
+      "source_motion_sha256": "bdac2153bdcf6459d574af67dcbe47df1e794233590101522dff495cce2d266f"
+    }
+  ]
+}
