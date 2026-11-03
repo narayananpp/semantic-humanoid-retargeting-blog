@@ -4,4 +4,4 @@ We find that providing **related experience**, in the form of summaries of teste
 
 ::: anchor experience-setup
 
-We first run four Codex agents for **15 minutes** and select the best valid motion. From this shared starting solution, we run two separate **15-minute continuations**, one with the related experience and one without. Both use the same model and tools, with **equal time and compute budgets**. This lets us examine what the supplied experience changes during refinement.
+We first run four Codex agents for **15 minutes** and select the best valid motion. From this shared starting solution, we run two separate **15-minute continuations**, one with the related experience and one without. Both receive **equal time and compute budgets**. This lets us examine what the supplied experience changes during refinement.
