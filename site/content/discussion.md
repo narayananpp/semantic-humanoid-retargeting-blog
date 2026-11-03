@@ -1,8 +1,10 @@
 ## 7. Discussion
 
-### Limits of the metrics {#metric-limitations}
+### Iterative refinement and agentic swarms {#refinement-and-swarms}
 
-**We posit that retargeting should be evaluated by the successful transfer of an interaction’s semantic intent.** In this study, object tracking provides a measurable objective for preserving the intended object motion. It is possible, however, for executions with similar tracking errors to differ in how fully they accomplish the task. User studies could complement these measurements by assessing whether the intended interaction is preserved. LLM-based judges could also supply semantic feedback during refinement and evaluation. We encourage the community to explore these directions and assess their agreement with human judgments.
+**Iterative refinement with simulation feedback improves both object tracking and semantic success over one-shot generation.** The agents test their proposed motions, inspect the resulting executions and revise the motion and control code. These results support the use of agentic models for retargeting beyond generating an initial solution.
+
+**Under a fixed time budget, the collaborative swarm outperforms a single Codex agent.** At matched compute, measured in agent-hours, longer single-agent refinement achieves higher semantic success at four times the elapsed time. These results suggest that swarms are useful when a solution is needed quickly, while a longer iterative loop remains valuable when more time is available. We encourage the community to study this compute–time tradeoff across more interactions and to investigate how communication and shared experience improve the use of a limited refinement budget.
 
 ### RL fine-tuning {#rl-fine-tuning}
 

@@ -36,7 +36,7 @@
 <a class="subsection" href="#matched-agent-hours">5.3 Matched compute: more refinement time versus more agents</a>
 <a href="#experience">6. Exploring how prior experience improves retargeting</a>
 <a href="#discussion">7. Discussion</a>
-<a class="subsection" href="#metric-limitations">Limits of the metrics</a>
+<a class="subsection" href="#refinement-and-swarms">Iterative refinement and agentic swarms</a>
 <a class="subsection" href="#rl-fine-tuning">RL fine-tuning</a>
 <a class="subsection" href="#failure-analysis">Failure cases in dynamic retargeting</a>
 <a href="#references">References</a>
@@ -339,8 +339,9 @@
 </article>
 <section id="discussion" class="outline-section">
 <h2 id="7-discussion">7. Discussion</h2>
-<h3 id="metric-limitations">Limits of the metrics</h3>
-<p><strong>We posit that retargeting should be evaluated by the successful transfer of an interaction’s semantic intent.</strong> In this study, object tracking provides a measurable objective for preserving the intended object motion. It is possible, however, for executions with similar tracking errors to differ in how fully they accomplish the task. User studies could complement these measurements by assessing whether the intended interaction is preserved. LLM-based judges could also supply semantic feedback during refinement and evaluation. We encourage the community to explore these directions and assess their agreement with human judgments.</p>
+<h3 id="refinement-and-swarms">Iterative refinement and agentic swarms</h3>
+<p><strong>Iterative refinement with simulation feedback improves both object tracking and semantic success over one-shot generation.</strong> The agents test their proposed motions, inspect the resulting executions and revise the motion and control code. These results support the use of agentic models for retargeting beyond generating an initial solution.</p>
+<p><strong>Under a fixed time budget, the collaborative swarm outperforms a single Codex agent.</strong> At matched compute, measured in agent-hours, longer single-agent refinement achieves higher semantic success at four times the elapsed time. These results suggest that swarms are useful when a solution is needed quickly, while a longer iterative loop remains valuable when more time is available. We encourage the community to study this compute–time tradeoff across more interactions and to investigate how communication and shared experience improve the use of a limited refinement budget.</p>
 <h3 id="rl-fine-tuning">RL fine-tuning</h3>
 <p>Humanoid references can serve as training data for downstream whole-body policies. <strong>Our results demonstrate the promise of agentic refinement using off-the-shelf models and low-level controllers</strong>, without training a new policy for each interaction. Reinforcement-learning fine-tuning could build on these references to improve robustness to disturbances and variation in the task scene. Downstream policy training and deployment remain to be evaluated. We hope this work encourages the community to investigate agentic methods as a source of reference motions for learning interactive humanoid systems.</p>
 <h3 id="failure-analysis">Failure cases in dynamic retargeting</h3>
