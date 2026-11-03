@@ -1,3 +1,7 @@
 ## 6. Exploring how prior experience improves retargeting
 
-We find that **providing related experience helps G1 complete a new interaction**. Here, experience means summaries of strategies tested on previous tasks, including what succeeded and what failed. We investigate this through a walkthrough in which G1 must raise a shelf from its side to an upright position.
+We find that providing **related experience**, in the form of summaries of tested strategies, successes and failures, **aids iterative refinement on a new task**. Here, we investigate this through a walkthrough of G1 raising a shelf from its side to an upright position. The prior experience comes from **four other furniture interactions**, including carrying a table, lifting a chair, and pulling and pushing a chair.
+
+::: anchor experience-setup
+
+We first run four Codex agents for **15 minutes** and select the best valid motion. From this shared starting solution, we run two separate **15-minute continuations**, one with the related experience and one without. Both use the same model and tools, with **equal time and compute budgets**. This lets us examine what the supplied experience changes during refinement.

@@ -25,8 +25,8 @@
   <nav class="chapter-navigation" aria-label="Experience study"><span>In this example</span><a href="#setup">The comparison</a><a href="#shelf-walkthrough">The shelf lift</a></nav>
   <div class="study-chapters">
 <section id="setup">
-<p>We first run four Codex agents for <strong>15 minutes</strong> and select the best valid shelf motion. We then continue that solution in two separate <strong>15-minute Codex sessions</strong>, one with related experience and one without. Both use the same model, tools and starting solution, with <strong>equal time and compute budgets</strong> and <strong>30 minutes of total refinement</strong>.</p>
-<p>The supplied experience comes from <strong>four other furniture interactions</strong>, including carrying a table, lifting a chair, and pulling and pushing a chair. With these summaries, G1 completes the shelf lift and reduces mean object-tracking error from <strong>23.35 to 7.77 cm</strong> compared with refinement without experience.</p>
+<p>We find that providing <strong>related experience</strong>, in the form of summaries of tested strategies, successes and failures, <strong>aids iterative refinement on a new task</strong>. Here, we investigate this through a walkthrough of G1 raising a shelf from its side to an upright position. The prior experience comes from <strong>four other furniture interactions</strong>, including carrying a table, lifting a chair, and pulling and pushing a chair.</p>
+<p>We first run four Codex agents for <strong>15 minutes</strong> and select the best valid motion. From this shared starting solution, we run two separate <strong>15-minute continuations</strong>, one with the related experience and one without. Both use the same model and tools, with <strong>equal time and compute budgets</strong>. This lets us examine what the supplied experience changes during refinement.</p>
 </section>
 <article id="shelf-walkthrough" class="proof-example" data-example="shelf-walkthrough">
 <h3 id="righting-a-shelf-with-related-experience">Righting a shelf with related experience</h3>

@@ -324,11 +324,12 @@
 </section>
 <section id="experience">
 <h2 id="6-exploring-how-prior-experience-improves-retargeting">6. Exploring how prior experience improves retargeting</h2>
-<p>We find that <strong>providing related experience helps G1 complete a new interaction</strong>. Here, experience means summaries of strategies tested on previous tasks, including what succeeded and what failed. We investigate this through a walkthrough in which G1 must raise a shelf from its side to an upright position.</p>
-</section>
-<section id="experience-setup" class=" inline-experience">
-<p>We first run four Codex agents for <strong>15 minutes</strong> and select the best valid shelf motion. We then continue that solution in two separate <strong>15-minute Codex sessions</strong>, one with related experience and one without. Both use the same model, tools and starting solution, with <strong>equal time and compute budgets</strong> and <strong>30 minutes of total refinement</strong>.</p>
-<p>The supplied experience comes from <strong>four other furniture interactions</strong>, including carrying a table, lifting a chair, and pulling and pushing a chair. With these summaries, G1 completes the shelf lift and reduces mean object-tracking error from <strong>23.35 to 7.77 cm</strong> compared with refinement without experience.</p>
+<p>We find that providing <strong>related experience</strong>, in the form of summaries of tested strategies, successes and failures, <strong>aids iterative refinement on a new task</strong>. Here, we investigate this through a walkthrough of G1 raising a shelf from its side to an upright position. The prior experience comes from <strong>four other furniture interactions</strong>, including carrying a table, lifting a chair, and pulling and pushing a chair.</p>
+
+
+<span id="experience-setup" class="section-anchor"></span>
+
+<p>We first run four Codex agents for <strong>15 minutes</strong> and select the best valid motion. From this shared starting solution, we run two separate <strong>15-minute continuations</strong>, one with the related experience and one without. Both use the same model and tools, with <strong>equal time and compute budgets</strong>. This lets us examine what the supplied experience changes during refinement.</p>
 </section>
 <article id="experience-shelf-walkthrough" class="proof-example inline-experience" data-example="shelf-walkthrough">
 <h4 id="righting-a-shelf-with-related-experience">Righting a shelf with related experience</h4>

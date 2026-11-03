@@ -55,14 +55,6 @@
           "id": "experience"
         },
         {
-          "file": "experience/setup.md",
-          "tag": "section",
-          "id": "experience-setup",
-          "heading_offset": 1,
-          "inline_experience": true,
-          "class": " inline-experience"
-        },
-        {
           "file": "experience/shelf-walkthrough.md",
           "tag": "article",
           "id": "experience-shelf-walkthrough",
