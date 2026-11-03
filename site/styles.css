@@ -17,7 +17,7 @@ h1 { font-size: clamp(44px,4.8vw,74px); line-height: 1.04; }
 h2 { font-size: clamp(32px,3vw,46px); line-height: 1.15; margin-bottom: 24px; }
 h3 { font-size: 29px; line-height: 1.25; margin: 30px 0 18px; }
 h4 { font-size: 16px; font-weight: 600; margin: 24px 0 12px; }
-p + p { margin-top: 18px; }
+p + p, p + .section-anchor + p { margin-top: 18px; }
 mark { background: var(--highlight); color: inherit; padding: .12em .18em; border-radius: 0; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 button,select { font: inherit; color: inherit; }
 button { cursor: pointer; }
