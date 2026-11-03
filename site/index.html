@@ -32,7 +32,7 @@
 <a href="#refinement-results">5. Quantitative results</a>
 <a class="subsection" href="#comparison-results">5.1 Comparison with existing approaches</a>
 <a class="subsection" href="#matched-time">5.2 Matched time: single-agent refinement versus swarms</a>
-<a class="subsection" href="#matched-agent-hours">5.3 Matched compute: longer iterative refinement</a>
+<a class="subsection" href="#matched-agent-hours">5.3 Matched compute: longer iterative refinement versus collaborative exploration</a>
 <a href="#experience">6. Exploring how prior experience improves retargeting</a>
 <a href="#discussion">7. Discussion</a>
 <a class="subsection" href="#metric-limitations">Limits of the metrics</a>
@@ -313,7 +313,7 @@
 
 <p><strong>Inter-agent communication raises semantic success from 52.5% to 67.5% with the same four-agent budget.</strong> The agents divide experiments, test and improve each other’s controllers, and share unsuccessful results so other agents know what has already been tried. They also use feedback from other agents to correct mistakes in their evaluation. In a monitor task where the robot must lift and move a monitor, one agent identifies an object drop near the end of a rollout that another had judged successful. The second agent acknowledges the missed failure and identifies controlled placement as the next step.</p>
 <p>Independent agents, on the other hand, sometimes spend part of their budget on <strong>overlapping approaches</strong>, without access to each other’s findings. In a tripod task where the robot must lift, move and place a tripod, two independent agents separately test unsuccessful two-handed grasps using closely overlapping strategies.</p>
-<h3 id="matched-agent-hours">5.3 Matched compute: longer iterative refinement</h3>
+<h3 id="matched-agent-hours">5.3 Matched compute: longer iterative refinement versus collaborative exploration</h3>
 <p>In the previous section, we compared HuMoTAR configurations under the same time budget. We now ask: <strong>at matched compute (agent-hours), is it better to give a single agent more time for reasoning and iterative refinement or distribute the budget across a collaborative swarm?</strong> For this study, we compare the <a href="#configuration-collaborative"><strong>collaborative swarm of four Codex agents</strong></a> running for 30 minutes each against <strong>one Codex agent running for 120 minutes</strong>. Both settings receive <em>two agent-hours</em>.</p>
 
 
