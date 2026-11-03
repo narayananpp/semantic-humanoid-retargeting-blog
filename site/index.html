@@ -9,7 +9,7 @@
   <title>HuMoTAR: Affordance-Aware Semantic Retargeting for Humanoid-Object Interaction</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
   <script src="theme.js?v=1"></script>
-  <link rel="stylesheet" href="styles.css?v=dark-2">
+  <link rel="stylesheet" href="styles.css?v=dark-2-architecture-1">
   <link rel="stylesheet" href="experience.css?v=uniform-captions-2">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -135,7 +135,7 @@
 <p><strong>HuMoTAR uses an agentic framework that writes, tests and revises motion and control code, starting from a human demonstration and an initial kinematic reference.</strong> The initial kinematic reference can come from any retargeting method; in our experiments, we use HOI-Retarget<sup><a href="#ref-1">1</a></sup>. The agent also receives the task scene and the target object trajectory, scaled to the robot’s size. The output is <em>a reference motion for the whole body and hands</em>.</p>
 
 
-<figure class="refinement-panel"><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/agentic-pipeline.png" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/agentic-pipeline.png" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="7440" height="3400" loading="lazy"></a><figcaption class="publication-caption"><strong>Fig. 3.</strong> HuMoTAR architecture for iterative motion and control refinement.</figcaption></figure>
+<figure class="refinement-panel" data-architecture><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/agentic-pipeline.png" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/agentic-pipeline.png" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="7440" height="3400" loading="lazy"></a><figcaption class="publication-caption"><strong>Fig. 3.</strong> HuMoTAR architecture for iterative motion and control refinement.</figcaption></figure>
 
 <p><strong>Each revision is tested in simulation.</strong> The agent executes the reference on a Unitree G1 humanoid with Dex3 hands<sup><a href="#ref-11">11</a></sup> in MuJoCo<sup><a href="#ref-7">7</a></sup>, with SONIC<sup><a href="#ref-4">4</a></sup> as the whole-body controller and manipulation control code that it writes itself. After each simulation, the agent inspects images of the execution, object-tracking errors and contact measurements, and uses this feedback to adjust grasp placement, body posture and the timing of lifting or release.</p>
 <h3 id="2-1-study-design">2.1 Study design</h3>
@@ -461,6 +461,7 @@
 <script src="experience-story.js?v=numbered-captions-1" defer></script>
 <script src="text-motion.js?v=1" defer></script>
 <script src="results-evidence.js?v=spider-full-20261102" defer></script>
-<script src="autoplay.js?v=1" defer></script>
+<script src="architecture.js?v=1" defer></script>
+<script src="autoplay.js?v=2" defer></script>
 </body>
 </html>
