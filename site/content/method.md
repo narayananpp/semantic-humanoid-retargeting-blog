@@ -13,6 +13,6 @@ We compare these configurations under **a fixed time budget** and **an equal com
 
 For each task, the inputs to **HuMoTAR** are the human demonstration in SMPL format, an initial kinematic reference from HOI-Retarget, the task scene and the target object trajectory. The object trajectory is scaled for the robot and specifies the desired object motion. The agents write Python code to generate and refine *a reference motion for the whole body and hands*, which is the output of the framework.
 
-The motion references and control code are executed in **[MuJoCo](https://mujoco.org/)** with **[SONIC](https://arxiv.org/abs/2511.07820) as the whole-body controller**. After each simulation, the agent inspects **images of the execution, object-tracking errors and contact measurements**. The available feedback is described in the [appendix](#simulation-feedback).
+The motion references and control code are executed in **[MuJoCo](https://mujoco.org/)** with **[SONIC](https://arxiv.org/abs/2511.07820) as the whole-body controller**. After each simulation, the agent inspects **images of the execution, object-tracking errors and contact measurements**.
 
 ::: component refinement-loop

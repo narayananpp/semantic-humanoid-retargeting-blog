@@ -7,4 +7,4 @@ We evaluate **20 HUMOTO and 20 OMOMO tasks** using object-tracking errors and se
 - **Orientation error (°):** The average angular difference between the simulated and target object orientations. **Lower is better.**
 - **Semantic success:** Astra compares the human SMPL video with the executed robot video and judges whether the robot completes the intended task. Each task receives a **PASS or FAIL** judgment. Across tasks, we report the percentage that pass. **Higher is better.**
 
-Object-tracking errors are averaged equally across tasks. The [evaluation protocol](#semantic-evaluation) provides the judge prompt and review criteria.
+Object-tracking errors are averaged equally across tasks.
