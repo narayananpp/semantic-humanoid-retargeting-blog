@@ -261,8 +261,8 @@
   },
   {
     "path": "intro-media/chair-spider.mp4",
-    "bytes": 2443262,
-    "sha256": "a7c90dddb3a0cb9a7a0cebb7de6cc07aa50fe54f7c7596480421b005ecff05b5"
+    "bytes": 525054,
+    "sha256": "7b08bf894a3ba06660333d8e1d7cf71cdd7b2fe71300991c9db31ff6a18e1b34"
   },
   {
     "path": "intro-media/chair.mp4",
@@ -286,8 +286,8 @@
   },
   {
     "path": "intro-media/spider.mp4",
-    "bytes": 785252,
-    "sha256": "39e4853555ff912728174e6f205fc744e02acf1cb7b4b82018d2db752c0f7684"
+    "bytes": 446250,
+    "sha256": "62831f7717073a4e9a16827d47db40d9661b5cebcbccb3c5c03275094f497a66"
   },
   {
     "path": "intro-media/stand-kinematic.mp4",
@@ -576,8 +576,8 @@
   },
   {
     "path": "results-showcase-media/tilting_trash_can_with_right_foot-985/hoi_spider.mp4",
-    "bytes": 377368,
-    "sha256": "7c52f6b2e22c21285fe51003531ebb1311f534d5122c6bb5e4be452f41f13d2d"
+    "bytes": 380102,
+    "sha256": "3163bd00a24c9fbd97fffe0f3d38ccbfcb63b25b45cb3e1122417d982a7e02de"
   },
   {
     "path": "results-showcase-media/tilting_trash_can_with_right_foot-985/communicating.mp4",
@@ -591,8 +591,8 @@
   },
   {
     "path": "results-showcase-media/carrying_mixing_bowl_with_both_hands-134/hoi_spider.mp4",
-    "bytes": 870027,
-    "sha256": "8eedeeda0a485801d30d2e930ad898001192f9fb5cb1267b23f64abc8bd7f723"
+    "bytes": 898775,
+    "sha256": "b3f17a63253dbec2c266ba5e33f12ac1d2e88a46fc9351fa5565373ad8b12320"
   },
   {
     "path": "results-showcase-media/carrying_mixing_bowl_with_both_hands-134/communicating.mp4",
@@ -606,8 +606,8 @@
   },
   {
     "path": "results-showcase-media/lifting_and_checking_basket_90-215/hoi_spider.mp4",
-    "bytes": 770176,
-    "sha256": "9ebe596e8e44587afd6c01a112865fdb22344bf8b0437385d8c8c89633c47711"
+    "bytes": 927736,
+    "sha256": "6f1866b415456f6df13b425cab5d4e70982c10b3635043849595d3bde90e3a24"
   },
   {
     "path": "results-showcase-media/lifting_and_checking_basket_90-215/communicating.mp4",
@@ -621,8 +621,8 @@
   },
   {
     "path": "results-showcase-media/lifting_side_table_and_putting_down-362/hoi_spider.mp4",
-    "bytes": 1148469,
-    "sha256": "5938d996e67b256c3e6b1bd2385d2b0b96f2438420ba0a287b574ae925e0213e"
+    "bytes": 1560052,
+    "sha256": "dd0548a152b0e651b04a11ce69c77801f854f5f1bcbb200638c0c7a5b301f9a3"
   },
   {
     "path": "results-showcase-media/lifting_side_table_and_putting_down-362/communicating.mp4",
@@ -636,8 +636,8 @@
   },
   {
     "path": "results-showcase-media/carry_side_table_with_both_hands_walk_around-536/hoi_spider.mp4",
-    "bytes": 1072112,
-    "sha256": "ba54fc08dc9ee222fde5f5c45dccdf0407d58288a47b9211146fff2af3875315"
+    "bytes": 1117834,
+    "sha256": "326e54c8023256b2272ea133be903bc7a37380ec7c69580666de93e6eb17400c"
   },
   {
     "path": "results-showcase-media/carry_side_table_with_both_hands_walk_around-536/communicating.mp4",
@@ -651,8 +651,8 @@
   },
   {
     "path": "results-showcase-media/sub17_floorlamp_007/hoi_spider.mp4",
-    "bytes": 419223,
-    "sha256": "d4e59ccde21d1f7187d98412b5b516734f80b95d0c3997e5e172d028e1afe41f"
+    "bytes": 334428,
+    "sha256": "71049d1bbebd5f6a90d8c0b1027458b80416afbd55ec14adbf51e6ba772f932f"
   },
   {
     "path": "results-showcase-media/sub17_floorlamp_007/communicating.mp4",
@@ -686,8 +686,8 @@
   },
   {
     "path": "results-showcase-media/sub15_woodchair_053/hoi_spider.mp4",
-    "bytes": 426124,
-    "sha256": "3a7115a4f77071cd592fa8c9bbec8b608145488a25ce213de06c9540991efbc8"
+    "bytes": 424230,
+    "sha256": "62a7596e29a0b15c4da77b8058f6949135106419e518a6e4037b598631eeff4b"
   },
   {
     "path": "results-showcase-media/sub15_woodchair_053/communicating.mp4",
@@ -701,8 +701,8 @@
   },
   {
     "path": "results-showcase-media/sub12_largebox_049/hoi_spider.mp4",
-    "bytes": 875165,
-    "sha256": "ea7d32b598193094170f2fccc1c2dcb83bafeadd6be6530651324c29fbbf73bf"
+    "bytes": 782798,
+    "sha256": "9427c60ebc886347952866f2b8041cf717dedc274861271bec56fd526cd721e4"
   },
   {
     "path": "results-showcase-media/sub12_largebox_049/communicating.mp4",
@@ -721,8 +721,8 @@
   },
   {
     "path": "results-showcase-media/lifting_and_carrying_table-105/hoi_spider.mp4",
-    "bytes": 1145827,
-    "sha256": "6cc19d53f668f4a8e2a01044103e2322a429cbc9e8551b8636f6da454e36984f"
+    "bytes": 1190891,
+    "sha256": "cf2e38e3af55753f9a88e0ef06b79dfeeaefc91c3391fb87126afafed58b5cf0"
   },
   {
     "path": "results-showcase-media/lifting_and_carrying_table-105/zero_shot.mp4",
@@ -756,8 +756,8 @@
   },
   {
     "path": "results-showcase-media/examining_cutting_board-141/hoi_spider.mp4",
-    "bytes": 918622,
-    "sha256": "1430c9eb2666cd2dc41ab7583b9dea7464516ae274324ccb0a30a96414c4471b"
+    "bytes": 868073,
+    "sha256": "2ae1a8deb8058f3573fcdbb1b03610e67fbb4fb6a5d5214fa20a5213cbd59e44"
   },
   {
     "path": "results-showcase-media/examining_cutting_board-141/zero_shot.mp4",
@@ -791,8 +791,8 @@
   },
   {
     "path": "results-showcase-media/sub11_monitor_044/hoi_spider.mp4",
-    "bytes": 772293,
-    "sha256": "1e525f90b40459d09b8d16e63b242c201d2467e959d372352688ac3b1c37777f"
+    "bytes": 845780,
+    "sha256": "363fe21677643980ca95925648590d1914a7d6695ae8b53288b36644b06df2dc"
   },
   {
     "path": "results-showcase-media/sub11_monitor_044/zero_shot.mp4",
@@ -826,8 +826,8 @@
   },
   {
     "path": "results-showcase-media/sub16_plasticbox_038/hoi_spider.mp4",
-    "bytes": 589194,
-    "sha256": "7254005fd1aabfaaf215d4b7e7b314a06e1da5bdfe3577148102903fcf6a3d84"
+    "bytes": 719231,
+    "sha256": "1a125b9d86e484c0712eb7a768ff0ea37d836946392721080dad5361f8d75aa6"
   },
   {
     "path": "results-showcase-media/sub16_plasticbox_038/zero_shot.mp4",
