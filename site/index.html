@@ -33,7 +33,6 @@
 <a class="subsection" href="#comparison-results">5.1 Comparison with existing approaches</a>
 <a class="subsection" href="#matched-time">5.2 Matched time: single-agent refinement versus swarms</a>
 <a class="subsection" href="#matched-agent-hours">5.3 Matched compute: longer iterative refinement</a>
-<a class="subsection" href="#compute-time-tradeoff">5.4 The compute–time tradeoff</a>
 <a href="#experience">6. Does experience matter?</a>
 <a class="subsection" href="#comparing-refinement-with-and-without-experience">Comparing refinement with and without experience</a>
 <a href="#discussion">7. Discussion</a>
@@ -316,43 +315,13 @@
 <p><strong>Inter-agent communication raises semantic success from 52.5% to 67.5% with the same four-agent budget.</strong> The agents divide experiments, test and improve each other’s controllers, and share unsuccessful results so other agents know what has already been tried. They also use feedback from other agents to correct mistakes in their evaluation. In a monitor task where the robot must lift and move a monitor, one agent identifies an object drop near the end of a rollout that another had judged successful. The second agent acknowledges the missed failure and identifies controlled placement as the next step.</p>
 <p>Independent agents, on the other hand, sometimes spend part of their budget on overlapping approaches, without access to each other’s findings. In a tripod task where the robot must lift, move and place a tripod, two independent agents separately test unsuccessful two-handed grasps using closely overlapping strategies.</p>
 <h3 id="matched-agent-hours">5.3 Matched compute: longer iterative refinement</h3>
+<p>We compare two HuMoTAR settings: <strong>a collaborative swarm of four Codex agents running for 30 minutes each</strong> and <strong>a single Codex agent running for 120 minutes</strong>. Both receive the same allocated compute budget of <em>two agent-hours</em>. This comparison assesses whether a longer iterative loop improves on a shorter collaborative swarm.</p>
 
 
-<figure class="results-plot"><img src="assets/analysis/results/agent-hours.svg?v=curves-2" alt="Final semantic success on 40 tasks and recorded ADD curves on 35 paired tasks against allocated agent-hours, comparing the collaborative swarm with longer Codex refinement." loading="lazy" width="1100" height="410"></figure><div class="table-wrap results-table"><table id="agent-hours-table" aria-label="Tracking error and semantic success"><thead><tr><th scope="col">Method</th><th scope="col">Tracking tasks</th><th scope="col">Mean ADD (cm) ↓</th><th scope="col">Position error (cm) ↓</th><th scope="col">Orientation error (°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody>
-<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">HUMOTO · 20 tasks</th></tr>
-<tr><th scope="row">Collaborative swarm · 30 min</th><td>20</td>
-<td>13.45</td>
-<td>13.07</td>
-<td>21.59</td>
-<td>12/20 · 60.0%</td></tr>
-<tr><th scope="row">Codex · 120 min</th><td>20</td>
-<td><strong>9.85</strong></td>
-<td><strong>9.07</strong></td>
-<td><strong>14.74</strong></td>
-<td><strong>16/20 · 80.0%</strong></td></tr>
-<tr class="dataset-table-heading"><th colspan="6" scope="colgroup">OMOMO · 20 tasks</th></tr>
-<tr><th scope="row">Collaborative swarm · 30 min</th><td>19</td>
-<td><strong>12.52</strong></td>
-<td><strong>9.95</strong></td>
-<td>21.88</td>
-<td><strong>15/20 · 75.0%</strong></td></tr>
-<tr><th scope="row">Codex · 120 min</th><td>19</td>
-<td>15.55</td>
-<td>14.16</td>
-<td><strong>16.46</strong></td>
-<td>14/20 · 70.0%</td></tr>
-</tbody></table></div>
+<figure class="results-plot"><img src="assets/analysis/results/agent-hours.svg?v=curves-2" alt="Final semantic success on 40 tasks and recorded ADD curves on 35 paired tasks against allocated agent-hours, comparing the collaborative swarm with longer Codex refinement." loading="lazy" width="1100" height="410"></figure>
 <details class="results-evidence"><summary>Per-task tracking errors and semantic judgments · 40 tasks</summary><div data-results-pairs="longer"></div></details>
 
-
-
-<figure class="results-plot"><img src="assets/analysis/results/within-run-tracking.svg" width="1200" height="360" loading="lazy" alt="Recorded tracking errors throughout two-hour Codex refinement. Faint lines show individual tasks; the teal mean follows the same 35 tasks from 30 to 120 minutes."></figure>
-
-<h3 id="compute-time-tradeoff">5.4 The compute–time tradeoff</h3>
-
-
-<figure class="results-plot"><img src="assets/analysis/results/tradeoff.svg?v=original-judgments-1" alt="Final semantic success on 40 tasks and overlaid recorded ADD curves on 35 paired tasks against refinement time, comparing Codex, independent swarm, collaborative swarm and two-hour Codex." loading="lazy" width="1100" height="410"></figure>
-
+<p>The two settings achieve similar object-tracking accuracy, but <strong>longer single-agent refinement achieves higher overall semantic success: 75% versus 67.5%</strong>. The longer iterative loop completes three additional tasks, at four times the elapsed time.</p>
 </section>
 <section id="experience">
 <h2 id="6-does-experience-matter">6. Does experience matter?</h2>
@@ -688,6 +657,10 @@ Return:
 </details>
 <details class="appendix-faq" id="results-longer-evidence">
 <summary>What improves within the same two-hour run?</summary>
+
+
+<figure class="results-plot"><img src="assets/analysis/results/within-run-tracking.svg" width="1200" height="360" loading="lazy" alt="Recorded tracking errors throughout two-hour Codex refinement. Faint lines show individual tasks; the teal mean follows the same 35 tasks from 30 to 120 minutes."></figure>
+
 <p>For each cutoff, we retrospectively select the lowest-ADD recorded execution that had finished by that time. It must have completed its reference and passed the recorded initial-object-pose and zero-velocity checks. The framework scores every trial against the same complete target trajectory. All three displayed errors come from the execution selected by ADD. Position and orientation errors can therefore increase even when ADD decreases.</p>
 <p>Active time is reconstructed from the original call and each resume's stated remaining budget. Documented interruption gaps are excluded. Independently generated final verification replays are excluded from intermediate selection. This is a retrospective analysis of saved outputs, not a claim that an agent had computed every comparison score at that instant.</p>
 <p>35 tasks have an eligible output by 30 minutes. On that fixed paired set, mean ADD falls from 30.17 to 10.65 cm and 33 tasks improve. Comparing the selected 30- and 120-minute manifests, reference-file hashes change on 31 tasks and initial-state hashes on 26. A changed hash establishes an artifact change, not its purpose or a semantic improvement. The other five tasks remain visible below without an invented early value.</p>
