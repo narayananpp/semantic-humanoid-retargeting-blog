@@ -4,7 +4,7 @@
   if(!roots.length)return;
   const el=(tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;};
   Promise.all([
-    fetch('assets/analysis/retargeting-results.json').then(r=>{if(!r.ok)throw Error(r.status);return r.json();}),
+    fetch('assets/analysis/retargeting-results.json?v=original-judgments-1').then(r=>{if(!r.ok)throw Error(r.status);return r.json();}),
     fetch('dynamics-showcase.json?v=results-six-methods-1').then(r=>{if(!r.ok)throw Error(r.status);return r.json();})
   ]).then(([data,gallery])=>{
     const titles=new Map(gallery.clips.map(r=>[r.clip,r.title]));
