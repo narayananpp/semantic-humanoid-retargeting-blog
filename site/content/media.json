@@ -77,27 +77,37 @@
         "poster": "intro-media/plate-robot.jpg"
       }
     ],
-    "caption": "Fig. 8. Plate swirling: human demonstration and incomplete HuMoTAR execution."
+    "caption": "Fig. 12. Plate swirling: human demonstration and incomplete HuMoTAR execution."
   },
   "intro-human-demonstrations": {
-    "label": "Human demonstrations (SMPL)",
+    "label": "Human demonstrations and humanoid references",
+    "layout": "four-way",
     "views": [
       {
         "label": "Carry and place a chair",
         "src": "source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910",
-        "poster": "assets/source-humans/sub15_woodchair_047-454ce8c120.jpg"
+        "poster": "assets/source-humans/sub15_woodchair_047-454ce8c120.jpg",
+        "sublabel": "Human \u00b7 SMPL"
+      },
+      {
+        "label": "Carry and place a chair",
+        "src": "intro-media/chair.mp4?v=be4d8e70e9",
+        "poster": "intro-media/chair.jpg",
+        "sublabel": "Humanoid \u00b7 HOI-Retarget"
       },
       {
         "label": "Move a clothes stand",
         "src": "source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa",
-        "poster": "assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg"
+        "poster": "assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg",
+        "sublabel": "Human \u00b7 SMPL"
       },
       {
-        "label": "Tilt a bin with one foot",
-        "src": "source-human-media/humoto/tilting_trash_can_with_right_foot-985.mp4",
-        "poster": "assets/source-humans/tilting_trash_can_with_right_foot-985.jpg"
+        "label": "Move a clothes stand",
+        "src": "intro-media/stand-kinematic.mp4",
+        "poster": "intro-media/stand-kinematic.jpg",
+        "sublabel": "Humanoid \u00b7 HOI-Retarget"
       }
     ],
-    "caption": "Human demonstrations (SMPL)"
+    "caption": "Human demonstrations paired with HOI-Retarget kinematic references."
   }
 }

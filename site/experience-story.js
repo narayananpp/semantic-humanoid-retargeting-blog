@@ -160,7 +160,8 @@
     const observer=new ResizeObserver(alignLayout);observer.observe(panel);observer.observe(aside);
     show(0);
     alignLayout();
-    root.append(node('p','experience-trace-caption','Fig. 7. Shelf righting with and without related experience under equal refinement budgets.'));
+    const caption=node('p','experience-trace-caption publication-caption');
+    caption.textContent='Shelf righting with and without related experience under equal refinement budgets.';root.append(caption);
   }
   fetch('experience-story.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(data=>{
     for(const example of data.examples){const root=document.querySelector(`[data-example="${example.group==='related'?'shelf':'bin'}-walkthrough"] .experience-story`);if(root)build(root,example,data.tasks.find(t=>t.clip===example.clip));}

@@ -47,4 +47,4 @@ We overlay the **initial kinematic reference in purple** and the **refined refer
   </figure>
 </div>
 
-**Fig. 6 (continued).** Clothes-stand reference refinement. The image includes physical execution. The video shows reference geometry, not measured contacts.
+**Fig. 7.** Clothes-stand reference refinement. The image includes physical execution. The video shows reference geometry, not measured contacts.
