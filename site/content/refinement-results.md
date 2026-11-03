@@ -26,7 +26,7 @@ We compare a single Codex agent with the [independent](#configuration-ensemble) 
 
 **Inter-agent communication raises semantic success from 52.5% to 67.5% with the same four-agent budget.** The agents divide experiments, test and improve each other’s controllers, and share unsuccessful results so other agents know what has already been tried. They also use feedback from other agents to correct mistakes in their evaluation. In a monitor task where the robot must lift and move a monitor, one agent identifies an object drop near the end of a rollout that another had judged successful. The second agent acknowledges the missed failure and identifies controlled placement as the next step.
 
-Independent agents, on the other hand, sometimes spend part of their budget on overlapping approaches, without access to each other’s findings. In a tripod task where the robot must lift, move and place a tripod, two independent agents separately test unsuccessful two-handed grasps using closely overlapping strategies.
+Independent agents, on the other hand, sometimes spend part of their budget on **overlapping approaches**, without access to each other’s findings. In a tripod task where the robot must lift, move and place a tripod, two independent agents separately test unsuccessful two-handed grasps using closely overlapping strategies.
 
 ### 5.3 Matched compute: longer iterative refinement {#matched-agent-hours}
 
