@@ -1,3 +1,3 @@
-## 6. Does experience matter?
+## 6. Exploring how prior experience improves retargeting
 
-**Yes, related experience helps in the shelf-righting example, but the benefit depends on what transfers to the new task.** Reports from other furniture interactions help G1 complete the lift, reducing mean ADD from **23.35 to 7.77 cm** compared with continuing without experience. Both continuations start from the same checkpoint and receive the same refinement time.
+We find that **providing related experience helps G1 complete a new interaction**. Here, experience means summaries of strategies tested on previous tasks, including what succeeded and what failed. We investigate this through a walkthrough in which G1 must raise a shelf from its side to an upright position.

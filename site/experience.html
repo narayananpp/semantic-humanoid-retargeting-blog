@@ -25,9 +25,8 @@
   <nav class="chapter-navigation" aria-label="Experience study"><span>In this example</span><a href="#setup">The comparison</a><a href="#shelf-walkthrough">The shelf lift</a></nav>
   <div class="study-chapters">
 <section id="setup">
-<h2 id="comparing-refinement-with-and-without-experience">Comparing refinement with and without experience</h2>
-<p>We investigate whether experience from related interactions helps a robot retarget a new task. Here, G1 must raise a shelf from lying on its side to standing upright. The experience consists of reports from four other furniture tasks, including carrying a table and lifting a chair. These reports summarize the strategies tested and their outcomes.</p>
-<p>We first run four agents for <strong>15 minutes</strong>, two with optional access to the provided retargeting tools, and select the best valid shelf motion. From this checkpoint, we run two separate <strong>15-minute continuations</strong>: one receives the reports, and the other continues without them. Both use the same model, tools and starting solution, with <strong>30 minutes of total refinement</strong>. This comparison measures the benefit of the supplied experience under an equal refinement budget.</p>
+<p>We first run four Codex agents for <strong>15 minutes</strong> and select the best valid shelf motion. We then continue that solution in two separate <strong>15-minute Codex sessions</strong>, one with related experience and one without. Both use the same model, tools and starting solution, with <strong>equal time and compute budgets</strong> and <strong>30 minutes of total refinement</strong>.</p>
+<p>The supplied experience comes from <strong>four other furniture interactions</strong>, including carrying a table, lifting a chair, and pulling and pushing a chair. With these summaries, G1 completes the shelf lift and reduces mean object-tracking error from <strong>23.35 to 7.77 cm</strong> compared with refinement without experience.</p>
 </section>
 <article id="shelf-walkthrough" class="proof-example" data-example="shelf-walkthrough">
 <h3 id="righting-a-shelf-with-related-experience">Righting a shelf with related experience</h3>

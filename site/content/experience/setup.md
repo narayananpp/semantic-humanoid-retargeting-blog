@@ -1,5 +1,3 @@
-## Comparing refinement with and without experience
+We first run four Codex agents for **15 minutes** and select the best valid shelf motion. We then continue that solution in two separate **15-minute Codex sessions**, one with related experience and one without. Both use the same model, tools and starting solution, with **equal time and compute budgets** and **30 minutes of total refinement**.
 
-We investigate whether experience from related interactions helps a robot retarget a new task. Here, G1 must raise a shelf from lying on its side to standing upright. The experience consists of reports from four other furniture tasks, including carrying a table and lifting a chair. These reports summarize the strategies tested and their outcomes.
-
-We first run four agents for **15 minutes**, two with optional access to the provided retargeting tools, and select the best valid shelf motion. From this checkpoint, we run two separate **15-minute continuations**: one receives the reports, and the other continues without them. Both use the same model, tools and starting solution, with **30 minutes of total refinement**. This comparison measures the benefit of the supplied experience under an equal refinement budget.
+The supplied experience comes from **four other furniture interactions**, including carrying a table, lifting a chair, and pulling and pushing a chair. With these summaries, G1 completes the shelf lift and reduces mean object-tracking error from **23.35 to 7.77 cm** compared with refinement without experience.

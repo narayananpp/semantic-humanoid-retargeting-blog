@@ -33,8 +33,7 @@
 <a class="subsection" href="#comparison-results">5.1 Comparison with existing approaches</a>
 <a class="subsection" href="#matched-time">5.2 Matched time: single-agent refinement versus swarms</a>
 <a class="subsection" href="#matched-agent-hours">5.3 Matched compute: longer iterative refinement</a>
-<a href="#experience">6. Does experience matter?</a>
-<a class="subsection" href="#comparing-refinement-with-and-without-experience">Comparing refinement with and without experience</a>
+<a href="#experience">6. Exploring how prior experience improves retargeting</a>
 <a href="#discussion">7. Discussion</a>
 <a class="subsection" href="#metric-limitations">Limits of the metrics</a>
 <a class="subsection" href="#rl-fine-tuning">RL fine-tuning</a>
@@ -324,13 +323,12 @@
 <p>We make the observation that <strong>longer single-agent refinement outperforms the collaborative swarm in semantic success, achieving 75% versus 67.5%</strong>, at the cost of <strong>4× the elapsed time</strong>.</p>
 </section>
 <section id="experience">
-<h2 id="6-does-experience-matter">6. Does experience matter?</h2>
-<p><strong>Yes, related experience helps in the shelf-righting example, but the benefit depends on what transfers to the new task.</strong> Reports from other furniture interactions help G1 complete the lift, reducing mean ADD from <strong>23.35 to 7.77 cm</strong> compared with continuing without experience. Both continuations start from the same checkpoint and receive the same refinement time.</p>
+<h2 id="6-exploring-how-prior-experience-improves-retargeting">6. Exploring how prior experience improves retargeting</h2>
+<p>We find that <strong>providing related experience helps G1 complete a new interaction</strong>. Here, experience means summaries of strategies tested on previous tasks, including what succeeded and what failed. We investigate this through a walkthrough in which G1 must raise a shelf from its side to an upright position.</p>
 </section>
 <section id="experience-setup" class=" inline-experience">
-<h3 id="comparing-refinement-with-and-without-experience">Comparing refinement with and without experience</h3>
-<p>We investigate whether experience from related interactions helps a robot retarget a new task. Here, G1 must raise a shelf from lying on its side to standing upright. The experience consists of reports from four other furniture tasks, including carrying a table and lifting a chair. These reports summarize the strategies tested and their outcomes.</p>
-<p>We first run four agents for <strong>15 minutes</strong>, two with optional access to the provided retargeting tools, and select the best valid shelf motion. From this checkpoint, we run two separate <strong>15-minute continuations</strong>: one receives the reports, and the other continues without them. Both use the same model, tools and starting solution, with <strong>30 minutes of total refinement</strong>. This comparison measures the benefit of the supplied experience under an equal refinement budget.</p>
+<p>We first run four Codex agents for <strong>15 minutes</strong> and select the best valid shelf motion. We then continue that solution in two separate <strong>15-minute Codex sessions</strong>, one with related experience and one without. Both use the same model, tools and starting solution, with <strong>equal time and compute budgets</strong> and <strong>30 minutes of total refinement</strong>.</p>
+<p>The supplied experience comes from <strong>four other furniture interactions</strong>, including carrying a table, lifting a chair, and pulling and pushing a chair. With these summaries, G1 completes the shelf lift and reduces mean object-tracking error from <strong>23.35 to 7.77 cm</strong> compared with refinement without experience.</p>
 </section>
 <article id="experience-shelf-walkthrough" class="proof-example inline-experience" data-example="shelf-walkthrough">
 <h4 id="righting-a-shelf-with-related-experience">Righting a shelf with related experience</h4>
