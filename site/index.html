@@ -9,7 +9,7 @@
   <title>HuMoTAR: Retargeting Through Reasoning for Humanoid–Object Interaction</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
   <script src="theme.js?v=1"></script>
-  <link rel="stylesheet" href="styles.css?v=result-tabs-20261104">
+  <link rel="stylesheet" href="styles.css?v=result-columns-20261104">
   <link rel="stylesheet" href="experience.css?v=uniform-captions-2">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -204,16 +204,16 @@
       <button type="button" role="tab" id="result-humoto" data-result-dataset="humoto" aria-selected="true" aria-controls="result-panel">HUMOTO</button>
       <button type="button" role="tab" id="result-omomo" data-result-dataset="omomo" aria-selected="false" aria-controls="result-panel" tabindex="-1">OMOMO</button>
     </div>
-    <div class="final-results-tabs" role="tablist" aria-label="Evaluation metric">
-      <button type="button" role="tab" id="result-tracking" data-result-metric="tracking" aria-selected="true" aria-controls="result-panel">Object tracking</button>
-      <button type="button" role="tab" id="result-semantic" data-result-metric="semantic" aria-selected="false" aria-controls="result-panel" tabindex="-1">Semantic success</button>
-    </div>
   </div>
-  <div id="result-panel" role="tabpanel" tabindex="0" aria-labelledby="result-humoto result-tracking">
-    <picture><source media="(max-width:600px)" srcset="assets/analysis/results/final-humoto-tracking-mobile.svg?v=1"><img data-result-image="humoto-tracking" src="assets/analysis/results/final-humoto-tracking.svg?v=1" width="800" height="390" alt="HUMOTO: Mean object-tracking error (ADD). Lower is better. HOI-Retarget + SPIDER: 44.96 cm; Astra one-shot: 56.09 cm; Codex, 2 hours: 9.85 cm."></picture>
-    <picture><source media="(max-width:600px)" srcset="assets/analysis/results/final-humoto-semantic-mobile.svg?v=1"><img data-result-image="humoto-semantic" src="assets/analysis/results/final-humoto-semantic.svg?v=1" width="800" height="390" alt="HUMOTO: Semantic success. Higher is better. HOI-Retarget + SPIDER: 25% (5/20); Astra one-shot: 5% (1/20); Codex, 2 hours: 80% (16/20)." loading="lazy"></picture>
-    <picture><source media="(max-width:600px)" srcset="assets/analysis/results/final-omomo-tracking-mobile.svg?v=1"><img data-result-image="omomo-tracking" src="assets/analysis/results/final-omomo-tracking.svg?v=1" width="800" height="390" alt="OMOMO: Mean object-tracking error (ADD). Lower is better. HOI-Retarget + SPIDER: 40.77 cm; Astra one-shot: 69.87 cm; Codex, 2 hours: 15.55 cm, n = 19." loading="lazy"></picture>
-    <picture><source media="(max-width:600px)" srcset="assets/analysis/results/final-omomo-semantic-mobile.svg?v=1"><img data-result-image="omomo-semantic" src="assets/analysis/results/final-omomo-semantic.svg?v=1" width="800" height="390" alt="OMOMO: Semantic success. Higher is better. HOI-Retarget + SPIDER: 10% (2/20); Astra one-shot: 0% (0/20); Codex, 2 hours: 70% (14/20)." loading="lazy"></picture>
+  <div id="result-panel" class="final-results-grid" role="tabpanel" tabindex="0" aria-labelledby="result-humoto">
+    <div class="final-results-metric"><h4>Object tracking</h4>
+      <picture><img data-result-image="humoto-tracking" src="assets/analysis/results/final-humoto-tracking-mobile.svg?v=1" width="350" height="420" alt="HUMOTO: Mean object-tracking error (ADD). Lower is better. HOI-Retarget + SPIDER: 44.96 cm; Astra one-shot: 56.09 cm; Codex, 2 hours: 9.85 cm."></picture>
+      <picture><img data-result-image="omomo-tracking" src="assets/analysis/results/final-omomo-tracking-mobile.svg?v=1" width="350" height="420" alt="OMOMO: Mean object-tracking error (ADD). Lower is better. HOI-Retarget + SPIDER: 40.77 cm; Astra one-shot: 69.87 cm; Codex, 2 hours: 15.55 cm, n = 19." loading="lazy"></picture>
+    </div>
+    <div class="final-results-metric"><h4>Semantic success</h4>
+      <picture><img data-result-image="humoto-semantic" src="assets/analysis/results/final-humoto-semantic-mobile.svg?v=1" width="350" height="420" alt="HUMOTO: Semantic success. Higher is better. HOI-Retarget + SPIDER: 25% (5/20); Astra one-shot: 5% (1/20); Codex, 2 hours: 80% (16/20)." loading="lazy"></picture>
+      <picture><img data-result-image="omomo-semantic" src="assets/analysis/results/final-omomo-semantic-mobile.svg?v=1" width="350" height="420" alt="OMOMO: Semantic success. Higher is better. HOI-Retarget + SPIDER: 10% (2/20); Astra one-shot: 0% (0/20); Codex, 2 hours: 70% (14/20)." loading="lazy"></picture>
+    </div>
   </div>
   <figcaption class="publication-caption"><strong>Fig. 7.</strong> Final object-tracking error and semantic success on HUMOTO and OMOMO.</figcaption>
 </figure>
@@ -326,7 +326,7 @@
 <script src="kinematic-showcase.js?v=autoplay-20261104" defer></script>
 <script src="experience-story.js?v=autoplay-20261104" defer></script>
 <script src="text-motion.js?v=1" defer></script>
-<script src="final-results.js?v=1" defer></script>
+<script src="final-results.js?v=side-by-side-2" defer></script>
 <script src="results-evidence.js?v=spider-full-20261102" defer></script>
 <script src="architecture.js?v=whole-body-example-20261104" defer></script>
 <script src="autoplay.js?v=all-videos-20261104" defer></script>

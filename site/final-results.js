@@ -1,13 +1,13 @@
 (() => {
   const root = document.querySelector('[data-final-results]');
   if (!root) return;
-  let dataset = 'humoto', metric = 'tracking';
+  let dataset = 'humoto';
   const panel = root.querySelector('[role="tabpanel"]');
   function render() {
     for (const image of root.querySelectorAll('[data-result-image]')) {
-      image.closest('picture').hidden = image.dataset.resultImage !== `${dataset}-${metric}`;
+      image.closest('picture').hidden = !image.dataset.resultImage.startsWith(`${dataset}-`);
     }
-    panel.setAttribute('aria-labelledby', `result-${dataset} result-${metric}`);
+    panel.setAttribute('aria-labelledby', `result-${dataset}`);
   }
   for (const group of root.querySelectorAll('[role="tablist"]')) {
     const tabs = Array.from(group.querySelectorAll('[role="tab"]'));
@@ -17,7 +17,6 @@
         item.tabIndex = item === tab ? 0 : -1;
       }
       if (tab.dataset.resultDataset) dataset = tab.dataset.resultDataset;
-      if (tab.dataset.resultMetric) metric = tab.dataset.resultMetric;
       render();
       if (focus) tab.focus();
     }
