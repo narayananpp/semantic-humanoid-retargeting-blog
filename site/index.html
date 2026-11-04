@@ -9,7 +9,7 @@
   <title>HuMoTAR: Affordance-Aware Semantic Retargeting for Humanoid-Object Interaction</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
   <script src="theme.js?v=1"></script>
-  <link rel="stylesheet" href="styles.css?v=takeaway-videos-1">
+  <link rel="stylesheet" href="styles.css?v=takeaway-side-2">
   <link rel="stylesheet" href="experience.css?v=uniform-captions-2">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -86,7 +86,7 @@
 
 <aside class="takeaways-message" aria-label="Key takeaways">
   <ul>
-    <li><strong>How should one retarget human-object motions for humanoids?</strong> We argue that robotics is about enacting changes in the environment, and so retargeted motions should produce the same object trajectory.
+    <li><div class="takeaway-with-videos"><div class="takeaway-copy"><strong>How should one retarget human-object motions for humanoids?</strong> We argue that robotics is about enacting changes in the environment, and so retargeted motions should produce the same object trajectory.</div>
       <div class="takeaway-video-pair" role="group" aria-label="Cutting-board interaction: human demonstration and two-hour Codex execution">
         <figure>
           <figcaption>Human</figcaption>
@@ -96,14 +96,14 @@
           </video>
         </figure>
         <figure>
-          <figcaption>Humanoid · Codex, 2 hours · 2×</figcaption>
+          <figcaption>Humanoid</figcaption>
           <video data-playback-rate="2" controls autoplay muted loop playsinline preload="metadata" poster="results-showcase-media/examining_cutting_board-141/codex120.jpg" aria-label="Humanoid cutting-board execution after two hours of Codex refinement">
             <source src="results-showcase-media/examining_cutting_board-141/codex120.mp4?v=c03c75961d" type="video/mp4">
             <a href="results-showcase-media/examining_cutting_board-141/codex120.mp4">Humanoid execution</a>
           </video>
         </figure>
       </div>
-    </li>
+    </div></li>
     <li><strong>We use agentic models with a simulator-the-loop to produce dynamically-feasible motions.</strong> We analyze the behaviour of our harness and show that it is crucial to iterate over targets with a verification reward that prioritizes matching object trajectories.</li>
     <li><strong>Parallel sub-agents vs. sequential refinement.</strong> We explore tradeoffs on iterations of refinement, comparing sequential to parallel search. We find that parallel agents can find a good solution faster.</li>
     <li><strong>Experience from related tasks.</strong> Prior experience, stored as summaries of strategies and outcomes, cuts object-tracking error on a new humanoid-object task from 23.35 to 7.77 cm at equal compute and time budgets.</li>
