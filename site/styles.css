@@ -912,3 +912,10 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 :root[data-theme="dark"] .walkthrough-log-link:hover, :root[data-theme="dark"] .walkthrough-log-link:focus-visible { color: #0f1f1b; }
 /* Charts and diagrams drawn as images keep a light paper panel so their dark text stays legible. */
 :root[data-theme="dark"] .results-plot img, :root[data-theme="dark"] .refinement-pipeline img, :root[data-theme="dark"] img[src$=".svg"], :root[data-theme="dark"] img[src*=".svg?"] { background: #faf9f6; border-radius: 4px; }
+
+/* One task comparison at a time, retaining links to both examples. */
+.intro-comparison-tabs:not([hidden]) { display:flex; flex-wrap:wrap; gap:6px; width:fit-content; margin:24px 0 16px; padding:4px; border:1px solid var(--line); border-radius:8px; background:var(--surface); }
+.intro-comparison-tabs button { border:0; border-radius:5px; background:transparent; padding:9px 18px; font:600 14px/1.4 var(--sans); }
+.intro-comparison-tabs button[aria-selected="true"] { background:var(--ink); color:var(--background); }
+.intro-comparison-viewer [data-intro-panel][hidden] { display:none; }
+.intro-comparison-viewer h3 { margin-top:16px; }

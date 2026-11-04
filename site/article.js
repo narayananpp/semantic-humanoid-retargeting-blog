@@ -224,3 +224,41 @@ document.querySelectorAll('[data-trace-explorer-src]').forEach(frame => {
   section.addEventListener('toggle', load);
   load();
 });
+
+// Switch the introductory comparison without playing hidden task videos.
+document.querySelectorAll('[data-intro-comparison]').forEach(viewer => {
+  const tabs = Array.from(viewer.querySelectorAll('[role="tab"]'));
+  const panels = Array.from(viewer.querySelectorAll('[data-intro-panel]'));
+  function select(index) {
+    tabs.forEach((tab, i) => {
+      tab.setAttribute('aria-selected', String(i === index));
+      tab.tabIndex = i === index ? 0 : -1;
+      panels[i].hidden = i !== index;
+      if (i !== index) panels[i].querySelectorAll('video').forEach(video => video.pause());
+    });
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => select(index));
+    tab.addEventListener('keydown', event => {
+      let next;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      select(next);
+      tabs[next].focus();
+    });
+  });
+  function selectLinkedTask() {
+    const index = panels.findIndex(panel => Array.from(panel.querySelectorAll('[id]')).some(node => '#' + node.id === location.hash));
+    if (index < 0) return;
+    select(index);
+    requestAnimationFrame(() => document.getElementById(location.hash.slice(1))?.scrollIntoView());
+  }
+  select(0);
+  viewer.querySelector('[role="tablist"]').hidden = false;
+  addEventListener('hashchange', selectLinkedTask);
+  selectLinkedTask();
+});

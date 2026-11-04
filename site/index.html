@@ -9,7 +9,7 @@
   <title>HuMoTAR: Affordance-Aware Semantic Retargeting for Humanoid-Object Interaction</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
   <script src="theme.js?v=1"></script>
-  <link rel="stylesheet" href="styles.css?v=takeaway-side-4">
+  <link rel="stylesheet" href="styles.css?v=intro-selector-1">
   <link rel="stylesheet" href="experience.css?v=uniform-captions-2">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -141,15 +141,24 @@
 <span id="dynamic-interaction" class="section-anchor"></span>
 
 <p><strong>A kinematically feasible reference is not necessarily dynamically feasible.</strong> <a href="https://arxiv.org/abs/2511.09484"><strong>SPIDER</strong></a> addresses this gap by posing retargeting as a constrained optimization over the robot’s motor commands. Specifically, it samples many candidate command sequences in a physics simulator and keeps those whose simulated motion stays closest to the reference. However, errors in the input reference can lead SPIDER to an incorrect contact strategy, and its open-loop execution is sensitive to the robot’s starting pose. In contrast, <strong>HuMoTAR revises both the motion reference and control code based on the resulting physical execution.</strong></p>
+<div class="intro-comparison-viewer" data-intro-comparison>
+  <div class="intro-comparison-tabs" role="tablist" aria-label="Choose an interaction" hidden>
+    <button type="button" role="tab" id="intro-chair-tab" aria-controls="intro-chair-panel" aria-selected="true">Chair</button>
+    <button type="button" role="tab" id="intro-stand-tab" aria-controls="intro-stand-panel" aria-selected="false" tabindex="-1">Clothes stand</button>
+  </div>
+  <div id="intro-chair-panel" data-intro-panel role="tabpanel" aria-labelledby="intro-chair-tab">
 <h3 id="carry-and-place-a-chair">Carry and place a chair</h3>
 
 
 <figure class="authored-video four-way-comparison" data-media-id="intro-chair-comparison"><div class="authored-video-views"><div class="execution-panel"><p>Human<span class="video-mode">Demonstration</span></p><video controls muted playsinline preload="none" aria-label="Human" poster="assets/source-humans/sub15_woodchair_047-454ce8c120.jpg" src="source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910"></video></div><div class="execution-panel"><p>HOI-Retarget<span class="video-mode">Kinematic replay</span></p><video controls muted playsinline preload="none" aria-label="HOI-Retarget" poster="intro-media/chair.jpg" src="intro-media/chair.mp4?v=be4d8e70e9"></video></div><div class="execution-panel"><p>SPIDER<span class="video-mode">Physics execution</span></p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="SPIDER" poster="intro-media/chair-spider.jpg?v=7b08bf894a" src="intro-media/chair-spider.mp4?v=7b08bf894a"></video></div><div class="execution-panel"><p>HuMoTAR<span class="video-mode">Physics execution</span></p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub15_woodchair_047.jpg" src="dynamics-showcase-media/omomo/sub15_woodchair_047.mp4"></video></div></div><figcaption class="publication-caption"><strong>Fig. 1.</strong> Chair carrying and placement: kinematic reference and simulated executions.</figcaption></figure>
-
+  </div>
+  <div id="intro-stand-panel" data-intro-panel role="tabpanel" aria-labelledby="intro-stand-tab">
 <h3 id="lift-carry-and-place-a-clothes-stand">Lift, carry and place a clothes stand</h3>
 
 
 <figure class="authored-video four-way-comparison" data-media-id="intro-stand-comparison"><div class="authored-video-views"><div class="execution-panel"><p>Human<span class="video-mode">Demonstration</span></p><video controls muted playsinline preload="none" aria-label="Human" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa"></video></div><div class="execution-panel"><p>HOI-Retarget<span class="video-mode">Kinematic replay</span></p><video controls muted playsinline preload="none" aria-label="HOI-Retarget" poster="intro-media/stand-kinematic.jpg" src="intro-media/stand-kinematic.mp4"></video></div><div class="execution-panel"><p>SPIDER<span class="video-mode">Physics execution</span></p><span class="execution-failure" role="img" aria-label="Failed execution">✕</span><video controls muted playsinline preload="none" aria-label="SPIDER" poster="intro-media/spider.jpg?v=62831f7717" src="intro-media/spider.mp4?v=62831f7717"></video></div><div class="execution-panel"><p>HuMoTAR<span class="video-mode">Physics execution</span></p><span class="execution-success" role="img" aria-label="Successful execution">✓</span><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="assets/showcase/sub10_clothesstand_002.jpg" src="dynamics-showcase-media/omomo/sub10_clothesstand_002.mp4?v=430d6c797d"></video></div></div><figcaption class="publication-caption"><strong>Fig. 2.</strong> Clothes-stand transport: kinematic reference and simulated executions.</figcaption></figure>
+  </div>
+</div>
 
 <p>These examples illustrate the gap between kinematic retargeting and physical execution. We execute HOI-Retarget’s kinematic references with SPIDER in physics simulation and compare against HuMoTAR (Figs. 1 and 2). We find that SPIDER fails to complete either task, while HuMoTAR successfully executes both.</p>
 </section>
@@ -441,7 +450,7 @@
     </div>
     <footer class="publication-footer"><span>HuMoTAR</span><a href="#top">Back to top ↑</a></footer>
   </main>
-  <script src="article.js?v=collaborative-appendix-1"></script>
+  <script src="article.js?v=intro-selector-1"></script>
   <script src="walkthrough.js?v=original-copy-1"></script>
 <script src="dynamics-showcase.js?v=spider-full-20261102" defer></script>
 <script src="kinematic-showcase.js?v=humotar-story-2" defer></script>
