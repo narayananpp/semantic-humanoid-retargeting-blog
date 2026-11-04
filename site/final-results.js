@@ -4,8 +4,8 @@
   let dataset = 'humoto';
   const panel = root.querySelector('[role="tabpanel"]');
   function render() {
-    for (const image of root.querySelectorAll('[data-result-image]')) {
-      image.closest('picture').hidden = !image.dataset.resultImage.startsWith(`${dataset}-`);
+    for (const content of root.querySelectorAll('[data-result-content]')) {
+      content.hidden = content.dataset.resultContent !== dataset;
     }
     panel.setAttribute('aria-labelledby', `result-${dataset}`);
   }

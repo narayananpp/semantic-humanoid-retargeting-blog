@@ -1167,3 +1167,19 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 .final-results-metric { min-width:0; }
 .final-results-metric h4 { margin:0 0 8px; text-align:center; font-size:17px; }
 @media(max-width:650px) { .final-results-grid { grid-template-columns:1fr; gap:24px; } }
+
+.final-results [data-result-content][hidden] { display:none; }
+.final-tracking-table { margin-top:24px; }
+.final-tracking-table table { min-width:0; width:100%; table-layout:fixed; }
+.final-tracking-table th,.final-tracking-table td { padding:20px 8px; font-size:13px; text-align:right; }
+.final-tracking-table th:first-child { width:34%; text-align:left; }
+.final-tracking-table caption { caption-side:bottom; padding:16px 0; }
+.final-tracking-table small { font-size:11px; font-weight:400; color:var(--muted); }
+.codex-refinement-curve { max-width:1000px; margin:24px auto; }
+.codex-refinement-curve img { display:block; width:100%; height:auto; }
+.codex-refinement-curve .publication-caption { text-align:center; }
+@media(max-width:760px) {
+  .final-results-grid { grid-template-columns:1fr; }
+  .final-tracking-table th,.final-tracking-table td { padding:15px 5px; font-size:12px; }
+}
+.final-results-grid > .final-results-metric { margin:0; padding:0; }
