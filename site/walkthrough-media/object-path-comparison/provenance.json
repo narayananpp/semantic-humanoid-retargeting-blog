@@ -8,14 +8,25 @@
   "alignment": "Complete monotone object-path alignment, including translation and rotation; no fitted spatial transform. Both endpoints included. Video clocks show original recording times.",
   "human_object_reference": "Original target trajectory scaled for G1",
   "plot": "3D object-center paths; purple human reference, teal physical robot execution.",
-  "source_videos": [
-    {
-      "path": "../../results-showcase-media/examining_cutting_board-141/human.mp4",
-      "sha256": "c1e730f84ff1c51a66daf95d69180d37d9cb921000532e78589f9a4fde59cccc"
-    },
-    {
-      "path": "../../results-showcase-media/examining_cutting_board-141/codex120.mp4",
-      "sha256": "c03c75961daa46133655323e37bc8e971cf92e1db9aede4f4422e167d8382492"
-    }
-  ]
+  "render_resolution": [
+    1920,
+    1080
+  ],
+  "render_fps": 24,
+  "rendering": "Blender Cycles, 48 samples, OptiX denoising. Direct mesh renders of saved motions, not upscaled source videos.",
+  "human_pose_registration": "At each human timestamp, translate the entire human mesh by fixed target object position minus original human object position. Human joint poses, rotations and dimensions remain unchanged. Registration does not use the robot execution.",
+  "panels": [
+    "Full-body human and humanoid overlay",
+    "Grasp and hand placement close-up",
+    "3D object-center paths"
+  ],
+  "source_human_sha256": "373942a54094900462c54ab1b95636f49b1678c16a0f018f67a144529e2deb21",
+  "source_motion_sha256": "270ecb71023b5574fbc0e74d682a305f6ac4e04a28a256608d6a92cbb2305444",
+  "source_scene_sha256": "126b5aade5c938806f89f7321ba9ac450d458afa2e4220547a64c1b01241d811",
+  "pose_geometry_validation": {
+    "geometry_frame_max_position_residual_m": 2.220446049250313e-16,
+    "geometry_frame_max_rotation_residual_rad": 5.625282158101942e-15,
+    "timing_includes_initial_and_final": true,
+    "uses_saved_physics_rollout": true
+  }
 }
