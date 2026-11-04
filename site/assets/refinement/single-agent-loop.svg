@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="480" viewBox="0 0 1400 480" role="img" aria-labelledby="title desc">
-<title id="title">HuMoTAR refinement loop</title><desc id="desc">Astra produces references and wrist and finger impedance control code. End-effector references pass through IK into the joint-space reference. SONIC and the wrist and finger controller execute in MuJoCo. Object tracking, contact forces, object velocity, grasp checks and inspected images provide simulation feedback.</desc>
+<title id="title">HuMoTAR refinement loop</title><desc id="desc">Astra produces references and wrist and finger impedance control code. End-effector references pass through IK into the joint-space reference. A whole-body controller (e.g. SONIC) and the wrist and finger controller execute in MuJoCo. Object tracking, contact forces, object velocity, grasp checks and inspected images provide simulation feedback.</desc>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#167c77"/></marker></defs>
 <rect x="1" y="1" width="1398" height="478" rx="14" fill="#faf9f6" stroke="#c9bd9b"/>
 <rect x="20" y="45" width="165" height="80" rx="9" fill="#fff" stroke="#c8cec8"/>
@@ -22,8 +22,8 @@
 <text x="757.5" y="209.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">reference</text>
 <rect x="870" y="100" width="235" height="210" rx="9" fill="#fff" stroke="#b59a50"/>
 <rect x="885" y="130" width="205" height="60" rx="7" fill="#fff" stroke="#b59a50"/><rect x="885" y="215" width="205" height="70" rx="7" fill="#fff" stroke="#b59a50"/><text x="987" y="118" text-anchor="middle" font-family="Arial" font-size="14">Control</text>
-<text x="987.5" y="164.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">SONIC</text>
-<text x="987.5" y="187.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35"></text>
+<text x="987.5" y="153.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">Whole-body controller</text>
+<text x="987.5" y="177.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">(e.g. SONIC)</text>
 <text x="987.5" y="210.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35"></text>
 <text x="987.5" y="233.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">Wrist and finger</text>
 <text x="987.5" y="256.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">impedance controller</text>
