@@ -24,11 +24,12 @@
 <a href="#reference-setup">1. Rethinking Humanoid Retargeting</a>
 <a class="subsection" href="#carry-and-place-a-chair">Carry and place a chair</a>
 <a class="subsection" href="#lift-carry-and-place-a-clothes-stand">Lift, carry and place a clothes stand</a>
-<a href="#method">2. Motion refinement with simulation feedback</a>
-<a class="subsection" href="#refinement-configurations">2.1 Retargeting methods</a>
-<a class="subsection" href="#refining-contact-support-motion">2.2 Revisions correct contact, support and motion</a>
-<a class="subsection" href="#how-does-the-reference-change">2.3 Preserving object motion with a different posture</a>
-<a href="#evaluation-metrics">3. Evaluation metrics</a>
+<a href="#study-setup">2. Study setup</a>
+<a class="subsection" href="#refinement-configurations">2.1 Retargeting approaches</a>
+<a class="subsection" href="#evaluation-metrics">2.2 Evaluation metrics</a>
+<a href="#method">3. Motion refinement with simulation feedback</a>
+<a class="subsection" href="#refining-contact-support-motion">3.1 Revisions correct contact, support and motion</a>
+<a class="subsection" href="#how-does-the-reference-change">3.2 Preserving object motion with a different posture</a>
 <a href="#refinement-results">4. Iterative refinement drives retargeting success</a>
 <a class="subsection" href="#comparison-results">4.1 Codex achieves 75% semantic success</a>
 <a href="#experience">5. Prior experience improves refinement on new tasks</a>
@@ -137,47 +138,47 @@
 </div>
 
 </section>
-<section id="method" class="outline-section">
-<h2 id="2-comparing-agentic-workflows-for-humanoid-retargeting">2. Motion refinement with simulation feedback</h2>
-<p>We inspect the intermediate output of <strong>Codex</strong> as it refines the clothes-stand interaction. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. The architecture below shows how Codex generates motion and control code from the human demonstration and an initial kinematic reference. It tests the code in simulation and inspects execution images, object-tracking errors and contact measurements before the next revision.</p>
-<figure class="refinement-panel" data-architecture><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/single-agent-loop.svg" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/single-agent-loop.svg" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="1400" height="480" loading="lazy"></a><figcaption class="publication-caption"><strong>Fig. 3.</strong> Single-agent motion refinement through simulation feedback. Selected trials from one recorded Codex session.</figcaption></figure>
-<h3 id="refinement-configurations">2.1 Retargeting methods</h3>
+<section id="study-setup" class="outline-section">
+<h2>2. Study setup</h2>
+<h3 id="refinement-configurations">2.1 Retargeting approaches</h3>
 <span id="configurations" class="section-anchor"></span>
-<p>We study three approaches to humanoid retargeting:</p>
+<p>Our goal is to produce <strong>dynamically feasible humanoid motions from human demonstrations</strong>. To study this, we consider three approaches to retargeting:</p>
 <ul>
 <li id="configuration-spider"><strong>Optimization-based retargeting.</strong> <a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> generates a kinematic reference, and <a href="https://arxiv.org/abs/2511.09484">SPIDER</a> optimizes its execution in physics simulation.</li>
 <li id="configuration-one-shot"><strong>One-shot generation.</strong> <a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra</a> generates motion and control code in one response, without tool calls or iterative refinement.</li>
-<li id="configuration-plain"><strong>Iterative agentic refinement.</strong> <a href="https://github.com/openai/codex">Codex</a> uses the same model in a persistent coding session to test and iteratively refine motion and control code through simulation feedback.</li>
+<li id="configuration-plain"><strong>Iterative agentic refinement.</strong> <a href="https://github.com/openai/codex">Codex</a> uses GPT-6 Astra to test and iteratively refine motion and control code through simulation feedback.</li>
 </ul>
-<p>For each task, Codex receives the human demonstration in SMPL format, an initial kinematic reference from HOI-Retarget, the task scene and the target object trajectory. The object trajectory specifies the desired object motion, scaled to the robot’s size. The agent then writes Python code to generate and refine <em>a reference motion for the whole body and hands</em>, which serves as the framework’s output.</p>
-<p>We execute the motion references and control code in <strong><a href="https://mujoco.org/">MuJoCo</a></strong> with <strong><a href="https://arxiv.org/abs/2511.07820">SONIC</a> and agent-written controllers</strong>. SONIC’s policy weights remain frozen, but the generated code can augment or replace its joint commands, including those for the legs and waist. After each simulation, the agent inspects <strong>images of the execution, object-tracking errors and contact measurements</strong> before revising its solution.</p>
-
-
-
-
-<h3 id="refining-contact-support-motion">2.2 Revisions correct contact, support and motion</h3>
+<p>In particular, the inputs to the agentic system include <strong>the human demonstration in SMPL format, an initial kinematic reference from HOI-Retarget, the task scene and the target object trajectory</strong>, as illustrated in <a href="#refinement-pipeline">Fig. 3</a>. The object trajectory specifies the desired object motion, scaled to the robot’s size. The agent writes Python code to generate and refine <em>a reference motion for the whole body and hands</em>.</p>
+<p>For our implementation, <a href="https://arxiv.org/abs/2511.07820">SONIC</a> provides whole-body control, with flexibility for the agent to augment or replace its joint-angle outputs to complete the task. <a href="https://mujoco.org/">MuJoCo</a> simulates the execution. The agent inspects feedback such as execution images, object-tracking errors and contact measurements, then revises its motion and control code before the next trial.</p>
+<div id="evaluation-metrics">
+<h3 id="dynamics-metrics">2.2 Evaluation metrics</h3>
+<p>We evaluate all methods on <strong>20 HUMOTO and 20 OMOMO tasks</strong> using <strong>object-tracking error and semantic success</strong>. Object tracking compares the simulated object motion with the demonstrated trajectory scaled for G1. However, the robot may move at a different speed than the human, so we do not require the object to reach each position at the same time as in the human demonstration. Instead, we compare corresponding stages of the object’s motion.</p>
+<ul>
+<li><strong>Mean ADD (cm):</strong> The average distance between corresponding points on the object at aligned poses. It captures both position and orientation error. <strong>Lower is better.</strong></li>
+<li><strong>Position error (cm):</strong> The average distance between the simulated and target object positions. <strong>Lower is better.</strong></li>
+<li><strong>Orientation error (°):</strong> The average angular difference between the simulated and target object orientations. <strong>Lower is better.</strong></li>
+<li><strong>Semantic success:</strong> We use <strong>GPT-6 Astra as an LLM judge</strong> to compare videos of the human demonstration and robot execution. It judges whether the robot completes the intended interaction, even if its posture, grasp or timing differs. Each task receives a <strong>PASS or FAIL</strong>, and we report the percentage that pass. <strong>Higher is better.</strong></li>
+</ul>
+<p>We average object-tracking errors equally across tasks.</p>
+</div>
+</section>
+<section id="method" class="outline-section">
+<h2 id="2-comparing-agentic-workflows-for-humanoid-retargeting">3. Motion refinement with simulation feedback</h2>
+<p>We inspect the intermediate output of <strong>Codex</strong> as it refines the clothes-stand interaction. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. The architecture below shows how Codex generates motion and control code from the human demonstration and an initial kinematic reference. It tests the code in simulation and inspects execution images, object-tracking errors and contact measurements before the next revision.</p>
+<figure class="refinement-panel" data-architecture><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/single-agent-loop.svg" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/single-agent-loop.svg" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="1400" height="480" loading="lazy"></a><figcaption class="publication-caption"><strong>Fig. 3.</strong> Single-agent motion refinement through simulation feedback. Selected trials from one recorded Codex session.</figcaption></figure>
+<h3 id="refining-contact-support-motion">3.1 Revisions correct contact, support and motion</h3>
 
 
 <figure class="refinement-panel" id="refinement-figure-5"><div class="consideration-grid"><article class="consideration-card" id="refinement-5a"><div class="consideration-label"><span>(a)</span> Starting pose</div><a class="consideration-image" href="assets/refinement/consideration-1.png" aria-label="Enlarge: Clothes stand · before execution: Feet fitted to the floor."><img src="assets/refinement/consideration-1.png" alt="Clothes stand · before execution: Feet fitted to the floor." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="54" cy="70.5" rx="8" ry="3.75"/><path d="M 25 59.25 L 54 70.5"/><circle cx="25" cy="59.25" r="3.2"/><text x="25" y="59.25">a</text></svg></a><h4>Prepare the clothes-stand lift</h4><p class="consideration-decision">The agent corrects foot support and hand clearance before stepping. Root height, leg posture and finger placement change while the object’s initial pose stays fixed.</p></article><article class="consideration-card" id="refinement-5b"><div class="consideration-label"><span>(b)</span> Contact acquisition</div><a class="consideration-image" href="assets/refinement/consideration-footcontact-v2.png" aria-label="Enlarge: Right foot contacts the bin near its rim."><img src="assets/refinement/consideration-footcontact-v2.png" alt="Right foot contacts the bin near its rim." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="60" cy="41.25" rx="10" ry="9.0"/><path d="M 24 20.25 L 60 41.25"/><circle cx="24" cy="20.25" r="3.2"/><text x="24" y="20.25">b</text></svg></a><h4>Tilt a bin with the right foot</h4><p class="consideration-decision">Foot placement and leg motion establish contact near the rim to tilt the bin. The other foot provides support while the right foot directs the interaction.</p></article><article class="consideration-card" id="refinement-5c"><div class="consideration-label"><span>(c)</span> Maintaining contact</div><a class="consideration-image" href="assets/refinement/consideration-boxhold-v2.png" aria-label="Enlarge: Fingers and palm support the box during lifting."><img src="assets/refinement/consideration-boxhold-v2.png" alt="Fingers and palm support the box during lifting." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="54" cy="40.5" rx="10" ry="9.75"/><path d="M 23 22.5 L 54 40.5"/><circle cx="23" cy="22.5" r="3.2"/><text x="23" y="22.5">c</text></svg></a><h4>Lift and turn a large box</h4><p class="consideration-decision">Both hands support the raised box through object-relative arm targets. The controller maintains the grip as the load transfers from the floor to the arms.</p></article><article class="consideration-card" id="refinement-5d"><div class="consideration-label"><span>(d)</span> Whole-body coordination</div><a class="consideration-image" href="assets/refinement/consideration-coordination-v2.png" aria-label="Enlarge: Upright G1 steps while carrying a wooden chair by its backrest."><img src="assets/refinement/consideration-coordination-v2.png" alt="Upright G1 steps while carrying a wooden chair by its backrest." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="56" cy="40.5" rx="18" ry="20.25"/><path d="M 83 15.75 L 56 40.5"/><circle cx="83" cy="15.75" r="3.2"/><text x="83" y="15.75">d</text></svg></a><h4>Carry and place a wooden chair</h4><p class="consideration-decision">Pelvis-position feedback steers the whole-body reference while arm IK follows the backrest rail. The body advances with the chair while the hand maintains its grasp.</p></article><article class="consideration-card" id="refinement-5e"><div class="consideration-label"><span>(e)</span> Timing and feedback</div><a class="consideration-image" href="assets/refinement/consideration-timing-v2.png" aria-label="Enlarge: Bimanual contact during the slower rocking phase."><img src="assets/refinement/consideration-timing-v2.png" alt="Bimanual contact during the slower rocking phase." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="39" cy="42.75" rx="10" ry="7.5"/><path d="M 79 21.75 L 39 42.75"/><circle cx="79" cy="21.75" r="3.2"/><text x="79" y="21.75">e</text></svg></a><h4>Rock a wooden chair</h4><p class="consideration-decision">The agent slows the rocking phase and uses object-pose feedback to follow the tilt. Hand opening is staggered as the chair returns upright.</p></article><article class="consideration-card" id="refinement-5f"><div class="consideration-label"><span>(f)</span> Placement and release</div><a class="consideration-image" href="assets/refinement/consideration-6.png" aria-label="Enlarge: Floor lamp · after release: Open hand after placement."><img src="assets/refinement/consideration-6.png" alt="Floor lamp · after release: Open hand after placement." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="40" cy="32.25" rx="21" ry="10.5"/><path d="M 18 14.25 L 40 32.25"/><circle cx="18" cy="14.25" r="3.2"/><text x="18" y="14.25">f</text></svg></a><h4>Set down a floor lamp</h4><p class="consideration-decision">The agent adjusts the base orientation and waits for the lamp to settle before opening the fingers. The hand then withdraws while the floor supports the lamp.</p></article></div><figcaption class="publication-caption"><strong>Fig. 4.</strong> Motion and control revisions across six humanoid–object interactions.</figcaption></figure>
 
 
-<h3 id="how-does-the-reference-change">2.3 Preserving object motion with a different posture</h3>
+<h3 id="how-does-the-reference-change">3.2 Preserving object motion with a different posture</h3>
 <figure class="refinement-panel" id="object-motion-comparison">
 <video controls autoplay muted loop playsinline preload="metadata" poster="walkthrough-media/object-path-comparison/cutting-board-overlay-hd.jpg" src="walkthrough-media/object-path-comparison/cutting-board-overlay-hd.mp4" aria-label="Shaded human and humanoid overlay with a hand close-up and synchronized 3D object paths" style="display:block;width:100%;height:auto;border-radius:12px"></video>
 <figcaption class="publication-caption"><strong>Fig. 5.</strong> Time-aligned human (purple) and G1 (teal) motions, with a grasp close-up and object paths. Human poses are registered to the scaled reference-object frame; robot execution is unchanged.</figcaption>
 </figure>
 </section>
-<section id="evaluation-metrics" class="outline-section">
-<h2 id="dynamics-metrics">3. Evaluation metrics</h2>
-<p>We evaluate all methods on <strong>20 HUMOTO and 20 OMOMO tasks</strong> using object-tracking error and semantic success. Object tracking compares the simulated object motion with the demonstrated trajectory scaled for G1. However, the robot may move at a different speed than the human, so we do not require the object to reach each position at the same time as in the human demonstration. Instead, we compare corresponding stages of the object’s motion.</p>
-<ul>
-<li><strong>Mean ADD (cm):</strong> The average distance between corresponding points on the object at aligned poses. It captures both position and orientation error. <strong>Lower is better.</strong></li>
-<li><strong>Position error (cm):</strong> The average distance between the simulated and target object positions. <strong>Lower is better.</strong></li>
-<li><strong>Orientation error (°):</strong> The average angular difference between the simulated and target object orientations. <strong>Lower is better.</strong></li>
-<li><strong>Semantic success:</strong> Astra compares the human SMPL video with the executed robot video and judges whether the robot completes the intended task. Each task receives a <strong>PASS or FAIL</strong> judgment. Across tasks, we report the percentage that pass. <strong>Higher is better.</strong></li>
-</ul>
-<p>We average object-tracking errors equally across tasks.</p>
-</section>
+
 <section id="refinement-results" class="outline-section">
 <h2 id="5-quantitative-results">4. Iterative refinement drives retargeting success</h2>
 
