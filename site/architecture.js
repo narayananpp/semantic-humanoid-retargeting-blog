@@ -27,7 +27,7 @@
           <div class="loop-inputs">
             <div class="loop-input" data-loop-node="human"><h4>Human demonstration <span>SMPL</span></h4><video data-architecture-clip="human" muted autoplay loop playsinline preload="none" poster="architecture-media/human.jpg" src="architecture-media/human.mp4" aria-label="Human clothes-stand demonstration"></video></div>
             <div class="loop-retarget">↓ <span>Kinematic retargeting<br><b>HOI-Retarget</b></span></div>
-            <div class="loop-input" data-loop-node="initial"><h4>HOI-Retarget reference<span class="loop-input-space">Joint space</span></h4><video data-architecture-clip="initial" muted autoplay loop playsinline preload="none" poster="architecture-media/kinematic.jpg" src="architecture-media/kinematic.mp4" aria-label="Initial kinematic humanoid reference"></video></div>
+            <div class="loop-input" data-loop-node="initial"><h4>Humanoid Kinematic reference</h4><video data-architecture-clip="initial" muted autoplay loop playsinline preload="none" poster="architecture-media/kinematic.jpg" src="architecture-media/kinematic.mp4" aria-label="Initial kinematic humanoid reference"></video></div>
           </div>
           <div class="loop-agent loop-box" data-loop-node="agent"><h4>Astra</h4></div>
           <div class="loop-reference loop-box" data-loop-node="reference"><h4>End-effector references</h4></div>
