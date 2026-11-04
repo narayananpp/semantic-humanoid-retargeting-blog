@@ -888,5 +888,20 @@
     "path": "architecture-media/final-placement.mp4",
     "bytes": 128321,
     "sha256": "44e4e7819d86277c7c344636fe0ba905a8c4f9315e8f42b4ced1279cb5b1886f"
+  },
+  {
+    "path": "architecture-trace/006.mp4",
+    "bytes": 1007233,
+    "sha256": "6b7505d0d30a5a86d00dcd7814d860c42ec026a808a467eb0d6cdacb043181e6"
+  },
+  {
+    "path": "architecture-trace/002.mp4",
+    "bytes": 1033938,
+    "sha256": "020da6f2a0ea6501bceda88a38a24a628a7347af5e2490dc7c2d204fc6c70623"
+  },
+  {
+    "path": "architecture-trace/001.mp4",
+    "bytes": 984330,
+    "sha256": "2a3c297b7a1c28770209b4377e98c6247cd4da27d59b9bfedb3cc0484e360186"
   }
 ]

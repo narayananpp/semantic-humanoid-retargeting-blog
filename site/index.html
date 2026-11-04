@@ -9,7 +9,7 @@
   <title>HuMoTAR: Affordance-Aware Semantic Retargeting for Humanoid-Object Interaction</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
   <script src="theme.js?v=1"></script>
-  <link rel="stylesheet" href="styles.css?v=intro-selector-1">
+  <link rel="stylesheet" href="styles.css?v=single-loop-1">
   <link rel="stylesheet" href="experience.css?v=uniform-captions-2">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -24,7 +24,7 @@
 <a href="#reference-setup">1. Retargeting should preserve the task, not the motion</a>
 <a class="subsection" href="#carry-and-place-a-chair">Carry and place a chair</a>
 <a class="subsection" href="#lift-carry-and-place-a-clothes-stand">Lift, carry and place a clothes stand</a>
-<a href="#method">2. Agents refine motion and control through simulation feedback</a>
+<a href="#method">2. Motion refinement with simulation feedback</a>
 <a href="#evaluation-metrics">3. Evaluation metrics</a>
 <a href="#agent-diagnosis">4. Simulation feedback guides grasp, posture and timing</a>
 <a class="subsection" href="#kinematic-to-dynamic">4.1 Agents revise motion and control code after each simulation</a>
@@ -163,7 +163,9 @@
 <p>These examples illustrate the gap between kinematic retargeting and physical execution. We execute HOI-Retarget’s kinematic references with SPIDER in physics simulation and compare against HuMoTAR (Figs. 1 and 2). We find that SPIDER fails to complete either task, while HuMoTAR successfully executes both.</p>
 </section>
 <section id="method" class="outline-section">
-<h2 id="2-comparing-agentic-workflows-for-humanoid-retargeting">2. Agents refine motion and control through simulation feedback</h2>
+<h2 id="2-comparing-agentic-workflows-for-humanoid-retargeting">2. Motion refinement with simulation feedback</h2>
+<figure class="refinement-panel" data-architecture><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/single-agent-loop.svg" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/single-agent-loop.svg" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="1400" height="480" loading="lazy"></a><figcaption class="publication-caption"><strong>Fig. 3.</strong> Single-agent motion refinement through simulation feedback. Selected trials from one recorded Codex session.</figcaption></figure>
+<h3 id="refinement-configurations">Configurations of the refinement loop</h3>
 
 
 <span id="configurations" class="section-anchor"></span>
@@ -183,7 +185,7 @@
 <figure id="refinement-loop" class="configuration-figure">
             <div class="configuration-grid" id="configuration-diagrams"><article id="configuration-one-shot" class="configuration-card"></article><article id="configuration-plain" class="configuration-card"></article><article id="configuration-ensemble" class="configuration-card"></article><article id="configuration-collaborative" class="configuration-card"></article></div>
             <noscript><p class="comparison">Enable JavaScript to step through the four configurations. Their inputs and feedback loops are described above.</p></noscript>
-            <figcaption class="publication-caption"><strong>Fig. 3.</strong> Four retargeting configurations: Astra one-shot, Codex, independent swarm and collaborative swarm.</figcaption>
+            <figcaption class="publication-caption"><strong>Fig. 4.</strong> Four retargeting configurations: Astra one-shot, Codex, independent swarm and collaborative swarm.</figcaption>
           </figure>
 
 </section>
@@ -207,9 +209,9 @@
 <h3 id="kinematic-to-dynamic">4.1 Agents revise motion and control code after each simulation</h3>
 
 
-<figure class="refinement-panel" data-architecture><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/agentic-pipeline.png" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/agentic-pipeline.png" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="7440" height="3400" loading="lazy"></a><figcaption class="publication-caption"><strong>Fig. 4.</strong> HuMoTAR architecture for iterative motion and control refinement.</figcaption></figure>
 
-<p>The architecture above shows how Astra generates motion and control code from a human demonstration and an initial kinematic reference (Fig. 4). The agent tests each revision in simulation and uses the resulting feedback to adjust grasp placement, body posture and the timing of lifting or release. The examples below show these changes, the feedback that prompted them and their effect on execution.</p>
+
+<p>The architecture in Fig. 3 shows how Astra generates motion and control code from a human demonstration and an initial kinematic reference. The agent tests each revision in simulation and uses the resulting feedback to adjust grasp placement, body posture and the timing of lifting or release. The examples below show these changes, the feedback that prompted them and their effect on execution.</p>
 <h3 id="refining-contact-support-motion">4.2 Revisions correct contact, support and motion</h3>
 
 
@@ -457,7 +459,7 @@
 <script src="experience-story.js?v=numbered-captions-1" defer></script>
 <script src="text-motion.js?v=1" defer></script>
 <script src="results-evidence.js?v=spider-full-20261102" defer></script>
-<script src="architecture.js?v=1" defer></script>
+<script src="architecture.js?v=single-loop-1" defer></script>
 <script src="autoplay.js?v=takeaway-speed-1" defer></script>
 </body>
 </html>
