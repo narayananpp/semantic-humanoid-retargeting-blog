@@ -41,7 +41,7 @@
           <div class="loop-feedback-grid">
             <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Object-tracking error</h5><div class="loop-chart-tabs" role="group" aria-label="Object tracking measurements"><button type="button" data-loop-chart="error" aria-pressed="true">Mean ADD</button><button type="button" data-loop-chart="path" aria-pressed="false">3D object path</button></div></div><button type="button" class="loop-chart-button" data-loop-open="object" aria-label="Enlarge object-tracking measurements"><span data-loop-object-chart></span></button><div class="loop-chart-legend" data-loop-object-legend></div></div>
             <div class="loop-evidence loop-query-card"><div class="loop-evidence-heading"><h5>Execution feedback</h5></div><div class="loop-feedback-tabs" role="group" aria-label="Simulation measurements"><button type="button" data-feedback="forces">Contact forces</button><button type="button" data-feedback="speed">Object speed</button><button type="button" data-feedback="checks">Grasp checks</button><button type="button" data-feedback="error">Object error</button></div><button type="button" class="loop-chart-button" data-loop-open="feedback" aria-label="Enlarge the simulation measurements"><span data-loop-feedback-chart></span></button><div class="loop-feedback-legend" data-loop-feedback-legend></div></div>
-            <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Agent image</h5></div><div class="loop-inspections"><button type="button" class="loop-image-button" data-loop-open="image" aria-label="Enlarge the image inspected by the agent"><img data-loop-image alt="" loading="lazy"></button><button type="button" class="loop-hand-button" data-loop-open="image" aria-label="View the original image for this hand-detail crop"><span data-loop-hand></span><small>Hand detail (crop)</small></button></div><div class="loop-image-caption" data-loop-image-label></div></div>
+            <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Agent image</h5></div><div class="loop-inspections"><button type="button" class="loop-image-button" data-loop-open="image" aria-label="Enlarge the image inspected by the agent"><img data-loop-image alt="" loading="lazy"></button><button type="button" class="loop-hand-button" data-loop-open="image" aria-label="View the original image for this hand-detail crop"><span data-loop-hand></span></button></div></div>
           </div>
           <div class="loop-query-summary"><span class="loop-query-tag">What the agent checked</span><strong data-loop-query-title></strong><span data-loop-query-values></span></div>
         </div>
@@ -172,8 +172,7 @@
     function drawInspection(){
       const stage=data.stages[current];
       $('[data-loop-image]').src=stage.image;
-      $('[data-loop-image]').alt=stage.image_label;
-      $('[data-loop-image-label]').textContent=stage.image_label;
+      $('[data-loop-image]').alt='Original image inspected by the agent';
       const hand=$('.loop-hand-button');hand.hidden=!stage.hand_image;
       if(stage.hand_image){const [x,y,w,h]=stage.hand_crop;const crop=$('[data-loop-hand]');crop.style.backgroundImage=`url("${stage.hand_image}")`;crop.style.backgroundSize=`${100/w}% ${100/h}%`;crop.style.backgroundPosition=`${100*x/(1-w)}% ${100*y/(1-h)}%`;}
     }
@@ -206,10 +205,10 @@
     function openEvidence(kind){
       const stage=data.stages[current],content=$('.loop-dialog-content');content.replaceChildren();
       let title,description;
-      if(kind==='image'){title='Agent-inspected image';const im=new Image();im.src=$('[data-loop-image]').src;im.alt=$('[data-loop-image]').alt;content.append(im);description=$('[data-loop-image-label]').textContent;}
+      if(kind==='image'){title='Agent-inspected image';const im=new Image();im.src=$('[data-loop-image]').src;im.alt=$('[data-loop-image]').alt;content.append(im);description='';}
       else if(kind==='feedback'){title='Simulation measurements';content.append(feedbackChart(stage));description=feedbackMode==='checks'?'Recorded geometry and pose checks.':'Measurements from a replay verified against the original execution score.';}
       else{title='Object tracking';content.append(objectChart(stage));description=chartMode==='path'?'Drag to rotate. X, Y and Z are in metres.':data.chart_notes[chartMode];}
-      const note=document.createElement('p');note.textContent=description;content.append(note);
+      if(description){const note=document.createElement('p');note.textContent=description;content.append(note);}
       $('.loop-dialog-header h4').textContent=title;dialog.showModal();clearTimeout(timer);rollout.pause();
     }
     ui.querySelectorAll('[data-loop-open]').forEach(button=>button.addEventListener('click',()=>openEvidence(button.dataset.loopOpen)));

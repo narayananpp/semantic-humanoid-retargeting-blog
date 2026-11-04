@@ -21,7 +21,7 @@ before-execution checks from after-execution feedback. The initial evaluation
 uses arrays verified identical to the agent input; it was not run by this agent.
 The Agent image panel shows only the original image-inspection calls.
 The joint-space reference block shows the colored reference preview. The ADD history contains
-all 25 recorded candidates. Hand details are explicitly labelled crops of
+all 25 recorded candidates. Hand details are crops of
 inspected images. Reconstructed plots are not presented as plots the agent
 itself viewed. The exporter in
 `tools/export_architecture_trace.py` checks those scores and retains source hashes.
