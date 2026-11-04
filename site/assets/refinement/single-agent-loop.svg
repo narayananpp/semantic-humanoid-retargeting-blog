@@ -1,19 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="480" viewBox="0 0 1400 480" role="img" aria-labelledby="title desc">
-<title id="title">Single-agent motion refinement through simulation feedback</title><desc id="desc">A human demonstration and HOI-Retarget reference enter Astra. Generated body references go to SONIC; wrist poses go through inverse kinematics and arm and finger targets go to joint impedance control. MuJoCo records the execution. Images, object-tracking errors and contact measurements return to Astra for the next revision.</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#167c77"/></marker></defs>
-<rect x="1" y="1" width="1398" height="478" rx="15" fill="#faf9f6" stroke="#d7d8ce"/>
-<g font-family="Arial,sans-serif" fill="#242620">
-<text x="30" y="43" font-size="23" font-weight="bold">Motion refinement through simulation feedback</text>
-<g fill="#fff" stroke="#cdd1cc"><rect x="30" y="85" width="200" height="75" rx="8"/><rect x="30" y="222" width="200" height="75" rx="8"/><rect x="500" y="108" width="210" height="165" rx="8"/><rect x="760" y="108" width="220" height="165" rx="8"/><rect x="1030" y="108" width="335" height="165" rx="8"/></g>
-<rect x="280" y="108" width="170" height="165" rx="8" fill="#fbf3df" stroke="#c5a55c"/>
-<text x="130" y="117" text-anchor="middle" font-size="17" font-weight="bold">Human demonstration</text><text x="130" y="143" text-anchor="middle" font-size="14">SMPL</text>
-<text x="130" y="252" text-anchor="middle" font-size="17" font-weight="bold">Humanoid reference</text><text x="130" y="278" text-anchor="middle" font-size="14">Kinematic motion</text>
-<text x="144" y="188" font-size="12">HOI-Retarget</text><text x="144" y="204" font-size="11">Kinematic retargeting</text>
-<text x="365" y="153" text-anchor="middle" font-size="22" font-weight="bold">GPT-6 Astra</text><text x="365" y="193" text-anchor="middle" font-size="14">Writes and revises</text><text x="365" y="215" text-anchor="middle" font-size="14">motion + control code</text>
-<text x="605" y="141" text-anchor="middle" font-size="16" font-weight="bold">Body reference</text><text x="605" y="184" text-anchor="middle" font-size="15">Wrist poses → IK</text><text x="605" y="211" text-anchor="middle" font-size="13">Arm joint targets</text><text x="605" y="247" text-anchor="middle" font-size="15">Finger targets</text>
-<text x="870" y="146" text-anchor="middle" font-size="19" font-weight="bold">SONIC</text><text x="870" y="169" text-anchor="middle" font-size="13">Whole-body policy</text><text x="870" y="220" text-anchor="middle" font-size="18" font-weight="bold">Joint impedance</text><text x="870" y="246" text-anchor="middle" font-size="13">Arms + fingers</text>
-<text x="1197" y="166" text-anchor="middle" font-size="22" font-weight="bold">MuJoCo rollout</text><text x="1197" y="203" text-anchor="middle" font-size="15">Executed robot + object motion</text>
-<rect x="280" y="345" width="1085" height="100" rx="10" fill="#eaf2ef" stroke="#167c77"/><text x="305" y="379" font-size="19" font-weight="bold" fill="#167c77">Simulation feedback</text><text x="305" y="414" font-size="16">Object-tracking errors + paths</text><text x="720" y="414" font-size="16">Contact + support forces</text><text x="1100" y="414" font-size="16">Inspected images</text>
-</g>
-<g stroke="#167c77" stroke-width="2" fill="none" marker-end="url(#arrow)"><path d="M130 160V217"/><path d="M230 122H253V185H275"/><path d="M230 259H253V195H275"/><path d="M450 190H495"/><path d="M710 150H755"/><path d="M710 230H755"/><path d="M980 190H1025"/><path d="M1197 273V340"/><path d="M365 345V278"/></g>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="440" viewBox="0 0 1400 440" role="img" aria-labelledby="title desc">
+<title id="title">HuMoTAR refinement loop</title><desc id="desc">Human and kinematic references enter Astra. Wrist references pass through IK to joint targets. Body and finger references supply targets directly. SONIC and joint impedance execute the motion in MuJoCo. Recorded queries, images and object-tracking measurements return to Astra.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#167c77"/></marker></defs>
+<rect width="1400" height="440" rx="12" fill="#faf9f6"/>
+<rect x="20" y="40" width="170" height="80" rx="8" fill="#fff" stroke="#bcc9c3"/>
+<text x="105.0" y="86.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#242620">Human · SMPL</text>
+<rect x="20" y="205" width="170" height="80" rx="8" fill="#fff" stroke="#bcc9c3"/>
+<text x="105.0" y="251.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#242620">Kinematic reference</text>
+<text x="105" y="154" text-anchor="middle" font-family="Arial" font-size="13">Kinematic retargeting</text><text x="105" y="174" text-anchor="middle" font-family="Arial" font-size="13">HOI-Retarget</text>
+<path d="M105 120V135" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M105 180V200" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="245" y="120" width="110" height="95" rx="8" fill="#fbf3df" stroke="#bcc9c3"/>
+<text x="300.0" y="173.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#242620">Astra</text>
+<rect x="400" y="120" width="150" height="95" rx="8" fill="#fff" stroke="#bcc9c3"/>
+<text x="475.0" y="173.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#242620">References</text>
+<rect x="595" y="120" width="75" height="95" rx="8" fill="#fff" stroke="#bcc9c3"/>
+<text x="632.5" y="173.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#242620">IK</text>
+<rect x="715" y="120" width="140" height="95" rx="8" fill="#fff" stroke="#bcc9c3"/>
+<text x="785.0" y="173.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#242620">Joint targets</text>
+<rect x="900" y="105" width="170" height="125" rx="8" fill="#fff" stroke="#bcc9c3"/>
+<text x="985.0" y="161.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#242620">SONIC</text>
+<text x="985.0" y="186.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#242620">Joint impedance</text>
+<rect x="1115" y="105" width="255" height="125" rx="8" fill="#fff" stroke="#bcc9c3"/>
+<text x="1242.5" y="173.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#242620">MuJoCo rollout</text>
+<path d="M190 80H215V150H240" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M190 245H215V185H240" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M355 167H395" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M550 167H590" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M670 167H710" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M855 167H895" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M1070 167H1110" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M475 120V70H785V115" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="630" y="60" text-anchor="middle" font-family="Arial" font-size="12">Body + fingers</text>
+<rect x="245" y="310" width="1125" height="105" rx="8" fill="#eaf2ef" stroke="#bcc9c3"/>
+<text x="807.5" y="356.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#242620">Simulation feedback</text>
+<text x="807.5" y="381.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#242620">Object-tracking error · Recorded queries · Inspected images</text>
+<path d="M1242 230V305" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M300 310V220" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
 </svg>

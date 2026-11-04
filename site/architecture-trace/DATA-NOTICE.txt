@@ -11,10 +11,12 @@ measurements here are shared under those terms:
 https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 Robot videos are rendered from recorded controller executions or verified
-replays. The three intermediate replays and the final replay reproduce the
-original recorded mean ADD. Plots are reconstructed from these measurements;
+replays. The four intermediate replays and the final replay reproduce the
+original recorded mean ADD. The initial evaluation uses verified identical input arrays. The mean ADD
+history uses all recorded candidates. Plots are reconstructed from measurements;
 they are not presented as plots the agent itself viewed. Inspected images are
-resized versions of the original image-inspection inputs. Agent messages are
+resized versions of the original image-inspection inputs. Hand details are
+labelled display crops, not separate image-inspection calls. Agent messages are
 verbatim excerpts, with event lines and source hashes in trace.json.
 
 No human body models, model weights, scene meshes or private run archives are

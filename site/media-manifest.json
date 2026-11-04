@@ -890,9 +890,14 @@
     "sha256": "44e4e7819d86277c7c344636fe0ba905a8c4f9315e8f42b4ced1279cb5b1886f"
   },
   {
-    "path": "architecture-trace/006.mp4",
-    "bytes": 1007233,
-    "sha256": "6b7505d0d30a5a86d00dcd7814d860c42ec026a808a467eb0d6cdacb043181e6"
+    "path": "architecture-trace/025.mp4",
+    "bytes": 1377234,
+    "sha256": "f8d9bcee5399addeb950f3fee4551dd4f19a86e99f0e9e1ab92c5dddfb3b717c"
+  },
+  {
+    "path": "architecture-trace/003.mp4",
+    "bytes": 837577,
+    "sha256": "17bff198534894a8ef031cffc327f709e0f6a8ec298e0a7b22b514a99d052a71"
   },
   {
     "path": "architecture-trace/002.mp4",

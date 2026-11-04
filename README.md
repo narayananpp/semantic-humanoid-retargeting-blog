@@ -15,10 +15,14 @@ to `main`.
 
 The interactive architecture (`site/architecture.js`) uses a recorded single-Codex
 clothes-stand run. Its public data lives in `site/architecture-trace/trace.json`.
-Trials 001, 002, 006 and 023 retain their original scores and agent excerpts.
-Images come from the original image-inspection calls. Feedback curves are
-reconstructed from replays verified against the recorded mean ADD; they are not
-claimed to be plots the agent itself viewed. The exporter in
+Initial, iterations 001, 002, 003, the last iteration 025, and the retained
+result 023 retain verified scores. Query cards cite original events and distinguish
+before-execution checks from after-execution feedback. The initial evaluation
+uses arrays verified identical to the agent input; it was not run by this agent.
+Images come from the original image-inspection calls. The ADD history contains
+all 25 recorded candidates. Hand details are explicitly labelled crops of
+inspected images. Reconstructed plots are not presented as plots the agent
+itself viewed. The exporter in
 `tools/export_architecture_trace.py` checks those scores and retains source hashes.
 The final video reuses the existing single-Codex baseline recording. Only rendered
 media and measurements are published, with no new model or scene assets.
