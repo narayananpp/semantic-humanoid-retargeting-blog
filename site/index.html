@@ -25,15 +25,14 @@
 <a class="subsection" href="#carry-and-place-a-chair">Carry and place a chair</a>
 <a class="subsection" href="#lift-carry-and-place-a-clothes-stand">Lift, carry and place a clothes stand</a>
 <a href="#method">2. Motion refinement with simulation feedback</a>
+<a class="subsection" href="#refinement-configurations">2.1 Retargeting methods</a>
+<a class="subsection" href="#refining-contact-support-motion">2.2 Revisions correct contact, support and motion</a>
+<a class="subsection" href="#how-does-the-reference-change">2.3 Preserving object motion with a different posture</a>
 <a href="#evaluation-metrics">3. Evaluation metrics</a>
-<a href="#agent-diagnosis">4. Simulation feedback guides grasp, posture and timing</a>
-<a class="subsection" href="#kinematic-to-dynamic">4.1 Agents revise motion and control code after each simulation</a>
-<a class="subsection" href="#refining-contact-support-motion">4.2 Revisions correct contact, support and motion</a>
-<a class="subsection" href="#how-does-the-reference-change">4.3 Refined references follow the executed grasp more closely</a>
-<a href="#refinement-results">5. Iterative refinement drives retargeting success</a>
-<a class="subsection" href="#comparison-results">5.1 Codex achieves 75% semantic success</a>
-<a href="#experience">6. Prior experience improves refinement on new tasks</a>
-<a href="#discussion">7. Discussion</a>
+<a href="#refinement-results">4. Iterative refinement drives retargeting success</a>
+<a class="subsection" href="#comparison-results">4.1 Codex achieves 75% semantic success</a>
+<a href="#experience">5. Prior experience improves refinement on new tasks</a>
+<a href="#discussion">6. Discussion</a>
 <a class="subsection" href="#refinement-and-swarms">Iterative refinement with simulation feedback</a>
 <a class="subsection" href="#rl-fine-tuning">Refined references can support RL fine-tuning</a>
 <a class="subsection" href="#failure-analysis">Hand morphology limits some interactions</a>
@@ -162,7 +161,7 @@
 <h2 id="2-comparing-agentic-workflows-for-humanoid-retargeting">2. Motion refinement with simulation feedback</h2>
 <p>We inspect the intermediate output of <strong>Codex</strong> as it refines the clothes-stand interaction. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. The architecture below shows how Codex generates motion and control code from the human demonstration and an initial kinematic reference. It tests the code in simulation and inspects execution images, object-tracking errors and contact measurements before the next revision.</p>
 <figure class="refinement-panel" data-architecture><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/single-agent-loop.svg" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/single-agent-loop.svg" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="1400" height="480" loading="lazy"></a><figcaption class="publication-caption"><strong>Fig. 3.</strong> Single-agent motion refinement through simulation feedback. Selected trials from one recorded Codex session.</figcaption></figure>
-<h3 id="refinement-configurations">Retargeting methods</h3>
+<h3 id="refinement-configurations">2.1 Retargeting methods</h3>
 <span id="configurations" class="section-anchor"></span>
 <p>We study three approaches to humanoid retargeting:</p>
 <ul>
@@ -176,6 +175,17 @@
 
 
 
+<h3 id="refining-contact-support-motion">2.2 Revisions correct contact, support and motion</h3>
+
+
+<figure class="refinement-panel" id="refinement-figure-5"><div class="consideration-grid"><article class="consideration-card" id="refinement-5a"><div class="consideration-label"><span>(a)</span> Starting pose</div><a class="consideration-image" href="assets/refinement/consideration-1.png" aria-label="Enlarge: Clothes stand · before execution: Feet fitted to the floor."><img src="assets/refinement/consideration-1.png" alt="Clothes stand · before execution: Feet fitted to the floor." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="54" cy="70.5" rx="8" ry="3.75"/><path d="M 25 59.25 L 54 70.5"/><circle cx="25" cy="59.25" r="3.2"/><text x="25" y="59.25">a</text></svg></a><h4>Prepare the clothes-stand lift</h4><p class="consideration-decision">The agent corrects foot support and hand clearance before stepping. Root height, leg posture and finger placement change while the object’s initial pose stays fixed.</p></article><article class="consideration-card" id="refinement-5b"><div class="consideration-label"><span>(b)</span> Contact acquisition</div><a class="consideration-image" href="assets/refinement/consideration-footcontact-v2.png" aria-label="Enlarge: Right foot contacts the bin near its rim."><img src="assets/refinement/consideration-footcontact-v2.png" alt="Right foot contacts the bin near its rim." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="60" cy="41.25" rx="10" ry="9.0"/><path d="M 24 20.25 L 60 41.25"/><circle cx="24" cy="20.25" r="3.2"/><text x="24" y="20.25">b</text></svg></a><h4>Tilt a bin with the right foot</h4><p class="consideration-decision">Foot placement and leg motion establish contact near the rim to tilt the bin. The other foot provides support while the right foot directs the interaction.</p></article><article class="consideration-card" id="refinement-5c"><div class="consideration-label"><span>(c)</span> Maintaining contact</div><a class="consideration-image" href="assets/refinement/consideration-boxhold-v2.png" aria-label="Enlarge: Fingers and palm support the box during lifting."><img src="assets/refinement/consideration-boxhold-v2.png" alt="Fingers and palm support the box during lifting." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="54" cy="40.5" rx="10" ry="9.75"/><path d="M 23 22.5 L 54 40.5"/><circle cx="23" cy="22.5" r="3.2"/><text x="23" y="22.5">c</text></svg></a><h4>Lift and turn a large box</h4><p class="consideration-decision">Both hands support the raised box through object-relative arm targets. The controller maintains the grip as the load transfers from the floor to the arms.</p></article><article class="consideration-card" id="refinement-5d"><div class="consideration-label"><span>(d)</span> Whole-body coordination</div><a class="consideration-image" href="assets/refinement/consideration-coordination-v2.png" aria-label="Enlarge: Upright G1 steps while carrying a wooden chair by its backrest."><img src="assets/refinement/consideration-coordination-v2.png" alt="Upright G1 steps while carrying a wooden chair by its backrest." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="56" cy="40.5" rx="18" ry="20.25"/><path d="M 83 15.75 L 56 40.5"/><circle cx="83" cy="15.75" r="3.2"/><text x="83" y="15.75">d</text></svg></a><h4>Carry and place a wooden chair</h4><p class="consideration-decision">Pelvis-position feedback steers the whole-body reference while arm IK follows the backrest rail. The body advances with the chair while the hand maintains its grasp.</p></article><article class="consideration-card" id="refinement-5e"><div class="consideration-label"><span>(e)</span> Timing and feedback</div><a class="consideration-image" href="assets/refinement/consideration-timing-v2.png" aria-label="Enlarge: Bimanual contact during the slower rocking phase."><img src="assets/refinement/consideration-timing-v2.png" alt="Bimanual contact during the slower rocking phase." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="39" cy="42.75" rx="10" ry="7.5"/><path d="M 79 21.75 L 39 42.75"/><circle cx="79" cy="21.75" r="3.2"/><text x="79" y="21.75">e</text></svg></a><h4>Rock a wooden chair</h4><p class="consideration-decision">The agent slows the rocking phase and uses object-pose feedback to follow the tilt. Hand opening is staggered as the chair returns upright.</p></article><article class="consideration-card" id="refinement-5f"><div class="consideration-label"><span>(f)</span> Placement and release</div><a class="consideration-image" href="assets/refinement/consideration-6.png" aria-label="Enlarge: Floor lamp · after release: Open hand after placement."><img src="assets/refinement/consideration-6.png" alt="Floor lamp · after release: Open hand after placement." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="40" cy="32.25" rx="21" ry="10.5"/><path d="M 18 14.25 L 40 32.25"/><circle cx="18" cy="14.25" r="3.2"/><text x="18" y="14.25">f</text></svg></a><h4>Set down a floor lamp</h4><p class="consideration-decision">The agent adjusts the base orientation and waits for the lamp to settle before opening the fingers. The hand then withdraws while the floor supports the lamp.</p></article></div><figcaption class="publication-caption"><strong>Fig. 4.</strong> Motion and control revisions across six humanoid–object interactions.</figcaption></figure>
+
+
+<h3 id="how-does-the-reference-change">2.3 Preserving object motion with a different posture</h3>
+<figure class="refinement-panel" id="object-motion-comparison">
+<video controls autoplay muted loop playsinline preload="metadata" poster="walkthrough-media/object-path-comparison/cutting-board.jpg" src="walkthrough-media/object-path-comparison/cutting-board.mp4" aria-label="Time-aligned human and humanoid cutting-board motions with overlaid 3D object trajectories" style="display:block;width:100%;height:auto;border-radius:12px"></video>
+<figcaption class="publication-caption"><strong>Fig. 5.</strong> G1 examines a cutting board with a different posture while closely following the human’s object motion. Playback is aligned by object motion; the human object trajectory is scaled for G1.</figcaption>
+</figure>
 </section>
 <section id="evaluation-metrics" class="outline-section">
 <h2 id="dynamics-metrics">3. Evaluation metrics</h2>
@@ -188,42 +198,8 @@
 </ul>
 <p>We average object-tracking errors equally across tasks.</p>
 </section>
-<section id="agent-diagnosis" class="outline-section execution-analysis">
-<h2 id="4-qualitative-results">4. Simulation feedback guides grasp, posture and timing</h2>
-
-
-<span id="reference-deviation" class="section-anchor"></span>
-
-<h3 id="kinematic-to-dynamic">4.1 Agents revise motion and control code after each simulation</h3>
-
-
-
-
-<p>The architecture in Fig. 3 shows how Astra generates motion and control code from a human demonstration and an initial kinematic reference. The agent tests each revision in simulation and uses the resulting feedback to adjust grasp placement, body posture and the timing of lifting or release. The examples below show these changes, the feedback that prompted them and their effect on execution.</p>
-<h3 id="refining-contact-support-motion">4.2 Revisions correct contact, support and motion</h3>
-
-
-<figure class="refinement-panel" id="refinement-figure-5"><div class="consideration-grid"><article class="consideration-card" id="refinement-5a"><div class="consideration-label"><span>(a)</span> Starting pose</div><a class="consideration-image" href="assets/refinement/consideration-1.png" aria-label="Enlarge: Clothes stand · before execution: Feet fitted to the floor."><img src="assets/refinement/consideration-1.png" alt="Clothes stand · before execution: Feet fitted to the floor." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="54" cy="70.5" rx="8" ry="3.75"/><path d="M 25 59.25 L 54 70.5"/><circle cx="25" cy="59.25" r="3.2"/><text x="25" y="59.25">a</text></svg></a><h4>Prepare the clothes-stand lift</h4><p class="consideration-decision">The agent corrects foot support and hand clearance before stepping. Root height, leg posture and finger placement change while the object’s initial pose stays fixed.</p></article><article class="consideration-card" id="refinement-5b"><div class="consideration-label"><span>(b)</span> Contact acquisition</div><a class="consideration-image" href="assets/refinement/consideration-footcontact-v2.png" aria-label="Enlarge: Right foot contacts the bin near its rim."><img src="assets/refinement/consideration-footcontact-v2.png" alt="Right foot contacts the bin near its rim." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="60" cy="41.25" rx="10" ry="9.0"/><path d="M 24 20.25 L 60 41.25"/><circle cx="24" cy="20.25" r="3.2"/><text x="24" y="20.25">b</text></svg></a><h4>Tilt a bin with the right foot</h4><p class="consideration-decision">Foot placement and leg motion establish contact near the rim to tilt the bin. The other foot provides support while the right foot directs the interaction.</p></article><article class="consideration-card" id="refinement-5c"><div class="consideration-label"><span>(c)</span> Maintaining contact</div><a class="consideration-image" href="assets/refinement/consideration-boxhold-v2.png" aria-label="Enlarge: Fingers and palm support the box during lifting."><img src="assets/refinement/consideration-boxhold-v2.png" alt="Fingers and palm support the box during lifting." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="54" cy="40.5" rx="10" ry="9.75"/><path d="M 23 22.5 L 54 40.5"/><circle cx="23" cy="22.5" r="3.2"/><text x="23" y="22.5">c</text></svg></a><h4>Lift and turn a large box</h4><p class="consideration-decision">Both hands support the raised box through object-relative arm targets. The controller maintains the grip as the load transfers from the floor to the arms.</p></article><article class="consideration-card" id="refinement-5d"><div class="consideration-label"><span>(d)</span> Whole-body coordination</div><a class="consideration-image" href="assets/refinement/consideration-coordination-v2.png" aria-label="Enlarge: Upright G1 steps while carrying a wooden chair by its backrest."><img src="assets/refinement/consideration-coordination-v2.png" alt="Upright G1 steps while carrying a wooden chair by its backrest." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="56" cy="40.5" rx="18" ry="20.25"/><path d="M 83 15.75 L 56 40.5"/><circle cx="83" cy="15.75" r="3.2"/><text x="83" y="15.75">d</text></svg></a><h4>Carry and place a wooden chair</h4><p class="consideration-decision">Pelvis-position feedback steers the whole-body reference while arm IK follows the backrest rail. The body advances with the chair while the hand maintains its grasp.</p></article><article class="consideration-card" id="refinement-5e"><div class="consideration-label"><span>(e)</span> Timing and feedback</div><a class="consideration-image" href="assets/refinement/consideration-timing-v2.png" aria-label="Enlarge: Bimanual contact during the slower rocking phase."><img src="assets/refinement/consideration-timing-v2.png" alt="Bimanual contact during the slower rocking phase." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="39" cy="42.75" rx="10" ry="7.5"/><path d="M 79 21.75 L 39 42.75"/><circle cx="79" cy="21.75" r="3.2"/><text x="79" y="21.75">e</text></svg></a><h4>Rock a wooden chair</h4><p class="consideration-decision">The agent slows the rocking phase and uses object-pose feedback to follow the tilt. Hand opening is staggered as the chair returns upright.</p></article><article class="consideration-card" id="refinement-5f"><div class="consideration-label"><span>(f)</span> Placement and release</div><a class="consideration-image" href="assets/refinement/consideration-6.png" aria-label="Enlarge: Floor lamp · after release: Open hand after placement."><img src="assets/refinement/consideration-6.png" alt="Floor lamp · after release: Open hand after placement." width="1440" height="1080" loading="lazy"><svg viewBox="0 0 100 75" aria-hidden="true"><ellipse cx="40" cy="32.25" rx="21" ry="10.5"/><path d="M 18 14.25 L 40 32.25"/><circle cx="18" cy="14.25" r="3.2"/><text x="18" y="14.25">f</text></svg></a><h4>Set down a floor lamp</h4><p class="consideration-decision">The agent adjusts the base orientation and waits for the lamp to settle before opening the fingers. The hand then withdraws while the floor supports the lamp.</p></article></div><figcaption class="publication-caption"><strong>Fig. 4.</strong> Motion and control revisions across six humanoid–object interactions.</figcaption></figure>
-
-</section>
-<section id="refinement-walkthrough-panel" class="outline-section execution-analysis">
-<h3 id="how-does-the-reference-change">4.3 Refined references follow the executed grasp more closely</h3>
-<p>We overlay the <strong>initial kinematic reference in purple</strong> and the <strong>refined reference in blue</strong> with the <strong>physical execution in solid gray</strong>. The spatial separation between them shows where the prescribed and executed robot poses differ at corresponding motion phases. We find that the refined hand path follows the executed grasp more closely. However, body posture can still differ, since the controller must maintain balance.</p>
-<div class="reference-overlay-media">
-  <figure>
-    <a href="assets/refinement/reference-overlay/clothesstand-overlay.png" aria-label="Open the reference and execution overlay at full resolution"><img src="assets/refinement/reference-overlay/clothesstand-overlay.png" alt="Pickup, transport and placement: purple initial reference and blue refined reference overlaid on the solid gray simulated G1" loading="lazy" width="3414" height="2499" style="width:100%;max-width:100%;height:auto;object-fit:contain"></a>
-    <figcaption><strong>(a) Reference and execution.</strong> Initial and refined references overlaid on the same physical execution.</figcaption>
-  </figure>
-  <figure>
-    <img class="reference-overlay-poster" src="assets/refinement/reference-overlay/contact-flow-poster.png" alt="Purple initial and blue refined finger-pad paths around the clothes stand" loading="lazy" width="1920" height="1080">
-    <video controls muted playsinline preload="none" poster="assets/refinement/reference-overlay/contact-flow-poster.png" src="walkthrough-media/reference-overlay/contact-flow.mp4" aria-label="Initial and refined reference motions with left-hand finger-pad paths, at half speed"></video>
-    <figcaption><strong>(b) Reference finger-pad paths.</strong> Initial and refined paths relative to the object, shown at 0.5× speed.</figcaption>
-  </figure>
-</div>
-<p class="publication-caption"><strong>Fig. 5.</strong> Reference refinement in the independent run. The image includes physical execution. The video shows reference geometry, not measured contacts.</p>
-</section>
 <section id="refinement-results" class="outline-section">
-<h2 id="5-quantitative-results">5. Iterative refinement drives retargeting success</h2>
+<h2 id="5-quantitative-results">4. Iterative refinement drives retargeting success</h2>
 
 
 <span id="agent-comparison" class="section-anchor"></span>
@@ -232,7 +208,7 @@
 
 <span id="study-design" class="section-anchor"></span>
 
-<h3 id="comparison-results">5.1 Codex achieves 75% semantic success</h3>
+<h3 id="comparison-results">4.1 Codex achieves 75% semantic success</h3>
 
 
 <div id="dynamics-showcase" class="dynamics-showcase" aria-label="Selected task executions"></div>
@@ -263,18 +239,18 @@
 <td>69.87</td>
 <td>65.61</td>
 <td>58.35</td>
-<td>0/20<br>0.0%</td></tr><tr><th scope="row">Codex<br>2 hours</th>
+<td>0/20<br>0.0%</td></tr><tr><th scope="row">Codex<br>2 hours<br><small>Object tracking: n = 19</small></th>
 <td><strong>15.55</strong></td>
 <td><strong>14.16</strong></td>
 <td><strong>16.46</strong></td>
 <td><strong>14/20<br>70.0%</strong></td></tr></tbody></table></div>
 </div>
-<p class="results-note">The 2-hour Codex object-tracking averages exclude one incomplete OMOMO execution (19 OMOMO tasks; 39 overall). Semantic success includes all 40 tasks.</p>
 
-<p><strong>HOI-Retarget + SPIDER, Astra one-shot and Codex (2 hours) achieve semantic success rates of 17.5%, 2.5% and 75%, respectively.</strong> Their mean object-tracking errors are <strong>42.87 cm</strong>, <strong>62.98 cm</strong> and <strong>12.63 cm</strong>. These results highlight the importance of <strong>iterative refinement with simulation feedback</strong> for successful physical execution.</p>
+
+<p><strong>HOI-Retarget + SPIDER, Astra one-shot and Codex (2 hours) achieve semantic success rates of 17.5%, 2.5% and 75%, respectively.</strong> Their mean object-tracking errors are <strong>42.87 cm</strong>, <strong>62.98 cm</strong> and <strong>12.63 cm</strong> (n = 39). These results highlight the importance of <strong>iterative refinement with simulation feedback</strong> for successful physical execution.</p>
 </section>
 <section id="experience">
-<h2 id="6-exploring-how-prior-experience-improves-retargeting">6. Prior experience improves refinement on new tasks</h2>
+<h2 id="6-exploring-how-prior-experience-improves-retargeting">5. Prior experience improves refinement on new tasks</h2>
 <p>We find that providing <strong>related experience</strong>, in the form of summaries of tested strategies, successes and failures, <strong>aids iterative refinement on a new task</strong>, reducing object-tracking error from 23.35 to 7.77 cm at equal compute and time. We investigate this through a walkthrough of G1 raising a shelf from its side to an upright position. The prior experience comes from <strong>four other furniture interactions</strong>: carrying a table, lifting a chair, and pulling and pushing a chair.</p>
 
 
@@ -290,7 +266,7 @@
 
 </article>
 <section id="discussion" class="outline-section">
-<h2 id="7-discussion">7. Discussion</h2>
+<h2 id="7-discussion">6. Discussion</h2>
 <h3 id="refinement-and-swarms">Iterative refinement with simulation feedback</h3>
 <p><strong>Iterative refinement with simulation feedback improves both object tracking and semantic success over one-shot generation.</strong> It allows agents to optimize their proposed motions, inspect the resulting executions and revise their motion and control code. These results support using agentic models for retargeting beyond generating an initial solution.</p>
 <h3 id="rl-fine-tuning">Refined references could support RL fine-tuning</h3>
