@@ -21,7 +21,7 @@
     <aside class="contents" aria-label="Contents">
       <button class="contents-toggle" aria-expanded="false" aria-controls="contents-links">Contents <span aria-hidden="true">＋</span></button>
       <nav id="contents-links" aria-label="Article sections"><a href="#overview">Key Takeaways</a>
-<a href="#reference-setup">1. Retargeting should preserve the task, not the motion</a>
+<a href="#reference-setup">1. Rethinking Humanoid Retargeting</a>
 <a class="subsection" href="#carry-and-place-a-chair">Carry and place a chair</a>
 <a class="subsection" href="#lift-carry-and-place-a-clothes-stand">Lift, carry and place a clothes stand</a>
 <a href="#method">2. Motion refinement with simulation feedback</a>
@@ -107,35 +107,16 @@
 
 </section>
 <section id="reference-setup" class="outline-section">
-<h2 id="1-rethinking-humanoid-retargeting">1. Retargeting should preserve the task, not the motion</h2>
-
-
+<h2 id="1-rethinking-humanoid-retargeting">1. Rethinking Humanoid Retargeting</h2>
 <span id="hoi-reference" class="section-anchor"></span>
-
-
-
 <span id="kinematic-setup" class="section-anchor"></span>
-
-
-
-<figure class="authored-video four-way-comparison" data-media-id="intro-human-demonstrations"><div class="authored-video-views"><div class="execution-panel"><p>Carry and place a chair<span class="video-mode">Human</span></p><video controls muted playsinline preload="none" aria-label="Carry and place a chair" poster="assets/source-humans/sub15_woodchair_047-454ce8c120.jpg" src="source-human-media/omomo/sub15_woodchair_047.mp4?v=dd7a3f7910" autoplay loop></video></div><div class="execution-panel"><p>Carry and place a chair<span class="video-mode">Humanoid</span></p><video controls muted playsinline preload="none" aria-label="Carry and place a chair" poster="intro-media/chair.jpg" src="intro-media/chair.mp4?v=be4d8e70e9" autoplay loop></video></div><div class="execution-panel"><p>Move a clothes stand<span class="video-mode">Human</span></p><video controls muted playsinline preload="none" aria-label="Move a clothes stand" poster="assets/source-humans/sub10_clothesstand_002-4fbe6f93d1.jpg" src="source-human-media/omomo/sub10_clothesstand_002.mp4?v=7d7b8e30aa" autoplay loop></video></div><div class="execution-panel"><p>Move a clothes stand<span class="video-mode">Humanoid</span></p><video controls muted playsinline preload="none" aria-label="Move a clothes stand" poster="intro-media/stand-kinematic.jpg" src="intro-media/stand-kinematic.mp4" autoplay loop></video></div></div><figcaption>Human demonstrations paired with HOI-Retarget kinematic references.</figcaption></figure>
-
-
-
 <span id="execution-task" class="section-anchor"></span>
-
-<p>We propose <strong>HuMoTAR, an agentic approach to semantic humanoid retargeting</strong>. HuMoTAR agents write, test and iteratively revise motion and control code through <strong>closed-loop simulation feedback</strong>. We posit that frontier agentic models provide useful priors for preserving a motion’s semantic intent while satisfying the robot’s physical constraints.</p>
-<p>The videos above pair human demonstrations of carrying a chair and moving a clothes stand with their retargeted humanoid motions. Since a <em>humanoid differs from a human in proportions, joint limits and actuation</em>, each demonstration must first be adapted to the robot’s body. Existing human-to-humanoid retargeting methods largely formulate this as a <strong>kinematic problem</strong>, fitting the human’s motion to the robot while preserving relevant contacts with the environment. For example, <a href="https://arxiv.org/abs/2609.34674"><strong>HOI-Retarget</strong></a> optimizes the robot’s motion to match the demonstration’s body poses and object-relative contacts. However, this raises the question of <em>what a humanoid should preserve from a demonstration</em>.</p>
-<p>We argue that <strong>retargeting should preserve the intended task rather than the precise movements a human uses to perform it</strong>. Consider a person who carries and places a chair with one hand. The goal is to carry the chair to a target location and place it there, not to reproduce the one-handed grasp. A humanoid may instead use both hands if that better suits its morphology and physical limits. The grasp and posture differ from the demonstration, but the task is unchanged. Concretely, we scale the demonstrated object trajectory to the robot’s size and use it as the target motion, leaving the robot’s contact strategy, posture and controller free to change.</p>
-
-
+<p><em>“We argue that robotics is about enacting changes in the environment, and so retargeted motions should produce the same object trajectory.”</em></p>
+<p>Consider a person carrying a chair with one hand. Retargeting is posed as the task of adapting this demonstration to a humanoid with different proportions, joint limits and strength. Following the view that retargeting should preserve the intended change in the environment, the goal is to move the chair to the target location. The humanoid may use both hands rather than “exactly” reproduce the human’s one-handed grasp motion.</p>
 <span id="execution-setup" class="section-anchor"></span>
-
-
-
 <span id="dynamic-interaction" class="section-anchor"></span>
-
-<p><strong>A kinematically feasible reference is not necessarily dynamically feasible.</strong> <a href="https://arxiv.org/abs/2511.09484"><strong>SPIDER</strong></a> addresses this gap by posing retargeting as a constrained optimization over the robot’s motor commands. Specifically, it samples many candidate command sequences in a physics simulator and keeps those whose simulated motion stays closest to the reference. However, errors in the input reference can lead SPIDER to an incorrect contact strategy, and its open-loop execution is sensitive to the robot’s starting pose. In contrast, <strong>HuMoTAR revises both the motion reference and control code based on the resulting physical execution.</strong></p>
+<p>Current methods largely formulate retargeting as an optimization problem. <a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> fits the robot’s motion to human poses and object-relative contacts. For physical execution, <a href="https://arxiv.org/abs/2511.09484">SPIDER</a> optimizes motor commands through simulation to follow the reference (Figs. 1 and 2). These objectives favor <strong>reproducing the human reference motion</strong>. We instead ask whether <strong>reasoning about the task and the robot’s physical constraints</strong> can help the robot follow the <strong>object reference motion</strong>.</p>
+<p>We explore this through <strong>HuMoTAR</strong>, an agentic approach to retargeting built around two capabilities: <strong>reasoning about how to perform the interaction</strong> and <strong>querying the environment for evidence to guide refinement</strong>. Our key insight is that while the simulator makes feedback available (e.g., images of the robot’s execution), <strong>the agent must decide what to query and how to act on it</strong> (e.g., querying close-up views to inspect and revise a grasp).</p>
 <div class="intro-comparison-viewer" data-intro-comparison>
   <div class="intro-comparison-tabs" role="tablist" aria-label="Choose an interaction" hidden>
     <button type="button" role="tab" id="intro-chair-tab" aria-controls="intro-chair-panel" aria-selected="true">Chair</button>
