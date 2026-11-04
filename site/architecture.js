@@ -209,7 +209,7 @@
       else if(kind==='feedback'){title='Simulation measurements';content.append(feedbackChart(stage));description=feedbackMode==='checks'?'Recorded geometry and pose checks.':'Measurements from a replay verified against the original execution score.';}
       else{title='Object tracking';content.append(objectChart(stage));description=chartMode==='path'?'Drag to rotate. X, Y and Z are in metres.':data.chart_notes[chartMode];}
       if(description){const note=document.createElement('p');note.textContent=description;content.append(note);}
-      $('.loop-dialog-header h4').textContent=title;dialog.showModal();clearTimeout(timer);rollout.pause();
+      $('.loop-dialog-header h4').textContent=title;dialog.showModal();pauseVideos();
     }
     ui.querySelectorAll('[data-loop-open]').forEach(button=>button.addEventListener('click',()=>openEvidence(button.dataset.loopOpen)));
     $('[data-loop-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});dialog.addEventListener('close',()=>{resumeVideos();if(playing)advance();});
@@ -235,25 +235,51 @@
       path(`M ${agent.x} ${f.t-3} V ${agent.b+5}`,'feedback-return');
     }
     new ResizeObserver(connect).observe($('.loop-canvas'));
-    const inputs=Array.from(ui.querySelectorAll('.loop-input video'));
     const videos=Array.from(ui.querySelectorAll('video'));
+    const blocked=new Set();
+    function videoInView(video){
+      const r=video.getBoundingClientRect();
+      return r.width>0&&r.height>0&&r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth;
+    }
     function resumeVideos(){
-      if(!visible||document.hidden||dialog.open||document.documentElement.dataset.media==='off')return;
-      videos.forEach(video=>{video.muted=true;video.defaultMuted=true;video.loop=true;video.autoplay=true;video.play().catch(()=>{});});
+      const allowed=!document.hidden&&!dialog.open&&document.documentElement.dataset.media!=='off';
+      videos.forEach(video=>{
+        const active=allowed&&videoInView(video);
+        video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=true;video.autoplay=active;
+        if(!active){video.pause();return;}
+        if(video.paused)video.play().then(()=>blocked.delete(video)).catch(error=>{
+          if(error.name==='NotAllowedError')blocked.add(video);
+        });
+      });
     }
     function pauseVideos(){
       clearTimeout(timer);
       videos.forEach(video=>{video.autoplay=false;video.pause();});
     }
-    videos.forEach(video=>video.addEventListener('loadedmetadata',resumeVideos));
+    const videoObserver=new IntersectionObserver(resumeVideos,{threshold:[0,.01]});
+    videos.forEach(video=>{
+      video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=true;
+      video.addEventListener('loadedmetadata',resumeVideos);
+      video.addEventListener('canplay',resumeVideos);
+      videoObserver.observe(video);
+    });
     new IntersectionObserver(([entry])=>{
       visible=entry.isIntersecting;
       if(visible&&!document.hidden){resumeVideos();if(playing)advance();}
       else pauseVideos();
-    },{threshold:.15}).observe(ui);
+    },{threshold:0}).observe(ui);
+    let playbackFrame;
+    function refreshPlayback(){cancelAnimationFrame(playbackFrame);playbackFrame=requestAnimationFrame(resumeVideos);}
+    window.addEventListener('scroll',refreshPlayback,{passive:true});
+    window.addEventListener('resize',refreshPlayback,{passive:true});
+    window.addEventListener('pageshow',refreshPlayback);
+    // Retry a muted autoplay blocked by browser policy after the next interaction.
+    for(const event of ['pointerup','keydown'])document.addEventListener(event,()=>{
+      if(blocked.size)resumeVideos();
+    },{passive:true});
     document.addEventListener('visibilitychange',()=>{
       if(document.hidden)pauseVideos();
-      else if(visible){resumeVideos();if(playing)advance();}
+      else{resumeVideos();if(visible&&playing)advance();}
     });
     show(0);
   }
