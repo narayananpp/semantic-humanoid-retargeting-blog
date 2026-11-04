@@ -6,7 +6,7 @@
     const tabs=make('div','showcase-datasets');tabs.setAttribute('role','tablist');tabs.setAttribute('aria-label','Dataset');
     const panel=make('div','showcase-content');panel.id='showcase-motion-panel';panel.setAttribute('role','tabpanel');
     const header=make('div','showcase-header'),player=make('div','showcase-player'),list=make('div','showcase-list');panel.append(header,player,list);root.prepend(tabs,panel);
-    let dataset='humoto',chosen,method='codex';const buttons=[];
+    let dataset='humoto',chosen,method='codex120';const buttons=[];
     function show(row){
       chosen=row.clip;player.querySelectorAll('video').forEach(v=>v.pause());player.replaceChildren();header.replaceChildren();
       list.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.clip===chosen)));
@@ -14,7 +14,7 @@
       const methods=Object.fromEntries(Object.entries(row.methods||{}).filter(([key])=>!['orchestrator','communicating'].includes(key)));
       const picker=make('label','method-choice','Method'),select=make('select');
       select.setAttribute('aria-label','Dynamics method');
-      for(const [key,label] of [['hoi_spider','HOI-Retarget + SPIDER'],['zero_shot','Astra one-shot'],['codex','Codex · 30 min'],['codex120','Codex · 120 min']]){
+      for(const [key,label] of [['hoi_spider','B1: HOI-Retarget + SPIDER'],['zero_shot','B2: Astra one-shot'],['codex','Codex · 30 min'],['codex120','HuMoTAR (Codex, 2 hours)']]){
         if(!methods[key])continue;
         const option=make('option','',label);
         option.value=key;select.append(option);
@@ -26,7 +26,7 @@
         const pair=make('div','source-motion-pair');
         const entries=[];
         if(row.human?.status==='ready') entries.push([row.human,'Human reference · SMPL']);
-        entries.push([execution,execution.label]);
+        entries.push([execution,active==='codex120'?'HuMoTAR (Codex, 2 hours)':execution.label]);
         for(const [media,label] of entries){
           const figure=make('figure','source-motion-card'),video=make('video');
           Object.assign(video,{src:media.video,poster:media.poster||'',controls:true,muted:true,playsInline:true,preload:'none'});
