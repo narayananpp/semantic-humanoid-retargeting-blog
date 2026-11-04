@@ -26,3 +26,7 @@ itself viewed. The exporter in
 `tools/export_architecture_trace.py` checks those scores and retains source hashes.
 The final video reuses the existing single-Codex baseline recording. Only rendered
 media and measurements are published, with no new model or scene assets.
+
+The architecture distinguishes edits to the existing HOI-Retarget joint-space
+reference from wrist-pose IK and directly specified finger joint targets.
+The whole-body reference supplied to SONIC already contains joint angles.

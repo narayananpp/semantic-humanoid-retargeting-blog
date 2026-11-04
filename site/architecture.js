@@ -27,23 +27,22 @@
           <div class="loop-inputs">
             <div class="loop-input" data-loop-node="human"><h4>Human demonstration <span>SMPL</span></h4><video data-architecture-clip="human" muted loop playsinline preload="none" poster="architecture-media/human.jpg" src="architecture-media/human.mp4" aria-label="Human clothes-stand demonstration"></video></div>
             <div class="loop-retarget">↓ <span>Kinematic retargeting<br><b>HOI-Retarget</b></span></div>
-            <div class="loop-input" data-loop-node="initial"><h4>Humanoid reference</h4><video data-architecture-clip="initial" muted loop playsinline preload="none" poster="architecture-media/kinematic.jpg" src="architecture-media/kinematic.mp4" aria-label="Initial kinematic humanoid reference"></video></div>
+            <div class="loop-input" data-loop-node="initial"><h4>HOI-Retarget reference<span class="loop-input-space">Joint space</span></h4><video data-architecture-clip="initial" muted loop playsinline preload="none" poster="architecture-media/kinematic.jpg" src="architecture-media/kinematic.mp4" aria-label="Initial kinematic humanoid reference"></video></div>
           </div>
           <div class="loop-agent loop-box" data-loop-node="agent"><h4>Astra</h4></div>
-          <div class="loop-reference loop-box" data-loop-node="reference"><h4>End-effector references</h4></div>
-          <div class="loop-ik-block loop-box" data-loop-node="ik"><h4>Arm IK</h4></div>
-          <div class="loop-targets loop-box" data-loop-node="targets"><h4>Joint-space reference</h4></div>
-          <div class="loop-control loop-box" data-loop-node="control"><div><h4>SONIC</h4><span class="loop-detail">Whole-body control</span></div><div class="loop-joint-control" data-loop-node="wrist"><h4>Wrist and finger<br>impedance controller</h4></div></div>
+          <div class="loop-motion-group loop-box" data-loop-node="motion"><h4 class="loop-group-title">Motion-generation code</h4><div class="loop-motion-edits"><div class="loop-inner-block" data-loop-node="body-edit"><h4>Refine joint-space motion</h4><span class="loop-detail">Posture · timing</span></div><div class="loop-inner-block" data-loop-node="wrist-edit"><h4>Wrist poses → IK</h4><span class="loop-detail">Finger joint targets</span></div></div></div>
+          <div class="loop-targets loop-box" data-loop-node="targets"><h4 class="loop-group-title">Joint-space references</h4><div class="loop-channel" data-loop-node="body-reference"><h4>Whole body</h4></div><div class="loop-channel" data-loop-node="hand-reference"><h4>Wrist and fingers</h4></div></div>
+          <div class="loop-control loop-box" data-loop-node="control"><h4 class="loop-group-title">Control</h4><div class="loop-channel" data-loop-node="sonic"><h4>SONIC</h4><span class="loop-detail">Whole-body control</span></div><div class="loop-channel" data-loop-node="wrist"><h4>Wrist and finger<br>impedance controller</h4></div></div>
           <div class="loop-rollout loop-box" data-loop-node="rollout"><div class="loop-rollout-heading"><h4>MuJoCo rollout</h4><span data-loop-trial></span></div><video data-architecture-clip="rollout" data-loop-rollout muted loop playsinline controls preload="metadata" aria-label="Recorded single-Codex execution"></video><div class="loop-score"><span>Mean object-tracking error</span><strong data-loop-add></strong></div></div>
         </div>
         <div class="loop-feedback" data-loop-node="feedback">
           <div class="loop-feedback-heading"><h4>Simulation feedback</h4><span data-loop-feedback-context></span></div>
           <div class="loop-feedback-grid">
             <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Object-tracking error</h5><div class="loop-chart-tabs" role="group" aria-label="Object tracking measurements"><button type="button" data-loop-chart="error" aria-pressed="true">Mean ADD</button><button type="button" data-loop-chart="path" aria-pressed="false">Object path</button></div></div><button type="button" class="loop-chart-button" data-loop-open="object" aria-label="Enlarge object-tracking measurements"><span data-loop-object-chart></span></button><div class="loop-chart-legend" data-loop-object-legend></div></div>
-            <div class="loop-evidence loop-query-card"><div class="loop-evidence-heading"><h5>Execution feedback</h5><span data-loop-query-phase></span></div><div class="loop-feedback-tabs" role="group" aria-label="Simulation measurements"><button type="button" data-feedback="forces">Contact forces</button><button type="button" data-feedback="speed">Object speed</button><button type="button" data-feedback="checks">Grasp checks</button><button type="button" data-feedback="error">Object error</button></div><button type="button" class="loop-chart-button" data-loop-open="feedback" aria-label="Enlarge the simulation measurements"><span data-loop-feedback-chart></span></button><div class="loop-feedback-legend" data-loop-feedback-legend></div></div>
+            <div class="loop-evidence loop-query-card"><div class="loop-evidence-heading"><h5>Execution feedback</h5></div><div class="loop-feedback-tabs" role="group" aria-label="Simulation measurements"><button type="button" data-feedback="forces">Contact forces</button><button type="button" data-feedback="speed">Object speed</button><button type="button" data-feedback="checks">Grasp checks</button><button type="button" data-feedback="error">Object error</button></div><button type="button" class="loop-chart-button" data-loop-open="feedback" aria-label="Enlarge the simulation measurements"><span data-loop-feedback-chart></span></button><div class="loop-feedback-legend" data-loop-feedback-legend></div></div>
             <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Inspected images</h5></div><div class="loop-inspections"><button type="button" class="loop-image-button" data-loop-open="image" aria-label="Enlarge the image inspected by the agent"><img data-loop-image alt="" loading="lazy"></button><button type="button" class="loop-hand-button" data-loop-open="image" aria-label="View the original image for this hand-detail crop"><span data-loop-hand></span><small>Hand detail · crop</small></button></div><div class="loop-image-caption" data-loop-image-label></div></div>
           </div>
-          <div class="loop-query-summary"><span class="loop-query-tag">Agent inspected</span><strong data-loop-query-title></strong><span data-loop-query-values></span></div>
+          <div class="loop-query-summary"><span class="loop-query-tag">What the agent checked</span><strong data-loop-query-title></strong><span data-loop-query-values></span></div>
         </div>
       </div>
       <div class="loop-record"><span class="loop-record-label">Recorded agent log</span><blockquote data-loop-excerpt></blockquote></div>
@@ -106,7 +105,7 @@
     function drawFeedback(){
       $('[data-loop-feedback-chart]').replaceChildren(feedbackChart(data.stages[current]));
       ui.querySelectorAll('[data-feedback]').forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.feedback===feedbackMode));b.hidden=b.dataset.feedback==='checks'&&!['initial','002','003'].includes(data.stages[current].id);});
-      $('[data-loop-feedback-legend]').innerHTML=feedbackMode==='forces'?'<span class="loop-key robot">Robot–object</span><span class="loop-key support">Floor–object</span>':feedbackMode==='checks'?'Before execution':'Recorded rollout measurements';
+      $('[data-loop-feedback-legend]').innerHTML=feedbackMode==='forces'?'<span class="loop-key robot">Robot–object</span><span class="loop-key support">Floor–object</span>':feedbackMode==='checks'?'Starting-pose measurements':'Recorded rollout measurements';
     }
     ui.querySelectorAll('[data-feedback]').forEach(b=>b.addEventListener('click',()=>{feedbackMode=b.dataset.feedback;drawFeedback();}));
     data.stages.forEach((stage,index)=>{
@@ -123,16 +122,25 @@
       $('[data-loop-add]').textContent=stage.add_cm.toFixed(2)+' cm';
       const query=stage.queries[0];
       feedbackMode=stage.feedback.focus;
-      $('[data-loop-query-title]').textContent=query.label;
-      $('[data-loop-query-phase]').textContent=query.phase;
-      $('[data-loop-query-values]').textContent=query.values.join(' · ');
+      $('[data-loop-query-title]').textContent=stage.id==='003'?'Two-hand starting pose':query.label;
+      const explanations={
+        initial:'The starting pose has a foot below the floor and hand–object overlap.',
+        '001':'The sampled robot–object contact forces are zero while the fingers close.',
+        '002':'The three fingertips start about 0.5 mm from the object surface, with no detected overlap.',
+        '003':'The two-hand starting pose has no detected collisions or joint-limit violations. The object remains in its original pose.',
+        '006':'At the finish, the floor does not support the stand and the object is still moving.',
+        '013':'The object-tracking error at the finish is 15.63 cm, despite a mean ADD of 8.76 cm.',
+        '017':'The stand is nearly upright and touches the floor, but the hand is still in contact.',
+        '023':'The floor supports the stand, robot contact is zero, and the object has stopped moving.'
+      };
+      $('[data-loop-query-values]').textContent=explanations[stage.id];
       $('[data-loop-feedback-context]').textContent=stage.id==='initial'?'Input inspection':stage.id==='023'?'Final verification':`Iteration ${Number(stage.id)}`;
       const hand=$('.loop-hand-button');hand.hidden=!stage.hand_image;
       if(stage.hand_image){const [x,y,w,h]=stage.hand_crop;const crop=$('[data-loop-hand]');crop.style.backgroundImage=`url("${stage.hand_image}")`;crop.style.backgroundSize=`${100/w}% ${100/h}%`;crop.style.backgroundPosition=`${100*x/(1-w)}% ${100*y/(1-h)}%`;}
 
       $('[data-loop-excerpt]').textContent='“'+stage.quote+'”';
       $('[data-loop-image]').src=stage.image;$('[data-loop-image]').alt=stage.image_label;
-      $('[data-loop-image-label]').textContent=stage.image_label;
+      $('[data-loop-image-label]').textContent=stage.image_label==='Before execution'?'Starting-pose inspection':stage.image_label==='After execution'?'Execution images':stage.image_label;
       drawCharts();drawFeedback();setPhase('recorded');resumeVideos();requestAnimationFrame(connect);
     }
     function setPhase(value){
@@ -180,12 +188,14 @@
       const box=name=>{const r=ui.querySelector(`[data-loop-node="${name}"]`).getBoundingClientRect();return {l:r.left-base.left,r:r.right-base.left,t:r.top-base.top,b:r.bottom-base.top,x:r.left-base.left+r.width/2,y:r.top-base.top+r.height/2};};
       function path(d,kind){g.append(svg('path',{d,class:`loop-edge ${kind}`,'marker-end':'url(#loop-arrow)'}));}
       function join(from,to,kind='forward',offset=0) {const a=box(from),b=box(to),mid=(a.r+b.l)/2;path(`M ${a.r+2} ${a.y} H ${mid} V ${b.y+offset} H ${b.l-5}`,kind);}
-      join('human','agent','forward',-12);join('initial','agent','forward',12);join('agent','reference');join('reference','ik');join('ik','targets');join('targets','control');join('control','rollout');
-      const agentCode=box('agent'),wrist=box('wrist'),ref=box('reference');
-      const mid=(agentCode.r+ref.l)/2,routeY=Math.max(ref.b,box('ik').b,box('targets').b)+30;
-      path(`M ${agentCode.r+2} ${agentCode.b-8} H ${mid} V ${routeY} H ${wrist.l-16} V ${wrist.y} H ${wrist.l-5}`,'code-edge');
-      const codeLabel=svg('text',{x:(ref.l+wrist.l)/2,y:routeY-8,'text-anchor':'middle'});codeLabel.textContent='Controller code';g.append(codeLabel);
-      const motionLabel=svg('text',{x:(ref.l+box('targets').r)/2,y:Math.min(ref.t,box('ik').t,box('targets').t)-14,'text-anchor':'middle'});motionLabel.textContent='Motion-generation code';g.append(motionLabel);
+      join('human','agent','forward',-12);join('initial','agent','forward',12);join('agent','motion');join('control','rollout');
+      function channel(from,fromNode,to,toNode){const a=box(from),b=box(to),ay=box(fromNode).y,by=box(toNode).y,mid=(a.r+b.l)/2;path(`M ${a.r+2} ${ay} H ${mid} V ${by} H ${b.l-5}`,'forward');}
+      channel('motion','body-edit','targets','body-reference');channel('motion','wrist-edit','targets','hand-reference');
+      channel('targets','body-reference','control','sonic');channel('targets','hand-reference','control','wrist');
+      const agentCode=box('agent'),motion=box('motion'),control=box('control');
+      const mid=(agentCode.r+motion.l)/2,routeY=Math.max(motion.b,box('targets').b,control.b)+34;
+      path(`M ${agentCode.r+2} ${agentCode.b-8} H ${mid} V ${routeY} H ${control.x} V ${control.b+5}`,'code-edge');
+      const codeLabel=svg('text',{x:(motion.l+control.x)/2,y:routeY-8,'text-anchor':'middle'});codeLabel.textContent='Controller code';g.append(codeLabel);
       const a=box('rollout'),f=box('feedback'),agent=box('agent');
       path(`M ${a.x} ${a.b+3} V ${f.t-5}`,'feedback-out');
       path(`M ${agent.x} ${f.t-3} V ${agent.b+5}`,'feedback-return');
