@@ -18,7 +18,26 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def export(recording, recovered, renders, final_replay, additional, initial, site):
+def attach_rendered_views(data, output, reference_views, blender_stills):
+    """Attach FK-only previews and clearly attributed supplemental Blender views."""
+    for stage in data['stages']:
+        ident = stage['id']
+        source = reference_views / ident
+        for kind in ('body', 'targets'):
+            name = f'{ident}-reference-{kind}.mp4'
+            shutil.copy2(source / f'{kind}.mp4', output / name)
+            stage[kind + '_video'] = name
+        stage['reference_visualization'] = json.loads((source / 'provenance.json').read_text())
+        name = f'{ident}-blender.webp'
+        Image.open(blender_stills / ident / 'still_00.png').convert('RGB').save(output / name, quality=91)
+        stage['blender_image'] = name
+        pose = ident in ('initial', '001', '003', '023')
+        stage['blender_label'] = 'Blender re-render of the starting pose' if pose else 'Blender re-render of the saved rollout'
+        stage['blender_time_s'] = json.loads((blender_stills / ident / 'stills.json').read_text())['stills'][0]['rendered_time_s']
+    data['chart_notes']['path'] = 'Target and executed object paths in 3D. X, Y and Z in metres. Drag to rotate.'
+
+
+def export(recording, recovered, renders, final_replay, additional, initial, site, reference_views=None, blender_stills=None):
     output = site / 'architecture-trace'
     output.mkdir(exist_ok=True)
     target = np.load(recording / 'job/inputs/object_target.npz')
@@ -107,6 +126,13 @@ def export(recording, recovered, renders, final_replay, additional, initial, sit
     first['feedback']=dict(seconds=np.round(initial_motion['timestamps'][idx],4).tolist(),robot_force=np.round(initial_motion['object_robot_contact_force_n'][idx],4).tolist(),floor_force=np.round(initial_motion['object_scene_contact_force_n'][idx],4).tolist(),speed_cm_s=np.round(np.linalg.norm(initial_motion['qvel'][idx,-6:-3],axis=1)*100,4).tolist(),add_cm=np.round(initial_trace['add_error_m']*100,4).tolist(),focus='checks')
     data['stages'].insert(0,first)
     data['history'].insert(0,dict(id='initial',time_min=0,add_cm=initial_score))
+    if reference_views and blender_stills:
+        attach_rendered_views(data, output, reference_views, blender_stills)
+    elif (output/'trace.json').exists():
+        previous={s['id']:s for s in json.loads((output/'trace.json').read_text())['stages']}
+        for stage in data['stages']:
+            for key in ('body_video','targets_video','reference_visualization','blender_image','blender_label','blender_time_s'):
+                if key in previous.get(stage['id'],{}):stage[key]=previous[stage['id']][key]
     (output/'trace.json').write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n')
     manifest_path=site/'media-manifest.json';manifest=json.loads(manifest_path.read_text())
     for video in output.glob('*.mp4'):
@@ -119,4 +145,5 @@ def export(recording, recovered, renders, final_replay, additional, initial, sit
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     for name in ('recording','recovered','renders','final-replay','additional','initial','site'): parser.add_argument('--'+name,type=Path,required=True)
+    for name in ('reference-views','blender-stills'): parser.add_argument('--'+name,type=Path)
     export(**vars(parser.parse_args()))

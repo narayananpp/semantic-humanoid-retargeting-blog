@@ -19,7 +19,8 @@ Initial, iterations 001, 002, 003, 006, 013, 017, and the final execution
 from iteration 023 retain verified scores. Source metadata cites original events and distinguishes
 before-execution checks from after-execution feedback. The initial evaluation
 uses arrays verified identical to the agent input; it was not run by this agent.
-Images come from the original image-inspection calls. The ADD history contains
+The Agent image tab retains the original image-inspection calls. The Blender tab
+shows labelled re-renders of saved starting poses or rollout frames. The ADD history contains
 all 25 recorded candidates. Hand details are explicitly labelled crops of
 inspected images. Reconstructed plots are not presented as plots the agent
 itself viewed. The exporter in
@@ -27,6 +28,12 @@ itself viewed. The exporter in
 The final video reuses the existing single-Codex baseline recording. Only rendered
 media and measurements are published, with no new model or scene assets.
 
-The architecture distinguishes edits to the existing HOI-Retarget joint-space
-reference from wrist-pose IK and directly specified finger joint targets.
-The whole-body reference supplied to SONIC already contains joint angles.
+The architecture uses a compact reference → IK → joint-space-reference diagram.
+The recorded implementation combines edits to the existing joint-space reference,
+wrist-pose IK and specified finger targets. Reference-preview videos use forward
+kinematics of the saved reference arrays, without SONIC or physics execution.
+Colored arms show reference poses; gold markers show nominal wrist targets from
+the saved grasp plans, before online controller corrections. The object-path plot
+uses all three recorded coordinates and supports mouse, touch and keyboard rotation.
+The exporter accepts `--reference-views` and `--blender-stills` to attach the
+rendered previews and preserve their provenance.

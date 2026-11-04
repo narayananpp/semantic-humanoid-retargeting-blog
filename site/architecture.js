@@ -8,14 +8,14 @@
     Object.entries(attrs).forEach(([k,v]) => node.setAttribute(k, v));
     return node;
   };
-  fetch('architecture-trace/trace.json?v=6').then(r => {
+  fetch('architecture-trace/trace.json?v=7').then(r => {
     if (!r.ok) throw new Error('Trace unavailable');
     return r.json();
   }).then(build).catch(() => {});
 
   function build(data) {
     const base = new URL("architecture-trace/trace.json", document.baseURI);
-    data.stages.forEach(stage => { for (const key of ["image", "video", "poster", "hand_image"]) if(stage[key]) stage[key] = new URL(stage[key], base).href; });
+    data.stages.forEach(stage => { for (const key of ["image", "video", "poster", "hand_image", "body_video", "targets_video", "blender_image"]) if(stage[key]) stage[key] = new URL(stage[key], base).href; });
     const ui = document.createElement('div');
     ui.className = 'refinement-loop-ui';
     ui.innerHTML = `
@@ -25,23 +25,23 @@
         <svg class="loop-connectors" aria-hidden="true"><defs><marker id="loop-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><g></g></svg>
         <div class="loop-forward">
           <div class="loop-inputs">
-            <div class="loop-input" data-loop-node="human"><h4>Human demonstration <span>SMPL</span></h4><video data-architecture-clip="human" muted loop playsinline preload="none" poster="architecture-media/human.jpg" src="architecture-media/human.mp4" aria-label="Human clothes-stand demonstration"></video></div>
+            <div class="loop-input" data-loop-node="human"><h4>Human demonstration <span>SMPL</span></h4><video data-architecture-clip="human" muted autoplay loop playsinline preload="none" poster="architecture-media/human.jpg" src="architecture-media/human.mp4" aria-label="Human clothes-stand demonstration"></video></div>
             <div class="loop-retarget">↓ <span>Kinematic retargeting<br><b>HOI-Retarget</b></span></div>
-            <div class="loop-input" data-loop-node="initial"><h4>HOI-Retarget reference<span class="loop-input-space">Joint space</span></h4><video data-architecture-clip="initial" muted loop playsinline preload="none" poster="architecture-media/kinematic.jpg" src="architecture-media/kinematic.mp4" aria-label="Initial kinematic humanoid reference"></video></div>
+            <div class="loop-input" data-loop-node="initial"><h4>HOI-Retarget reference<span class="loop-input-space">Joint space</span></h4><video data-architecture-clip="initial" muted autoplay loop playsinline preload="none" poster="architecture-media/kinematic.jpg" src="architecture-media/kinematic.mp4" aria-label="Initial kinematic humanoid reference"></video></div>
           </div>
           <div class="loop-agent loop-box" data-loop-node="agent"><h4>Astra</h4></div>
-          <div class="loop-reference loop-box" data-loop-node="reference"><h4>End-effector references</h4></div>
-          <div class="loop-ik-block loop-box" data-loop-node="ik"><h4 title="Inverse kinematics updates the arm joints in this recorded example.">IK</h4></div>
-          <div class="loop-targets loop-box" data-loop-node="targets"><h4>Joint-space reference</h4></div>
-          <div class="loop-control loop-box" data-loop-node="control"><div><h4>SONIC</h4><span class="loop-detail">Whole-body control</span></div><div class="loop-joint-control" data-loop-node="wrist"><h4>Wrist and finger<br>impedance controller</h4></div></div>
-          <div class="loop-rollout loop-box" data-loop-node="rollout"><div class="loop-rollout-heading"><h4>MuJoCo rollout</h4><span data-loop-trial></span></div><video data-architecture-clip="rollout" data-loop-rollout muted loop playsinline controls preload="metadata" aria-label="Recorded single-Codex execution"></video><div class="loop-score"><span>Mean object-tracking error</span><strong data-loop-add></strong></div></div>
+          <div class="loop-reference loop-box" data-loop-node="reference"><h4>End-effector references</h4><video data-architecture-clip="targets" data-loop-targets-video muted autoplay loop playsinline preload="metadata" aria-label="Planned wrist targets over the G1 reference motion"></video><span class="loop-target-key" title="Colored arms show reference joint poses; gold markers show planned wrist targets.">Arm reference <i></i> Wrist targets</span></div>
+          <div class="loop-ik-block loop-box" data-loop-node="ik"><h4>IK</h4></div>
+          <div class="loop-targets loop-box" data-loop-node="targets"><h4>Joint-space reference</h4><video data-architecture-clip="body" data-loop-body-video muted autoplay loop playsinline preload="metadata" aria-label="Saved whole-body reference before physical execution"></video></div>
+          <div class="loop-control loop-box" data-loop-node="control"><h4 class="loop-control-title">Control</h4><div class="loop-controller" data-loop-node="sonic"><h4>SONIC</h4><span class="loop-detail">Whole-body control</span></div><div class="loop-controller" data-loop-node="wrist"><h4>Wrist and finger<br>impedance controller</h4></div></div>
+          <div class="loop-rollout loop-box" data-loop-node="rollout"><div class="loop-rollout-heading"><h4>MuJoCo rollout</h4><span data-loop-trial></span></div><video data-architecture-clip="rollout" data-loop-rollout muted autoplay loop playsinline controls preload="metadata" aria-label="Recorded single-Codex execution"></video><div class="loop-score"><span>Mean object-tracking error</span><strong data-loop-add></strong></div></div>
         </div>
         <div class="loop-feedback" data-loop-node="feedback">
           <div class="loop-feedback-heading"><h4>Simulation feedback</h4><span data-loop-feedback-context></span></div>
           <div class="loop-feedback-grid">
-            <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Object-tracking error</h5><div class="loop-chart-tabs" role="group" aria-label="Object tracking measurements"><button type="button" data-loop-chart="error" aria-pressed="true">Mean ADD</button><button type="button" data-loop-chart="path" aria-pressed="false">Object path</button></div></div><button type="button" class="loop-chart-button" data-loop-open="object" aria-label="Enlarge object-tracking measurements"><span data-loop-object-chart></span></button><div class="loop-chart-legend" data-loop-object-legend></div></div>
+            <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Object-tracking error</h5><div class="loop-chart-tabs" role="group" aria-label="Object tracking measurements"><button type="button" data-loop-chart="error" aria-pressed="true">Mean ADD</button><button type="button" data-loop-chart="path" aria-pressed="false">3D object path</button></div></div><button type="button" class="loop-chart-button" data-loop-open="object" aria-label="Enlarge object-tracking measurements"><span data-loop-object-chart></span></button><div class="loop-chart-legend" data-loop-object-legend></div></div>
             <div class="loop-evidence loop-query-card"><div class="loop-evidence-heading"><h5>Execution feedback</h5></div><div class="loop-feedback-tabs" role="group" aria-label="Simulation measurements"><button type="button" data-feedback="forces">Contact forces</button><button type="button" data-feedback="speed">Object speed</button><button type="button" data-feedback="checks">Grasp checks</button><button type="button" data-feedback="error">Object error</button></div><button type="button" class="loop-chart-button" data-loop-open="feedback" aria-label="Enlarge the simulation measurements"><span data-loop-feedback-chart></span></button><div class="loop-feedback-legend" data-loop-feedback-legend></div></div>
-            <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Inspected images</h5></div><div class="loop-inspections"><button type="button" class="loop-image-button" data-loop-open="image" aria-label="Enlarge the image inspected by the agent"><img data-loop-image alt="" loading="lazy"></button><button type="button" class="loop-hand-button" data-loop-open="image" aria-label="View the original image for this hand-detail crop"><span data-loop-hand></span><small>Hand detail (crop)</small></button></div><div class="loop-image-caption" data-loop-image-label></div></div>
+            <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Inspection views</h5><div class="loop-chart-tabs"><button type="button" data-loop-inspection="blender" aria-pressed="true">Blender</button><button type="button" data-loop-inspection="original" aria-pressed="false">Agent image</button></div></div><div class="loop-inspections"><button type="button" class="loop-image-button" data-loop-open="image" aria-label="Enlarge the image inspected by the agent"><img data-loop-image alt="" loading="lazy"></button><button type="button" class="loop-hand-button" data-loop-open="image" aria-label="View the original image for this hand-detail crop"><span data-loop-hand></span><small>Hand detail (crop)</small></button></div><div class="loop-image-caption" data-loop-image-label></div></div>
           </div>
           <div class="loop-query-summary"><span class="loop-query-tag">What the agent checked</span><strong data-loop-query-title></strong><span data-loop-query-values></span></div>
         </div>
@@ -56,6 +56,7 @@
     const rollout = $('[data-loop-rollout]');
     const trialButtons = [];
     const dialog = $('.loop-dialog');
+    let inspectionMode='blender', yaw=-.65, pitch=.5;
     let current = 0, feedbackMode='checks', chartMode = 'error', playing = false, visible = false, timer, phase = 'recorded';
     const colors = {error:'#b35931',target:'#76878a',actual:'#167c77',robot:'#167c77',support:'#ac7628'};
     const phases = ['execute','inspect','revise'];
@@ -78,8 +79,35 @@
       label(left,13,ylabel,'start');label((left+w-right)/2,h-2,xlabel);
       return root;
     }
+    function path3D(stage) {
+      const root=svg('svg',{viewBox:'0 0 380 210',role:'img',tabindex:'0','aria-label':'3D object paths. Drag or use arrow keys to rotate. X, Y and Z in metres.',class:'loop-path3d'});
+      const points=[...stage.target_path,...stage.actual_path],lo=[0,1,2].map(a=>Math.min(...points.map(p=>p[a]))),hi=[0,1,2].map(a=>Math.max(...points.map(p=>p[a]))),center=lo.map((v,i)=>(v+hi[i])/2);
+      let dragged=false;
+      function draw(){
+        root.replaceChildren();
+        const rotate=p=>{const [x,y,z]=p.map((v,i)=>v-center[i]),u=Math.cos(yaw)*x-Math.sin(yaw)*y,v=Math.sin(yaw)*x+Math.cos(yaw)*y;return [u,Math.sin(pitch)*v-Math.cos(pitch)*z];};
+        const corners=[];for(let i=0;i<8;i++)corners.push([0,1,2].map(a=>(i>>a)&1?hi[a]:lo[a]));
+        const projected=corners.map(rotate),xmin=Math.min(...projected.map(p=>p[0])),xmax=Math.max(...projected.map(p=>p[0])),ymin=Math.min(...projected.map(p=>p[1])),ymax=Math.max(...projected.map(p=>p[1])),fit=Math.min(265/(xmax-xmin||1),132/(ymax-ymin||1));
+        const project=p=>{const q=rotate(p);return [180+(q[0]-(xmin+xmax)/2)*fit,100+(q[1]-(ymin+ymax)/2)*fit];};
+        const line=(a,b,color,dashed=false)=>{const p=project(a),q=project(b);root.append(svg('path',{d:`M${p}L${q}`,fill:'none',stroke:color,'stroke-width':1,'stroke-dasharray':dashed?'3 3':'none'}));};
+        for(let i=0;i<=4;i++){
+          const x=lo[0]+(hi[0]-lo[0])*i/4,y=lo[1]+(hi[1]-lo[1])*i/4;
+          line([x,lo[1],lo[2]],[x,hi[1],lo[2]],'#cdd4d0');line([lo[0],y,lo[2]],[hi[0],y,lo[2]],'#cdd4d0');
+        }
+        for(let a=0;a<3;a++){const tip=[...lo];tip[a]=hi[a];line(lo,tip,'#8c9695');const p=project(tip),text=svg('text',{x:p[0]+(a===0?8:a===1?-8:0),y:p[1]+(a===1?17:-9),'text-anchor':a===0?'start':a===1?'end':'middle'});text.textContent=`${['X','Y','Z'][a]} (m)`;const title=svg('title');title.textContent=`${lo[a].toFixed(2)} to ${hi[a].toFixed(2)} metres`;text.append(title);root.append(text);}
+        for(const [path,color,dashed] of [[stage.target_path,colors.target,true],[stage.actual_path,colors.actual,false]]){
+          root.append(svg('path',{d:path.map((p,i)=>`${i?'L':'M'}${project(p)}`).join(' '),fill:'none',stroke:color,'stroke-width':2.5,'stroke-dasharray':dashed?'5 3':'none'}));
+          for(const [i,r] of [[0,3],[path.length-1,5]]){const p=project(path[i]);root.append(svg('circle',{cx:p[0],cy:p[1],r,fill:color}));}
+        }
+        const hint=svg('text',{x:370,y:202,'text-anchor':'end'});hint.textContent='Drag to rotate';root.append(hint);
+      }
+      root.addEventListener('pointerdown',event=>{const x=event.clientX,y=event.clientY,oldYaw=yaw,oldPitch=pitch;dragged=false;root.setPointerCapture(event.pointerId);root.onpointermove=e=>{if(Math.abs(e.clientX-x)+Math.abs(e.clientY-y)>4)dragged=true;yaw=oldYaw+(e.clientX-x)*.012;pitch=Math.max(-1.4,Math.min(1.4,oldPitch+(e.clientY-y)*.01));draw();};root.onpointerup=root.onpointercancel=()=>{root.onpointermove=null;};});
+      root.addEventListener('click',event=>{if(dragged){event.preventDefault();event.stopPropagation();}});
+      root.addEventListener('keydown',event=>{if(!event.key.startsWith('Arrow'))return;event.preventDefault();if(event.key==='ArrowLeft')yaw-=.15;if(event.key==='ArrowRight')yaw+=.15;if(event.key==='ArrowUp')pitch-=.1;if(event.key==='ArrowDown')pitch+=.1;draw();});
+      draw();return root;
+    }
     function objectChart(stage) {
-      if(chartMode==='path') return chart([{points:stage.target_path,color:colors.target,dashed:true},{points:stage.actual_path,color:colors.actual}],{...bounds,xlabel:'Object position X (m)',ylabel:'Object position Y (m)',title:'Target and executed object paths (top view)'});
+      if(chartMode==='path') return path3D(stage);
       let best=Infinity;const steps=[];
       data.history.forEach(t=>{if(Number.isFinite(best))steps.push([t.time_min,best]);best=Math.min(best,t.add_cm);steps.push([t.time_min,best]);});
       steps.push([30,best]);
@@ -99,7 +127,7 @@
         rows.forEach(([label,value,warning],i)=>{const y=40+i*46;root.append(svg('rect',{x:18,y:y-18,width:344,height:35,rx:5,fill:warning?'#b3593114':'#167c7710'}));const dot=svg('circle',{cx:32,cy:y,r:4,fill:warning?colors.error:colors.actual});root.append(dot);for(const [x,t,anchor] of [[46,label,'start'],[346,value,'end']]){const text=svg('text',{x,y:y+4,'text-anchor':anchor});text.textContent=t;root.append(text);}});
         return root;
       }
-      if(feedbackMode==='error') return chart([{points:f.add_cm.map((v,i)=>[100*i/(f.add_cm.length-1),v]),color:colors.error}],{xmax:100,ymax:Math.max(5,Math.ceil(Math.max(...f.add_cm)/5)*5),xlabel:'Object-motion progress (%)',ylabel:'Object-tracking error (cm)',title:'Object-tracking error through the execution'});
+      if(feedbackMode==='error') return chart([{points:f.add_cm.map((v,i)=>[100*i/(f.add_cm.length-1),v]),color:colors.error}],{xmax:100,ymax:Math.max(5,Math.ceil(Math.max(...f.add_cm)/5)*5),xlabel:'Aligned object path (%)',ylabel:'Object-pose error, ADD (cm)',title:'Distances between matching object points along aligned paths. 0% is the start and 100% is the end of each path, not task success. Human and robot timing need not match.'});
       if(feedbackMode==='speed') return chart([{points:f.seconds.map((t,i)=>[t,f.speed_cm_s[i]]),color:colors.actual}],{xmax:f.seconds.at(-1),ymax:Math.max(5,Math.ceil(Math.max(...f.speed_cm_s)/5)*5),xlabel:'Execution time (s)',ylabel:'Object speed (cm/s)',title:'Recorded object speed during execution'});
       return chart([{points:f.seconds.map((t,i)=>[t,f.robot_force[i]]),color:colors.actual},{points:f.seconds.map((t,i)=>[t,f.floor_force[i]]),color:colors.support}],{xmax:f.seconds.at(-1),ymax:Math.max(10,Math.ceil(Math.max(...f.robot_force,...f.floor_force)/10)*10),xlabel:'Execution time (s)',ylabel:'Contact force (N)',title:'Robot–object and floor–object contact forces'});
     }
@@ -119,6 +147,7 @@
       current=index;const stage=data.stages[index];
       trialButtons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));
       rollout.pause();rollout.poster=stage.poster;rollout.src=stage.video;
+      for(const key of ['body','targets']) {const video=$(`[data-loop-${key}-video]`);video.pause();video.src=stage[key+'_video'];}
       $('[data-loop-trial]').textContent=stage.label;
       $('[data-loop-add]').textContent=stage.add_cm.toFixed(2)+' cm';
       const query=stage.queries[0];
@@ -136,14 +165,20 @@
       };
       $('[data-loop-query-values]').textContent=explanations[stage.id];
       $('[data-loop-feedback-context]').textContent=stage.id==='initial'?'Input inspection':stage.id==='023'?'Final verification':`Iteration ${Number(stage.id)}`;
-      const hand=$('.loop-hand-button');hand.hidden=!stage.hand_image;
-      if(stage.hand_image){const [x,y,w,h]=stage.hand_crop;const crop=$('[data-loop-hand]');crop.style.backgroundImage=`url("${stage.hand_image}")`;crop.style.backgroundSize=`${100/w}% ${100/h}%`;crop.style.backgroundPosition=`${100*x/(1-w)}% ${100*y/(1-h)}%`;}
-
       $('[data-loop-excerpt]').textContent='“'+stage.quote+'”';
-      $('[data-loop-image]').src=stage.image;$('[data-loop-image]').alt=stage.image_label;
-      $('[data-loop-image-label]').textContent=stage.image_label==='Before execution'?'Starting-pose inspection':stage.image_label==='After execution'?'Execution images':stage.image_label;
+      drawInspection();
       drawCharts();drawFeedback();setPhase('recorded');resumeVideos();requestAnimationFrame(connect);
     }
+    function drawInspection(){
+      const stage=data.stages[current],original=inspectionMode==='original';
+      $('[data-loop-image]').src=original?stage.image:stage.blender_image;
+      $('[data-loop-image]').alt=original?stage.image_label:'Blender re-render of the saved pose';
+      $('[data-loop-image-label]').textContent=original?stage.image_label:stage.blender_label;
+      const hand=$('.loop-hand-button');hand.hidden=!original||!stage.hand_image;
+      if(original&&stage.hand_image){const [x,y,w,h]=stage.hand_crop;const crop=$('[data-loop-hand]');crop.style.backgroundImage=`url("${stage.hand_image}")`;crop.style.backgroundSize=`${100/w}% ${100/h}%`;crop.style.backgroundPosition=`${100*x/(1-w)}% ${100*y/(1-h)}%`;}
+      ui.querySelectorAll('[data-loop-inspection]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.loopInspection===inspectionMode)));
+    }
+    ui.querySelectorAll('[data-loop-inspection]').forEach(b=>b.addEventListener('click',()=>{inspectionMode=b.dataset.loopInspection;drawInspection();}));
     function setPhase(value){
       phase=value;ui.dataset.phase=value;
       $('.loop-phase').textContent={recorded:'Selected recorded trials',revise:'Revise the next candidate',execute:'Execute in simulation',inspect:'Inspect feedback'}[value];
@@ -173,9 +208,9 @@
     function openEvidence(kind){
       const stage=data.stages[current],content=$('.loop-dialog-content');content.replaceChildren();
       let title,description;
-      if(kind==='image'){title='Inspected image';const im=new Image();im.src=stage.image;im.alt=stage.image_label;content.append(im);description=stage.image_label;}
+      if(kind==='image'){title=inspectionMode==='original'?'Agent-inspected image':'Blender re-render';const im=new Image();im.src=$('[data-loop-image]').src;im.alt=$('[data-loop-image]').alt;content.append(im);description=$('[data-loop-image-label]').textContent;}
       else if(kind==='feedback'){title='Simulation measurements';content.append(feedbackChart(stage));description=feedbackMode==='checks'?'Recorded geometry and pose checks.':'Measurements from a replay verified against the original execution score.';}
-      else{title='Object tracking';content.append(objectChart(stage));description=data.chart_notes[chartMode];}
+      else{title='Object tracking';content.append(objectChart(stage));description=chartMode==='path'?'Drag to rotate. X, Y and Z are in metres.':data.chart_notes[chartMode];}
       const note=document.createElement('p');note.textContent=description;content.append(note);
       $('.loop-dialog-header h4').textContent=title;dialog.showModal();clearTimeout(timer);rollout.pause();
     }
@@ -189,19 +224,22 @@
       const box=name=>{const r=ui.querySelector(`[data-loop-node="${name}"]`).getBoundingClientRect();return {l:r.left-base.left,r:r.right-base.left,t:r.top-base.top,b:r.bottom-base.top,x:r.left-base.left+r.width/2,y:r.top-base.top+r.height/2};};
       function path(d,kind){g.append(svg('path',{d,class:`loop-edge ${kind}`,'marker-end':'url(#loop-arrow)'}));}
       function join(from,to,kind='forward',offset=0) {const a=box(from),b=box(to),mid=(a.r+b.l)/2;path(`M ${a.r+2} ${a.y} H ${mid} V ${b.y+offset} H ${b.l-5}`,kind);}
-      join('human','agent','forward',-12);join('initial','agent','forward',12);join('agent','reference');join('reference','ik');join('ik','targets');join('targets','control');join('control','rollout');
+      join('human','agent','forward',-12);join('initial','agent','forward',12);join('agent','reference');join('reference','ik');join('ik','targets');
+      const source=box('targets'),control=box('control'),fork=(source.r+control.l)/2;
+      for(const name of ['sonic','wrist']) {const child=box(name);path(`M ${source.r+2} ${source.y} H ${fork} V ${child.y} H ${child.l-5}`,'forward');}
+      const merge=(control.r+box('rollout').l)/2;
+      for(const name of ['sonic','wrist']) {const child=box(name),out=box('rollout');path(`M ${child.r+2} ${child.y} H ${merge} V ${out.y} H ${out.l-5}`,'forward');}
       const agentCode=box('agent'),wrist=box('wrist'),ref=box('reference');
       const mid=(agentCode.r+ref.l)/2,routeY=Math.max(ref.b,box('ik').b,box('targets').b)+30;
-      path(`M ${agentCode.r+2} ${agentCode.b-8} H ${mid} V ${routeY} H ${wrist.l-16} V ${wrist.y} H ${wrist.l-5}`,'code-edge');
+      path(`M ${agentCode.r+2} ${agentCode.b-8} H ${mid} V ${routeY} H ${wrist.x} V ${wrist.b+5}`,'code-edge');
       const codeLabel=svg('text',{x:(ref.l+wrist.l)/2,y:routeY-8,'text-anchor':'middle'});codeLabel.textContent='Controller code';g.append(codeLabel);
-      const motionLabel=svg('text',{x:(ref.l+box('targets').r)/2,y:Math.min(ref.t,box('ik').t,box('targets').t)-14,'text-anchor':'middle'});motionLabel.textContent='Motion-generation code';g.append(motionLabel);
       const a=box('rollout'),f=box('feedback'),agent=box('agent');
       path(`M ${a.x} ${a.b+3} V ${f.t-5}`,'feedback-out');
       path(`M ${agent.x} ${f.t-3} V ${agent.b+5}`,'feedback-return');
     }
     new ResizeObserver(connect).observe($('.loop-canvas'));
     const inputs=Array.from(ui.querySelectorAll('.loop-input video'));
-    const videos=[rollout,...inputs];
+    const videos=Array.from(ui.querySelectorAll('video'));
     function resumeVideos(){
       if(!visible||document.hidden||dialog.open||document.documentElement.dataset.media==='off')return;
       videos.forEach(video=>{video.muted=true;video.defaultMuted=true;video.loop=true;video.autoplay=true;video.play().catch(()=>{});});
@@ -210,7 +248,7 @@
       clearTimeout(timer);
       videos.forEach(video=>{video.autoplay=false;video.pause();});
     }
-    rollout.addEventListener('loadedmetadata',resumeVideos);
+    videos.forEach(video=>video.addEventListener('loadedmetadata',resumeVideos));
     new IntersectionObserver(([entry])=>{
       visible=entry.isIntersecting;
       if(visible&&!document.hidden){resumeVideos();if(playing)advance();}

@@ -138,7 +138,7 @@
   ],
   "chart_notes": {
     "error": "Mean ADD for every recorded candidate versus refinement time. The line retains the lowest error so far; dots include unsuccessful revisions. Initial is a separate evaluation of the identical input reference.",
-    "path": "Object-center paths in the world XY plane. Height and orientation also contribute to ADD."
+    "path": "Target and executed object paths in 3D. X, Y and Z in metres. Drag to rotate."
   },
   "stages": [
     {
@@ -2722,7 +2722,19 @@
           188.1534
         ],
         "focus": "checks"
-      }
+      },
+      "body_video": "initial-reference-body.mp4",
+      "targets_video": "initial-reference-targets.mp4",
+      "reference_visualization": {
+        "reference_sha256": "afb204a2c9923acd12f8045972f1eaab2a1e104fcd1cf682ad31d7bb0d3a597b",
+        "plan_sha256": null,
+        "rendering": "Forward kinematics of saved qpos; no physics or SONIC execution",
+        "overlays": "Arm joint positions from reference FK; gold wrist targets from saved grasp plan",
+        "duration_s": 4.5
+      },
+      "blender_image": "initial-blender.webp",
+      "blender_label": "Blender re-render of the starting pose",
+      "blender_time_s": 0.0
     },
     {
       "feedback": {
@@ -5718,7 +5730,19 @@
         "motion_sha256": "1fe13fe9b9efeac35614f65b90b666d03804938314634a3f4388d34c42d80708",
         "original_add_cm": 115.681533974835,
         "replay_difference_cm": 0.0
-      }
+      },
+      "body_video": "001-reference-body.mp4",
+      "targets_video": "001-reference-targets.mp4",
+      "reference_visualization": {
+        "reference_sha256": "10b58d2afeaf1a3d64afee923c4693c17686b6e176e0a027be75a0a550996a1a",
+        "plan_sha256": "1d974c792ea0a0a2b1a3865137bc2a52aa91d82e61d3263822b3392cda4c7e11",
+        "rendering": "Forward kinematics of saved qpos; no physics or SONIC execution",
+        "overlays": "Arm joint positions from reference FK; gold wrist targets from saved grasp plan",
+        "duration_s": 9.75
+      },
+      "blender_image": "001-blender.webp",
+      "blender_label": "Blender re-render of the starting pose",
+      "blender_time_s": 0.0
     },
     {
       "feedback": {
@@ -8708,7 +8732,19 @@
         "motion_sha256": "9a0468466f74fdf41cdb5600fe64ab03afb14309d07b3ce0a54ece8127d2c269",
         "original_add_cm": 35.271064214938434,
         "replay_difference_cm": 0.0
-      }
+      },
+      "body_video": "002-reference-body.mp4",
+      "targets_video": "002-reference-targets.mp4",
+      "reference_visualization": {
+        "reference_sha256": "f9beee5e6b25525bb3f7ece6d5ce4dc706fb4f35b40e2970e1ccfc4878da5a14",
+        "plan_sha256": "b69fcaee12588fe6a962198312ab6637bfb47b5e5e3f8ec9467763120eec4f0a",
+        "rendering": "Forward kinematics of saved qpos; no physics or SONIC execution",
+        "overlays": "Arm joint positions from reference FK; gold wrist targets from saved grasp plan",
+        "duration_s": 9.75
+      },
+      "blender_image": "002-blender.webp",
+      "blender_label": "Blender re-render of the saved rollout",
+      "blender_time_s": 5.375
     },
     {
       "feedback": {
@@ -11691,7 +11727,19 @@
         "motion_sha256": "7625b90102d64fae1326d39024703971c219ed1a9e41c5fd43b832d2ae556c26",
         "original_add_cm": 129.6138663308097,
         "replay_difference_cm": 0.0
-      }
+      },
+      "body_video": "003-reference-body.mp4",
+      "targets_video": "003-reference-targets.mp4",
+      "reference_visualization": {
+        "reference_sha256": "c0e3ff8ed5d590b6d0a3e0fa724e81c7d1de021d631bafaeaec6069d3b24f5c9",
+        "plan_sha256": "2be2b3cb8105e615ad65678231b2479fb2a51ac4d772174a10908b9282547624",
+        "rendering": "Forward kinematics of saved qpos; no physics or SONIC execution",
+        "overlays": "Arm joint positions from reference FK; gold wrist targets from saved grasp plan",
+        "duration_s": 9.75
+      },
+      "blender_image": "003-blender.webp",
+      "blender_label": "Blender re-render of the starting pose",
+      "blender_time_s": 0.0
     },
     {
       "feedback": {
@@ -14661,7 +14709,19 @@
         "motion_sha256": "bc68ff04e2e60df26faa3845977dae2c4928866d66bc76708a0b50b834869963",
         "original_add_cm": 9.616596291754629,
         "replay_difference_cm": 0.0
-      }
+      },
+      "body_video": "006-reference-body.mp4",
+      "targets_video": "006-reference-targets.mp4",
+      "reference_visualization": {
+        "reference_sha256": "f9beee5e6b25525bb3f7ece6d5ce4dc706fb4f35b40e2970e1ccfc4878da5a14",
+        "plan_sha256": "b69fcaee12588fe6a962198312ab6637bfb47b5e5e3f8ec9467763120eec4f0a",
+        "rendering": "Forward kinematics of saved qpos; no physics or SONIC execution",
+        "overlays": "Arm joint positions from reference FK; gold wrist targets from saved grasp plan",
+        "duration_s": 9.75
+      },
+      "blender_image": "006-blender.webp",
+      "blender_label": "Blender re-render of the saved rollout",
+      "blender_time_s": 5.375
     },
     {
       "feedback": {
@@ -17623,7 +17683,19 @@
         "motion_sha256": "b674a78ac30d4d1a8181d66ce12df18d1ae5816927904096e237879e817a5f7d",
         "original_add_cm": 8.757564611159989,
         "replay_difference_cm": 0.0
-      }
+      },
+      "body_video": "013-reference-body.mp4",
+      "targets_video": "013-reference-targets.mp4",
+      "reference_visualization": {
+        "reference_sha256": "3aee8959a4bb978ce640480049768620c62f0411d7a83228158c661b5586c639",
+        "plan_sha256": "b69fcaee12588fe6a962198312ab6637bfb47b5e5e3f8ec9467763120eec4f0a",
+        "rendering": "Forward kinematics of saved qpos; no physics or SONIC execution",
+        "overlays": "Arm joint positions from reference FK; gold wrist targets from saved grasp plan",
+        "duration_s": 9.75
+      },
+      "blender_image": "013-blender.webp",
+      "blender_label": "Blender re-render of the saved rollout",
+      "blender_time_s": 5.375
     },
     {
       "feedback": {
@@ -20472,7 +20544,19 @@
         "motion_sha256": "4f1eb49ab1c9ed59221cc30d07c8a40b32fe52a3a58e83499f673da8fbd22dfb",
         "original_add_cm": 6.3904855319304135,
         "replay_difference_cm": 0.0
-      }
+      },
+      "body_video": "017-reference-body.mp4",
+      "targets_video": "017-reference-targets.mp4",
+      "reference_visualization": {
+        "reference_sha256": "33031a6bf4066d1da7967bbb5e425cbafdbb153bc2f08938646be9c1bfab25da",
+        "plan_sha256": "f8b5464e76fabcad320631c83127f11c804bdd80a301bf44bf7a14bff00bee81",
+        "rendering": "Forward kinematics of saved qpos; no physics or SONIC execution",
+        "overlays": "Arm joint positions from reference FK; gold wrist targets from saved grasp plan",
+        "duration_s": 8.291666666666668
+      },
+      "blender_image": "017-blender.webp",
+      "blender_label": "Blender re-render of the saved rollout",
+      "blender_time_s": 4.541666666666667
     },
     {
       "feedback": {
@@ -23709,7 +23793,19 @@
         "motion_sha256": "fdfb96a310d2673ee0d04ae54ada096d224cc0efec533d5b1d68eb6d8042f968",
         "original_add_cm": 6.302806459281257,
         "replay_difference_cm": 0.0
-      }
+      },
+      "body_video": "023-reference-body.mp4",
+      "targets_video": "023-reference-targets.mp4",
+      "reference_visualization": {
+        "reference_sha256": "e8f36388c30f5e8fa3b752f6166718c5107100dd14942140934041e723751766",
+        "plan_sha256": "f8b5464e76fabcad320631c83127f11c804bdd80a301bf44bf7a14bff00bee81",
+        "rendering": "Forward kinematics of saved qpos; no physics or SONIC execution",
+        "overlays": "Arm joint positions from reference FK; gold wrist targets from saved grasp plan",
+        "duration_s": 14.0
+      },
+      "blender_image": "023-blender.webp",
+      "blender_label": "Blender re-render of the starting pose",
+      "blender_time_s": 0.0
     }
   ]
 }

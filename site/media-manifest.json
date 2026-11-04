@@ -918,5 +918,85 @@
     "path": "architecture-trace/001.mp4",
     "bytes": 984330,
     "sha256": "2a3c297b7a1c28770209b4377e98c6247cd4da27d59b9bfedb3cc0484e360186"
+  },
+  {
+    "path": "architecture-trace/023-reference-targets.mp4",
+    "bytes": 591853,
+    "sha256": "ad709d492f456991269377e6bed36dae6b2d01e9533a2a06e7ebf37fbbce2680"
+  },
+  {
+    "path": "architecture-trace/023-reference-body.mp4",
+    "bytes": 402948,
+    "sha256": "2ae93b788b214e0b264ff1ac540f63d6bd8aca5f7d5c006167007c4ce1035d6c"
+  },
+  {
+    "path": "architecture-trace/017-reference-targets.mp4",
+    "bytes": 546914,
+    "sha256": "559b614c23ddcfe38da7b40a4d82e4ba95605d02442fef9130ddc2d20f605b74"
+  },
+  {
+    "path": "architecture-trace/017-reference-body.mp4",
+    "bytes": 367397,
+    "sha256": "639f656960a676d0576faa6acef38f480f3d166575719e73037aeeb5f685a925"
+  },
+  {
+    "path": "architecture-trace/013-reference-targets.mp4",
+    "bytes": 589577,
+    "sha256": "ec6a29e16e29d0160b898381a9be6953ecc102ff74189359177bcac3e4e3f07a"
+  },
+  {
+    "path": "architecture-trace/013-reference-body.mp4",
+    "bytes": 397061,
+    "sha256": "f0db3a5a35d523aa01fb3bdbc8024262dfec52f852a83182f440ede7a0c1552b"
+  },
+  {
+    "path": "architecture-trace/006-reference-targets.mp4",
+    "bytes": 754442,
+    "sha256": "0b481a987e0bea733a0ee7f6306fbb9bf38b1c2ee1881a0e9f712fcc1440de09"
+  },
+  {
+    "path": "architecture-trace/006-reference-body.mp4",
+    "bytes": 498909,
+    "sha256": "b7eb50b758fad0bcd8f70446632cb95c74746f7b2f5fc2046800610b0177b91b"
+  },
+  {
+    "path": "architecture-trace/003-reference-targets.mp4",
+    "bytes": 805294,
+    "sha256": "4997ab6826675940cbe66cdb1ab3199ce2078682c788945545f133aed95518d9"
+  },
+  {
+    "path": "architecture-trace/003-reference-body.mp4",
+    "bytes": 503582,
+    "sha256": "36f12c4ece0ebfda4805b55e73f20ac5e09640e7366dbc4012927014d0d847c7"
+  },
+  {
+    "path": "architecture-trace/002-reference-targets.mp4",
+    "bytes": 753267,
+    "sha256": "abd85d0b3777f66db40f9fb53c01970b6fe4a182f7a785d9a30470dbeb17743a"
+  },
+  {
+    "path": "architecture-trace/002-reference-body.mp4",
+    "bytes": 498909,
+    "sha256": "b7eb50b758fad0bcd8f70446632cb95c74746f7b2f5fc2046800610b0177b91b"
+  },
+  {
+    "path": "architecture-trace/001-reference-targets.mp4",
+    "bytes": 768102,
+    "sha256": "64ae9d9ad6cf2f481f9a61100ad71e95c0701c05d61b0c2f8a74dc6a3ec71f62"
+  },
+  {
+    "path": "architecture-trace/001-reference-body.mp4",
+    "bytes": 505342,
+    "sha256": "c58d429ba7490b05b2c48eec616aab8b1b15c67dce604ac98feb351697a417c8"
+  },
+  {
+    "path": "architecture-trace/initial-reference-targets.mp4",
+    "bytes": 553484,
+    "sha256": "207f1a5f2cbce84cb35dfbec274df5a8bd44b87351ed3055c96f82d9a16db47d"
+  },
+  {
+    "path": "architecture-trace/initial-reference-body.mp4",
+    "bytes": 372472,
+    "sha256": "d7c9a07b47ea905a516a3559e6647ffb6b8bb606fb6194b8eb0f30d31561cbf2"
   }
 ]

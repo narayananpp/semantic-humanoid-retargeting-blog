@@ -22,3 +22,10 @@ verbatim excerpts, with event lines and source hashes in trace.json.
 No human body models, model weights, scene meshes or private run archives are
 included in this directory. Object and robot asset attribution is retained in
 ../trace-explorer/vendor/DATA-NOTICE.txt and its accompanying license files.
+
+Reference previews use forward kinematics of the saved joint-space motions,
+without SONIC or physics execution. Colored arms show reference joint poses;
+gold wrist markers and trails use the saved nominal grasp plans. They do not
+include later online controller corrections. Supplemental Blender views are
+re-renders of saved starting poses or rollout frames, not images viewed by the
+agent. The original inspection images remain available under Agent image.

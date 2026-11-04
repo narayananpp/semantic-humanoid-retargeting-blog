@@ -1119,3 +1119,31 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 .loop-feedback>.loop-query-summary>span:last-child { margin-top:2px; color:var(--muted); }
 
 .loop-input-space { display:block; margin-top:3px; }
+
+/* Reference previews and the two distinct control paths. */
+.loop-reference video,.loop-targets video { display:block; width:100%; aspect-ratio:4/3; object-fit:contain; border-radius:5px; margin-top:9px; }
+.loop-reference,.loop-targets { padding:10px 5px; }
+.loop-target-key { display:block; font:9px/1.4 var(--sans); margin-top:5px; color:var(--muted); }
+.loop-target-key i { display:inline-block; width:6px; height:6px; border-radius:50%; background:#eda70a; margin:0 2px 0 4px; }
+.loop-control { background:transparent; padding:26px 8px 10px; display:grid; gap:22px; }
+.loop-control-title { position:absolute; left:50%; top:-10px; transform:translateX(-50%); padding:0 6px; background:var(--loop-paper); }
+.loop-controller { position:relative; padding:12px 5px; border:1px solid #b59a50; border-radius:7px; background:var(--loop-paper); }
+.loop-controller h4 { font-size:12px; }
+.loop-forward { margin-bottom:65px; }
+.loop-connectors { z-index:1; }
+.loop-controller,.loop-box:not(.loop-control),.loop-input { z-index:2; }
+.loop-control { z-index:auto; }
+.loop-record { background:#fff0b5; color:#332d1e; border-color:#e6cf7a; }
+.loop-record-label { color:#695b32; }
+.loop-path3d { touch-action:none; cursor:grab; }
+.loop-path3d:active { cursor:grabbing; }
+.loop-inspections .loop-image-button img { height:190px; }
+@media(min-width:1100px) {
+ .loop-forward { grid-template-columns:minmax(95px,1fr) 50px minmax(125px,1.3fr) 40px minmax(125px,1.3fr) minmax(140px,1.4fr) minmax(160px,1.5fr); gap:28px; }
+ .loop-agent { padding:20px 3px; }
+ .loop-agent h4 { font-size:15px; }
+ .loop-ik-block { padding:16px 3px; }
+ .loop-reference h4,.loop-targets h4 { font-size:12px; }
+}
+@media(min-width:1100px) and (max-width:1300px) { .loop-forward { gap:23px; grid-template-columns:minmax(80px,1fr) 44px minmax(105px,1.2fr) 34px minmax(105px,1.2fr) minmax(128px,1.3fr) minmax(140px,1.4fr); } }
+@media(max-width:1099px) { .loop-control { display:grid; } .loop-reference video,.loop-targets video { max-height:190px; } }
