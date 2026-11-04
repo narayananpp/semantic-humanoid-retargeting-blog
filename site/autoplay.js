@@ -21,6 +21,11 @@
     watched.add(video);
     video.muted = true; video.defaultMuted = true;
     video.playsInline = true;
+    const playbackRate = Number(video.dataset.playbackRate);
+    if (Number.isFinite(playbackRate) && playbackRate > 0) {
+      video.defaultPlaybackRate = playbackRate;
+      video.playbackRate = playbackRate;
+    }
     // The walkthrough tour uses 'ended' to advance its stages.
     video.loop = !video.hasAttribute('data-walkthrough-video');
     video.addEventListener('pointerdown', () => {
