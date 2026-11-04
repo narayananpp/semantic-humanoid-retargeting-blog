@@ -55,7 +55,7 @@
       if(row.human?.status==='ready'){
         const panel=make('div','kinematic-closeup-method source-human-reference');
         panel.append(make('h4','','Human reference · SMPL'));
-        const v=make('video');Object.assign(v,{src:row.human.video,poster:row.human.poster,controls:true,muted:true,playsInline:true,preload:'none'});
+        const v=make('video');Object.assign(v,{src:row.human.video,poster:row.human.poster,controls:true,muted:true,autoplay:true,loop:true,playsInline:true,preload:'none'});
         v.setAttribute('aria-label',row.title+': full human reference');
         if(document.documentElement.dataset.media==='off'){
           const image=make('img');Object.assign(image,{src:row.human.poster,alt:row.title+': human reference'});panel.append(image);
@@ -71,7 +71,7 @@
           if (document.documentElement.dataset.media === 'off' || m.status !== 'ready') {
             const image = make('img'); Object.assign(image, {src: m.poster, alt: row.title+': '+m.label}); panel.append(image);
           } else if (m.status === 'ready') {
-            const v = make('video'); Object.assign(v, {src: m.video, poster: m.poster, muted: true, playsInline: true, controls: true, preload: 'none'});
+            const v = make('video'); Object.assign(v, {src: m.video, poster: m.poster, muted: true, autoplay: true, loop: true, playsInline: true, controls: true, preload: 'none'});
             v.setAttribute('aria-label', `${row.title}: ${m.label}, contact close-up`);
             v.addEventListener('ended', stop); videos.push(v); panel.append(v);
           }

@@ -7,7 +7,7 @@
   function videoCard(media, title) {
     const card=node('figure','experience-film'), caption=node('figcaption','',title);if(title.includes('No physics simulation')){caption.textContent=title.replace('No physics simulation','');caption.append(node('mark','','No physics simulation'));}card.append(caption);
     if(document.documentElement.dataset.media==='off') {card.append(node('p','video-pending','Video available in the media edition.'));return card;}
-    const video=node('video');Object.assign(video,{controls:true,muted:true,playsInline:true,preload:'none'});
+    const video=node('video');Object.assign(video,{controls:true,muted:true,autoplay:true,loop:true,playsInline:true,preload:'none'});
     video.setAttribute('aria-label',title);video.src=media.video;if(media.poster)video.poster=media.poster;card.append(video);
     const error=node('p','video-pending','This video is being prepared.');error.hidden=true;
     video.addEventListener('error',()=>{error.hidden=false;});video.addEventListener('loadedmetadata',()=>{error.hidden=true;});card.append(error);

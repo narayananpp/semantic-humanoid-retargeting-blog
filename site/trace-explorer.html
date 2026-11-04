@@ -39,7 +39,7 @@
           <div class="overlay-bar"><span>SHOW</span><label><input type="checkbox" id="paths-toggle"><i class="path-key"></i>Object paths</label><label><input type="checkbox" id="contacts-toggle"><i class="contact-key"></i>Contact points</label><span id="contacts-state"></span></div>
           <div id="overlay-legend" hidden><span class="target-key">Desired path</span><span class="actual-key">Executed path</span><span>Full spatial paths; not time-aligned.</span></div>
         </div>
-        <details id="video-card" class="video-card" hidden><summary>Rendered video <span>Play this stage</span></summary><video id="stage-video" controls controlslist="nodownload" playsinline preload="none"></video></details>
+        <details id="video-card" class="video-card" hidden><summary>Rendered video <span>Play this stage</span></summary><video id="stage-video" controls controlslist="nodownload" playsinline preload="none" autoplay muted loop></video></details>
         <section class="history-card" aria-label="Refinement history">
           <div class="section-heading"><div><h2>Refinement history</h2><p>Select a point to replay that stage.</p></div><button id="tour" class="primary" disabled>▶ Play six stages</button></div>
           <div class="chart-wrap"><svg id="error-chart" viewBox="0 0 800 190" role="group" aria-label="Mean object-tracking error by refinement time"></svg></div>
@@ -59,5 +59,6 @@
   <dialog id="about"><button id="close-about" class="dialog-close" aria-label="Close">×</button><p class="eyebrow">THE RECORDED EXPERIMENT</p><h2>Four agents, one interaction.</h2><p>The agents refine the clothes-stand interaction with frozen SONIC whole-body control and custom manipulation controllers. They can message one another, share controller files and test one another’s proposals. Agent 0 supplied the selected final execution.</p><p>Explore selected stages of Agent 0’s refinement, from the initial motion to the final execution.</p><p>Playback and activity follow Agent 0. The Exchanges tab retains the original messages across all four agents. Tool labels describe recorded operations. Agent messages are quoted, with private paths and account identifiers removed. Images are the views actually inspected by the agents. The explorer does not run new simulations.</p><p><a href="trace-explorer/vendor/THREE-LICENSE.txt">Three.js license</a> · <a href="trace-explorer/vendor/UNITREE-LICENSE.txt">G1 asset notice</a> · <a href="trace-explorer/vendor/OMOMO-OBJECTS-LICENSE.txt">Object asset notice</a> · <a href="trace-explorer/vendor/DATA-NOTICE.txt">Data attribution</a></p></dialog>
   <noscript>This explorer needs JavaScript. The <a href="index.html#method">architecture walkthrough</a> is also available in the article.</noscript>
   <script type="module" src="trace-explorer/explorer.js?v=agent-zero-1"></script>
+<script src="autoplay.js?v=all-videos-20261104" defer></script>
 </body>
 </html>

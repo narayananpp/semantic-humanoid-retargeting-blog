@@ -29,7 +29,7 @@
         entries.push([execution,active==='codex120'?'Codex, 2 hours':execution.label]);
         for(const [media,label] of entries){
           const figure=make('figure','source-motion-card'),video=make('video');
-          Object.assign(video,{src:media.video,poster:media.poster||'',controls:true,muted:true,playsInline:true,preload:'none'});
+          Object.assign(video,{src:media.video,poster:media.poster||'',controls:true,muted:true,autoplay:true,loop:true,playsInline:true,preload:'none'});
           video.setAttribute('aria-label',row.title+': '+label);figure.append(make('figcaption','',label),video);pair.append(figure);
         }
         player.append(pair);

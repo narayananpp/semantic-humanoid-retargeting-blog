@@ -3,6 +3,7 @@
   if (document.documentElement.dataset.media === 'off') return;
   const watched = new Set();
   const userPaused = new WeakSet();
+  const blocked = new Set();
   function visible(video) {
     if (document.hidden || !video.isConnected || !video.getClientRects().length) return false;
     const rect = video.getBoundingClientRect();
@@ -11,7 +12,11 @@
   function sync(video) {
     const active = visible(video);
     video.autoplay = active;
-    if (active && !userPaused.has(video)) video.play().catch(() => {});
+    if (active && !userPaused.has(video) && video.paused) {
+      video.play().then(() => blocked.delete(video)).catch(error => {
+        if (error.name === 'NotAllowedError') blocked.add(video);
+      });
+    }
     else if (!active) video.pause();
   }
   const observer = new IntersectionObserver(entries => entries.forEach(({target}) => sync(target)), {threshold: [0, .15]});
@@ -35,6 +40,9 @@
     video.addEventListener('pause', () => { if (video.dataset.userInteracting && visible(video)) userPaused.add(video); });
     video.addEventListener('play', () => userPaused.delete(video));
     video.addEventListener('loadedmetadata', () => sync(video));
+    video.addEventListener('loadeddata', () => sync(video));
+    video.addEventListener('canplay', () => sync(video));
+    video.addEventListener('emptied', () => { userPaused.delete(video); blocked.delete(video); });
     observer.observe(video);
     sync(video);
   }
@@ -51,8 +59,14 @@
     });
   };
   new MutationObserver(records => {
-    if (records.some(r => r.type === 'childList' || ['src','hidden','open'].includes(r.attributeName))) refresh();
-  }).observe(document.body, {subtree: true, childList: true, attributes: true, attributeFilter: ['src','hidden','open']});
+    if (records.some(r => r.type === 'childList' || ['src','hidden','open','class','style','aria-hidden'].includes(r.attributeName))) refresh();
+  }).observe(document.body, {subtree: true, childList: true, attributes: true, attributeFilter: ['src','hidden','open','class','style','aria-hidden']});
   document.addEventListener('toggle', refresh, true);
   document.addEventListener('visibilitychange', refresh);
+  window.addEventListener('scroll', refresh, {passive: true});
+  window.addEventListener('resize', refresh, {passive: true});
+  window.addEventListener('pageshow', refresh);
+  for (const event of ['pointerup', 'keydown']) {
+    document.addEventListener(event, () => { if (blocked.size) refresh(); }, {passive: true});
+  }
 })();

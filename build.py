@@ -69,7 +69,7 @@ def video_html(name, media):
             status, symbol = ("Failed execution", "✕") if outcome == "failure" else ("Successful execution", "✓")
             badge = f'<span class="execution-{outcome}" role="img" aria-label="{status}">{symbol}</span>'
         panels.append(
-            f'<div class="execution-panel"><p>{label}{note}</p>{badge}<video controls muted playsinline '
+            f'<div class="execution-panel"><p>{label}{note}</p>{badge}<video controls autoplay muted loop playsinline '
             f'preload="none" aria-label="{label}" '
             f'poster="{escape(view.get("poster", ""), quote=True)}" src="{escape(src, quote=True)}"></video></div>'
         )
