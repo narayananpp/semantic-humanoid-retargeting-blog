@@ -514,9 +514,9 @@ html[data-media="off"] .walkthrough-public-still { display:block; width:100%; as
 .takeaways-message li { font:16px/1.75 var(--sans); padding-left:5px; margin:0 0 17px; max-width:none; }
 .takeaways-message li:last-child { margin-bottom:0; }
 .takeaways-message strong { font-weight:650; }
-.takeaway-with-videos { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:center; gap:24px; }
+.takeaway-with-videos { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,480px); align-items:center; gap:20px; }
 .takeaway-copy { min-width:0; }
-.takeaway-video-pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; width:100%; max-width:480px; margin:0; justify-self:end; }
+.takeaway-video-pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; width:100%; max-width:480px; margin:0; justify-self:start; }
 .takeaway-video-pair figure { min-width:0; margin:0; padding:0; border:0; background:none; }
 .takeaway-video-pair figcaption { margin:0 0 5px; padding:0; text-align:center; font:600 13px/1.4 var(--sans); color:inherit; }
 .takeaway-video-pair video { display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; border-radius:4px; background:transparent; }
