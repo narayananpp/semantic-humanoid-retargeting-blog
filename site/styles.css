@@ -1082,3 +1082,38 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 @media(min-width:1100px) and (max-width:1300px) { .loop-forward { gap:16px; grid-template-columns:1fr .55fr .8fr .45fr .65fr .9fr 1.35fr; } .refinement-loop-ui { padding:18px; } .refinement-loop-ui h4 { font-size:12px; } .loop-detail { font-size:10px; } .loop-score strong { font-size:17px; } }
 @media(max-width:1099px) { .loop-ik-block,.loop-targets { min-height:75px; display:grid; place-content:center; } .loop-feedback-grid { grid-template-columns:1fr 1fr; } .loop-inspections { max-width:520px; margin:auto; } }
 @media(max-width:600px) { .loop-feedback-grid { grid-template-columns:1fr; } .loop-record { padding:12px; } .loop-control { justify-content:center; } }
+
+/* Match the warm outlined nodes and flowing borders of the original animation. */
+.refinement-loop-ui { border:1px solid color-mix(in srgb,#a58c34 35%,var(--line)); box-shadow:0 4px 24px #00000004; }
+.loop-box,.loop-input,.loop-evidence { border-radius:10px; }
+.loop-agent { border:2px solid #b59a50; }
+.loop-control { border:1.5px solid #b59a50; }
+.loop-forward { grid-template-columns:minmax(120px,1fr) minmax(65px,.55fr) minmax(100px,.85fr) minmax(55px,.5fr) minmax(100px,.85fr) minmax(155px,1.25fr) minmax(190px,1.6fr); gap:20px; }
+.loop-edge.code-edge { stroke:#a58c34; }
+.loop-feedback { border:1.5px solid color-mix(in srgb,var(--loop-teal) 65%,var(--line)); }
+.loop-record { grid-template-columns:auto 1fr; }
+.loop-feedback-grid { grid-template-columns:.95fr 1.15fr 1fr; align-items:stretch; }
+.loop-feedback-tabs { display:flex; flex-wrap:wrap; gap:2px; padding:7px 7px 0; }
+.loop-feedback-tabs button { border:0; border-radius:5px; background:transparent; font:10px/1.4 var(--sans); padding:5px 6px; color:var(--muted); }
+.loop-feedback-tabs button[aria-pressed="true"] { color:var(--loop-teal); background:var(--loop-soft); font-weight:650; }
+.loop-feedback-tabs button[hidden] { display:none; }
+.loop-query-summary { border-top:1px solid var(--line); margin:4px 10px 0; padding:8px 0 0; font:10px/1.5 var(--sans); }
+.loop-query-summary strong,.loop-query-summary>span:last-child { display:block; }
+.loop-query-tag { display:inline-block; color:var(--loop-teal); font:650 9px/1.4 var(--sans); margin-bottom:3px; }
+.loop-feedback-legend { display:flex; justify-content:center; gap:12px; font:10px/1.4 var(--sans); color:var(--muted); min-height:20px; }
+.loop-inspections .loop-image-button img { height:190px; }
+.loop-inspections { padding:10px 5px; }
+.refinement-loop-ui[data-phase="revise"] .loop-agent,.refinement-loop-ui[data-phase="revise"] .loop-reference { outline:2px solid #b59a50; outline-offset:3px; }
+.refinement-loop-ui[data-phase="inspect"] .loop-feedback { outline:2px solid var(--loop-teal); outline-offset:3px; }
+.refinement-loop-ui[data-phase="revise"] .code-edge { stroke-dasharray:6 5; animation:loop-flow 1.1s linear infinite; }
+@media(min-width:1100px) and (max-width:1300px) { .loop-forward { gap:14px; grid-template-columns:1fr .5fr .8fr .45fr .8fr 1.2fr 1.35fr; } .loop-control h4 { font-size:11px; } }
+@media(max-width:1099px) { .loop-forward { grid-template-columns:repeat(2,minmax(0,1fr)); } .loop-feedback-grid { grid-template-columns:1fr 1fr; } .loop-record { grid-template-columns:1fr; } }
+@media(max-width:600px) { .loop-feedback-grid { grid-template-columns:1fr; } .loop-control { display:block; } .loop-joint-control { border:0; border-top:1px solid var(--line); margin-top:12px; padding:12px 0 0; } }
+
+@media(min-width:1100px) { .loop-control .loop-joint-control { margin-top:42px; padding-top:24px; } }
+
+.loop-query-card .loop-chart-button svg { height:180px; }
+.loop-feedback>.loop-query-summary { margin:12px 0 0; padding:8px 12px; border:0; border-left:3px solid var(--loop-teal); background:var(--loop-paper); border-radius:0 6px 6px 0; font-size:11px; }
+.loop-feedback>.loop-query-summary .loop-query-tag { margin-right:10px; }
+.loop-feedback>.loop-query-summary strong { display:inline; font-size:11px; }
+.loop-feedback>.loop-query-summary>span:last-child { margin-top:2px; color:var(--muted); }

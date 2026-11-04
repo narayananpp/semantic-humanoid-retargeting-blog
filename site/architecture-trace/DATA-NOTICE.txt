@@ -11,7 +11,7 @@ measurements here are shared under those terms:
 https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 Robot videos are rendered from recorded controller executions or verified
-replays. The four intermediate replays and the final replay reproduce the
+replays. The six intermediate replays and the final replay reproduce the
 original recorded mean ADD. The initial evaluation uses verified identical input arrays. The mean ADD
 history uses all recorded candidates. Plots are reconstructed from measurements;
 they are not presented as plots the agent itself viewed. Inspected images are

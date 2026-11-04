@@ -15,8 +15,8 @@ to `main`.
 
 The interactive architecture (`site/architecture.js`) uses a recorded single-Codex
 clothes-stand run. Its public data lives in `site/architecture-trace/trace.json`.
-Initial, iterations 001, 002, 003, the last iteration 025, and the retained
-result 023 retain verified scores. Query cards cite original events and distinguish
+Initial, iterations 001, 002, 003, 006, 013, 017, and the final execution
+from iteration 023 retain verified scores. Source metadata cites original events and distinguishes
 before-execution checks from after-execution feedback. The initial evaluation
 uses arrays verified identical to the agent input; it was not run by this agent.
 Images come from the original image-inspection calls. The ADD history contains
