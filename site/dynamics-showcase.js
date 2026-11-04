@@ -14,7 +14,7 @@
       const methods=Object.fromEntries(Object.entries(row.methods||{}).filter(([key])=>!['orchestrator','communicating'].includes(key)));
       const picker=make('label','method-choice','Method'),select=make('select');
       select.setAttribute('aria-label','Dynamics method');
-      for(const [key,label] of [['hoi_spider','B1: HOI-Retarget + SPIDER'],['zero_shot','B2: Astra one-shot'],['codex','Codex · 30 min'],['codex120','Codex, 2 hours']]){
+      for(const [key,label] of [['hoi_spider','HOI-Retarget + SPIDER'],['zero_shot','Astra one-shot'],['codex','Codex · 30 min'],['codex120','Codex, 2 hours']]){
         if(!methods[key])continue;
         const option=make('option','',label);
         option.value=key;select.append(option);

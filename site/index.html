@@ -166,8 +166,8 @@
 <span id="configurations" class="section-anchor"></span>
 <p>We study three approaches to humanoid retargeting:</p>
 <ul>
-<li id="configuration-spider"><strong>B1: Optimization-based retargeting.</strong> <a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> generates a kinematic reference, and <a href="https://arxiv.org/abs/2511.09484">SPIDER</a> optimizes its execution in physics simulation.</li>
-<li id="configuration-one-shot"><strong>B2: One-shot generation.</strong> <a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra</a> generates motion and control code in one response, without tool calls or iterative refinement.</li>
+<li id="configuration-spider"><strong>Optimization-based retargeting.</strong> <a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> generates a kinematic reference, and <a href="https://arxiv.org/abs/2511.09484">SPIDER</a> optimizes its execution in physics simulation.</li>
+<li id="configuration-one-shot"><strong>One-shot generation.</strong> <a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra</a> generates motion and control code in one response, without tool calls or iterative refinement.</li>
 <li id="configuration-plain"><strong>Iterative agentic refinement.</strong> <a href="https://github.com/openai/codex">Codex</a> uses the same model in a persistent coding session to test and iteratively refine motion and control code through simulation feedback.</li>
 </ul>
 <p>For each task, Codex receives the human demonstration in SMPL format, an initial kinematic reference from HOI-Retarget, the task scene and the target object trajectory. The object trajectory specifies the desired object motion, scaled to the robot’s size. The agent then writes Python code to generate and refine <em>a reference motion for the whole body and hands</em>, which serves as the framework’s output.</p>
@@ -242,11 +242,11 @@
 
 
 <div class="baseline-dataset-tables" id="dynamics-results-table">
-<div class="table-wrap results-table"><table aria-label="HUMOTO: object-tracking errors and semantic success"><caption class="publication-caption"><strong>Table 1.</strong> Object-tracking errors and semantic success on HUMOTO (20 tasks).</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean ADD<br>(cm) ↓</th><th scope="col">Position error<br>(cm) ↓</th><th scope="col">Orientation error<br>(°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody><tr><th scope="row">B1: HOI-Retarget + SPIDER</th>
+<div class="table-wrap results-table"><table aria-label="HUMOTO: object-tracking errors and semantic success"><caption class="publication-caption"><strong>Table 1.</strong> Object-tracking errors and semantic success on HUMOTO (20 tasks).</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean ADD<br>(cm) ↓</th><th scope="col">Position error<br>(cm) ↓</th><th scope="col">Orientation error<br>(°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody><tr><th scope="row">HOI-Retarget + SPIDER</th>
 <td>44.96</td>
 <td>45.11</td>
 <td>42.98</td>
-<td>5/20<br>25.0%</td></tr><tr><th scope="row">B2: Astra one-shot</th>
+<td>5/20<br>25.0%</td></tr><tr><th scope="row">Astra one-shot</th>
 <td>56.09</td>
 <td>55.03</td>
 <td>62.88</td>
@@ -255,11 +255,11 @@
 <td><strong>9.07</strong></td>
 <td><strong>14.74</strong></td>
 <td><strong>16/20<br>80.0%</strong></td></tr></tbody></table></div>
-<div class="table-wrap results-table"><table aria-label="OMOMO: object-tracking errors and semantic success"><caption class="publication-caption"><strong>Table 2.</strong> Object-tracking errors and semantic success on OMOMO (20 tasks).</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean ADD<br>(cm) ↓</th><th scope="col">Position error<br>(cm) ↓</th><th scope="col">Orientation error<br>(°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody><tr><th scope="row">B1: HOI-Retarget + SPIDER</th>
+<div class="table-wrap results-table"><table aria-label="OMOMO: object-tracking errors and semantic success"><caption class="publication-caption"><strong>Table 2.</strong> Object-tracking errors and semantic success on OMOMO (20 tasks).</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean ADD<br>(cm) ↓</th><th scope="col">Position error<br>(cm) ↓</th><th scope="col">Orientation error<br>(°) ↓</th><th scope="col">Semantic success ↑</th></tr></thead><tbody><tr><th scope="row">HOI-Retarget + SPIDER</th>
 <td>40.77</td>
 <td>35.62</td>
 <td>55.97</td>
-<td>2/20<br>10.0%</td></tr><tr><th scope="row">B2: Astra one-shot</th>
+<td>2/20<br>10.0%</td></tr><tr><th scope="row">Astra one-shot</th>
 <td>69.87</td>
 <td>65.61</td>
 <td>58.35</td>
@@ -375,7 +375,7 @@
     <footer class="publication-footer"><span>HuMoTAR</span><a href="#top">Back to top ↑</a></footer>
   </main>
   <script src="article.js?v=intro-selector-1"></script>
-<script src="dynamics-showcase.js?v=codex-label-20261104" defer></script>
+<script src="dynamics-showcase.js?v=method-names-20261104" defer></script>
 <script src="kinematic-showcase.js?v=humotar-story-2" defer></script>
 <script src="experience-story.js?v=numbered-captions-1" defer></script>
 <script src="text-motion.js?v=1" defer></script>
