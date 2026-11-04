@@ -28,7 +28,8 @@ for mobile in (False, True):
                         bottom=.17, top=.72 if mobile else .77)
     semantic = ax.twinx()
     ax.step(x, y, where='post', color='#287b70', linewidth=2.3, zorder=3)
-    ax.axvline(30, linestyle=':', color='#6e7169', linewidth=1.5)
+    for minute in (30, 120):
+        ax.axvline(minute, linestyle=':', color='#6e7169', linewidth=1.5)
     ax.scatter([30, 120], [y30, y[-1]], color='#287b70', s=32, zorder=4, clip_on=False)
     ax.set(xlim=(0, 120), ylim=(0, 60), xlabel='Refinement time (minutes)',
            ylabel='Best-so-far mean ADD (cm)')
@@ -63,9 +64,9 @@ for mobile in (False, True):
             bbox={'facecolor': '#faf9f6', 'edgecolor': 'none', 'pad': 2})
     fig.text(.07 if mobile else .09, .95, 'Codex refinement', fontsize=14 if mobile else 18,
              weight='bold', color='#242620')
-    handles = [Line2D([0], [0], color='#287b70', lw=2.3, label='Object tracking (two-hour runs)'),
+    handles = [Line2D([0], [0], color='#287b70', lw=2.3, label='Object tracking'),
                Line2D([0], [0], marker='D', color='#80609b', lw=0,
-                      label='Semantic success (separate budget runs)')]
+                      label='Semantic success')]
     fig.legend(handles=handles, loc='upper left', bbox_to_anchor=(.055 if mobile else .08, .91),
                frameon=False, fontsize=8.5 if mobile else 10, ncol=1)
     name = 'codex-refinement-time' + ('-mobile' if mobile else '')

@@ -136,6 +136,11 @@ L 648 84.456
 L 210.6 84.456 
 " clip-path="url(#pd3fb340bf3)" style="fill: none; stroke-dasharray: 1.5,2.475; stroke-dashoffset: 0; stroke: #6e7169; stroke-width: 1.5"/>
    </g>
+   <g id="line2d_17">
+    <path d="M 648 304.776 
+L 648 84.456 
+" clip-path="url(#pd3fb340bf3)" style="fill: none; stroke-dasharray: 1.5,2.475; stroke-dashoffset: 0; stroke: #6e7169; stroke-width: 1.5"/>
+   </g>
    <g id="patch_3">
     <path d="M 64.8 304.776 
 L 64.8 84.456 
@@ -151,7 +156,7 @@ L 648 84.456
 L 648 304.776 
 " style="fill: none; stroke: #c4c8c0; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
-   <g id="line2d_17">
+   <g id="line2d_18">
     <path d="M 64.8 110.063411 
 L 73.79677 110.063411 
 L 73.79677 112.551166 
@@ -652,31 +657,31 @@ z
   <g id="axes_2">
    <g id="matplotlib.axis_3">
     <g id="ytick_6">
-     <g id="line2d_18"/>
+     <g id="line2d_19"/>
      <g id="text_16">
       <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="654" y="308.574828" transform="rotate(-0 654 308.574828)">0</text>
      </g>
     </g>
     <g id="ytick_7">
-     <g id="line2d_19"/>
+     <g id="line2d_20"/>
      <g id="text_17">
       <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="654" y="253.494828" transform="rotate(-0 654 253.494828)">25</text>
      </g>
     </g>
     <g id="ytick_8">
-     <g id="line2d_20"/>
+     <g id="line2d_21"/>
      <g id="text_18">
       <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="654" y="198.414828" transform="rotate(-0 654 198.414828)">50</text>
      </g>
     </g>
     <g id="ytick_9">
-     <g id="line2d_21"/>
+     <g id="line2d_22"/>
      <g id="text_19">
       <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="654" y="143.334828" transform="rotate(-0 654 143.334828)">75</text>
      </g>
     </g>
     <g id="ytick_10">
-     <g id="line2d_22"/>
+     <g id="line2d_23"/>
      <g id="text_20">
       <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="654" y="88.254828" transform="rotate(-0 654 88.254828)">100</text>
      </g>
@@ -729,16 +734,16 @@ z
    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242620" x="64.8" y="18.36" transform="rotate(-0 64.8 18.36)">Codex refinement</text>
   </g>
   <g id="legend_1">
-   <g id="line2d_23">
+   <g id="line2d_24">
     <path d="M 66.6 46.146438 
 L 76.6 46.146438 
 L 86.6 46.146438 
 " style="fill: none; stroke: #287b70; stroke-width: 2.3; stroke-linecap: square"/>
    </g>
    <g id="text_25">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="94.6" y="49.646438" transform="rotate(-0 94.6 49.646438)">Object tracking (two-hour runs)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="94.6" y="49.646438" transform="rotate(-0 94.6 49.646438)">Object tracking</text>
    </g>
-   <g id="line2d_24">
+   <g id="line2d_25">
     <path d="M 66.6 61.147219 
 L 76.6 61.147219 
 L 86.6 61.147219 
@@ -756,7 +761,7 @@ z
     </g>
    </g>
    <g id="text_26">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="94.6" y="64.647219" transform="rotate(-0 94.6 64.647219)">Semantic success (separate budget runs)</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="94.6" y="64.647219" transform="rotate(-0 94.6 64.647219)">Semantic success</text>
    </g>
   </g>
  </g>
