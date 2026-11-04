@@ -15593,7 +15593,7 @@
       "video": "013.mp4",
       "poster": "013.jpg",
       "image": "013-inspection.webp",
-      "image_label": "Earlier inspection · Iter. 6",
+      "image_label": "Earlier inspection (Iter. 6)",
       "image_line": 1064,
       "hand_image": null,
       "hand_crop": [
@@ -18433,7 +18433,7 @@
           "detail": "The agent queries floor and hand contact, object velocity and final tilt before testing placement changes.",
           "values": [
             "Floor support: 5.10 N",
-            "Tilt: 1.74° · hand still in contact"
+            "Tilt: 1.74°, hand still in contact"
           ],
           "raw": "017 tilt 1.74245544262984 floor 5.098968927434467",
           "extra_source": 1158
@@ -18442,7 +18442,7 @@
       "video": "017.mp4",
       "poster": "017.jpg",
       "image": "017-inspection.webp",
-      "image_label": "Earlier inspection · Iter. 6",
+      "image_label": "Earlier inspection (Iter. 6)",
       "image_line": 1064,
       "hand_image": null,
       "hand_crop": [
@@ -21679,7 +21679,7 @@
       "video": "../baseline-showcase-media/sub10_clothesstand_002/codex.mp4?v=1d39f02558",
       "poster": "023.jpg",
       "image": "023-inspection.webp",
-      "image_label": "Starting grasp · final execution",
+      "image_label": "Starting grasp (final execution)",
       "image_line": 1268,
       "hand_image": "023-inspection.webp",
       "hand_crop": [

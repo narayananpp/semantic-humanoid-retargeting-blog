@@ -1,55 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="500" viewBox="0 0 1400 500" role="img" aria-labelledby="title desc">
-<title id="title">Refinement of the HOI-Retarget joint-space reference</title><desc id="desc">Astra revises the initial joint-space motion through code. Body posture and timing edits, wrist inverse kinematics and finger joint targets produce whole-body and wrist/finger references. SONIC controls the body; Astra also writes the wrist and finger impedance controller. Simulation feedback returns to Astra.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="480" viewBox="0 0 1400 480" role="img" aria-labelledby="title desc">
+<title id="title">HuMoTAR refinement loop</title><desc id="desc">Astra writes motion-generation code and wrist and finger impedance control code. End-effector references pass through arm IK into the joint-space reference. SONIC and the wrist and finger controller execute in MuJoCo. Object tracking, contact forces, object velocity, grasp checks and inspected images provide simulation feedback.</desc>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#167c77"/></marker></defs>
-<rect x="1" y="1" width="1398" height="498" rx="14" fill="#faf9f6" stroke="#c9bd9b"/>
-<rect x="20" y="40" width="160" height="85" rx="8" fill="#fff" stroke="#c8cec8"/>
-<text x="100" y="78" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#343a35">Human demonstration</text>
-<text x="100" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#343a35">SMPL</text>
-<rect x="20" y="245" width="160" height="95" rx="8" fill="#fff" stroke="#c8cec8"/>
-<text x="100" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#343a35">HOI-Retarget</text>
-<text x="100" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#343a35">reference</text>
-<text x="100" y="321" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#343a35">Joint space</text>
-<path d="M100 125V160" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="100" y="186" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#343a35">Kinematic retargeting</text>
-<path d="M100 200V240" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="215" y="175" width="95" height="75" rx="8" fill="#fbf3df" stroke="#b59a50"/>
-<text x="262" y="219" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#343a35">Astra</text>
-<rect x="350" y="90" width="270" height="240" rx="8" fill="#fff" stroke="#b59a50"/>
-<text x="485.0" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#343a35">Motion-generation code</text>
-<path d="M360 132H610" stroke="#c8cec8"/>
-<rect x="655" y="90" width="190" height="240" rx="8" fill="#fff" stroke="#b59a50"/>
-<text x="750.0" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#343a35">Joint-space references</text>
-<path d="M665 132H835" stroke="#c8cec8"/>
-<rect x="885" y="90" width="235" height="240" rx="8" fill="#fff" stroke="#b59a50"/>
-<text x="1002.5" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#343a35">Control</text>
-<path d="M895 132H1110" stroke="#c8cec8"/>
-<rect x="362" y="145" width="246" height="75" rx="8" fill="#fff" stroke="#c8cec8"/>
-<text x="485" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#343a35">Refine joint-space motion</text>
-<text x="485" y="199" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#343a35">Posture · timing</text>
-<rect x="362" y="235" width="246" height="75" rx="8" fill="#fff" stroke="#c8cec8"/>
-<text x="485" y="265" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#343a35">Wrist poses → IK</text>
-<text x="485" y="289" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#343a35">Finger joint targets</text>
-<text x="750" y="187" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#343a35">Whole body</text>
-<text x="750" y="277" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#343a35">Wrist and fingers</text>
-<text x="1002" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#343a35">SONIC</text>
-<text x="1002" y="202" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#343a35">Whole-body control</text>
-<text x="1002" y="264" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#343a35">Wrist and finger</text>
-<text x="1002" y="287" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#343a35">impedance controller</text>
-<rect x="1160" y="130" width="220" height="185" rx="8" fill="#fff" stroke="#c8cec8"/>
-<text x="1270" y="226" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#343a35">MuJoCo rollout</text>
-<path d="M180 82H198V195H210" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M180 292H198V230H210" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M310 212H345" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M620 182H650" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M845 182H880" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M620 272H650" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M845 272H880" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M1120 212H1155" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M310 239H330V360H1002V335" fill="none" stroke="#a58c34" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="665" y="351" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#343a35">Controller code</text>
-<rect x="215" y="403" width="1165" height="78" rx="8" fill="#eaf2ef" stroke="#167c77"/>
-<text x="797" y="433" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#343a35">Simulation feedback</text>
-<text x="797" y="459" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#343a35">Object tracking · Contact forces · Object speed · Grasp checks · Inspected images</text>
-<path d="M1270 315V398" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M262 403V255" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="1" y="1" width="1398" height="478" rx="14" fill="#faf9f6" stroke="#c9bd9b"/>
+<rect x="20" y="45" width="165" height="80" rx="9" fill="#fff" stroke="#c8cec8"/>
+<text x="102.5" y="90.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">Human, SMPL</text>
+<rect x="20" y="225" width="165" height="80" rx="9" fill="#fff" stroke="#c8cec8"/>
+<text x="102.5" y="270.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">Kinematic reference</text>
+<path d="M102 125V145" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M102 190V220" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="102" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#343a35">Kinematic retargeting</text>
+<text x="102" y="182" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#343a35">HOI-Retarget</text>
+<rect x="225" y="150" width="110" height="85" rx="9" fill="#fbf3df" stroke="#b59a50"/>
+<text x="280.0" y="197.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">Astra</text>
+<rect x="375" y="145" width="155" height="95" rx="9" fill="#fff" stroke="#c8cec8"/>
+<text x="452.5" y="186.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">End-effector</text>
+<text x="452.5" y="209.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">references</text>
+<rect x="565" y="155" width="85" height="75" rx="9" fill="#fff" stroke="#c8cec8"/>
+<text x="607.5" y="197.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">IK</text>
+<rect x="685" y="145" width="145" height="95" rx="9" fill="#fff" stroke="#c8cec8"/>
+<text x="757.5" y="186.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">Joint-space</text>
+<text x="757.5" y="209.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">reference</text>
+<rect x="870" y="100" width="235" height="210" rx="9" fill="#fff" stroke="#b59a50"/>
+<text x="987.5" y="164.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">SONIC</text>
+<text x="987.5" y="187.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35"></text>
+<text x="987.5" y="210.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35"></text>
+<text x="987.5" y="233.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">Wrist and finger</text>
+<text x="987.5" y="256.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">impedance controller</text>
+<rect x="1145" y="120" width="230" height="170" rx="9" fill="#fff" stroke="#c8cec8"/>
+<text x="1260.0" y="210.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">MuJoCo rollout</text>
+<path d="M185 85H205V175H220" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M185 265H205V210H220" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M335 192H370" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M530 192H560" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M650 192H680" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M830 192H865" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M1105 192H1140" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="600" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#343a35">Motion-generation code</text>
+<path d="M335 220H355V275H860" fill="none" stroke="#a58c34" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="600" y="265" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#343a35">Controller code</text>
+<rect x="225" y="365" width="1150" height="90" rx="9" fill="#eaf2ef" stroke="#167c77"/>
+<text x="800.0" y="403.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">Simulation feedback</text>
+<text x="800.0" y="426.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#343a35">Object tracking, Contact forces, Object velocity, Grasp checks, Inspected images</text>
+<path d="M1260 290V360" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M280 365V240" fill="none" stroke="#167c77" stroke-width="2" marker-end="url(#arrow)"/>
 </svg>
