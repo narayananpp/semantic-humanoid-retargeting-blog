@@ -29,8 +29,7 @@
 <a href="#agent-diagnosis">4. Simulation feedback guides grasp, posture and timing</a>
 <a class="subsection" href="#kinematic-to-dynamic">4.1 Agents revise motion and control code after each simulation</a>
 <a class="subsection" href="#refining-contact-support-motion">4.2 Revisions correct contact, support and motion</a>
-<a class="subsection" href="#agentic-refinement-walkthrough">4.3 One agent progresses from grasp to placement</a>
-<a class="subsection" href="#how-does-the-reference-change">4.4 Refined references follow the executed grasp more closely</a>
+<a class="subsection" href="#how-does-the-reference-change">4.3 Refined references follow the executed grasp more closely</a>
 <a href="#refinement-results">5. Iterative refinement drives retargeting success</a>
 <a class="subsection" href="#comparison-results">5.1 Simulation feedback raises semantic success from 17.5% to 47.5%</a>
 <a class="subsection" href="#matched-time">5.2 At matched time, collaborative swarms outperform a single agent</a>
@@ -163,6 +162,7 @@
 </section>
 <section id="method" class="outline-section">
 <h2 id="2-comparing-agentic-workflows-for-humanoid-retargeting">2. Motion refinement with simulation feedback</h2>
+<p>We inspect the intermediate output of <strong>Codex</strong> as it refines the clothes-stand interaction. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. The architecture below shows how Codex generates motion and control code from the human demonstration and an initial kinematic reference. It tests the code in simulation and inspects execution images, object-tracking errors and contact measurements before the next revision.</p>
 <figure class="refinement-panel" data-architecture><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/single-agent-loop.svg" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/single-agent-loop.svg" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="1400" height="480" loading="lazy"></a><figcaption class="publication-caption"><strong>Fig. 3.</strong> Single-agent motion refinement through simulation feedback. Selected trials from one recorded Codex session.</figcaption></figure>
 <h3 id="refinement-configurations">Configurations of the refinement loop</h3>
 
@@ -218,32 +218,7 @@
 
 </section>
 <section id="refinement-walkthrough-panel" class="outline-section execution-analysis">
-<h3 id="agentic-refinement-walkthrough">4.3 One agent progresses from grasp to placement</h3>
-<p>We inspect the intermediate output of the <strong>collaborative four-agent swarm</strong> as it refines the clothes-stand interaction. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. Five saved trials show how the agent establishes a grasp, improves the carry and completes placement. Notably, these trials include an unsuccessful controller revision. <a href="#collaborative-agent-trace">Appendix A2</a> provides the detailed trace, including recorded tools, inspected images and exchanges between agents.</p>
-<div class="refinement-walkthrough" id="clothesstand-walkthrough" data-refinement-walkthrough>
-  <div class="walkthrough-stage-tabs" role="group" aria-label="Refinement stages"></div>
-  <div class="walkthrough-main">
-    <div class="walkthrough-motion">
-      <div class="walkthrough-stage-heading"><span data-walkthrough-step></span><h4 data-walkthrough-title></h4></div>
-      <img class="walkthrough-public-still" data-walkthrough-still src="walkthrough-media/clothesstand-collaborative/001/poster.jpg" alt="Selected refinement stage">
-      <video data-walkthrough-video controls muted playsinline preload="metadata" aria-label="Selected refinement stage execution"></video>
-    </div>
-    <aside class="walkthrough-curve-panel" aria-label="Refinement error curve">
-      <div class="walkthrough-value"><span>Mean ADD ↓</span><strong data-walkthrough-value></strong></div>
-      <svg data-walkthrough-curve viewBox="0 0 420 290" role="img" aria-label="Mean ADD across the selected agent’s recorded revisions"></svg>
-      <div class="walkthrough-legend"><span><i class="accepted"></i>Best so far</span><span><i></i>Evaluated revision</span></div>
-      <p data-walkthrough-time></p>
-    </aside>
-    <div class="walkthrough-evidence" aria-live="polite">
-      <div class="walkthrough-decision"><p data-walkthrough-description></p></div>
-      <blockquote class="walkthrough-message"><span>Agent’s log</span><p data-walkthrough-quote></p></blockquote>
-    </div>
-  </div>
-  <div class="walkthrough-controls"><button type="button" data-walkthrough-prev>← Previous</button><button type="button" data-walkthrough-tour aria-pressed="false" hidden style="display:none">Play walkthrough</button><a class="walkthrough-log-link" data-walkthrough-tag></a><button type="button" data-walkthrough-next>Next →</button></div>
-  <p class="walkthrough-error" hidden></p>
-</div>
-<p class="publication-caption"><strong>Fig. 6.</strong> Five selected trials from the collaborative swarm, with simulated executions and mean ADD.</p>
-<h3 id="how-does-the-reference-change">4.4 Refined references follow the executed grasp more closely</h3>
+<h3 id="how-does-the-reference-change">4.3 Refined references follow the executed grasp more closely</h3>
 <p>We overlay the <strong>initial kinematic reference in purple</strong> and the <strong>refined reference in blue</strong> with the <strong>physical execution in solid gray</strong>. The spatial separation between them shows where the prescribed and executed robot poses differ at corresponding motion phases. We find that the refined hand path follows the executed grasp more closely. However, body posture can still differ, since the controller must maintain balance.</p>
 <div class="reference-overlay-media">
   <figure>
@@ -256,7 +231,7 @@
     <figcaption><strong>(b) Reference finger-pad paths.</strong> Initial and refined paths relative to the object, shown at 0.5× speed.</figcaption>
   </figure>
 </div>
-<p class="publication-caption"><strong>Fig. 7.</strong> Reference refinement in the independent run. The image includes physical execution. The video shows reference geometry, not measured contacts.</p>
+<p class="publication-caption"><strong>Fig. 6.</strong> Reference refinement in the independent run. The image includes physical execution. The video shows reference geometry, not measured contacts.</p>
 </section>
 <section id="refinement-results" class="outline-section">
 <h2 id="5-quantitative-results">5. Iterative refinement drives retargeting success</h2>
@@ -272,7 +247,7 @@
 
 
 <div id="dynamics-showcase" class="dynamics-showcase" aria-label="Selected task executions"></div>
-<p class="publication-caption"><strong>Fig. 8.</strong> Selected humanoid–object executions across retargeting configurations.</p>
+<p class="publication-caption"><strong>Fig. 7.</strong> Selected humanoid–object executions across retargeting configurations.</p>
 
 <p>We first compare <strong>HuMoTAR against our adaptation of HOI-Retarget + SPIDER to G1 with Dex3</strong> on <strong>20 HUMOTO and 20 OMOMO tasks</strong>. For this comparison, we use the <a href="#configuration-plain">single-Codex configuration</a> and include <strong>Astra one-shot</strong> to measure performance without iterative refinement.</p>
 
@@ -321,11 +296,11 @@
     <label class="matched-time-individual"><input type="checkbox" data-add-individual> Show individual tasks</label>
   </div>
   <div class="matched-time-plots">
-    <figure class="results-plot matched-time-semantic"><img data-semantic-image data-semantic-humoto-src="assets/analysis/results/matched-time-semantic-humoto.svg?v=dataset-tabs-1" data-semantic-humoto-alt="HUMOTO: semantic success across 20 tasks: Codex · 30 min 55.0%, Independent swarm · 30 min 55.0%, Collaborative swarm · 30 min 60.0%." data-semantic-omomo-src="assets/analysis/results/matched-time-semantic-omomo.svg?v=dataset-tabs-1" data-semantic-omomo-alt="OMOMO: semantic success across 20 tasks: Codex · 30 min 40.0%, Independent swarm · 30 min 50.0%, Collaborative swarm · 30 min 75.0%." data-semantic-all-src="assets/analysis/results/matched-time-semantic.svg?v=dataset-tabs-1" data-semantic-all-alt="Overall: semantic success across 40 tasks: Codex · 30 min 47.5%, Independent swarm · 30 min 52.5%, Collaborative swarm · 30 min 67.5%." src="assets/analysis/results/matched-time-semantic.svg?v=dataset-tabs-1" alt="Overall: semantic success across 40 tasks: Codex · 30 min 47.5%, Independent swarm · 30 min 52.5%, Collaborative swarm · 30 min 67.5%." loading="lazy" width="460" height="480"><figcaption class="publication-caption"><strong>Fig. 9.</strong> Semantic success under a 30-minute refinement budget.</figcaption></figure>
+    <figure class="results-plot matched-time-semantic"><img data-semantic-image data-semantic-humoto-src="assets/analysis/results/matched-time-semantic-humoto.svg?v=dataset-tabs-1" data-semantic-humoto-alt="HUMOTO: semantic success across 20 tasks: Codex · 30 min 55.0%, Independent swarm · 30 min 55.0%, Collaborative swarm · 30 min 60.0%." data-semantic-omomo-src="assets/analysis/results/matched-time-semantic-omomo.svg?v=dataset-tabs-1" data-semantic-omomo-alt="OMOMO: semantic success across 20 tasks: Codex · 30 min 40.0%, Independent swarm · 30 min 50.0%, Collaborative swarm · 30 min 75.0%." data-semantic-all-src="assets/analysis/results/matched-time-semantic.svg?v=dataset-tabs-1" data-semantic-all-alt="Overall: semantic success across 40 tasks: Codex · 30 min 47.5%, Independent swarm · 30 min 52.5%, Collaborative swarm · 30 min 67.5%." src="assets/analysis/results/matched-time-semantic.svg?v=dataset-tabs-1" alt="Overall: semantic success across 40 tasks: Codex · 30 min 47.5%, Independent swarm · 30 min 52.5%, Collaborative swarm · 30 min 67.5%." loading="lazy" width="460" height="480"><figcaption class="publication-caption"><strong>Fig. 8.</strong> Semantic success under a 30-minute refinement budget.</figcaption></figure>
     <div class="matched-time-tracking">
-      <div role="tabpanel" id="add-panel-humoto" aria-labelledby="add-tab-humoto" tabindex="0" hidden><figure class="results-plot"><picture><source data-add-mobile="humoto" media="(max-width: 760px)" srcset="assets/analysis/results/matched-time-add-humoto-mobile.svg?v=clean-1"><img data-add-image="humoto" src="assets/analysis/results/matched-time-add-humoto.svg?v=clean-1" alt="HUMOTO: overlaid best-so-far mean ADD curves for Codex, independent swarm and collaborative swarm across 20 tasks, through 30 minutes." loading="lazy" width="740" height="480"></picture><figcaption class="publication-caption"><strong>Fig. 10.</strong> Object-tracking error during 30 minutes of refinement.</figcaption></figure></div>
-      <div role="tabpanel" id="add-panel-omomo" aria-labelledby="add-tab-omomo" tabindex="0" hidden><figure class="results-plot"><picture><source data-add-mobile="omomo" media="(max-width: 760px)" srcset="assets/analysis/results/matched-time-add-omomo-mobile.svg?v=clean-1"><img data-add-image="omomo" src="assets/analysis/results/matched-time-add-omomo.svg?v=clean-1" alt="OMOMO: overlaid best-so-far mean ADD curves for Codex, independent swarm and collaborative swarm across 20 tasks, through 30 minutes." loading="lazy" width="740" height="480"></picture><figcaption class="publication-caption"><strong>Fig. 10.</strong> Object-tracking error during 30 minutes of refinement.</figcaption></figure></div>
-      <div role="tabpanel" id="add-panel-all" aria-labelledby="add-tab-all" tabindex="0"><figure class="results-plot"><picture><source data-add-mobile="all" media="(max-width: 760px)" srcset="assets/analysis/results/matched-time-add-all-mobile.svg?v=clean-1"><img data-add-image="all" src="assets/analysis/results/matched-time-add-all.svg?v=clean-1" alt="Overall: overlaid best-so-far mean ADD curves for Codex, independent swarm and collaborative swarm across 40 tasks, through 30 minutes." loading="lazy" width="740" height="480"></picture><figcaption class="publication-caption"><strong>Fig. 10.</strong> Object-tracking error during 30 minutes of refinement.</figcaption></figure></div>
+      <div role="tabpanel" id="add-panel-humoto" aria-labelledby="add-tab-humoto" tabindex="0" hidden><figure class="results-plot"><picture><source data-add-mobile="humoto" media="(max-width: 760px)" srcset="assets/analysis/results/matched-time-add-humoto-mobile.svg?v=clean-1"><img data-add-image="humoto" src="assets/analysis/results/matched-time-add-humoto.svg?v=clean-1" alt="HUMOTO: overlaid best-so-far mean ADD curves for Codex, independent swarm and collaborative swarm across 20 tasks, through 30 minutes." loading="lazy" width="740" height="480"></picture><figcaption class="publication-caption"><strong>Fig. 9.</strong> Object-tracking error during 30 minutes of refinement.</figcaption></figure></div>
+      <div role="tabpanel" id="add-panel-omomo" aria-labelledby="add-tab-omomo" tabindex="0" hidden><figure class="results-plot"><picture><source data-add-mobile="omomo" media="(max-width: 760px)" srcset="assets/analysis/results/matched-time-add-omomo-mobile.svg?v=clean-1"><img data-add-image="omomo" src="assets/analysis/results/matched-time-add-omomo.svg?v=clean-1" alt="OMOMO: overlaid best-so-far mean ADD curves for Codex, independent swarm and collaborative swarm across 20 tasks, through 30 minutes." loading="lazy" width="740" height="480"></picture><figcaption class="publication-caption"><strong>Fig. 9.</strong> Object-tracking error during 30 minutes of refinement.</figcaption></figure></div>
+      <div role="tabpanel" id="add-panel-all" aria-labelledby="add-tab-all" tabindex="0"><figure class="results-plot"><picture><source data-add-mobile="all" media="(max-width: 760px)" srcset="assets/analysis/results/matched-time-add-all-mobile.svg?v=clean-1"><img data-add-image="all" src="assets/analysis/results/matched-time-add-all.svg?v=clean-1" alt="Overall: overlaid best-so-far mean ADD curves for Codex, independent swarm and collaborative swarm across 40 tasks, through 30 minutes." loading="lazy" width="740" height="480"></picture><figcaption class="publication-caption"><strong>Fig. 9.</strong> Object-tracking error during 30 minutes of refinement.</figcaption></figure></div>
     </div>
   </div>
 </div>
@@ -341,7 +316,7 @@
 <p>Under a fixed time budget, the collaborative swarm outperforms a single agent. However, it also uses four times the compute. <strong>At matched compute (agent-hours), is it better to give a single agent more time for reasoning and iterative refinement or to distribute the budget across a collaborative swarm?</strong> To answer this, we compare the <a href="#configuration-collaborative"><strong>collaborative swarm of four Codex agents</strong></a> running for 30 minutes each against <strong>one Codex agent running for 120 minutes</strong>. Both settings receive <em>two agent-hours</em>.</p>
 
 
-<figure class="results-plot"><img src="assets/analysis/results/agent-hours.svg?v=all-40-tasks-1" alt="Final semantic success on 40 tasks and recorded ADD curves on all 40 tasks against allocated agent-hours, comparing the collaborative swarm with longer Codex refinement." loading="lazy" width="1100" height="410"><figcaption class="publication-caption"><strong>Fig. 11.</strong> Semantic success and object-tracking error at matched compute (agent-hours).</figcaption></figure>
+<figure class="results-plot"><img src="assets/analysis/results/agent-hours.svg?v=all-40-tasks-1" alt="Final semantic success on 40 tasks and recorded ADD curves on all 40 tasks against allocated agent-hours, comparing the collaborative swarm with longer Codex refinement." loading="lazy" width="1100" height="410"><figcaption class="publication-caption"><strong>Fig. 10.</strong> Semantic success and object-tracking error at matched compute (agent-hours).</figcaption></figure>
 
 <p>We find that longer single-agent refinement outperforms the collaborative swarm in semantic success, achieving <strong>75% versus 67.5%</strong>, at the cost of <strong>4× the elapsed time</strong>.</p>
 </section>
@@ -371,7 +346,7 @@
 <p>In the example below, G1 must lift and swirl a plate to reproduce the human’s interaction. Although it lifts the plate, it does not complete the swirling motion. The agents adjust finger placement and try two-handed support, yet the grasp remains unstable during rotation. <strong>This difficulty reflects the morphological gap between human hands and G1’s Dex3 hands</strong>, where the fingers struggle to establish a stable grasp around the plate’s thin rim. Notably, the tested motion and controller revisions do not fully compensate for this mismatch.</p>
 
 
-<figure class="authored-video" data-media-id="discussion-plate"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="intro-media/plate-human.jpg" src="intro-media/plate-human.mp4?v=1ce87eb92b"></video></div><div class="execution-panel"><p>HuMoTAR</p><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="intro-media/plate-robot.jpg" src="intro-media/plate-robot.mp4?v=c85e205f9b"></video></div></div><figcaption class="publication-caption"><strong>Fig. 12.</strong> Plate swirling: human demonstration and incomplete HuMoTAR execution.</figcaption></figure>
+<figure class="authored-video" data-media-id="discussion-plate"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="intro-media/plate-human.jpg" src="intro-media/plate-human.mp4?v=1ce87eb92b"></video></div><div class="execution-panel"><p>HuMoTAR</p><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="intro-media/plate-robot.jpg" src="intro-media/plate-robot.mp4?v=c85e205f9b"></video></div></div><figcaption class="publication-caption"><strong>Fig. 11.</strong> Plate swirling: human demonstration and incomplete HuMoTAR execution.</figcaption></figure>
 
 </section>
 <section id="references" class="outline-section">
@@ -452,7 +427,6 @@
     <footer class="publication-footer"><span>HuMoTAR</span><a href="#top">Back to top ↑</a></footer>
   </main>
   <script src="article.js?v=intro-selector-1"></script>
-  <script src="walkthrough.js?v=original-copy-1"></script>
 <script src="dynamics-showcase.js?v=spider-full-20261102" defer></script>
 <script src="kinematic-showcase.js?v=humotar-story-2" defer></script>
 <script src="experience-story.js?v=numbered-captions-1" defer></script>
