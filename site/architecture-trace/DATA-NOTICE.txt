@@ -28,4 +28,4 @@ without SONIC or physics execution. Colored arms show reference joint poses;
 gold wrist markers and trails use the saved nominal grasp plans. They do not
 include later online controller corrections. Supplemental Blender views are
 re-renders of saved starting poses or rollout frames, not images viewed by the
-agent. The original inspection images remain available under Agent image.
+agent. Only the original inspection images are displayed in the Agent image panel.

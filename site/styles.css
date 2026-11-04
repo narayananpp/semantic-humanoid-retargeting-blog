@@ -1139,11 +1139,11 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 .loop-path3d:active { cursor:grabbing; }
 .loop-inspections .loop-image-button img { height:190px; }
 @media(min-width:1100px) {
- .loop-forward { grid-template-columns:minmax(95px,1fr) 50px minmax(125px,1.3fr) 40px minmax(125px,1.3fr) minmax(140px,1.4fr) minmax(160px,1.5fr); gap:28px; }
+ .loop-forward { grid-template-columns:minmax(95px,1fr) 50px minmax(85px,.75fr) 40px minmax(155px,1.65fr) minmax(140px,1.4fr) minmax(160px,1.5fr); gap:28px; }
  .loop-agent { padding:20px 3px; }
  .loop-agent h4 { font-size:15px; }
  .loop-ik-block { padding:16px 3px; }
  .loop-reference h4,.loop-targets h4 { font-size:12px; }
 }
-@media(min-width:1100px) and (max-width:1300px) { .loop-forward { gap:23px; grid-template-columns:minmax(80px,1fr) 44px minmax(105px,1.2fr) 34px minmax(105px,1.2fr) minmax(128px,1.3fr) minmax(140px,1.4fr); } }
+@media(min-width:1100px) and (max-width:1300px) { .loop-forward { gap:23px; grid-template-columns:minmax(80px,1fr) 44px minmax(80px,.75fr) 34px minmax(135px,1.55fr) minmax(128px,1.3fr) minmax(140px,1.4fr); } }
 @media(max-width:1099px) { .loop-control { display:grid; } .loop-reference video,.loop-targets video { max-height:190px; } }

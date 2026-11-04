@@ -19,8 +19,8 @@ Initial, iterations 001, 002, 003, 006, 013, 017, and the final execution
 from iteration 023 retain verified scores. Source metadata cites original events and distinguishes
 before-execution checks from after-execution feedback. The initial evaluation
 uses arrays verified identical to the agent input; it was not run by this agent.
-The Agent image tab retains the original image-inspection calls. The Blender tab
-shows labelled re-renders of saved starting poses or rollout frames. The ADD history contains
+The Agent image panel shows only the original image-inspection calls.
+The joint-space reference block shows the colored reference preview. The ADD history contains
 all 25 recorded candidates. Hand details are explicitly labelled crops of
 inspected images. Reconstructed plots are not presented as plots the agent
 itself viewed. The exporter in

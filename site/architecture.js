@@ -15,7 +15,7 @@
 
   function build(data) {
     const base = new URL("architecture-trace/trace.json", document.baseURI);
-    data.stages.forEach(stage => { for (const key of ["image", "video", "poster", "hand_image", "body_video", "targets_video", "blender_image"]) if(stage[key]) stage[key] = new URL(stage[key], base).href; });
+    data.stages.forEach(stage => { for (const key of ["image", "video", "poster", "hand_image", "targets_video"]) if(stage[key]) stage[key] = new URL(stage[key], base).href; });
     const ui = document.createElement('div');
     ui.className = 'refinement-loop-ui';
     ui.innerHTML = `
@@ -30,9 +30,9 @@
             <div class="loop-input" data-loop-node="initial"><h4>HOI-Retarget reference<span class="loop-input-space">Joint space</span></h4><video data-architecture-clip="initial" muted autoplay loop playsinline preload="none" poster="architecture-media/kinematic.jpg" src="architecture-media/kinematic.mp4" aria-label="Initial kinematic humanoid reference"></video></div>
           </div>
           <div class="loop-agent loop-box" data-loop-node="agent"><h4>Astra</h4></div>
-          <div class="loop-reference loop-box" data-loop-node="reference"><h4>End-effector references</h4><video data-architecture-clip="targets" data-loop-targets-video muted autoplay loop playsinline preload="metadata" aria-label="Planned wrist targets over the G1 reference motion"></video><span class="loop-target-key" title="Colored arms show reference joint poses; gold markers show planned wrist targets.">Arm reference <i></i> Wrist targets</span></div>
+          <div class="loop-reference loop-box" data-loop-node="reference"><h4>End-effector references</h4></div>
           <div class="loop-ik-block loop-box" data-loop-node="ik"><h4>IK</h4></div>
-          <div class="loop-targets loop-box" data-loop-node="targets"><h4>Joint-space reference</h4><video data-architecture-clip="body" data-loop-body-video muted autoplay loop playsinline preload="metadata" aria-label="Saved whole-body reference before physical execution"></video></div>
+          <div class="loop-targets loop-box" data-loop-node="targets"><h4>Joint-space reference</h4><video data-architecture-clip="targets" data-loop-targets-video muted autoplay loop playsinline preload="metadata" aria-label="Planned wrist targets over the G1 reference motion"></video><span class="loop-target-key" title="Colored arms show reference joint poses; gold markers show planned wrist targets.">Arm reference <i></i> Wrist targets</span></div>
           <div class="loop-control loop-box" data-loop-node="control"><h4 class="loop-control-title">Control</h4><div class="loop-controller" data-loop-node="sonic"><h4>SONIC</h4><span class="loop-detail">Whole-body control</span></div><div class="loop-controller" data-loop-node="wrist"><h4>Wrist and finger<br>impedance controller</h4></div></div>
           <div class="loop-rollout loop-box" data-loop-node="rollout"><div class="loop-rollout-heading"><h4>MuJoCo rollout</h4><span data-loop-trial></span></div><video data-architecture-clip="rollout" data-loop-rollout muted autoplay loop playsinline controls preload="metadata" aria-label="Recorded single-Codex execution"></video><div class="loop-score"><span>Mean object-tracking error</span><strong data-loop-add></strong></div></div>
         </div>
@@ -41,7 +41,7 @@
           <div class="loop-feedback-grid">
             <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Object-tracking error</h5><div class="loop-chart-tabs" role="group" aria-label="Object tracking measurements"><button type="button" data-loop-chart="error" aria-pressed="true">Mean ADD</button><button type="button" data-loop-chart="path" aria-pressed="false">3D object path</button></div></div><button type="button" class="loop-chart-button" data-loop-open="object" aria-label="Enlarge object-tracking measurements"><span data-loop-object-chart></span></button><div class="loop-chart-legend" data-loop-object-legend></div></div>
             <div class="loop-evidence loop-query-card"><div class="loop-evidence-heading"><h5>Execution feedback</h5></div><div class="loop-feedback-tabs" role="group" aria-label="Simulation measurements"><button type="button" data-feedback="forces">Contact forces</button><button type="button" data-feedback="speed">Object speed</button><button type="button" data-feedback="checks">Grasp checks</button><button type="button" data-feedback="error">Object error</button></div><button type="button" class="loop-chart-button" data-loop-open="feedback" aria-label="Enlarge the simulation measurements"><span data-loop-feedback-chart></span></button><div class="loop-feedback-legend" data-loop-feedback-legend></div></div>
-            <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Inspection views</h5><div class="loop-chart-tabs"><button type="button" data-loop-inspection="blender" aria-pressed="true">Blender</button><button type="button" data-loop-inspection="original" aria-pressed="false">Agent image</button></div></div><div class="loop-inspections"><button type="button" class="loop-image-button" data-loop-open="image" aria-label="Enlarge the image inspected by the agent"><img data-loop-image alt="" loading="lazy"></button><button type="button" class="loop-hand-button" data-loop-open="image" aria-label="View the original image for this hand-detail crop"><span data-loop-hand></span><small>Hand detail (crop)</small></button></div><div class="loop-image-caption" data-loop-image-label></div></div>
+            <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Agent image</h5></div><div class="loop-inspections"><button type="button" class="loop-image-button" data-loop-open="image" aria-label="Enlarge the image inspected by the agent"><img data-loop-image alt="" loading="lazy"></button><button type="button" class="loop-hand-button" data-loop-open="image" aria-label="View the original image for this hand-detail crop"><span data-loop-hand></span><small>Hand detail (crop)</small></button></div><div class="loop-image-caption" data-loop-image-label></div></div>
           </div>
           <div class="loop-query-summary"><span class="loop-query-tag">What the agent checked</span><strong data-loop-query-title></strong><span data-loop-query-values></span></div>
         </div>
@@ -56,7 +56,7 @@
     const rollout = $('[data-loop-rollout]');
     const trialButtons = [];
     const dialog = $('.loop-dialog');
-    let inspectionMode='blender', yaw=-.65, pitch=.5;
+    let yaw=-.65, pitch=.5;
     let current = 0, feedbackMode='checks', chartMode = 'error', playing = false, visible = false, timer, phase = 'recorded';
     const colors = {error:'#b35931',target:'#76878a',actual:'#167c77',robot:'#167c77',support:'#ac7628'};
     const phases = ['execute','inspect','revise'];
@@ -147,7 +147,7 @@
       current=index;const stage=data.stages[index];
       trialButtons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));
       rollout.pause();rollout.poster=stage.poster;rollout.src=stage.video;
-      for(const key of ['body','targets']) {const video=$(`[data-loop-${key}-video]`);video.pause();video.src=stage[key+'_video'];}
+      const referenceVideo=$('[data-loop-targets-video]');referenceVideo.pause();referenceVideo.src=stage.targets_video;
       $('[data-loop-trial]').textContent=stage.label;
       $('[data-loop-add]').textContent=stage.add_cm.toFixed(2)+' cm';
       const query=stage.queries[0];
@@ -170,15 +170,13 @@
       drawCharts();drawFeedback();setPhase('recorded');resumeVideos();requestAnimationFrame(connect);
     }
     function drawInspection(){
-      const stage=data.stages[current],original=inspectionMode==='original';
-      $('[data-loop-image]').src=original?stage.image:stage.blender_image;
-      $('[data-loop-image]').alt=original?stage.image_label:'Blender re-render of the saved pose';
-      $('[data-loop-image-label]').textContent=original?stage.image_label:stage.blender_label;
-      const hand=$('.loop-hand-button');hand.hidden=!original||!stage.hand_image;
-      if(original&&stage.hand_image){const [x,y,w,h]=stage.hand_crop;const crop=$('[data-loop-hand]');crop.style.backgroundImage=`url("${stage.hand_image}")`;crop.style.backgroundSize=`${100/w}% ${100/h}%`;crop.style.backgroundPosition=`${100*x/(1-w)}% ${100*y/(1-h)}%`;}
-      ui.querySelectorAll('[data-loop-inspection]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.loopInspection===inspectionMode)));
+      const stage=data.stages[current];
+      $('[data-loop-image]').src=stage.image;
+      $('[data-loop-image]').alt=stage.image_label;
+      $('[data-loop-image-label]').textContent=stage.image_label;
+      const hand=$('.loop-hand-button');hand.hidden=!stage.hand_image;
+      if(stage.hand_image){const [x,y,w,h]=stage.hand_crop;const crop=$('[data-loop-hand]');crop.style.backgroundImage=`url("${stage.hand_image}")`;crop.style.backgroundSize=`${100/w}% ${100/h}%`;crop.style.backgroundPosition=`${100*x/(1-w)}% ${100*y/(1-h)}%`;}
     }
-    ui.querySelectorAll('[data-loop-inspection]').forEach(b=>b.addEventListener('click',()=>{inspectionMode=b.dataset.loopInspection;drawInspection();}));
     function setPhase(value){
       phase=value;ui.dataset.phase=value;
       $('.loop-phase').textContent={recorded:'Selected recorded trials',revise:'Revise the next candidate',execute:'Execute in simulation',inspect:'Inspect feedback'}[value];
@@ -208,7 +206,7 @@
     function openEvidence(kind){
       const stage=data.stages[current],content=$('.loop-dialog-content');content.replaceChildren();
       let title,description;
-      if(kind==='image'){title=inspectionMode==='original'?'Agent-inspected image':'Blender re-render';const im=new Image();im.src=$('[data-loop-image]').src;im.alt=$('[data-loop-image]').alt;content.append(im);description=$('[data-loop-image-label]').textContent;}
+      if(kind==='image'){title='Agent-inspected image';const im=new Image();im.src=$('[data-loop-image]').src;im.alt=$('[data-loop-image]').alt;content.append(im);description=$('[data-loop-image-label]').textContent;}
       else if(kind==='feedback'){title='Simulation measurements';content.append(feedbackChart(stage));description=feedbackMode==='checks'?'Recorded geometry and pose checks.':'Measurements from a replay verified against the original execution score.';}
       else{title='Object tracking';content.append(objectChart(stage));description=chartMode==='path'?'Drag to rotate. X, Y and Z are in metres.':data.chart_notes[chartMode];}
       const note=document.createElement('p');note.textContent=description;content.append(note);
