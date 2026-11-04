@@ -34,7 +34,7 @@
           <div class="loop-ik-block loop-box" data-loop-node="ik"><h4>Arm IK</h4></div>
           <div class="loop-targets loop-box" data-loop-node="targets"><h4>Joint-space reference</h4></div>
           <div class="loop-control loop-box" data-loop-node="control"><div><h4>SONIC</h4><span class="loop-detail">Whole-body control</span></div><div class="loop-joint-control" data-loop-node="wrist"><h4>Wrist and finger<br>impedance controller</h4></div></div>
-          <div class="loop-rollout loop-box" data-loop-node="rollout"><div class="loop-rollout-heading"><h4>MuJoCo rollout</h4><span data-loop-trial></span></div><video data-architecture-clip="rollout" data-loop-rollout muted playsinline controls preload="metadata" aria-label="Recorded single-Codex execution"></video><div class="loop-score"><span>Mean object-tracking error</span><strong data-loop-add></strong></div></div>
+          <div class="loop-rollout loop-box" data-loop-node="rollout"><div class="loop-rollout-heading"><h4>MuJoCo rollout</h4><span data-loop-trial></span></div><video data-architecture-clip="rollout" data-loop-rollout muted loop playsinline controls preload="metadata" aria-label="Recorded single-Codex execution"></video><div class="loop-score"><span>Mean object-tracking error</span><strong data-loop-add></strong></div></div>
         </div>
         <div class="loop-feedback" data-loop-node="feedback">
           <div class="loop-feedback-heading"><h4>Simulation feedback</h4><span data-loop-feedback-context></span></div>
@@ -112,7 +112,7 @@
     data.stages.forEach((stage,index)=>{
       if(index>0 && stage.id!=='023' && Number(stage.id)>Number(data.stages[index-1].id)+1){const gap=document.createElement('span');gap.textContent='…';gap.className='loop-omitted';$('.loop-trials').append(gap);}
       const button=document.createElement('button');button.type='button';button.textContent=stage.label;button.title=stage.id==='023'?'Final execution':stage.label;button.setAttribute('aria-pressed','false');
-      button.addEventListener('click',()=>{stop();show(index);if(visible)rollout.play().catch(()=>{});});
+      button.addEventListener('click',()=>{stop();show(index);});
       $('.loop-trials').append(button);trialButtons.push(button);
     });
     function show(index){
@@ -133,7 +133,7 @@
       $('[data-loop-excerpt]').textContent='“'+stage.quote+'”';
       $('[data-loop-image]').src=stage.image;$('[data-loop-image]').alt=stage.image_label;
       $('[data-loop-image-label]').textContent=stage.image_label;
-      drawCharts();drawFeedback();setPhase('recorded');requestAnimationFrame(connect);
+      drawCharts();drawFeedback();setPhase('recorded');resumeVideos();requestAnimationFrame(connect);
     }
     function setPhase(value){
       phase=value;ui.dataset.phase=value;
@@ -171,7 +171,7 @@
       $('.loop-dialog-header h4').textContent=title;dialog.showModal();clearTimeout(timer);rollout.pause();
     }
     ui.querySelectorAll('[data-loop-open]').forEach(button=>button.addEventListener('click',()=>openEvidence(button.dataset.loopOpen)));
-    $('[data-loop-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});dialog.addEventListener('close',()=>{if(playing)advance();});
+    $('[data-loop-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});dialog.addEventListener('close',()=>{resumeVideos();if(playing)advance();});
 
     function connect(){
       const canvas=$('.loop-canvas'),root=$('.loop-connectors'),g=root.querySelector('g'),base=canvas.getBoundingClientRect();
@@ -192,12 +192,25 @@
     }
     new ResizeObserver(connect).observe($('.loop-canvas'));
     const inputs=Array.from(ui.querySelectorAll('.loop-input video'));
+    const videos=[rollout,...inputs];
+    function resumeVideos(){
+      if(!visible||document.hidden||dialog.open||document.documentElement.dataset.media==='off')return;
+      videos.forEach(video=>{video.muted=true;video.defaultMuted=true;video.loop=true;video.autoplay=true;video.play().catch(()=>{});});
+    }
+    function pauseVideos(){
+      clearTimeout(timer);
+      videos.forEach(video=>{video.autoplay=false;video.pause();});
+    }
+    rollout.addEventListener('loadedmetadata',resumeVideos);
     new IntersectionObserver(([entry])=>{
       visible=entry.isIntersecting;
-      if(visible&&!document.hidden){inputs.forEach(v=>{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)v.play().catch(()=>{});});if(playing)advance();}
-      else{clearTimeout(timer);[rollout,...inputs].forEach(v=>v.pause());}
+      if(visible&&!document.hidden){resumeVideos();if(playing)advance();}
+      else pauseVideos();
     },{threshold:.15}).observe(ui);
-    document.addEventListener('visibilitychange',()=>{if(document.hidden){clearTimeout(timer);[rollout,...inputs].forEach(v=>v.pause());}else if(visible&&playing)advance();});
+    document.addEventListener('visibilitychange',()=>{
+      if(document.hidden)pauseVideos();
+      else if(visible){resumeVideos();if(playing)advance();}
+    });
     show(0);
   }
 })();
