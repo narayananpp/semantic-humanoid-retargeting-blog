@@ -1147,3 +1147,18 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 }
 @media(min-width:1100px) and (max-width:1300px) { .loop-forward { gap:23px; grid-template-columns:minmax(80px,1fr) 44px minmax(80px,.75fr) 34px minmax(135px,1.55fr) minmax(128px,1.3fr) minmax(140px,1.4fr); } }
 @media(max-width:1099px) { .loop-control { display:grid; } .loop-reference video,.loop-targets video { max-height:190px; } }
+
+/* Dataset and metric selectors for the final comparison plots. */
+.final-results { max-width:960px; margin:30px auto; }
+.final-results-controls { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; margin:0 0 16px; }
+.final-results-controls[hidden] { display:none; }
+.final-results-tabs { display:flex; gap:4px; padding:4px; border:1px solid var(--line); border-radius:9px; background:var(--surface); }
+.final-results-tabs button { padding:7px 16px; border:0; border-radius:6px; background:transparent; font-size:13px; line-height:1.4; }
+.final-results-tabs button[aria-selected="true"] { background:var(--ink); color:var(--background); }
+.final-results img { display:block; width:100%; height:auto; border-radius:10px; }
+.final-results picture[hidden] { display:none; }
+.final-results .publication-caption { text-align:center; }
+@media(max-width:600px) {
+  .final-results-controls { justify-content:center; }
+  .final-results-tabs button { padding:7px 12px; }
+}
