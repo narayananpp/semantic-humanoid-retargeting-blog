@@ -71,4 +71,6 @@ for mobile in (False, True):
                frameon=False, fontsize=8.5 if mobile else 10, ncol=1)
     name = 'codex-refinement-time' + ('-mobile' if mobile else '')
     fig.savefig(OUT / f'{name}.svg', metadata={'Date': None})
+    target = OUT / f'{name}.svg'
+    target.write_text('\n'.join(line.rstrip() for line in target.read_text().splitlines()) + '\n')
     plt.close(fig)
