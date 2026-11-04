@@ -9,7 +9,7 @@
   <title>HuMoTAR: Retargeting Through Reasoning for Humanoid–Object Interaction</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
   <script src="theme.js?v=1"></script>
-  <link rel="stylesheet" href="styles.css?v=result-table-curve-20261104">
+  <link rel="stylesheet" href="styles.css?v=result-editorial-20261104">
   <link rel="stylesheet" href="experience.css?v=uniform-captions-2">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -195,9 +195,11 @@
 <div id="dynamics-showcase" class="dynamics-showcase" aria-label="Selected task executions"></div>
 <p class="publication-caption"><strong>Fig. 6.</strong> Selected humanoid–object executions across retargeting configurations.</p>
 
+<div class="results-comparison-layout">
+  <div class="results-comparison-copy">
 <p>We first compare <strong>Codex against our adaptation of HOI-Retarget + SPIDER to G1 with Dex3</strong> on <strong>20 HUMOTO and 20 OMOMO tasks</strong>. For this comparison, we run <a href="#configuration-plain">Codex</a> for <strong>two hours per task</strong> and include <strong>Astra one-shot</strong> to measure performance without iterative refinement.</p>
-
-
+<p><strong>HOI-Retarget + SPIDER, Astra one-shot and Codex (2 hours) achieve semantic success rates of 17.5%, 2.5% and 75%, respectively.</strong> Their mean object-tracking errors are <strong>42.87 cm</strong>, <strong>62.98 cm</strong> and <strong>12.63 cm</strong> (n = 39). These results highlight the importance of <strong>iterative refinement with simulation feedback</strong> for successful physical execution.</p>
+  </div>
 <div class="final-results" id="dynamics-results-table" data-final-results>
   <div class="final-results-controls" hidden>
     <div class="final-results-tabs" role="tablist" aria-label="Dataset">
@@ -219,14 +221,14 @@
 </tbody></table></div>
     </div>
     <figure class="final-results-metric"><h4>Semantic success</h4>
-      <picture data-result-content="humoto"><img data-result-image="humoto-semantic" src="assets/analysis/results/final-humoto-semantic-mobile.svg?v=1" width="350" height="420" alt="HUMOTO: Semantic success. Higher is better. HOI-Retarget + SPIDER: 25% (5/20); Astra one-shot: 5% (1/20); Codex, 2 hours: 80% (16/20)." loading="lazy"></picture>
-      <picture data-result-content="omomo"><img data-result-image="omomo-semantic" src="assets/analysis/results/final-omomo-semantic-mobile.svg?v=1" width="350" height="420" alt="OMOMO: Semantic success. Higher is better. HOI-Retarget + SPIDER: 10% (2/20); Astra one-shot: 0% (0/20); Codex, 2 hours: 70% (14/20)." loading="lazy"></picture>
+      <picture data-result-content="humoto"><source media="(max-width:600px)" srcset="assets/analysis/results/final-humoto-semantic-mobile.svg?v=1"><img data-result-image="humoto-semantic" src="assets/analysis/results/final-humoto-semantic-compact.svg?v=1" width="600" height="260" alt="HUMOTO: Semantic success. Higher is better. HOI-Retarget + SPIDER: 25% (5/20); Astra one-shot: 5% (1/20); Codex, 2 hours: 80% (16/20)." loading="lazy"></picture>
+      <picture data-result-content="omomo"><source media="(max-width:600px)" srcset="assets/analysis/results/final-omomo-semantic-mobile.svg?v=1"><img data-result-image="omomo-semantic" src="assets/analysis/results/final-omomo-semantic-compact.svg?v=1" width="600" height="260" alt="OMOMO: Semantic success. Higher is better. HOI-Retarget + SPIDER: 10% (2/20); Astra one-shot: 0% (0/20); Codex, 2 hours: 70% (14/20)." loading="lazy"></picture>
       <figcaption class="publication-caption"><strong>Fig. 7.</strong> Semantic success on HUMOTO and OMOMO.</figcaption>
     </figure>
   </div>
 </div>
+</div>
 
-<p><strong>HOI-Retarget + SPIDER, Astra one-shot and Codex (2 hours) achieve semantic success rates of 17.5%, 2.5% and 75%, respectively.</strong> Their mean object-tracking errors are <strong>42.87 cm</strong>, <strong>62.98 cm</strong> and <strong>12.63 cm</strong> (n = 39). These results highlight the importance of <strong>iterative refinement with simulation feedback</strong> for successful physical execution.</p>
 <h3 id="codex-refinement-time">4.1 Codex refinement over time</h3>
 <figure class="codex-refinement-curve">
 <picture><source media="(max-width:600px)" srcset="assets/analysis/results/codex-refinement-time-mobile.svg?v=2"><img src="assets/analysis/results/codex-refinement-time.svg?v=2" width="1000" height="510" loading="lazy" alt="Codex best-so-far mean ADD across 40 tasks falls from 53.03 cm initially to 29.59 cm at 30 minutes and 10.21 cm at 120 minutes. Final semantic success for separate 30- and 120-minute runs is 47.5 percent (19/40) and 75 percent (30/40), respectively."></picture>

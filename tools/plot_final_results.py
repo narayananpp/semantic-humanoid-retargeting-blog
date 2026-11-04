@@ -84,3 +84,31 @@ for dataset, data in DATA.items():
         fig.text(.07, .88, 'Higher is better' if semantic else 'Object tracking — lower is better', fontsize=10, color='#6e7169')
         fig.savefig(OUT / f'final-{dataset}-{metric}-mobile.svg', metadata={'Date': None})
         plt.close(fig)
+
+# Compact semantic bars for the results panel beside the article text.
+for dataset, data in DATA.items():
+    fig, ax = plt.subplots(figsize=(6, 2.6), dpi=100)
+    fig.patch.set_facecolor('#faf9f6')
+    ax.set_facecolor('#faf9f6')
+    fig.subplots_adjust(left=.31, right=.82, top=.97, bottom=.24)
+    methods = data['methods']
+    values = [100*m['passed']/data['total'] for m in methods]
+    ax.barh(range(3), values, height=.38, color=['#7a8693', '#be9250', '#287b70'], zorder=3)
+    ax.set_yticks(range(3), [m['name'].replace(' + ', ' +\n').replace(', ', '\n') for m in methods])
+    ax.set_ylim(2.5, -.5)
+    ax.set_xlim(0, 100)
+    ax.set_xticks([0, 25, 50, 75, 100])
+    ax.grid(axis='x', color='#d7d8ce', linewidth=.7, zorder=0)
+    ax.tick_params(length=0, pad=8, labelsize=10, colors='#242620')
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    for i, (m, value) in enumerate(zip(methods, values)):
+        ax.text(value+2, i, f"{value:g}% ({m['passed']}/{data['total']})", va='center',
+                fontsize=11, fontweight='bold' if i==2 else 'normal', color='#242620')
+        if value==0:
+            ax.plot(0, i, '|', color='#be9250', markersize=12, clip_on=False)
+    ax.set_xlabel('Semantic success (%) ↑', fontsize=10, labelpad=10)
+    target = OUT / f'final-{dataset}-semantic-compact.svg'
+    fig.savefig(target, metadata={'Date': None})
+    target.write_text('\n'.join(line.rstrip() for line in target.read_text().splitlines())+'\n')
+    plt.close(fig)

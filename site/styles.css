@@ -1183,3 +1183,26 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
   .final-tracking-table th,.final-tracking-table td { padding:15px 5px; font-size:12px; }
 }
 .final-results-grid > .final-results-metric { margin:0; padding:0; }
+
+/* Comparison prose at left, compact evidence panel at right. */
+.results-comparison-layout { display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:48px; align-items:center; margin:32px 0; }
+.results-comparison-copy { min-width:0; padding-top:8px; }
+.results-comparison-copy p { margin:0; }
+.results-comparison-copy p + p { margin-top:24px; }
+.results-comparison-layout .final-results { width:100%; min-width:0; max-width:none; margin:0; padding:20px; border:1px solid var(--line); border-radius:12px; }
+.results-comparison-layout .final-results-grid { grid-template-columns:1fr; gap:16px; }
+.results-comparison-layout .final-results-controls { margin-bottom:20px; }
+.results-comparison-layout .final-results-metric h4 { font-size:15px; text-align:left; margin-bottom:8px; }
+.results-comparison-layout .final-tracking-table { margin-top:0; }
+.results-comparison-layout .final-tracking-table th,.results-comparison-layout .final-tracking-table td { padding:8px 7px; font-size:12px; line-height:1.5; }
+.results-comparison-layout .final-tracking-table caption { padding:10px 0 0; }
+.results-comparison-layout .final-results-metric img { max-width:480px; margin:auto; }
+.results-comparison-layout .publication-caption { padding-top:8px; }
+@media(max-width:1000px) {
+  .results-comparison-layout { grid-template-columns:1fr; gap:24px; }
+  .results-comparison-layout .final-results { max-width:680px; margin:auto; }
+}
+@media(max-width:600px) {
+  .results-comparison-layout .final-results { padding:14px 8px; }
+  .results-comparison-layout .final-tracking-table th,.results-comparison-layout .final-tracking-table td { padding:11px 4px; }
+}
