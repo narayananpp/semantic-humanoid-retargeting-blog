@@ -11,10 +11,10 @@
       chosen=row.clip;player.querySelectorAll('video').forEach(v=>v.pause());player.replaceChildren();header.replaceChildren();
       list.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.clip===chosen)));
       header.append(make('h4','',row.title));
-      const methods=row.methods||{orchestrator:{...row,label:'HuMoTAR'}};
+      const methods=Object.fromEntries(Object.entries(row.methods||{}).filter(([key])=>!['orchestrator','communicating'].includes(key)));
       const picker=make('label','method-choice','Method'),select=make('select');
       select.setAttribute('aria-label','Dynamics method');
-      for(const [key,label] of [['hoi_spider','HOI-Retarget + SPIDER'],['zero_shot','Astra one-shot'],['codex','Codex · 30 min'],['orchestrator','Independent swarm · 30 min'],['communicating','Collaborative swarm · 30 min'],['codex120','Codex · 120 min']]){
+      for(const [key,label] of [['hoi_spider','HOI-Retarget + SPIDER'],['zero_shot','Astra one-shot'],['codex','Codex · 30 min'],['codex120','Codex · 120 min']]){
         if(!methods[key])continue;
         const option=make('option','',label);
         option.value=key;select.append(option);
