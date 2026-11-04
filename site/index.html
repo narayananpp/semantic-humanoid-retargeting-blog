@@ -31,7 +31,7 @@
 <a class="subsection" href="#refining-contact-support-motion">3.1 Revisions correct contact, support and motion</a>
 <a class="subsection" href="#how-does-the-reference-change">3.2 Preserving object motion with a different posture</a>
 <a href="#refinement-results">4. Iterative refinement drives retargeting success</a>
-<a class="subsection" href="#codex-refinement-time">4.1 Refinement over time</a>
+<a class="subsection" href="#codex-refinement-time">4.1 Codex refinement over time</a>
 <a href="#experience">5. Prior experience improves refinement on new tasks</a>
 <a href="#discussion">6. Discussion</a>
 <a class="subsection" href="#refinement-and-swarms">Iterative refinement with simulation feedback</a>
@@ -229,11 +229,10 @@
 </div>
 </div>
 
-<h3 id="codex-refinement-time">4.1 Refinement over time</h3>
+<h3 id="codex-refinement-time">4.1 Codex refinement over time</h3>
 <figure class="codex-refinement-curve">
 <picture><source media="(max-width:600px)" srcset="assets/analysis/results/codex-refinement-time-mobile.svg?v=2"><img src="assets/analysis/results/codex-refinement-time.svg?v=2" width="1000" height="510" loading="lazy" alt="Codex best-so-far mean ADD across 40 tasks falls from 53.03 cm initially to 29.59 cm at 30 minutes and 10.21 cm at 120 minutes. Final semantic success for separate 30- and 120-minute runs is 47.5 percent (19/40) and 75 percent (30/40), respectively."></picture>
-<picture><source media="(max-width:600px)" srcset="assets/analysis/results/spider-refinement-time-mobile.svg?v=1"><img src="assets/analysis/results/spider-refinement-time.svg?v=1" width="1000" height="410" loading="lazy" alt="SPIDER mean object-tracking error within one-second optimization windows, averaged equally across active tasks in one-minute elapsed-time bins. The 35 completed traces contribute initially, falling to one task in the last bin. These local-window errors are not directly comparable to Codex's full-task errors."></picture>
-<figcaption class="publication-caption"><strong>Fig. 8.</strong> Codex full-task object-tracking error and SPIDER local-window object-tracking error. SPIDER averages weight active tasks equally; the lower strip shows the contributing task count. The two error measures have different scopes and are not directly comparable. Codex semantic success is measured at the end of the 30-minute and two-hour refinement budgets.</figcaption>
+<figcaption class="publication-caption"><strong>Fig. 8.</strong> Best-so-far object-tracking error during two-hour Codex runs. Semantic success is measured at the end of the 30-minute and two-hour refinement budgets.</figcaption>
 </figure>
 </section>
 <section id="experience">
