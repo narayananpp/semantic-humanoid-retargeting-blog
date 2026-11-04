@@ -28,5 +28,18 @@
     "geometry_frame_max_rotation_residual_rad": 5.625282158101942e-15,
     "timing_includes_initial_and_final": true,
     "uses_saved_physics_rollout": true
+  },
+  "aligned_takeaway_pair": {
+    "resolution": [
+      1440,
+      1080
+    ],
+    "fps": 24,
+    "duration_s": 24,
+    "rendering": "Blender Cycles, 48 samples, OptiX denoising. Separate direct renders with the same camera and framing.",
+    "human_motion": "Original recorded human mesh poses and object poses, in the source coordinate frame.",
+    "robot_motion": "Original saved physics rollout.",
+    "timing": "Both clips use the same 576-frame monotone object-path alignment as the overlay. Neither uses a fixed 2x speed multiplier.",
+    "playback": "Linked play, pause, seeking, speed and looping."
   }
 }
