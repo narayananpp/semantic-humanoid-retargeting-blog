@@ -144,7 +144,7 @@
 <p><a href="https://arxiv.org/abs/2511.07820">SONIC</a> provides whole-body control, and the agent may augment or replace its joint-angle outputs to complete the task. <a href="https://mujoco.org/">MuJoCo</a> simulates each execution. After every trial, the agent inspects feedback (e.g., execution images, object-tracking errors and contact measurements) and revises its motion and control code.</p>
 <div id="evaluation-metrics">
 <h3 id="dynamics-metrics">3.2 Evaluation metrics</h3>
-<p>We evaluate all methods on <strong>20 HUMOTO and 20 OMOMO tasks</strong> using <strong>object-tracking error and semantic success</strong>. Object tracking compares the simulated object trajectory with the target object trajectory. However, the robot may move at a different speed than the human, so we do not require the object to reach each position at the same time as in the demonstration. Instead, we compare corresponding stages of the object’s motion.</p>
+<p>We evaluate all methods on 20 HUMOTO and 20 OMOMO tasks using <strong>object-tracking error and semantic success</strong>. Object tracking compares the simulated object trajectory with the target object trajectory. However, the robot may move at a different speed than the human, so we do not require the object to reach each position at the same time as in the demonstration. Instead, we compare corresponding stages of the object’s motion.</p>
 <ul>
 <li><strong>Mean ADD (cm):</strong> The average distance between corresponding points on the object at aligned poses, capturing both position and orientation error. <strong>Lower is better.</strong></li>
 <li><strong>Position error (cm):</strong> The average distance between the simulated and target object positions. <strong>Lower is better.</strong></li>
@@ -189,7 +189,7 @@
 </div><figcaption class="publication-caption"><strong>Fig. 5.</strong> Semantic success on HUMOTO and OMOMO.</figcaption></figure>
 </div>
 <div class="results-comparison-summary">
-<p>We first compare <strong>Astra with refinement against our adaptation of HOI-Retarget + SPIDER to G1 with Dex3</strong> on <strong>20 HUMOTO and 20 OMOMO tasks</strong>. We give <a href="#configuration-plain">Astra with refinement</a> a budget of <strong>two hours per task</strong> and include <strong>Astra one-shot</strong> to measure performance without iterative refinement.</p>
+<p>We first compare <strong>Astra with refinement</strong> against our adaptation of <strong>HOI-Retarget + SPIDER to G1 with Dex3</strong> on 20 HUMOTO and 20 OMOMO tasks. We give <a href="#configuration-plain">Astra with refinement</a> a budget of <strong>two hours per task</strong> and include <strong>Astra one-shot</strong> to measure performance without iterative refinement.</p>
 <p>We find that Astra with refinement achieves <strong>75%</strong> semantic success, outperforming HOI-Retarget + SPIDER (<strong>17.5%</strong>) by 57.5 points and Astra one-shot (<strong>2.5%</strong>) by 72.5 points. Similarly, Astra with refinement reduces mean object-tracking error to <strong>12.63 cm</strong>, compared to <strong>42.87 cm</strong> and <strong>62.98 cm</strong> for HOI-Retarget + SPIDER and Astra one-shot (n = 39). Notably, Astra one-shot underperforms the optimization baseline on both metrics, highlighting the importance of <strong>iterative refinement with simulation feedback</strong> for successful physical execution.</p>
   </div>
 <h3 id="codex-refinement-time">4.1 Iterative refinement over time</h3>
