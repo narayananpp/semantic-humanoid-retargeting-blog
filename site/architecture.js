@@ -30,12 +30,14 @@
             <div class="loop-input" data-loop-node="initial"><h4>Humanoid Kinematic reference</h4><video data-architecture-clip="initial" muted autoplay loop playsinline preload="none" poster="architecture-media/kinematic.jpg" src="architecture-media/kinematic.mp4" aria-label="Initial kinematic humanoid reference"></video></div>
           </div>
           <div class="loop-agent loop-box" data-loop-node="agent"><h4>Astra</h4></div>
-          <div class="loop-reference loop-box" data-loop-node="reference"><h4>End-effector references</h4></div>
+          <div class="loop-reference loop-arrow-label" data-loop-node="reference"><h4>End-effector references</h4></div>
           <div class="loop-ik-block loop-box" data-loop-node="ik"><h4>IK</h4></div>
-          <div class="loop-targets loop-box" data-loop-node="targets"><h4>Joint-space reference</h4><video data-architecture-clip="targets" data-loop-targets-video muted autoplay loop playsinline preload="metadata" aria-label="Planned wrist targets over the G1 reference motion"></video><span class="loop-target-key" title="Colored arms show reference joint poses; gold markers show planned wrist targets.">Arm reference <i></i> Wrist targets</span></div>
+          <div class="loop-targets loop-arrow-label" data-loop-node="targets"><div class="loop-target-preview"><h4>Joint-space reference</h4><video data-architecture-clip="targets" data-loop-targets-video muted autoplay loop playsinline preload="metadata" aria-label="Planned wrist targets over the G1 reference motion"></video><span class="loop-target-key" title="Colored arms show reference joint poses; gold markers show planned wrist targets.">Arm reference <i></i> Wrist targets</span></div></div>
           <div class="loop-control loop-box" data-loop-node="control"><h4 class="loop-control-title">Control</h4><div class="loop-controller" data-loop-node="sonic"><h4>Whole-body controller<br>(e.g. SONIC)</h4></div><div class="loop-controller" data-loop-node="wrist"><h4>Wrist and finger<br>impedance controller</h4></div></div>
           <div class="loop-rollout loop-box" data-loop-node="rollout"><div class="loop-rollout-heading"><h4>MuJoCo rollout</h4><span data-loop-trial></span></div><video data-architecture-clip="rollout" data-loop-rollout muted autoplay loop playsinline controls preload="metadata" aria-label="Recorded Astra execution"></video><div class="loop-score"><span>Mean object-tracking error</span><strong data-loop-add></strong></div></div>
         </div>
+        <div class="loop-bottom">
+          <div class="loop-record" data-loop-node="record"><span class="loop-record-label">Recorded agent log</span><blockquote data-loop-excerpt></blockquote></div>
         <div class="loop-feedback" data-loop-node="feedback">
           <div class="loop-feedback-heading"><h4>Simulation feedback</h4><span data-loop-feedback-context></span></div>
           <div class="loop-feedback-grid">
@@ -45,8 +47,8 @@
           </div>
           <div class="loop-query-summary"><span class="loop-query-tag">What the agent checked</span><strong data-loop-query-title></strong><span data-loop-query-values></span></div>
         </div>
+        </div>
       </div>
-      <div class="loop-record"><span class="loop-record-label">Recorded agent log</span><blockquote data-loop-excerpt></blockquote></div>
       <dialog class="loop-dialog" aria-label="Recorded evidence"><div class="loop-dialog-header"><h4></h4><button type="button" data-loop-close aria-label="Close evidence">✕</button></div><div class="loop-dialog-content"></div></dialog>`;
     const caption = figure.querySelector('figcaption');
     figure.querySelector('.refinement-pipeline').hidden = true;
@@ -221,18 +223,21 @@
       const box=name=>{const r=ui.querySelector(`[data-loop-node="${name}"]`).getBoundingClientRect();return {l:r.left-base.left,r:r.right-base.left,t:r.top-base.top,b:r.bottom-base.top,x:r.left-base.left+r.width/2,y:r.top-base.top+r.height/2};};
       function path(d,kind){g.append(svg('path',{d,class:`loop-edge ${kind}`,'marker-end':'url(#loop-arrow)'}));}
       function join(from,to,kind='forward',offset=0) {const a=box(from),b=box(to),mid=(a.r+b.l)/2;path(`M ${a.r+2} ${a.y} H ${mid} V ${b.y+offset} H ${b.l-5}`,kind);}
-      join('human','agent','forward',-12);join('initial','agent','forward',12);join('agent','reference');join('reference','ik');join('ik','targets');
-      const source=box('targets'),control=box('control'),fork=(source.r+control.l)/2;
+      join('human','agent','forward',-12);join('initial','agent','forward',12);join('agent','ik');
+      const source=box('ik'),control=box('control'),fork=control.l-14;
       for(const name of ['sonic','wrist']) {const child=box(name);path(`M ${source.r+2} ${source.y} H ${fork} V ${child.y} H ${child.l-5}`,'forward');}
       const merge=(control.r+box('rollout').l)/2;
       for(const name of ['sonic','wrist']) {const child=box(name),out=box('rollout');path(`M ${child.r+2} ${child.y} H ${merge} V ${out.y} H ${out.l-5}`,'forward');}
-      const agentCode=box('agent'),wrist=box('wrist'),ref=box('reference');
-      const mid=(agentCode.r+ref.l)/2,routeY=Math.max(ref.b,box('ik').b,box('targets').b)+30;
-      path(`M ${agentCode.r+2} ${agentCode.b-8} H ${mid} V ${routeY} H ${wrist.x} V ${wrist.b+5}`,'code-edge');
-      const codeLabel=svg('text',{x:(ref.l+wrist.l)/2,y:routeY-8,'text-anchor':'middle'});codeLabel.textContent='Controller code';g.append(codeLabel);
-      const a=box('rollout'),f=box('feedback'),agent=box('agent');
+      const agent=box('agent'),wrist=box('wrist'),ref=box('reference');
+      const mid=agent.r+12,routeY=Math.max(control.b,box('ik').b,agent.b)+24;
+      path(`M ${agent.r+2} ${agent.b-8} H ${mid} V ${routeY} H ${wrist.x} V ${wrist.b+5}`,'code-edge');
+      const codeLabel=svg('text',{x:(ref.l+wrist.l)/2,y:routeY+15,'text-anchor':'middle'});codeLabel.textContent='Controller code';g.append(codeLabel);
+      const a=box('rollout'),f=box('feedback'),record=box('record');
       path(`M ${a.x} ${a.b+3} V ${f.t-5}`,'feedback-out');
-      path(`M ${agent.x} ${f.t-3} V ${agent.b+5}`,'feedback-return');
+      path(`M ${f.r+2} ${f.y} H ${base.width-3} V 10 H ${agent.x} V ${agent.t-5}`,'feedback-return');
+      const bubbleX=Math.max(record.l+20,Math.min(agent.x,record.r-20));
+      $('.loop-record').style.setProperty('--bubble-tip',`${bubbleX-record.l}px`);
+      g.append(svg('path',{d:`M ${agent.x} ${agent.b+2} V ${record.t-20} H ${bubbleX}`,class:'loop-bubble-stem',fill:'none'}));
     }
     new ResizeObserver(connect).observe($('.loop-canvas'));
     const videos=Array.from(ui.querySelectorAll('video'));
