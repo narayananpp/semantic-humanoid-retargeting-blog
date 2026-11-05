@@ -24,7 +24,7 @@
       select.addEventListener('change',()=>{method=select.value;show(row);});picker.append(select);header.append(picker);
       const execution=methods[active];
       if(row.status==='ready'&&document.documentElement.dataset.media!=='off'){
-        const pair=make('div','source-motion-pair');
+        const pair=make('div','source-motion-pair');pair.dataset.syncedVideos='duration';
         const entries=[];
         if(row.human?.status==='ready') entries.push([row.human,'Human reference · SMPL']);
         entries.push([execution,active==='codex120'?'Astra with refinement':active==='codex'?'Astra with refinement, 30 min':execution.label]);
@@ -33,7 +33,7 @@
           Object.assign(video,{src:media.video,poster:media.poster||'',controls:true,muted:true,autoplay:true,loop:true,playsInline:true,preload:'none'});
           video.setAttribute('aria-label',row.title+': '+label);figure.append(make('figcaption','',label),video);pair.append(figure);
         }
-        player.append(pair);
+        player.append(pair,make('p','showcase-caption','Playback duration matched to the human reference.'));
       }else if(row.poster){const image=make('img');Object.assign(image,{src:row.poster,alt:row.title});player.append(image);}
       else player.append(make('p','showcase-pending','GPU Blender render in progress.'));
       if(execution.display_note)player.append(make('p','showcase-caption',execution.display_note));
