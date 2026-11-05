@@ -7,7 +7,7 @@
 }
 * { box-sizing: border-box; }
 /* Scale the complete page, including media and controls, as one layout. */
-html { zoom: .8; scroll-padding-top: 110px; }
+html { zoom: .85; scroll-padding-top: 110px; }
 body { margin: 0; background: var(--background); color: var(--ink); font: 16px/1.8 var(--sans); -webkit-font-smoothing: antialiased; }
 a { color: var(--accent); text-underline-offset: 4px; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
@@ -1268,3 +1268,6 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 :root[data-theme="dark"] .takeaway-overlay video {mix-blend-mode:normal}
 @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) .takeaway-overlay video {mix-blend-mode:normal} }
 @media(max-width:760px) {.results-tables-pair,.results-plots-pair{grid-template-columns:1fr;gap:24px}.agent-log-link a{border-radius:12px}}
+
+/* Fit each video box to its intrinsic frame instead of adding grey letterboxing. */
+.publication-body video { aspect-ratio:auto!important; height:auto!important; object-fit:contain; background:transparent!important; }
