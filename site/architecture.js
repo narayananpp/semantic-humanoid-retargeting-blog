@@ -23,7 +23,7 @@
       <div class="loop-toolbar"><div class="loop-trials" role="group" aria-label="Selected recorded trials"></div><div class="loop-playback"><span class="loop-phase" aria-live="polite">Recorded trial</span><button type="button" data-loop-play>▶ Play loop</button></div></div>
       <div class="loop-canvas">
         <svg class="loop-connectors" aria-hidden="true"><defs><marker id="loop-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><g></g></svg>
-        <div class="loop-forward" data-synced-videos="duration">
+        <div class="loop-forward">
           <div class="loop-inputs">
             <div class="loop-input" data-loop-node="human"><h4>Human demonstration <span>SMPL</span></h4><video data-architecture-clip="human" muted autoplay loop playsinline preload="none" poster="architecture-media/human.jpg" src="architecture-media/human.mp4" aria-label="Human clothes-stand demonstration"></video></div>
             <div class="loop-retarget">↓ <span>Kinematic retargeting<br><b>HOI-Retarget</b></span></div>
@@ -192,9 +192,8 @@
         if(current===data.stages.length-1){stop();return;}
         show(current+1);setPhase('execute');
       } else setPhase(phases[Math.max(next,0)]);
-      if(phase==='execute')$('.loop-forward').dispatchEvent(new Event('comparison-restart'));
-      const humanDuration=$('[data-architecture-clip="human"]').duration;
-      const duration=phase==='execute' ? (Number.isFinite(humanDuration)?humanDuration*1000:14000):phase==='inspect'?6500:2400;
+      if(phase==='execute'){rollout.currentTime=0;rollout.play().catch(()=>{});}
+      const duration=phase==='execute' ? (Number.isFinite(rollout.duration)?rollout.duration*1000:14000):phase==='inspect'?6500:2400;
       timer=setTimeout(advance,duration);
     }
     $('[data-loop-play]').addEventListener('click',()=>{
@@ -254,21 +253,48 @@
     }
     const layoutObserver=new ResizeObserver(()=>requestAnimationFrame(connect));
     layoutObserver.observe($('.loop-canvas'));layoutObserver.observe($('.loop-record'));
+    const videos=Array.from(ui.querySelectorAll('video'));
+    const blocked=new Set();
+    function videoInView(video){
+      const r=video.getBoundingClientRect();
+      return r.width>0&&r.height>0&&r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth;
+    }
     function resumeVideos(){
-      const group=$('.loop-forward');
-      group.dataset.syncPaused=String(document.hidden||dialog.open||document.documentElement.dataset.media==='off');
-      group.dispatchEvent(new Event('comparison-resume'));
+      const allowed=!document.hidden&&!dialog.open&&document.documentElement.dataset.media!=='off';
+      videos.forEach(video=>{
+        const active=allowed&&videoInView(video);
+        video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=true;video.playbackRate=1;video.autoplay=active;
+        if(!active){video.pause();return;}
+        if(video.paused)video.play().then(()=>blocked.delete(video)).catch(error=>{
+          if(error.name==='NotAllowedError')blocked.add(video);
+        });
+      });
     }
     function pauseVideos(){
       clearTimeout(timer);
-      $('.loop-forward').dataset.syncPaused='true';
-      $('.loop-forward').dispatchEvent(new Event('comparison-pause'));
+      videos.forEach(video=>{video.autoplay=false;video.pause();});
     }
+    const videoObserver=new IntersectionObserver(resumeVideos,{threshold:[0,.01]});
+    videos.forEach(video=>{
+      video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=true;
+      video.addEventListener('loadedmetadata',resumeVideos);
+      video.addEventListener('canplay',resumeVideos);
+      videoObserver.observe(video);
+    });
     new IntersectionObserver(([entry])=>{
       visible=entry.isIntersecting;
       if(visible&&!document.hidden){resumeVideos();if(playing)advance();}
       else pauseVideos();
     },{threshold:0}).observe(ui);
+    let playbackFrame;
+    function refreshPlayback(){cancelAnimationFrame(playbackFrame);playbackFrame=requestAnimationFrame(resumeVideos);}
+    window.addEventListener('scroll',refreshPlayback,{passive:true});
+    window.addEventListener('resize',refreshPlayback,{passive:true});
+    window.addEventListener('pageshow',refreshPlayback);
+    // Retry a muted autoplay blocked by browser policy after the next interaction.
+    for(const event of ['pointerup','keydown'])document.addEventListener(event,()=>{
+      if(blocked.size)resumeVideos();
+    },{passive:true});
     document.addEventListener('visibilitychange',()=>{
       if(document.hidden)pauseVideos();
       else{resumeVideos();if(visible&&playing)advance();}

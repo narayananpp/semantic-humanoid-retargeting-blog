@@ -32,6 +32,12 @@
           const figure=make('figure','source-motion-card'),video=make('video');
           Object.assign(video,{src:media.video,poster:media.poster||'',controls:true,muted:true,autoplay:true,loop:true,playsInline:true,preload:'none'});
           video.setAttribute('aria-label',row.title+': '+label);figure.append(make('figcaption','',label),video);pair.append(figure);
+          video.addEventListener('loadedmetadata',()=>{
+            const videos=[...pair.querySelectorAll('video')];
+            if(videos.every(v=>v.videoWidth&&v.videoHeight)){
+              pair.style.setProperty('--video-columns',videos.map(v=>`${v.videoWidth/v.videoHeight}fr`).join(' '));
+            }
+          });
         }
         player.append(pair);
       }else if(row.poster){const image=make('img');Object.assign(image,{src:row.poster,alt:row.title});player.append(image);}
