@@ -1149,7 +1149,7 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 
 /* Shared dataset tabs for side-by-side comparison plots. */
 .loop-arrow-label { position:relative; min-width:0; border:0; background:none; padding:0; text-align:center; }
-.loop-bottom { width:68%; margin-left:auto; }
+.loop-bottom { width:78%; margin-left:auto; }
 .loop-forward .loop-record { position:absolute; display:block; margin:0; padding:12px 14px; border-width:1px; border-radius:16px; z-index:3; }
 .loop-forward .loop-record-label { display:block; margin-bottom:6px; }
 .loop-forward .loop-record blockquote { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; overflow:hidden; font-size:12px; line-height:1.5; }

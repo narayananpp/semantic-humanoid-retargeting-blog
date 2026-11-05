@@ -241,10 +241,7 @@
       for(const name of ['sonic','wrist']) {const child=box(name);path(`M ${source.r+2} ${source.y} H ${fork} V ${child.y} H ${child.l-5}`,'forward');}
       const merge=(control.r+box('rollout').l)/2;
       for(const name of ['sonic','wrist']) {const child=box(name),out=box('rollout');path(`M ${child.r+2} ${child.y} H ${merge} V ${out.y} H ${out.l-5}`,'forward');}
-      const agent=box('agent'),wrist=box('wrist'),ref=box('reference');
-      const mid=agent.r+12,routeY=Math.max(control.b,box('ik').b,agent.b)+24;
-      path(`M ${agent.r+2} ${agent.b-8} H ${mid} V ${routeY} H ${wrist.x} V ${wrist.b+5}`,'code-edge');
-      const codeLabel=svg('text',{x:(ref.l+wrist.l)/2,y:routeY+15,'text-anchor':'middle'});codeLabel.textContent='Controller code';g.append(codeLabel);
+      const agent=box('agent');
       const a=box('rollout'),f=box('feedback');
       path(`M ${a.x} ${a.b+3} V ${f.t-5}`,'feedback-out');
       path(`M ${f.l-2} ${f.y} H ${agent.x} V ${agent.b+5}`,'feedback-return');
