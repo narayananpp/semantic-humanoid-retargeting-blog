@@ -20,6 +20,7 @@
         option.value=key;select.append(option);
       }
       const active=methods[method]?method:Object.keys(methods)[0];select.value=active;
+      buttons.forEach(b=>{b.textContent=b.dataset.dataset.toUpperCase()+(active==='codex120'?' (2 hours)':active==='codex'?' (30 min)':'');});
       select.addEventListener('change',()=>{method=select.value;show(row);});picker.append(select);header.append(picker);
       const execution=methods[active];
       if(row.status==='ready'&&document.documentElement.dataset.media!=='off'){

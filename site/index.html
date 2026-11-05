@@ -219,7 +219,7 @@
 <section id="discussion" class="outline-section">
 <h2 id="7-discussion">5. Discussion</h2>
 
-<p><strong>Iterative refinement with simulation feedback improves both object tracking and semantic success over one-shot generation.</strong> Rather than committing to a single proposal, agents optimize their proposed motions, inspect the resulting executions and revise their motion and control code. These results support using agentic models for retargeting beyond generating an initial solution.</p>
+<p><strong>Closed-loop refinement improves both object tracking and semantic success over open-loop, one-shot generation.</strong> Astra with refinement also outperforms the classical HOI-Retarget + SPIDER baseline in our evaluation. While SPIDER optimizes execution of a supplied reference, the agent revises both the reference and the control code in response to simulation feedback.</p>
 <h3 id="failure-analysis">Hand morphology limits some interactions</h3>
 <p>In Fig. 7, G1 must lift and swirl a plate to reproduce the human’s interaction. Although it lifts the plate, it fails to complete the swirling motion. The agents adjust finger placement and try two-handed support, yet the grasp remains unstable during rotation. We posit that this difficulty can be attributed to <strong>the morphological gap between human hands and G1’s Dex3 hands</strong>: the fingers struggle to establish a stable grasp around the plate’s thin rim. Notably, none of the tested motion and controller revisions fully compensate for this mismatch.</p>
 
@@ -304,7 +304,7 @@
     <footer class="publication-footer"><span>HuMoTAR</span><a href="#top">Back to top ↑</a></footer>
   </main>
   <script src="article.js?v=intro-selector-1"></script>
-<script src="dynamics-showcase.js?v=astra-labels-20261105" defer></script>
+<script src="dynamics-showcase.js?v=budget-tabs-20261105" defer></script>
 <script src="kinematic-showcase.js?v=autoplay-20261104" defer></script>
 <script src="experience-story.js?v=experience-log-20261105" defer></script>
 <script src="text-motion.js?v=1" defer></script>
