@@ -35,7 +35,7 @@
 <a href="#experience">5. Prior experience improves refinement on new tasks</a>
 <a href="#discussion">6. Discussion</a>
 <a class="subsection" href="#refinement-and-swarms">Iterative refinement with simulation feedback</a>
-<a class="subsection" href="#rl-fine-tuning">Refined references could support RL fine-tuning</a>
+<a class="subsection" href="#rl-fine-tuning">Refined references can support RL fine-tuning</a>
 <a class="subsection" href="#failure-analysis">Hand morphology limits some interactions</a>
 <a href="#references">References</a>
 <a href="#appendix">Appendix</a>
@@ -113,7 +113,7 @@
 <span id="kinematic-setup" class="section-anchor"></span>
 <span id="execution-task" class="section-anchor"></span>
 <p><em>We argue that robotics is about enacting changes in the environment, and so retargeted motions should produce the same object trajectory.</em></p>
-<p>Consider a person carrying a chair with one hand. Retargeting adapts this demonstration to a humanoid with different proportions, joint limits and strength. Rather than “exactly” reproducing the human’s grasp, we argue that retargeting should preserve the intended change in the environment: the chair must reach its target location. The humanoid is free to accomplish this within its own physical capabilities (e.g., grasping the chair with two hands instead of one).</p>
+<p>Consider a person carrying a chair with one hand. Retargeting adapts this demonstration to a humanoid with different proportions, joint limits and strength. Rather than “exactly” reproducing the human’s grasp, we argue that retargeting should preserve the intended change in the environment such that the chair reaches its target location. The humanoid is free to accomplish this within its own physical capabilities (e.g., grasping the chair with two hands instead of one).</p>
 <span id="execution-setup" class="section-anchor"></span>
 <span id="dynamic-interaction" class="section-anchor"></span>
 <p>Existing methods largely formulate retargeting as optimization. <a href="https://arxiv.org/abs/2609.34674">HOI-Retarget</a> fits the robot’s motion to human poses and object-relative contacts, and <a href="https://arxiv.org/abs/2511.09484">SPIDER</a> optimizes motor commands in simulation to physically execute this reference (Figs. 1 and 2). However, both objectives favor <strong>reproducing the human reference motion</strong>. Since recent LLMs such as GPT-6 Astra have become <strong>better judges of what works and what needs improvement</strong>, we instead ask whether <strong>reasoning about the task and the robot’s physical constraints</strong> can help the robot follow the <strong>object reference motion</strong>.</p>
@@ -148,7 +148,7 @@
 <li id="configuration-one-shot"><strong>One-shot generation.</strong> <a href="https://openai.com/index/gpt-6-astra/">GPT-6 Astra</a> generates motion and control code in one response, without tool calls or iterative refinement.</li>
 <li id="configuration-plain"><strong>Iterative agentic refinement.</strong> <a href="https://github.com/openai/codex">Codex</a> uses GPT-6 Astra to test and iteratively refine motion and control code through simulation feedback.</li>
 </ul>
-<p>Concretely, the agent receives <strong>the human demonstration in SMPL format, an initial kinematic reference from HOI-Retarget, the task scene and the target object trajectory</strong> (cf. <a href="#refinement-pipeline">Fig. 3</a>). The object trajectory specifies the desired object motion, scaled to the robot’s size. From these inputs, the agent writes Python code that generates and refines <em>a reference motion for the whole body and hands</em>.</p>
+<p>Concretely, the agent receives <strong>the human demonstration in SMPL format, an initial kinematic reference from HOI-Retarget, the task scene and the target object trajectory</strong> (<a href="#refinement-pipeline">Fig. 3</a>). The object trajectory specifies the desired object motion, scaled to the robot’s size. From these inputs, the agent writes Python code that generates and refines <em>a reference motion for the whole body and hands</em>.</p>
 <p><a href="https://arxiv.org/abs/2511.07820">SONIC</a> provides whole-body control, and the agent may augment or replace its joint-angle outputs to complete the task. <a href="https://mujoco.org/">MuJoCo</a> simulates each execution. After every trial, the agent inspects feedback (e.g., execution images, object-tracking errors and contact measurements) and revises its motion and control code.</p>
 <div id="evaluation-metrics">
 <h3 id="dynamics-metrics">2.2 Evaluation metrics</h3>
@@ -159,7 +159,7 @@
 <li><strong>Orientation error (°):</strong> The average angular difference between the simulated and target object orientations. <strong>Lower is better.</strong></li>
 <li><strong>Semantic success:</strong> We use <strong>GPT-6 Astra as an LLM judge</strong> to compare videos of the human demonstration and robot execution. The judge determines whether the robot completes the intended interaction, even if its posture, grasp or timing differs. Each task receives a <strong>PASS or FAIL</strong>, and we report the percentage that pass. <strong>Higher is better.</strong></li>
 </ul>
-<p>We weight all tasks equally when averaging object-tracking errors.</p>
+<p>We average object-tracking errors equally across tasks.</p>
 </div>
 </section>
 <section id="method" class="outline-section">
@@ -255,7 +255,7 @@
 <h2 id="7-discussion">6. Discussion</h2>
 <h3 id="refinement-and-swarms">Iterative refinement with simulation feedback</h3>
 <p><strong>Iterative refinement with simulation feedback improves both object tracking and semantic success over one-shot generation.</strong> Rather than committing to a single proposal, agents optimize their proposed motions, inspect the resulting executions and revise their motion and control code. These results support using agentic models for retargeting beyond generating an initial solution.</p>
-<h3 id="rl-fine-tuning">Refined references could support RL fine-tuning</h3>
+<h3 id="rl-fine-tuning">Refined references can support RL fine-tuning</h3>
 <p>Although HuMoTAR’s reference motions could be used to train whole-body policies for deployment, our experiments combine SONIC with agent-written controllers and do not train task-specific policies. A natural next step is to evaluate whether <strong>RL fine-tuning on these references</strong> helps the robot handle disturbances and scene changes. We leave policy training and hardware deployment to future work.</p>
 <h3 id="failure-analysis">Hand morphology limits some interactions</h3>
 <p>In Fig. 9, G1 must lift and swirl a plate to reproduce the human’s interaction. Although it lifts the plate, it fails to complete the swirling motion. The agents adjust finger placement and try two-handed support, yet the grasp remains unstable during rotation. We posit that this difficulty can be attributed to <strong>the morphological gap between human hands and G1’s Dex3 hands</strong>: the fingers struggle to establish a stable grasp around the plate’s thin rim. Notably, none of the tested motion and controller revisions fully compensate for this mismatch.</p>
