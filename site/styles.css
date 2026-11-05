@@ -6,8 +6,8 @@
   --page: 1440px;
 }
 * { box-sizing: border-box; }
-/* Scale the complete page, including media and controls, as one layout. */
-html { zoom: .85; scroll-padding-top: 110px; }
+/* Use the browser’s normal 100% layout for text, media and controls. */
+html { scroll-padding-top: 110px; }
 body { margin: 0; background: var(--background); color: var(--ink); font: 16px/1.8 var(--sans); -webkit-font-smoothing: antialiased; }
 a { color: var(--accent); text-underline-offset: 4px; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
