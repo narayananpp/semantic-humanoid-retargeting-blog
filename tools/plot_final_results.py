@@ -23,7 +23,7 @@ for dataset, data in DATA.items():
         values = [100*m['passed']/data['total'] if semantic else m['add_cm'] for m in methods]
         ax.barh(range(3), values, height=.45,
                 color=['#7a8693', '#be9250', '#287b70'], zorder=3)
-        labels = [m['name'].replace(' + ', ' +\n').replace(', ', '\n') for m in methods]
+        labels = [m['name'].replace(' + ', ' +\n').replace(', ', '\n').replace('Astra with refinement', 'Astra with\nrefinement') for m in methods]
         if not semantic:
             labels = [label + (f"\n(n = {m['tracking_n']})" if m['tracking_n'] != data['total'] else '')
                       for label, m in zip(labels, methods)]
@@ -70,7 +70,7 @@ for dataset, data in DATA.items():
         for spine in ax.spines.values():
             spine.set_visible(False)
         for i, (m, value) in enumerate(zip(methods, values)):
-            label = m['name']
+            label = m['name'].replace('Astra with refinement, 2 hours', 'Astra with refinement (2 h)')
             if not semantic and m['tracking_n'] != data['total']:
                 label += f" (n = {m['tracking_n']})"
             ax.text(0, i-.26, label, va='bottom', fontsize=10.5, color='#242620')
@@ -90,11 +90,11 @@ for dataset, data in DATA.items():
     fig, ax = plt.subplots(figsize=(6, 2.6), dpi=100)
     fig.patch.set_facecolor('#faf9f6')
     ax.set_facecolor('#faf9f6')
-    fig.subplots_adjust(left=.31, right=.82, top=.97, bottom=.24)
+    fig.subplots_adjust(left=.34, right=.82, top=.97, bottom=.24)
     methods = data['methods']
     values = [100*m['passed']/data['total'] for m in methods]
     ax.barh(range(3), values, height=.38, color=['#7a8693', '#be9250', '#287b70'], zorder=3)
-    ax.set_yticks(range(3), [m['name'].replace(' + ', ' +\n').replace(', ', '\n') for m in methods])
+    ax.set_yticks(range(3), [m['name'].replace(' + ', ' +\n').replace(', ', '\n').replace('Astra with refinement', 'Astra with\nrefinement') for m in methods])
     ax.set_ylim(2.5, -.5)
     ax.set_xlim(0, 100)
     ax.set_xticks([0, 25, 50, 75, 100])

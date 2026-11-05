@@ -19,7 +19,7 @@
     const ui = document.createElement('div');
     ui.className = 'refinement-loop-ui';
     ui.innerHTML = `
-      <div class="loop-heading"><div><span class="loop-eyebrow">One Codex session</span><h3>Motion refinement through simulation feedback</h3></div><span class="loop-task">Clothes-stand interaction</span></div>
+      <div class="loop-heading"><div><span class="loop-eyebrow">Astra with refinement</span><h3>Motion refinement through simulation feedback</h3></div><span class="loop-task">Clothes-stand interaction</span></div>
       <div class="loop-toolbar"><div class="loop-trials" role="group" aria-label="Selected recorded trials"></div><div class="loop-playback"><span class="loop-phase" aria-live="polite">Recorded trial</span><button type="button" data-loop-play>▶ Play loop</button></div></div>
       <div class="loop-canvas">
         <svg class="loop-connectors" aria-hidden="true"><defs><marker id="loop-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><g></g></svg>
@@ -34,7 +34,7 @@
           <div class="loop-ik-block loop-box" data-loop-node="ik"><h4>IK</h4></div>
           <div class="loop-targets loop-box" data-loop-node="targets"><h4>Joint-space reference</h4><video data-architecture-clip="targets" data-loop-targets-video muted autoplay loop playsinline preload="metadata" aria-label="Planned wrist targets over the G1 reference motion"></video><span class="loop-target-key" title="Colored arms show reference joint poses; gold markers show planned wrist targets.">Arm reference <i></i> Wrist targets</span></div>
           <div class="loop-control loop-box" data-loop-node="control"><h4 class="loop-control-title">Control</h4><div class="loop-controller" data-loop-node="sonic"><h4>Whole-body controller<br>(e.g. SONIC)</h4></div><div class="loop-controller" data-loop-node="wrist"><h4>Wrist and finger<br>impedance controller</h4></div></div>
-          <div class="loop-rollout loop-box" data-loop-node="rollout"><div class="loop-rollout-heading"><h4>MuJoCo rollout</h4><span data-loop-trial></span></div><video data-architecture-clip="rollout" data-loop-rollout muted autoplay loop playsinline controls preload="metadata" aria-label="Recorded single-Codex execution"></video><div class="loop-score"><span>Mean object-tracking error</span><strong data-loop-add></strong></div></div>
+          <div class="loop-rollout loop-box" data-loop-node="rollout"><div class="loop-rollout-heading"><h4>MuJoCo rollout</h4><span data-loop-trial></span></div><video data-architecture-clip="rollout" data-loop-rollout muted autoplay loop playsinline controls preload="metadata" aria-label="Recorded Astra execution"></video><div class="loop-score"><span>Mean object-tracking error</span><strong data-loop-add></strong></div></div>
         </div>
         <div class="loop-feedback" data-loop-node="feedback">
           <div class="loop-feedback-heading"><h4>Simulation feedback</h4><span data-loop-feedback-context></span></div>

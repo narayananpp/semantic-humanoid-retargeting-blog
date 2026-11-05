@@ -52,7 +52,8 @@
           "video": "experience-story-media/lift_shelf_lie_to_stand-867/kinematic.mp4?v=6706f83a98",
           "source_reference_sha256": "235d675620ad3030019abb4cceb2a0a9b234d7cd1c9fff43b5faa9a12cd9051f",
           "physics_simulated": false,
-          "presentation_trim_start_s": 0.125
+          "presentation_trim_start_s": 0.125,
+          "poster": "assets/experience/story/lift_shelf_lie_to_stand-867/kinematic.jpg"
         }
       },
       "quotes": {
@@ -177,7 +178,97 @@
             }
           }
         }
-      ]
+      ],
+      "prior_inputs": [
+        {
+          "clip": "walk_with_low_chair-308",
+          "title": "Carry a low chair",
+          "lesson": "Move the body with the grasp",
+          "quote": "Root-position error produces bounded yaw and pitch corrections to the policy orientation reference.",
+          "human": {
+            "video": "source-human-media/humoto/walk_with_low_chair-308.mp4",
+            "poster": "assets/source-humans/walk_with_low_chair-308.jpg"
+          },
+          "report_sha256": "bebe3c7b201501c6d13ac20fa0dcd84ae2f980a5fe318292fb29d8a1c46e26f7",
+          "source": "Supplied experience report",
+          "read_evidence": {
+            "clip": "lift_shelf_lie_to_stand-867",
+            "condition": "with_experience",
+            "member": "job/call/events.jsonl",
+            "line": 65
+          }
+        },
+        {
+          "clip": "carry_side_table_with_both_hands_walk_around-536",
+          "title": "Carry a side table",
+          "lesson": "Keep feedback corrections bounded",
+          "quote": "Online orientation feedback is disabled because stronger corrections repeatedly loosened the grasp.",
+          "human": {
+            "video": "source-human-media/humoto/carry_side_table_with_both_hands_walk_around-536.mp4",
+            "poster": "assets/source-humans/carry_side_table_with_both_hands_walk_around-536-3a08508b17.jpg"
+          },
+          "report_sha256": "2b27728fb5e31986968c7c116334615ad9d72f7412ed338cd9d1927d05386ed9",
+          "source": "Supplied experience report",
+          "read_evidence": {
+            "clip": "lift_shelf_lie_to_stand-867",
+            "condition": "with_experience",
+            "member": "job/call/events.jsonl",
+            "line": 65
+          }
+        },
+        {
+          "clip": "lifting_dining_chair_from_backrest_and_placing_back_with_right_hand_on_ground-595",
+          "title": "Lift and replace a dining chair",
+          "lesson": "Check placement and release",
+          "quote": "This is an incomplete task solution: final placement is inaccurate and release is not reliably controlled.",
+          "human": {
+            "video": "source-human-media/humoto/lifting_dining_chair_from_backrest_and_placing_back_with_right_hand_on_ground-595.mp4",
+            "poster": "assets/source-humans/lifting_dining_chair_from_backrest_and_placing_back_with_right_hand_on_ground-595-4434ad92e1.jpg"
+          },
+          "report_sha256": "08498e1be9d4874fd516cecb2cf0e8ad08965257ae397aad4bf24806dfaa865e",
+          "source": "Supplied experience report",
+          "read_evidence": {
+            "clip": "lift_shelf_lie_to_stand-867",
+            "condition": "with_experience",
+            "member": "job/call/events.jsonl",
+            "line": 65
+          }
+        },
+        {
+          "clip": "pulling_and_pushing_the_dining_chair_from_back_post-203",
+          "title": "Pull and push a dining chair",
+          "lesson": "Use wrist orientation to resist tipping",
+          "quote": "Object orientation feedback rotates the desired wrist frames to oppose chair tipping.",
+          "human": {
+            "video": "source-human-media/humoto/pulling_and_pushing_the_dining_chair_from_back_post-203.mp4",
+            "poster": "assets/source-humans/pulling_and_pushing_the_dining_chair_from_back_post-203-bcf5e3dd5b.jpg"
+          },
+          "report_sha256": "e099a002738b96ba1024ad464a58e61183f89eee2747264f91f6cd84a78499f9",
+          "source": "Supplied experience report",
+          "read_evidence": {
+            "clip": "lift_shelf_lie_to_stand-867",
+            "condition": "with_experience",
+            "member": "job/call/events.jsonl",
+            "line": 65
+          }
+        }
+      ],
+      "learning": {
+        "decision": "Use bounded object-pose feedback and revise the body motion to keep the grasp within reach.",
+        "evidence": {
+          "text": "The peer reports suggest that bounded pose feedback and feeding the revised arm motion to SONIC can help preserve contact. The shelf also needs more robot travel than the original retarget provides. I\u2019m building a stepping reference that follows the grasp through the rotation, with bounded body-orientation feedback to correct drift.",
+          "minute": 16.324547716666668,
+          "line": 141,
+          "member": "job/call/events.jsonl"
+        },
+        "result": {
+          "text": "Bounded object-pose feedback reduced the mean errors to 0.0777 m ADD, 0.0673 m position, and 8.89\u00b0 orientation, with continuous recorded contact. The shelf reaches upright, but endpoint overshoot remains. I\u2019m finishing an endpoint-settling test, then I\u2019ll freeze and replay the best result.",
+          "minute": 26.36209645,
+          "line": 629,
+          "member": "job/call/events.jsonl"
+        },
+        "attribution": "The agent attributes its decision to the reports collectively. The videos show the source interactions; the supplied inputs were written reports."
+      }
     },
     {
       "clip": "tilting_trash_can_with_right_foot-985",

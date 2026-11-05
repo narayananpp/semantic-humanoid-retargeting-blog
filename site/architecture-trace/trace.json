@@ -1,8 +1,8 @@
 {
   "task": "Lift, carry and place a clothes stand",
-  "method": "Single Codex agent",
+  "method": "Astra with refinement",
   "model": "GPT-6 Astra",
-  "protocol": "Recorded iterations from one Codex session. Initial is a separate evaluation of the identical input reference. Final is the selected execution from iteration 23. Query excerpts and images are attributed to their original events.",
+  "protocol": "Recorded iterations from GPT-6 Astra in one Codex session. Initial is a separate evaluation of the identical input reference. Final is the selected execution from iteration 23. Query excerpts and images are attributed to their original events.",
   "source_sha256": "aecb60f0524e3fbad48c33e5004d69cf199a5061b8e6386b6221754ec2d42a9e",
   "history": [
     {

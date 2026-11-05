@@ -234,3 +234,42 @@
  .experience-stage-aside .experience-trace { padding-top:0 !important; }
  .experience-prior-arrow { display:none !important; }
 }
+/* The shared run forks into two matched continuations. */
+.experience-flow {--flow-line:#7eaaa0;position:relative;padding:12px 0 0}
+.experience-shared {max-width:390px;margin:0 auto;text-align:center}
+.flow-kicker {font-size:12px!important;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted,#617269);margin:0 0 12px!important}
+.experience-branch-line {height:40px;width:calc(50% + 16px);margin:0 auto;border-top:2px solid var(--flow-line);border-left:2px solid var(--flow-line);border-right:2px solid var(--flow-line);border-radius:12px 12px 0 0;position:relative;margin-top:30px}
+.experience-branch-line:before {content:'';position:absolute;left:50%;height:30px;top:-32px;border-left:2px solid var(--flow-line)}
+.experience-branches,.experience-progress-row,.experience-final-pair {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+.experience-branch {min-width:0;display:grid;grid-template-rows:auto auto minmax(310px,auto) 1fr;align-content:start;position:relative}
+.experience-branch>h4 {text-align:center;margin:0!important}
+.branch-budget {text-align:center;font-size:14px!important;margin:8px 0 22px!important}
+.experience-injection,.experience-no-injection {padding:20px;border:1px solid var(--flow-line);border-radius:14px;background:var(--experience-prior-bg,transparent)}
+.experience-no-injection .experience-film {max-width:300px;margin:auto}
+.experience-injection h5,.experience-decision h5 {font-size:17px;margin:0 0 12px}
+.prior-carousel-controls {display:flex;align-items:center;justify-content:space-between;margin:10px 0;font-size:13px}
+.prior-carousel-controls button {border:1px solid var(--flow-line);background:transparent;color:inherit;border-radius:50%;width:32px;height:32px;cursor:pointer}
+.prior-carousel-panel {display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center}
+.prior-lesson blockquote {font-size:14px;margin:0;padding:0;border:0;line-height:1.55}
+.prior-carousel-note {font-size:12px!important;color:var(--muted,#617269);margin:12px 0 0!important}
+.experience-decision {position:relative;margin-top:28px;padding-top:22px;border-top:2px solid var(--flow-line)}
+.experience-decision:before {content:'↓';position:absolute;top:-22px;left:50%;font-size:20px;color:var(--flow-line)}
+.experience-flow .experience-message {margin:14px 0;padding:18px 20px}
+.experience-flow .message-text {font-size:15px!important;line-height:1.65}
+.experience-flow .message-author {font-size:12px!important}
+.experience-flow .experience-film video {display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:contain;border-radius:8px}
+.experience-progress-row {margin:20px 0 0}
+.experience-learning-result {max-width:860px;margin:28px auto}
+.experience-learning-result>p:not(.flow-kicker) {font-size:16px}
+.experience-final-pair {padding-top:28px;border-top:1px solid var(--flow-line)}
+@media(max-width:760px) {.experience-branches,.experience-progress-row,.experience-final-pair{grid-template-columns:1fr}.experience-branch-line{display:none}.experience-branch{grid-template-rows:auto auto auto auto;margin-top:24px}.experience-no-injection .experience-film{max-width:260px}.prior-carousel-panel{grid-template-columns:1fr 1fr}.experience-shared{max-width:330px}}
+
+.experience-initial-inputs {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:760px;margin:0 auto}
+.experience-input-line {height:36px;border-left:2px solid var(--flow-line);width:0;margin:0 auto 10px;position:relative}
+.experience-input-line:after {content:'';position:absolute;bottom:0;left:-5px;width:7px;height:7px;border-right:2px solid var(--flow-line);border-bottom:2px solid var(--flow-line);transform:rotate(45deg)}
+.experience-branches {grid-template-rows:auto auto auto 1fr}
+.experience-branch {grid-row:span 4;grid-template-rows:subgrid}
+.experience-no-injection>p:not(.flow-kicker) {font-size:15px;line-height:1.6}
+.experience-no-injection h5 {font-size:17px;margin:0 0 12px}
+.experience-progress-row .experience-film {width:100%;max-width:430px;margin:0 auto}
+@media(max-width:760px) {.experience-branches{grid-template-rows:none}.experience-branch{grid-row:auto;grid-template-rows:auto auto auto auto}.experience-initial-inputs{gap:12px}}

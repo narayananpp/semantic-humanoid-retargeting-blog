@@ -1205,3 +1205,21 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
   .results-comparison-layout .final-results { padding:14px 8px; }
   .results-comparison-layout .final-tracking-table th,.results-comparison-layout .final-tracking-table td { padding:11px 4px; }
 }
+
+/* Both datasets remain visible, with their results above the discussion. */
+.results-tables-pair,.results-plots-pair {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:start}
+.results-dataset-comparison {margin:28px 0}
+.results-dataset-comparison .final-tracking-table {min-width:0;overflow-x:auto}
+.results-dataset-comparison table {width:100%;font-size:.88em}
+.results-dataset-comparison th,.results-dataset-comparison td {padding:12px 8px}
+.results-semantic-pair {margin:30px 0 0}
+.results-plots-pair h4 {text-align:center;margin:0 0 12px}
+.results-plots-pair img {display:block;width:100%;height:auto}
+.results-comparison-summary {width:100%;max-width:none}
+.agent-log-link {text-align:center;margin:22px auto 32px}
+.agent-log-link a {display:inline-block;border:1px solid var(--line,#ccd1c9);border-radius:999px;padding:10px 22px;text-decoration:none}
+.takeaways-message {isolation:isolate}
+.takeaway-overlay video {mix-blend-mode:multiply}
+:root[data-theme="dark"] .takeaway-overlay video {mix-blend-mode:normal}
+@media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) .takeaway-overlay video {mix-blend-mode:normal} }
+@media(max-width:760px) {.results-tables-pair,.results-plots-pair{grid-template-columns:1fr;gap:24px}.agent-log-link a{border-radius:12px}}

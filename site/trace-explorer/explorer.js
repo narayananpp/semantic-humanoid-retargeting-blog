@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
 
 const $ = id => document.getElementById(id);
-const DATA = 'trace-explorer/collaborative/';
+const SINGLE = document.body.dataset.trace === 'astra120';
+const DATA = SINGLE ? 'trace-explorer/astra120/' : 'trace-explorer/collaborative/';
 let recording;
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = value => Number.isFinite(value) ? value.toFixed(2) : '—';
@@ -165,7 +166,7 @@ async function selectTrial(id,options={}) {
   $('play').disabled=true;$('scrubber').disabled=true;
   const clip=$('stage-video');clip.pause();$('video-card').open=false;$('video-card').hidden=!trial.video;
   if(trial.video){clip.src=DATA+trial.video;}else{clip.removeAttribute('src');clip.load();}
-  $('trial-label').textContent=trial.id==='initial'?'Initial reference':trial.id==='final'?'Final execution':`Trial ${trial.id}`;
+  $('trial-label').textContent=trial.id==='initial'?(SINGLE?'Initial reference (no physics)':'Initial reference'):trial.id==='final'?'Final execution':`Trial ${trial.id}`;
   $('evidence-title').textContent=trial.id==='initial'?'Initial reference':trial.id==='final'?'Final execution':`Trial ${trial.id}`;
   $('refinement-time').textContent=`${trial.time_min.toFixed(2)} min`;
   $('add-value').innerHTML=`${fmt(trial.add_cm)}<small> cm</small>`;
@@ -205,7 +206,7 @@ async function selectTrial(id,options={}) {
 }
 
 function renderHistory(){
-  const trials=state.agent.trials.filter(t=>t.motion),w=800,h=190,left=45,right=16,top=15,bottom=36;
+  const trials=state.agent.trials.filter(t=>recording.show_all_trials ? Number.isFinite(t.add_cm) : t.motion),w=800,h=190,left=45,right=16,top=15,bottom=36;
   const xmax=Math.max(30,...trials.map(t=>t.time_min)),ymax=Math.max(10,...trials.map(t=>t.add_cm))*1.1;
   const X=t=>left+t/xmax*(w-left-right),Y=v=>top+(1-v/ymax)*(h-top-bottom);
   let markup='';
@@ -224,7 +225,7 @@ function renderHistory(){
   });
   $('error-chart').innerHTML=markup;
   $('error-chart').querySelectorAll('[data-trial]').forEach(g=>{g.addEventListener('click',()=>selectTrial(g.dataset.trial));g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectTrial(g.dataset.trial);}});});
-  $('trial-count').textContent=`${trials.length} playable stages`;
+  $('trial-count').textContent=`${trials.length} ${recording.show_all_trials?'scored trials':'playable stages'}`;
   const rail=$('trial-rail'),previousScroll=rail.scrollLeft;
   rail.innerHTML=trials.map(t=>`<button data-trial="${escapeHTML(t.id)}" class="${t.motion?'has-replay':''}" aria-pressed="${t===state.trial}">${escapeHTML(t.id)}<strong>${fmt(t.add_cm)} cm</strong></button>`).join('');
   rail.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>selectTrial(b.dataset.trial)));
@@ -250,7 +251,7 @@ function eventMarkup(event){
   if(event.attachments?.length)body+=`<p class="tool-result">${event.attachments.length} shared artifact${event.attachments.length===1?'':'s'}</p>`;
   body+=linked.slice(0,6).map(t=>`<button class="event-play" data-event-trial="${escapeHTML(t.id)}">${t.motion?'▶ Replay':'Inspect'} trial ${escapeHTML(t.id)} · ${fmt(t.add_cm)} cm</button>`).join(' ');
   if(linked.length>6)body+=`<p class="context-note">${linked.length} trials scored in this operation. Replay stages are shown in the refinement history.</p>`;
-  return `<article class="event-card ${message?'observation':exchange?'exchange-card':''}"><div class="event-top"><b>${escapeHTML(title)}</b><time>${clock(event.time_min)} min</time></div><div class="event-body">${body}<span class="event-note">Recorded event · line ${event.line}</span></div></article>`;
+  return `<article class="event-card ${message?'observation':exchange?'exchange-card':''}"><div class="event-top"><b>${escapeHTML(title)}</b><time>${clock(event.time_min)} min</time></div><div class="event-body">${body}<span class="event-note">Recorded event${SINGLE?` · session ${(event.session??0)+1}`:''} · line ${event.line}</span></div></article>`;
 }
 function contextEvents(){
   const t=state.trial,all=state.agent.events,idx=state.agent.trials.indexOf(t);
@@ -270,7 +271,7 @@ function pathPlot(trial){
   return `<h3 class="measure-title">Object path · top view</h3><svg class="path-plot" viewBox="0 0 340 330" role="img" aria-label="Desired and executed object paths in the horizontal plane">${paths.map((points,i)=>`<path d="${points.map((p,j)=>`${j?'L':'M'}${sx(p[0]).toFixed(2)},${sy(p[1]).toFixed(2)}`).join(' ')}" fill="none" stroke="${i?'#087b68':'#a06ac4'}" stroke-width="2.5"/>`).join('')}</svg><p class="path-legend"><span>● Desired</span><span>● Executed</span></p><p class="context-note">Spatial paths from the recorded object-path analysis.</p>`;
 }
 function renderStages(){
-  $('key-stages').innerHTML=recording.stages.map((stage,i)=>`<button data-stage="${i}" class="${state.agent.id===stage.agent&&state.trial.id===stage.trial?'active':''}"><span class="stage-index">${i+1}</span><b>${escapeHTML(stage.label)}</b><span>${stage.trial==='initial'?'Before refinement':`Agent ${stage.agent} · ${stage.time_min.toFixed(1)} min`}</span><strong>${fmt(stage.add_cm)} <small>cm ADD</small></strong></button>`).join('');
+  $('key-stages').innerHTML=recording.stages.map((stage,i)=>`<button data-stage="${i}" class="${state.agent.id===stage.agent&&state.trial.id===stage.trial?'active':''}"><span class="stage-index">${i+1}</span><b>${escapeHTML(stage.label)}</b><span>${stage.trial==='initial'?'Kinematic reference':`${SINGLE?'':`Agent ${stage.agent} · `}${stage.time_min.toFixed(1)} min`}</span><strong>${fmt(stage.add_cm)} <small>cm ADD</small></strong></button>`).join('');
   $('key-stages').querySelectorAll('[data-stage]').forEach(button=>button.addEventListener('click',async()=>{
     const stage=recording.stages[Number(button.dataset.stage)];
     if(stage.agent!==state.agent.id)await selectAgent(stage.agent,stage.trial);else await selectTrial(stage.trial);
@@ -298,14 +299,15 @@ function renderEvidence(){
     const images=state.agent.events.filter(e=>e.kind==='imageView');
     panel.innerHTML=`<p class="context-note">Views actually inspected by Agent ${state.agent.id}. Click an image to enlarge it.</p><div class="inspection-gallery">${images.map(e=>`<figure>${imageMarkup(e)}<figcaption>${clock(e.time_min)} min · recorded event ${e.line}</figcaption></figure>`).join('')||'<p class="empty">No image inspections were recorded for this agent.</p>'}</div>`;
   }else{
-    panel.innerHTML=`<div class="metric-grid"><div class="metric-tile"><span>Mean object-tracking error (ADD)</span><strong>${fmt(trial.add_cm)} <small>cm</small></strong></div><div class="metric-tile"><span>Object position error</span><strong>${fmt(trial.position_cm)} <small>cm</small></strong></div><div class="metric-tile"><span>Object orientation error</span><strong>${fmt(trial.orientation_deg)} <small>deg</small></strong></div><div class="metric-tile"><span>Recorded motion</span><strong>${fmt(trial.duration)} <small>s</small></strong></div></div>${pathPlot(trial)}<h3 class="measure-title">Motion source</h3><p class="context-note">${escapeHTML(trial.motion?.provenance||'The trial score is retained. This trial is outside the six prepared 3D replay stages.')}</p><p class="context-note">Lower object-tracking error is better. This score alone does not establish task completion.</p>`;
+    panel.innerHTML=`<div class="metric-grid"><div class="metric-tile"><span>Mean object-tracking error (ADD)</span><strong>${fmt(trial.add_cm)} <small>cm</small></strong></div><div class="metric-tile"><span>Object position error</span><strong>${fmt(trial.position_cm)} <small>cm</small></strong></div><div class="metric-tile"><span>Object orientation error</span><strong>${fmt(trial.orientation_deg)} <small>deg</small></strong></div><div class="metric-tile"><span>Recorded motion</span><strong>${fmt(trial.duration)} <small>s</small></strong></div></div>${pathPlot(trial)}<h3 class="measure-title">Motion source</h3><p class="context-note">${escapeHTML(trial.motion?.provenance||'The trial score is retained. Its full motion recording is unavailable.')}</p><p class="context-note">Lower object-tracking error is better. This score alone does not establish task completion.</p>`;
   }
   $('evidence-source').textContent=state.tab==='exchanges'?'Original messages · all four agents':`Agent ${state.agent.id} · recorded ${state.tab==='images'?'image inspections':state.tab==='measurements'?'measurements':'activity'}`;
 }
 
-function stopTour(){state.touring=false;$('tour').textContent='▶ Play six stages';$('tour').classList.remove('running');}
+function stopTour(){state.touring=false;$('tour').textContent=SINGLE?'▶ Play available motions':'▶ Play six stages';$('tour').classList.remove('running');}
 async function playStage(index){
   const stage=recording.stages[index];
+  if(SINGLE&&!state.agent.trials.find(t=>t.id===stage.trial)?.motion){if(index+1<recording.stages.length)return playStage(index+1);stopTour();return;}
   if(stage.agent!==state.agent.id)await selectAgent(stage.agent,stage.trial);
   state.touring=true;$('tour').textContent='Ⅱ Stop stage playback';$('tour').classList.add('running');
   await selectTrial(stage.trial,{tour:true,autoplay:true});
@@ -327,14 +329,14 @@ async function boot(){
     const params=new URLSearchParams(location.hash.slice(1));
     // Old links for another worker must not be reinterpreted as Agent 0's trial IDs.
     if(params.has('agent')&&Number(params.get('agent'))!==0)return {trial:'initial',tab:'exchanges',sourceLine:null};
-    return {trial:params.get('trial')||'initial',tab:params.get('tab'),sourceLine:params.get('line')};
+    return {trial:params.get('trial')||recording.default_trial||'initial',tab:params.get('tab'),sourceLine:params.get('line')};
   };
   const route=readRoute();
-  if(['activity','exchanges','measurements','images'].includes(route.tab))state.tab=route.tab;
+  if(['activity','exchanges','measurements','images'].includes(route.tab))state.tab=SINGLE&&route.tab==='exchanges'?'activity':route.tab;
   await selectAgent(0,route.trial,{sourceLine:route.sourceLine});
   window.addEventListener('hashchange',()=>{
     const route=readRoute();
-    if(['activity','exchanges','measurements','images'].includes(route.tab))state.tab=route.tab;
+    if(['activity','exchanges','measurements','images'].includes(route.tab))state.tab=SINGLE&&route.tab==='exchanges'?'activity':route.tab;
     selectTrial(state.agent.trials.some(t=>t.id===route.trial)?route.trial:'initial',{sourceLine:route.sourceLine}).catch(report);
   });
   bind('play','click',()=>{if(state.time>=state.motion.duration)state.time=0;stopTour();setPlaying(!state.playing);});
