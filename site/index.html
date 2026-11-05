@@ -79,18 +79,19 @@
 
 
 <aside class="takeaways-message" aria-label="Key takeaways">
-  <ul>
-    <li><div class="takeaway-with-video"><div class="takeaway-copy"><strong>How should one retarget human-object motions for humanoids?</strong> We argue that robotics is about enacting changes in the environment, and so retargeted motions should produce the same object trajectory.</div>
-      <figure class="takeaway-overlay" id="object-motion-comparison">
+  <div class="takeaway-with-video">
+    <ul class="takeaway-copy">
+      <li><strong>How should one retarget human-object motions for humanoids?</strong> We argue that robotics is about enacting changes in the environment, and so retargeted motions should produce the same object trajectory.</li>
+      <li><strong>Agentic models with a simulator in-the-loop produce dynamically feasible motions.</strong> We analyze the behaviour of our harness and find that iterating over targets with a verification reward that prioritizes object-trajectory matching is crucial.</li>
+      <li><strong>Experience from related tasks improves refinement.</strong> Summaries of prior strategies and outcomes reduce object-tracking error on a new humanoid–object task from 23.35 to 7.77 cm under equal compute and time budgets.</li>
+    </ul>
+    <figure class="takeaway-overlay" id="object-motion-comparison">
         <video controls autoplay muted loop playsinline preload="metadata" width="1920" height="1080" poster="walkthrough-media/object-path-comparison/cutting-board-overlay-hd.jpg" aria-label="Time-aligned human (purple) and humanoid (teal) motions, with a grasp close-up and object paths">
           <source src="walkthrough-media/object-path-comparison/cutting-board-overlay-hd.mp4" type="video/mp4">
           <a href="walkthrough-media/object-path-comparison/cutting-board-overlay-hd.mp4">Watch the human and humanoid motion comparison</a>
         </video>
       </figure>
-    </div></li>
-    <li><strong>Agentic models with a simulator in-the-loop produce dynamically feasible motions.</strong> We analyze the behaviour of our harness and find that iterating over targets with a verification reward that prioritizes object-trajectory matching is crucial.</li>
-    <li><strong>Experience from related tasks improves refinement.</strong> Summaries of prior strategies and outcomes reduce object-tracking error on a new humanoid–object task from 23.35 to 7.77 cm under equal compute and time budgets.</li>
-  </ul>
+  </div>
 </aside>
 
 </section>
