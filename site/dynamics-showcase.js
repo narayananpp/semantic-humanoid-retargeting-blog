@@ -24,7 +24,7 @@
       select.addEventListener('change',()=>{method=select.value;show(row);});picker.append(select);header.append(picker);
       const execution=methods[active];
       if(row.status==='ready'&&document.documentElement.dataset.media!=='off'){
-        const pair=make('div','source-motion-pair');pair.dataset.syncedVideos='duration';
+        const pair=make('div','source-motion-pair');
         const entries=[];
         if(row.human?.status==='ready') entries.push([row.human,'Human reference · SMPL']);
         entries.push([execution,active==='codex120'?'Astra with refinement (2 hours)':active==='codex'?'Astra with refinement, 30 min':execution.label]);
