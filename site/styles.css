@@ -1205,3 +1205,19 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
   .results-comparison-layout .final-results { padding:14px 8px; }
   .results-comparison-layout .final-tracking-table th,.results-comparison-layout .final-tracking-table td { padding:11px 4px; }
 }
+
+/* Compact desktop reading size; media and layout widths keep their original dimensions. */
+@media screen and (min-width:1000px) {
+  .compact-copy .cover-copy.cover-copy-single h1 { font-size:clamp(34px,4vw,58px); }
+  .compact-copy .article-chapters > section:not(.tldr-section) > h2 { font-size:clamp(26px,2.4vw,37px); margin-bottom:19px; }
+  .compact-copy .article-chapters > section > h3,
+  .compact-copy #dynamics-metrics { font-size:23px; margin-top:24px; margin-bottom:14px; }
+  .compact-copy .article-chapters > section > p:not(.publication-caption),
+  .compact-copy .article-chapters > section > ul,
+  .compact-copy #evaluation-metrics > p,
+  .compact-copy #evaluation-metrics > ul,
+  .compact-copy .results-comparison-copy > p,
+  .compact-copy .takeaways-message li { font-size:13px; }
+  .compact-copy .article-chapters > section:not(.tldr-section):has(> h2) { padding-top:38px; margin-top:38px; }
+  .compact-copy .article-chapters > section > p + p { margin-top:14px; }
+}
