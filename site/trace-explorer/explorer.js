@@ -14,7 +14,7 @@ let renderer, scene, camera, controls, meshes=[], pathGroup, contactGroup, conta
 let viewReady=false,needsRender=true;
 
 async function getJSON(url) {
-  const response = await fetch(url);
+  const response = await fetch(SINGLE && url.startsWith(DATA) ? url+'?v=intermediate-replays-20261105' : url);
   if (!response.ok) throw new Error(`Could not load ${url} (${response.status}).`);
   return response.json();
 }
@@ -167,6 +167,7 @@ async function selectTrial(id,options={}) {
   const clip=$('stage-video');clip.pause();$('video-card').open=false;$('video-card').hidden=!trial.video;
   if(trial.video){clip.src=DATA+trial.video;}else{clip.removeAttribute('src');clip.load();}
   $('trial-label').textContent=trial.id==='initial'?(SINGLE?'Initial reference (no physics)':'Initial reference'):trial.id==='final'?'Final execution':`Trial ${trial.id}`;
+  document.querySelector('.mode-tag').textContent=trial.id==='initial'?'Kinematic reference':trial.motion?.kind==='verified_replay'?'Verified simulation replay':'Recorded simulation';
   $('evidence-title').textContent=trial.id==='initial'?'Initial reference':trial.id==='final'?'Final execution':`Trial ${trial.id}`;
   $('refinement-time').textContent=`${trial.time_min.toFixed(2)} min`;
   $('add-value').innerHTML=`${fmt(trial.add_cm)}<small> cm</small>`;

@@ -1,4 +1,4 @@
-"""Export a two-hour-budget recording, without rerunning or reconstructing physics.
+"""Export a recorded run and optionally attach separately verified simulation replays.
 
 Only user-visible agent messages, tool summaries and inspected images are public.
 Intermediate trial scores are retained even when their full motions were not saved.
@@ -10,6 +10,30 @@ import numpy as np
 from PIL import Image
 from trace_assets import clean,digest,write,read,export_geometry,export_motion
 from export_collaborative_trace import operation
+
+def attach_verified_replays(output, replays):
+    """Attach independently replayed trials only after checking their provenance."""
+    agent=read(output/'agent-0.json');index=read(output/'index.json')
+    geoms=read(output/'scene.json')['geoms']
+    for folder in sorted(replays.iterdir()):
+        verification=folder/'verification.json'
+        if not verification.exists():continue
+        check=read(verification)
+        trial=next(t for t in agent['trials'] if t['id']==check['trial'])
+        assert trial['source_sha256']==check['source_manifest_sha256']
+        assert abs(trial['add_cm']-check['recorded_add_cm'])<1e-8
+        assert abs(check['replayed_add_cm']-trial['add_cm'])<.01
+        assert digest(folder/'execution/motion.npz')==check['motion_sha256']
+        with np.load(folder/'bundle/animation.npz') as animation, np.load(folder/'execution/motion.npz') as execution:
+            assert np.array_equal(animation['timestamps'],execution['timestamps'])
+        motion=export_motion(folder/'bundle',output,'trial-'+trial['id'],geoms,folder/'execution/contacts.npz')
+        assert motion['source_motion_sha256']==check['motion_sha256']
+        motion.update(kind='verified_replay',provenance='Simulation replay from the saved trial controller, reference and initial state, verified against the original object-tracking score.',validation={k:check[k] for k in ['recorded_add_cm','replayed_add_cm','difference_cm','source_manifest_sha256']})
+        trial['motion']=motion;trial['duration']=motion['duration']
+        with np.load(folder/'execution/score_traces.npz') as data:
+            trial['paths']={k:data[k][:,:3].round(5).tolist() for k in ('actual_curve','target_curve')}
+    index['availability']='Initial and final motions plus verified simulation replays for the featured intermediate trials. Other trials retain their recorded scores, messages and images.'
+    write(output/'agent-0.json',agent);write(output/'index.json',index)
 
 def export(source, rendered, history, output):
     output.mkdir(parents=True,exist_ok=True)
@@ -78,4 +102,5 @@ def export(source, rendered, history, output):
     print(f'Exported {len(trials)-1} scored trials, {len(events)} events, {sum(e.get("kind")=="imageView" for e in events)} image inspections.')
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--source',type=Path,required=True);p.add_argument('--rendered',type=Path,required=True);p.add_argument('--history',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args();export(a.source,a.rendered,a.history,a.output)
+    p=argparse.ArgumentParser();p.add_argument('--source',type=Path,required=True);p.add_argument('--rendered',type=Path,required=True);p.add_argument('--history',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--verified-replays',type=Path);a=p.parse_args();export(a.source,a.rendered,a.history,a.output)
+    if a.verified_replays:attach_verified_replays(a.output,a.verified_replays)

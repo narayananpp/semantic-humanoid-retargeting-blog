@@ -36,7 +36,7 @@
     const source=el('div','experience-no-injection');source.append(el('p','flow-kicker','15 min / No additional reports'),el('h5','','Continue from the shared solution'),el('p','','The agent receives the same task, motion and remaining refinement time. No experience reports are added.'),quote(e.intermediates[0].comparison.without_experience.quote,'Next decision'));left.append(source);const injection=carousel(e.prior_inputs);right.append(injection);
     const ldecision=el('div','experience-decision');ldecision.append(el('p','flow-kicker','Refinement without experience'),el('h5','','Test grasps nearer the far end'),el('p','','The first new grasp is unstable. At 20 minutes, the initial partial lift still has the lowest object-tracking error.'));left.append(ldecision);
     const rdecision=el('div','experience-decision');
-    rdecision.append(el('p','flow-kicker','Passage read by the agent'));
+    rdecision.append(el('p','flow-kicker','Recorded experience log'));
     const relevant=e.prior_inputs.find(p=>p.clip==='walk_with_low_chair-308'),sourceLink=el('button','experience-report-link','Carry a low chair ↗');sourceLink.type='button';sourceLink.onclick=()=>{injection.dispatchEvent(new CustomEvent('show-prior',{detail:relevant.clip}));injection.scrollIntoView({block:'center',behavior:'smooth'});};rdecision.append(sourceLink);
     const excerpt=el('blockquote','experience-source-excerpt');for(const q of relevant.quotes)excerpt.append(el('p','',`“${q}”`));rdecision.append(excerpt);
     rdecision.append(el('p','experience-transfer-note','The report describes coordinated walking and bounded feedback. The need for more travel is the agent’s assessment of the shelf task.'),quote(e.learning.evidence,'Agent’s next decision'));right.append(rdecision);
