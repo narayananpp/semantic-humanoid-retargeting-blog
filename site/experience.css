@@ -243,8 +243,8 @@
 .experience-branches,.experience-progress-row,.experience-final-pair {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
 .experience-branch {min-width:0;display:grid;grid-template-rows:auto auto minmax(310px,auto) 1fr;align-content:start;position:relative}
 .experience-branch>h4 {text-align:center;margin:0!important}
-.branch-budget {text-align:center;font-size:14px!important;margin:8px 0 22px!important}
-.experience-injection,.experience-no-injection {padding:20px;border:1px solid var(--flow-line);border-radius:14px;background:var(--experience-prior-bg,transparent)}
+.branch-budget {text-align:center;font-size:14px!important;margin:0 0 6px!important}
+.experience-injection,.experience-no-injection {padding:16px;border:1px solid var(--flow-line);border-radius:14px;background:var(--experience-prior-bg,transparent)}
 .experience-no-injection .experience-film {max-width:300px;margin:auto}
 .experience-injection h5,.experience-decision h5 {font-size:17px;margin:0 0 12px}
 .prior-carousel-controls {display:flex;align-items:center;justify-content:space-between;margin:10px 0;font-size:13px}
@@ -254,7 +254,7 @@
 .prior-carousel-note {font-size:12px!important;color:var(--muted,#617269);margin:12px 0 0!important}
 .experience-decision {position:relative;margin-top:28px;padding-top:22px;border-top:2px solid var(--flow-line)}
 .experience-decision:before {content:'↓';position:absolute;top:-22px;left:50%;font-size:20px;color:var(--flow-line)}
-.experience-flow .experience-message {margin:14px 0;padding:18px 20px}
+.experience-flow .experience-message {margin:12px 0;padding:14px 16px}
 .experience-flow .message-text {font-size:15px!important;line-height:1.65}
 .experience-flow .message-author {font-size:12px!important}
 .experience-flow .experience-film video {display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:contain;border-radius:8px}
@@ -267,7 +267,7 @@
 .experience-initial-inputs {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:760px;margin:0 auto}
 .experience-input-line {height:36px;border-left:2px solid var(--flow-line);width:0;margin:0 auto 10px;position:relative}
 .experience-input-line:after {content:'';position:absolute;bottom:0;left:-5px;width:7px;height:7px;border-right:2px solid var(--flow-line);border-bottom:2px solid var(--flow-line);transform:rotate(45deg)}
-.experience-branches {grid-template-rows:auto auto auto 1fr}
+.experience-branches {grid-template-rows:auto auto auto 1fr;gap:12px 32px}
 .experience-branch {grid-row:span 4;grid-template-rows:subgrid}
 .experience-no-injection>p:not(.flow-kicker) {font-size:15px;line-height:1.6}
 .experience-no-injection h5 {font-size:17px;margin:0 0 12px}
@@ -277,14 +277,14 @@
 /* Connect card boundaries directly; no full-width rules or floating arrows. */
 .experience-flow-arrows {position:absolute;inset:0;width:100%;height:100%;pointer-events:none;color:var(--flow-line);overflow:visible}
 .experience-flow>div,.experience-flow>p {position:relative}
-.experience-shared {margin-top:54px}
+.experience-shared {margin-top:36px}
 .experience-shared figcaption {font-weight:700;font-size:17px}
-.experience-branches {margin-top:64px}
-.experience-decision {border:0;padding-top:0;margin-top:52px}
+.experience-branches {margin-top:48px}
+.experience-decision {border:0;padding-top:0;margin-top:24px}
 .experience-decision:before {display:none}
-.experience-progress-row {margin-top:52px}
-.experience-learning-result {width:calc((100% - 32px)/2);max-width:none;margin:54px 0 54px auto}
-.experience-final-pair {border:0;padding-top:0;margin-top:54px}
+.experience-progress-row {margin-top:36px}
+.experience-learning-result {width:calc((100% - 32px)/2);max-width:none;margin:36px 0 36px auto}
+.experience-final-pair {border:0;padding-top:0;margin-top:36px}
 .prior-carousel-panel {display:block}
 .prior-task-title {text-align:center}
 .prior-motion-pair {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}

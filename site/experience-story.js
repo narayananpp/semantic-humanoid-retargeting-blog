@@ -31,8 +31,8 @@
 
     const grid=el('div','experience-branches');root.append(grid);
     const left=el('section','experience-branch without'),right=el('section','experience-branch with');grid.append(left,right);
-    left.append(el('h4','','Without experience'),el('p','branch-budget','15 more minutes from the same starting motion'));
-    right.append(el('h4','','With experience'),el('p','branch-budget','15 more minutes from the same starting motion'));
+    left.append(el('h4','','Without experience'),el('p','branch-budget','15 more minutes from the same starting motion without experience context'));
+    right.append(el('h4','','With experience'),el('p','branch-budget','15 more minutes from the same starting motion with experience context'));
     const source=el('div','experience-no-injection');source.append(el('p','flow-kicker','15 min / No additional reports'),el('h5','','Continue from the shared solution'),el('p','','The agent receives the same task, motion and remaining refinement time. No experience reports are added.'),quote(e.intermediates[0].comparison.without_experience.quote,'Next decision'));left.append(source);const injection=carousel(e.prior_inputs);right.append(injection);
     const ldecision=el('div','experience-decision');ldecision.append(el('p','flow-kicker','Refinement without experience'),el('h5','','Test grasps nearer the far end'),el('p','','The first new grasp is unstable. At 20 minutes, the initial partial lift still has the lowest object-tracking error.'));left.append(ldecision);
     const rdecision=el('div','experience-decision');
