@@ -25,14 +25,15 @@
 <a class="subsection" href="#carry-and-place-a-chair">Carry and place a chair</a>
 <a class="subsection" href="#lift-carry-and-place-a-clothes-stand">Lift, carry and place a clothes stand</a>
 <a href="#method">2. Motion refinement with simulation feedback</a>
-<a class="subsection" href="#refinement-configurations">2.1 Retargeting approaches</a>
-<a class="subsection" href="#evaluation-metrics">2.2 Evaluation metrics</a>
-<a href="#refinement-results">3. Results</a>
-<a class="subsection" href="#codex-refinement-time">3.1 Iterative refinement over time</a>
-<a href="#experience">4. Prior experience improves refinement on new tasks</a>
-<a href="#discussion">5. Discussion</a>
+<a href="#study-setup">3. Method Study</a>
+<a class="subsection" href="#refinement-configurations">3.1 Retargeting approaches</a>
+<a class="subsection" href="#evaluation-metrics">3.2 Evaluation metrics</a>
+<a href="#refinement-results">4. Results</a>
+<a class="subsection" href="#codex-refinement-time">4.1 Iterative refinement over time</a>
+<a href="#experience">5. Prior experience improves refinement on new tasks</a>
+<a href="#discussion">6. Discussion</a>
 <a class="subsection" href="#failure-analysis">Hand morphology limits some interactions</a>
-<a href="#future-work">6. Future Work</a>
+<a href="#future-work">7. Future Work</a>
 <a class="subsection" href="#rl-fine-tuning">Refined references can support RL fine-tuning</a>
 <a href="#references">References</a>
 <a href="#appendix">Appendix</a>
@@ -132,8 +133,10 @@
 <p>We use <strong>GPT-6 Astra</strong> in the <a href="https://github.com/openai/codex">Codex</a> coding environment, which provides tools and a persistent session. We refer to this configuration as <strong>Astra with refinement</strong>. The walkthrough shows how Astra uses simulation feedback to refine a clothes-stand interaction. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. As shown in <a href="#refinement-pipeline">Fig. 3</a>, Astra generates motion and control code from the human demonstration and an initial kinematic reference. It then tests this code in simulation and inspects execution images, object-tracking errors and contact measurements before the next revision.</p>
 <figure class="refinement-panel" data-architecture><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/single-agent-loop.svg" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/single-agent-loop.svg" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="1400" height="480" loading="lazy"></a><figcaption class="publication-caption"><strong>Fig. 3.</strong> Single-agent motion refinement through simulation feedback. Selected trials from one recorded Astra session.</figcaption></figure>
 <p class="agent-log-link"><a href="trace-explorer-2h.html" target="_blank" rel="noopener">Explore the agent logs ↗</a></p>
-<span id="study-setup" class="section-anchor"></span>
-<h3 id="refinement-configurations">2.1 Retargeting approaches</h3>
+</section>
+<section id="study-setup" class="outline-section">
+<h2>3. Method Study</h2>
+<h3 id="refinement-configurations">3.1 Retargeting approaches</h3>
 <span id="configurations" class="section-anchor"></span>
 <p>Our goal is to produce <strong>dynamically feasible humanoid motions from human demonstrations</strong>. We compare three approaches to retargeting:</p>
 <ul>
@@ -144,7 +147,7 @@
 <p>Concretely, the agent receives <strong>the human demonstration in SMPL format, an initial kinematic reference from HOI-Retarget, the task scene and the target object trajectory</strong> (<a href="#refinement-pipeline">Fig. 3</a>). The object trajectory specifies the desired object motion, scaled to the robot’s size. From these inputs, the agent writes Python code that generates and refines <em>a reference motion for the whole body and hands</em>.</p>
 <p><a href="https://arxiv.org/abs/2511.07820">SONIC</a> provides whole-body control, and the agent may augment or replace its joint-angle outputs to complete the task. <a href="https://mujoco.org/">MuJoCo</a> simulates each execution. After every trial, the agent inspects feedback (e.g., execution images, object-tracking errors and contact measurements) and revises its motion and control code.</p>
 <div id="evaluation-metrics">
-<h3 id="dynamics-metrics">2.2 Evaluation metrics</h3>
+<h3 id="dynamics-metrics">3.2 Evaluation metrics</h3>
 <p>We evaluate all methods on <strong>20 HUMOTO and 20 OMOMO tasks</strong> using <strong>object-tracking error and semantic success</strong>. Object tracking compares the simulated object trajectory with the target object trajectory. However, the robot may move at a different speed than the human, so we do not require the object to reach each position at the same time as in the demonstration. Instead, we compare corresponding stages of the object’s motion.</p>
 <ul>
 <li><strong>Mean ADD (cm):</strong> The average distance between corresponding points on the object at aligned poses, capturing both position and orientation error. <strong>Lower is better.</strong></li>
@@ -156,7 +159,7 @@
 </div>
 </section>
 <section id="refinement-results" class="outline-section">
-<h2 id="5-quantitative-results">3. Results</h2>
+<h2 id="5-quantitative-results">4. Results</h2>
 
 
 <span id="agent-comparison" class="section-anchor"></span>
@@ -193,7 +196,7 @@
 <p>We first compare <strong>Astra with refinement against our adaptation of HOI-Retarget + SPIDER to G1 with Dex3</strong> on <strong>20 HUMOTO and 20 OMOMO tasks</strong>. We give <a href="#configuration-plain">Astra with refinement</a> a budget of <strong>two hours per task</strong> and include <strong>Astra one-shot</strong> to measure performance without iterative refinement.</p>
 <p>We find that Astra with refinement achieves <strong>75%</strong> semantic success, outperforming HOI-Retarget + SPIDER (<strong>17.5%</strong>) by 57.5 points and Astra one-shot (<strong>2.5%</strong>) by 72.5 points. Similarly, Astra with refinement reduces mean object-tracking error to <strong>12.63 cm</strong>, compared to <strong>42.87 cm</strong> and <strong>62.98 cm</strong> for HOI-Retarget + SPIDER and Astra one-shot (n = 39). Notably, Astra one-shot underperforms the optimization baseline on both metrics, highlighting the importance of <strong>iterative refinement with simulation feedback</strong> for successful physical execution.</p>
   </div>
-<h3 id="codex-refinement-time">3.1 Iterative refinement over time</h3>
+<h3 id="codex-refinement-time">4.1 Iterative refinement over time</h3>
 <p>Longer iterative refinement reduces best-so-far mean object-tracking error from <strong>29.59 cm at 30 minutes to 10.21 cm at 120 minutes</strong>. Semantic success is also higher with a 120-minute budget: <strong>75%, compared with 47.5% for the 30-minute budget</strong>.</p>
 <figure class="codex-refinement-curve">
 <picture><source media="(max-width:600px)" srcset="assets/analysis/results/codex-refinement-time-mobile.svg?v=astra-labels-20261105"><img src="assets/analysis/results/codex-refinement-time.svg?v=astra-labels-20261105" width="1000" height="510" loading="lazy" alt="Astra best-so-far mean ADD across 40 tasks falls from 53.03 cm initially to 29.59 cm at 30 minutes and 10.21 cm at 120 minutes. Final semantic success for separate 30- and 120-minute runs is 47.5 percent (19/40) and 75 percent (30/40), respectively."></picture>
@@ -201,7 +204,7 @@
 </figure>
 </section>
 <section id="experience">
-<h2 id="6-exploring-how-prior-experience-improves-retargeting">4. Prior experience improves refinement on new tasks</h2>
+<h2 id="6-exploring-how-prior-experience-improves-retargeting">5. Prior experience improves refinement on new tasks</h2>
 <p>We find that providing <strong>related experience</strong>, in the form of summaries of tested strategies, successes and failures, <strong>aids iterative refinement on a new task</strong>, reducing object-tracking error from 23.35 to 7.77 cm at equal compute and time. We illustrate this with a walkthrough of G1 righting a shelf from its side to an upright position. The prior experience comes from <strong>four other furniture interactions</strong>: carrying a table, lifting a chair, and pulling and pushing a chair.</p>
 
 
@@ -217,7 +220,7 @@
 
 </article>
 <section id="discussion" class="outline-section">
-<h2 id="7-discussion">5. Discussion</h2>
+<h2 id="7-discussion">6. Discussion</h2>
 
 <p><strong>Closed-loop refinement improves both object tracking and semantic success over open-loop, one-shot generation.</strong> Astra with refinement also outperforms the classical HOI-Retarget + SPIDER baseline in our evaluation. While SPIDER optimizes execution of a supplied reference, the agent revises both the reference and the control code in response to simulation feedback.</p>
 <h3 id="failure-analysis">Hand morphology limits some interactions</h3>
@@ -227,7 +230,7 @@
 <figure class="authored-video" data-media-id="discussion-plate"><div class="authored-video-views"><div class="execution-panel"><p>Human reference</p><video controls muted playsinline preload="none" aria-label="Human reference" poster="intro-media/plate-human.jpg" src="intro-media/plate-human.mp4?v=1ce87eb92b" autoplay loop></video></div><div class="execution-panel"><p>HuMoTAR</p><video controls muted playsinline preload="none" aria-label="HuMoTAR" poster="intro-media/plate-robot.jpg" src="intro-media/plate-robot.mp4?v=c85e205f9b" autoplay loop></video></div></div><figcaption class="publication-caption"><strong>Fig. 7.</strong> Plate swirling: human demonstration and incomplete HuMoTAR execution.</figcaption></figure>
 
 </section>
-<section id="future-work" class="outline-section"><h2>6. Future Work</h2>
+<section id="future-work" class="outline-section"><h2>7. Future Work</h2>
 <h3 id="rl-fine-tuning">Refined references can support RL fine-tuning</h3>
 <p>Although HuMoTAR’s reference motions could be used to train whole-body policies for deployment, our experiments combine SONIC with agent-written controllers and do not train task-specific policies. A natural next step is to evaluate whether <strong>RL fine-tuning on these references</strong> helps the robot handle disturbances and scene changes. We leave policy training and hardware deployment to future work.</p>
 </section>
