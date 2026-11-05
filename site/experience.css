@@ -273,3 +273,29 @@
 .experience-no-injection h5 {font-size:17px;margin:0 0 12px}
 .experience-progress-row .experience-film {width:100%;max-width:430px;margin:0 auto}
 @media(max-width:760px) {.experience-branches{grid-template-rows:none}.experience-branch{grid-row:auto;grid-template-rows:auto auto auto auto}.experience-initial-inputs{gap:12px}}
+
+/* Connect card boundaries directly; no full-width rules or floating arrows. */
+.experience-flow-arrows {position:absolute;inset:0;width:100%;height:100%;pointer-events:none;color:var(--flow-line);overflow:visible}
+.experience-flow>div,.experience-flow>p {position:relative}
+.experience-shared {margin-top:54px}
+.experience-shared figcaption {font-weight:700;font-size:17px}
+.experience-branches {margin-top:64px}
+.experience-decision {border:0;padding-top:0;margin-top:52px}
+.experience-decision:before {display:none}
+.experience-progress-row {margin-top:52px}
+.experience-learning-result {width:calc((100% - 32px)/2);max-width:none;margin:54px 0 54px auto}
+.experience-final-pair {border:0;padding-top:0;margin-top:54px}
+.prior-carousel-panel {display:block}
+.prior-task-title {text-align:center}
+.prior-motion-pair {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.prior-motion-pair video {aspect-ratio:16/10}
+.prior-lesson {font-size:14px;margin-top:14px;text-align:center}
+.prior-carousel-controls {justify-content:initial;gap:10px}
+.prior-carousel-controls span {margin:auto}
+.prior-carousel-controls .carousel-toggle {width:auto;height:32px;padding:0 12px;border-radius:20px;font-size:12px}
+.experience-flow blockquote.experience-source-excerpt {margin:14px 0;padding:12px 16px;border-left:3px solid var(--flow-line);background:var(--experience-prior-bg);font-size:14px;line-height:1.6}
+.experience-flow .experience-source-excerpt p {font:15px/1.6 var(--sans);margin:0 0 12px}
+.experience-flow .experience-source-excerpt p:last-child {margin-bottom:0}
+.experience-report-link {padding:0;background:none;border:0;border-bottom:1px solid currentColor;color:var(--experience-prior-label);font:inherit;cursor:pointer}
+.experience-transfer-note {font-size:15px!important;line-height:1.6}
+@media(max-width:760px){.experience-flow-arrows{display:none}.experience-shared{margin-top:32px}.experience-branches{margin-top:32px}.experience-decision{margin-top:24px}.experience-learning-result{width:100%;margin:28px 0}.experience-final-pair{margin-top:24px}}

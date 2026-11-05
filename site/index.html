@@ -9,8 +9,8 @@
   <title>HuMoTAR: Retargeting Through Reasoning for Humanoid–Object Interaction</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
   <script src="theme.js?v=1"></script>
-  <link rel="stylesheet" href="styles.css?v=study-layout-20261105">
-  <link rel="stylesheet" href="experience.css?v=experience-flow-20261105">
+  <link rel="stylesheet" href="styles.css?v=study-layout-20261105b">
+  <link rel="stylesheet" href="experience.css?v=experience-evidence-20261105">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
 </head>
@@ -86,9 +86,9 @@
       <li><strong>Experience from related tasks improves refinement.</strong> Summaries of prior strategies and outcomes reduce object-tracking error on a new humanoid–object task from 23.35 to 7.77 cm under equal compute and time budgets.</li>
     </ul>
     <figure class="takeaway-overlay" id="object-motion-comparison">
-        <video controls autoplay muted loop playsinline preload="metadata" width="1920" height="1080" poster="walkthrough-media/object-path-comparison/cutting-board-overlay-hd.jpg" aria-label="Time-aligned human (purple) and humanoid (teal) motions, with a grasp close-up and object paths">
-          <source src="walkthrough-media/object-path-comparison/cutting-board-overlay-hd.mp4" type="video/mp4">
-          <a href="walkthrough-media/object-path-comparison/cutting-board-overlay-hd.mp4">Watch the human and humanoid motion comparison</a>
+        <video controls autoplay muted loop playsinline preload="metadata" width="1920" height="1080" poster="walkthrough-media/object-path-comparison/cutting-board-overlay-hd.jpg?v=table-20261105" aria-label="Time-aligned human (purple) and humanoid (teal) motions, with a grasp close-up and object paths">
+          <source src="walkthrough-media/object-path-comparison/cutting-board-overlay-hd.mp4?v=table-20261105" type="video/mp4">
+          <a href="walkthrough-media/object-path-comparison/cutting-board-overlay-hd.mp4?v=table-20261105">Watch the human and humanoid motion comparison</a>
         </video>
       </figure>
   </div>
@@ -131,7 +131,7 @@
 <h2 id="2-comparing-agentic-workflows-for-humanoid-retargeting">2. Motion refinement with simulation feedback</h2>
 <p>We use <strong>GPT-6 Astra</strong> in the <a href="https://github.com/openai/codex">Codex</a> coding environment, which provides tools and a persistent session. We refer to this configuration as <strong>Astra with refinement</strong>. The walkthrough shows how Astra uses simulation feedback to refine a clothes-stand interaction. In this OMOMO task, the robot must lift the stand, carry it through a turn and place it on the floor. As shown in <a href="#refinement-pipeline">Fig. 3</a>, Astra generates motion and control code from the human demonstration and an initial kinematic reference. It then tests this code in simulation and inspects execution images, object-tracking errors and contact measurements before the next revision.</p>
 <figure class="refinement-panel" data-architecture><a class="refinement-pipeline" id="refinement-pipeline" href="assets/refinement/single-agent-loop.svg" aria-label="Enlarge the refinement pipeline"><img src="assets/refinement/single-agent-loop.svg" alt="Human demonstration and kinematic reference enter an LLM refinement loop. Generated controller code and a motion reference drive physics simulation through a whole-body policy and custom manipulation control; simulation feedback returns to the agent." width="1400" height="480" loading="lazy"></a><figcaption class="publication-caption"><strong>Fig. 3.</strong> Single-agent motion refinement through simulation feedback. Selected trials from one recorded Astra session.</figcaption></figure>
-<p class="agent-log-link"><a href="trace-explorer-2h.html" target="_blank" rel="noopener">Explore a two-hour Astra run: 3D playback and agent logs ↗</a></p>
+<p class="agent-log-link"><a href="trace-explorer-2h.html" target="_blank" rel="noopener">Explore the agent logs ↗</a></p>
 <span id="study-setup" class="section-anchor"></span>
 <h3 id="refinement-configurations">2.1 Retargeting approaches</h3>
 <span id="configurations" class="section-anchor"></span>
@@ -176,28 +176,28 @@
 <div class="final-tracking-table"><table aria-label="HUMOTO object-tracking errors"><caption class="publication-caption"><strong>Table 1.</strong> Object-tracking errors on HUMOTO.</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean ADD<br>(cm) ↓</th><th scope="col">Position<br>(cm) ↓</th><th scope="col">Orientation<br>(°) ↓</th></tr></thead><tbody>
 <tr><th scope="row">HOI-Retarget + SPIDER</th><td>44.96</td><td>45.11</td><td>42.98</td></tr>
 <tr><th scope="row">Astra one-shot</th><td>56.09</td><td>55.03</td><td>62.88</td></tr>
-<tr><th scope="row">Astra with refinement<br>2 hours</th><td><strong>9.85</strong></td><td><strong>9.07</strong></td><td><strong>14.74</strong></td></tr>
+<tr><th scope="row">Astra with refinement</th><td><strong>9.85</strong></td><td><strong>9.07</strong></td><td><strong>14.74</strong></td></tr>
 </tbody></table></div>
 <div class="final-tracking-table"><table aria-label="OMOMO object-tracking errors"><caption class="publication-caption"><strong>Table 2.</strong> Object-tracking errors on OMOMO.</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean ADD<br>(cm) ↓</th><th scope="col">Position<br>(cm) ↓</th><th scope="col">Orientation<br>(°) ↓</th></tr></thead><tbody>
 <tr><th scope="row">HOI-Retarget + SPIDER</th><td>40.77</td><td>35.62</td><td>55.97</td></tr>
 <tr><th scope="row">Astra one-shot</th><td>69.87</td><td>65.61</td><td>58.35</td></tr>
-<tr><th scope="row">Astra with refinement<br>2 hours</th><td><strong>15.55</strong></td><td><strong>14.16</strong></td><td><strong>16.46</strong></td></tr>
+<tr><th scope="row">Astra with refinement</th><td><strong>15.55</strong></td><td><strong>14.16</strong></td><td><strong>16.46</strong></td></tr>
 </tbody></table></div>
 </div>
 <figure class="results-semantic-pair"><div class="results-plots-pair">
-<div><h4>HUMOTO</h4><picture><source media="(max-width:600px)" srcset="assets/analysis/results/final-humoto-semantic-mobile.svg?v=astra-20261105"><img data-result-image="humoto-semantic" src="assets/analysis/results/final-humoto-semantic-compact.svg?v=astra-20261105" width="600" height="260" alt="HUMOTO: Semantic success. Higher is better. HOI-Retarget + SPIDER: 25% (5/20); Astra one-shot: 5% (1/20); Astra with refinement, 2 hours: 80% (16/20)." loading="lazy"></picture></div>
-<div><h4>OMOMO</h4><picture><source media="(max-width:600px)" srcset="assets/analysis/results/final-omomo-semantic-mobile.svg?v=astra-20261105"><img data-result-image="omomo-semantic" src="assets/analysis/results/final-omomo-semantic-compact.svg?v=astra-20261105" width="600" height="260" alt="OMOMO: Semantic success. Higher is better. HOI-Retarget + SPIDER: 10% (2/20); Astra one-shot: 0% (0/20); Astra with refinement, 2 hours: 70% (14/20)." loading="lazy"></picture></div>
+<div><h4>HUMOTO</h4><picture><source media="(max-width:600px)" srcset="assets/analysis/results/final-humoto-semantic-mobile.svg?v=astra-labels-20261105"><img data-result-image="humoto-semantic" src="assets/analysis/results/final-humoto-semantic-compact.svg?v=astra-labels-20261105" width="600" height="260" alt="HUMOTO: Semantic success. Higher is better. HOI-Retarget + SPIDER: 25% (5/20); Astra one-shot: 5% (1/20); Astra with refinement: 80% (16/20)." loading="lazy"></picture></div>
+<div><h4>OMOMO</h4><picture><source media="(max-width:600px)" srcset="assets/analysis/results/final-omomo-semantic-mobile.svg?v=astra-labels-20261105"><img data-result-image="omomo-semantic" src="assets/analysis/results/final-omomo-semantic-compact.svg?v=astra-labels-20261105" width="600" height="260" alt="OMOMO: Semantic success. Higher is better. HOI-Retarget + SPIDER: 10% (2/20); Astra one-shot: 0% (0/20); Astra with refinement: 70% (14/20)." loading="lazy"></picture></div>
 </div><figcaption class="publication-caption"><strong>Fig. 5.</strong> Semantic success on HUMOTO and OMOMO.</figcaption></figure>
 </div>
 <div class="results-comparison-summary">
-<p>We first compare <strong>Astra with refinement against our adaptation of HOI-Retarget + SPIDER to G1 with Dex3</strong> on <strong>20 HUMOTO and 20 OMOMO tasks</strong>. We run <a href="#configuration-plain">Astra with refinement</a> for <strong>two hours per task</strong> and include <strong>Astra one-shot</strong> to measure performance without iterative refinement.</p>
-<p>We find that Astra with refinement (2 hours) achieves <strong>75%</strong> semantic success, outperforming HOI-Retarget + SPIDER (<strong>17.5%</strong>) by 57.5 points and Astra one-shot (<strong>2.5%</strong>) by 72.5 points. Similarly, Astra with refinement reduces mean object-tracking error to <strong>12.63 cm</strong>, compared to <strong>42.87 cm</strong> and <strong>62.98 cm</strong> for HOI-Retarget + SPIDER and Astra one-shot (n = 39). Notably, Astra one-shot underperforms the optimization baseline on both metrics, highlighting the importance of <strong>iterative refinement with simulation feedback</strong> for successful physical execution.</p>
+<p>We first compare <strong>Astra with refinement against our adaptation of HOI-Retarget + SPIDER to G1 with Dex3</strong> on <strong>20 HUMOTO and 20 OMOMO tasks</strong>. We give <a href="#configuration-plain">Astra with refinement</a> a budget of <strong>two hours per task</strong> and include <strong>Astra one-shot</strong> to measure performance without iterative refinement.</p>
+<p>We find that Astra with refinement achieves <strong>75%</strong> semantic success, outperforming HOI-Retarget + SPIDER (<strong>17.5%</strong>) by 57.5 points and Astra one-shot (<strong>2.5%</strong>) by 72.5 points. Similarly, Astra with refinement reduces mean object-tracking error to <strong>12.63 cm</strong>, compared to <strong>42.87 cm</strong> and <strong>62.98 cm</strong> for HOI-Retarget + SPIDER and Astra one-shot (n = 39). Notably, Astra one-shot underperforms the optimization baseline on both metrics, highlighting the importance of <strong>iterative refinement with simulation feedback</strong> for successful physical execution.</p>
   </div>
 <h3 id="codex-refinement-time">3.1 Iterative refinement over time</h3>
-<p>Longer iterative refinement reduces best-so-far mean object-tracking error from <strong>29.59 cm at 30 minutes to 10.21 cm at two hours</strong>. Semantic success is also higher with a two-hour budget: <strong>75%, compared with 47.5% for the 30-minute budget</strong>.</p>
+<p>Longer iterative refinement reduces best-so-far mean object-tracking error from <strong>29.59 cm at 30 minutes to 10.21 cm at 120 minutes</strong>. Semantic success is also higher with a 120-minute budget: <strong>75%, compared with 47.5% for the 30-minute budget</strong>.</p>
 <figure class="codex-refinement-curve">
-<picture><source media="(max-width:600px)" srcset="assets/analysis/results/codex-refinement-time-mobile.svg?v=astra-20261105"><img src="assets/analysis/results/codex-refinement-time.svg?v=astra-20261105" width="1000" height="510" loading="lazy" alt="Astra best-so-far mean ADD across 40 tasks falls from 53.03 cm initially to 29.59 cm at 30 minutes and 10.21 cm at 120 minutes. Final semantic success for separate 30- and 120-minute runs is 47.5 percent (19/40) and 75 percent (30/40), respectively."></picture>
-<figcaption class="publication-caption"><strong>Fig. 6.</strong> Best-so-far object-tracking error during two-hour Astra runs. Semantic success is measured at the end of the 30-minute and two-hour refinement budgets.</figcaption>
+<picture><source media="(max-width:600px)" srcset="assets/analysis/results/codex-refinement-time-mobile.svg?v=astra-labels-20261105"><img src="assets/analysis/results/codex-refinement-time.svg?v=astra-labels-20261105" width="1000" height="510" loading="lazy" alt="Astra best-so-far mean ADD across 40 tasks falls from 53.03 cm initially to 29.59 cm at 30 minutes and 10.21 cm at 120 minutes. Final semantic success for separate 30- and 120-minute runs is 47.5 percent (19/40) and 75 percent (30/40), respectively."></picture>
+<figcaption class="publication-caption"><strong>Fig. 6.</strong> Object-tracking error during refinement, with semantic success at the evaluated budgets.</figcaption>
 </figure>
 </section>
 <section id="experience">
@@ -304,12 +304,12 @@
     <footer class="publication-footer"><span>HuMoTAR</span><a href="#top">Back to top ↑</a></footer>
   </main>
   <script src="article.js?v=intro-selector-1"></script>
-<script src="dynamics-showcase.js?v=astra-20261105" defer></script>
+<script src="dynamics-showcase.js?v=astra-labels-20261105" defer></script>
 <script src="kinematic-showcase.js?v=autoplay-20261104" defer></script>
-<script src="experience-story.js?v=experience-flow-20261105" defer></script>
+<script src="experience-story.js?v=experience-evidence-20261105" defer></script>
 <script src="text-motion.js?v=1" defer></script>
 <script src="results-evidence.js?v=spider-full-20261102" defer></script>
-<script src="architecture.js?v=astra-20261105" defer></script>
+<script src="architecture.js?v=astra-labels-20261105" defer></script>
 <script src="autoplay.js?v=all-videos-20261104" defer></script>
 <script src="paired-videos.js?v=aligned-pair-20261104" defer></script>
 </body>

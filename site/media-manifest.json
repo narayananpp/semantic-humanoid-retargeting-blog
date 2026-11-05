@@ -375,6 +375,26 @@
     "sha256": "b09b4136c66dcdc76875e225221ab6f3babd911b4c242055844117cec2a55fa2"
   },
   {
+    "path": "experience-story-media/priors/chair-lift.mp4",
+    "bytes": 862492,
+    "sha256": "5e1cb1202bd978374da32c3306f9a8fff72c256b27a179017048ead0d3a1c5cb"
+  },
+  {
+    "path": "experience-story-media/priors/chair-push-pull.mp4",
+    "bytes": 438258,
+    "sha256": "fc6e34e06dd230ab63c822e81fe6d8c7550553342fe2b3d4214cd42d89038f04"
+  },
+  {
+    "path": "experience-story-media/priors/low-chair.mp4",
+    "bytes": 1195644,
+    "sha256": "5a21a42207b3dd1a84cc551fbb19fba2b735622889631e2507cb0bcc12fb1627"
+  },
+  {
+    "path": "experience-story-media/priors/side-table.mp4",
+    "bytes": 1015876,
+    "sha256": "2787c890d054a951b3e1155e082763de1c89cc15fc52769ec7eae3bf0db928dc"
+  },
+  {
     "path": "experience-story-media/tilting_trash_can_with_right_foot-985/base.mp4",
     "bytes": 996734,
     "sha256": "8b585ce70bc9b018f5b3ecafdf65d3aa5565247bbf74fe06e4845aebdbad3460"
@@ -998,6 +1018,11 @@
     "path": "walkthrough-media/kinematic/full/video.mp4",
     "bytes": 1526206,
     "sha256": "f85c65c42a9d582c2a84b0fe8314e72028bbdcf13affaf90de7d7a1d8df6905f"
+  },
+  {
+    "path": "walkthrough-media/object-path-comparison/cutting-board-overlay-hd.mp4",
+    "bytes": 7266590,
+    "sha256": "69fe817211a1710b1e3191b0d11b413bfaded3ae75bc74f15282446780db27ad"
   },
   {
     "path": "walkthrough-media/reference-overlay/contact-flow.mp4",

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Inside Astra refinement | HuMoTAR</title>
-  <meta name="description" content="Explore the recorded tools, images and final motion of an Astra run with a two-hour refinement budget.">
+  <meta name="description" content="Explore the recorded tools, images and final motion of an Astra refinement run.">
   <link rel="stylesheet" href="trace-explorer/explorer.css?v=astra-20261105">
   <script type="importmap">{"imports":{"three":"./trace-explorer/vendor/three.module.js"}}</script>
 </head>
@@ -15,7 +15,7 @@
   </header>
   <main>
     <div class="heading">
-      <div><p class="eyebrow">ASTRA WITH REFINEMENT / TWO-HOUR BUDGET</p><h1>Lift, carry and place a clothes stand.</h1><p class="intro">Replay the final clothes-stand interaction and inspect the agent’s recorded observations, tool calls and images.</p></div>
+      <div><p class="eyebrow">ASTRA WITH REFINEMENT / OMOMO</p><h1>Lift, carry and place a clothes stand.</h1><p class="intro">Replay the final clothes-stand interaction and inspect the agent’s recorded observations, tool calls and images.</p></div>
       <div class="agent-summary"><strong>GPT-6 Astra in Codex</strong><span id="agent-meta">Recorded refinement</span></div>
     </div>
     <div id="app-error" class="app-error" role="alert" hidden></div>
@@ -56,7 +56,7 @@
     </div>
     <footer class="page-footer"><span><kbd>Space</kbd> play / pause <kbd>←</kbd><kbd>→</kbd> trial <kbd>R</kbd> reset camera</span></footer>
   </main>
-  <dialog id="about"><button id="close-about" class="dialog-close" aria-label="Close">×</button><p class="eyebrow">THE RECORDED EXPERIMENT</p><h2>Astra with a two-hour refinement budget.</h2><p>GPT-6 Astra runs in the Codex coding environment. The session ended before the full budget was used. Refinement time counts active session time and excludes the interruption between the two saved sessions.</p><p>The initial reference and final execution have interactive 3D playback. Intermediate trials retain scores, agent messages and inspected images, but their full motion recordings are unavailable.</p><p>Messages are quoted from the recording with private paths and account identifiers removed. Tool labels summarize recorded operations. Images are those actually inspected by the agent. Playback uses saved poses and does not run new physics simulation.</p><p><a href="trace-explorer/vendor/THREE-LICENSE.txt">Three.js license</a> · <a href="trace-explorer/vendor/UNITREE-LICENSE.txt">G1 asset notice</a> · <a href="trace-explorer/vendor/OMOMO-OBJECTS-LICENSE.txt">Object asset notice</a> · <a href="trace-explorer/vendor/DATA-NOTICE.txt">Data attribution</a></p></dialog>
+  <dialog id="about"><button id="close-about" class="dialog-close" aria-label="Close">×</button><p class="eyebrow">THE RECORDED EXPERIMENT</p><h2>A recorded Astra refinement run.</h2><p>GPT-6 Astra runs in the Codex coding environment. The session ended before the full budget was used. Refinement time counts active session time and excludes the interruption between the two saved sessions.</p><p>The initial reference and final execution have interactive 3D playback. Intermediate trials retain scores, agent messages and inspected images, but their full motion recordings are unavailable.</p><p>Messages are quoted from the recording with private paths and account identifiers removed. Tool labels summarize recorded operations. Images are those actually inspected by the agent. Playback uses saved poses and does not run new physics simulation.</p><p><a href="trace-explorer/vendor/THREE-LICENSE.txt">Three.js license</a> · <a href="trace-explorer/vendor/UNITREE-LICENSE.txt">G1 asset notice</a> · <a href="trace-explorer/vendor/OMOMO-OBJECTS-LICENSE.txt">Object asset notice</a> · <a href="trace-explorer/vendor/DATA-NOTICE.txt">Data attribution</a></p></dialog>
   <noscript>This explorer needs JavaScript. The <a href="index.html#method">architecture walkthrough</a> is also available in the article.</noscript>
   <script type="module" src="trace-explorer/explorer.js?v=astra-20261105"></script>
 <script src="autoplay.js?v=all-videos-20261104" defer></script>

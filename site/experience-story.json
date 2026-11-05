@@ -183,7 +183,7 @@
         {
           "clip": "walk_with_low_chair-308",
           "title": "Carry a low chair",
-          "lesson": "Move the body with the grasp",
+          "lesson": "Coordinate walking with the carried object",
           "quote": "Root-position error produces bounded yaw and pitch corrections to the policy orientation reference.",
           "human": {
             "video": "source-human-media/humoto/walk_with_low_chair-308.mp4",
@@ -196,7 +196,18 @@
             "condition": "with_experience",
             "member": "job/call/events.jsonl",
             "line": 65
-          }
+          },
+          "robot": {
+            "video": "experience-story-media/priors/low-chair.mp4",
+            "poster": "experience-story-media/priors/low-chair.jpg",
+            "source_motion_sha256": "79ae2e3365400b97f1f4f3bb65d7e02185ebbd495da35686b7e4c81851429361",
+            "source_run_token": "64b3ab625724406491051f951f667c23",
+            "sha256": "5a21a42207b3dd1a84cc551fbb19fba2b735622889631e2507cb0bcc12fb1627"
+          },
+          "quotes": [
+            "It starts at source frame 30, preceded by a settling hold, and adds a walking cycle on each straight leg.",
+            "Root-position error produces bounded yaw and pitch corrections to the policy orientation reference."
+          ]
         },
         {
           "clip": "carry_side_table_with_both_hands_walk_around-536",
@@ -214,7 +225,17 @@
             "condition": "with_experience",
             "member": "job/call/events.jsonl",
             "line": 65
-          }
+          },
+          "robot": {
+            "video": "experience-story-media/priors/side-table.mp4",
+            "poster": "experience-story-media/priors/side-table.jpg",
+            "source_motion_sha256": "a4c56cb7b7cc8de682cfce12aecd69631b1f3b7e67ded2775a33fe8c61c9932c",
+            "source_run_token": "285c7389aa44488b8b7dc482eac9e57e",
+            "sha256": "2787c890d054a951b3e1155e082763de1c89cc15fc52769ec7eae3bf0db928dc"
+          },
+          "quotes": [
+            "Online orientation feedback is disabled because stronger corrections repeatedly loosened the grasp."
+          ]
         },
         {
           "clip": "lifting_dining_chair_from_backrest_and_placing_back_with_right_hand_on_ground-595",
@@ -232,7 +253,17 @@
             "condition": "with_experience",
             "member": "job/call/events.jsonl",
             "line": 65
-          }
+          },
+          "robot": {
+            "video": "experience-story-media/priors/chair-lift.mp4",
+            "poster": "experience-story-media/priors/chair-lift.jpg",
+            "source_motion_sha256": "eacb94f3456e37892bee5fbe78bcabf0474feb274f1d11aa3d19fad2b2c47122",
+            "source_run_token": "6305e78de0654a50b4042fbadc258eb7",
+            "sha256": "5e1cb1202bd978374da32c3306f9a8fff72c256b27a179017048ead0d3a1c5cb"
+          },
+          "quotes": [
+            "This is an incomplete task solution: final placement is inaccurate and release is not reliably controlled."
+          ]
         },
         {
           "clip": "pulling_and_pushing_the_dining_chair_from_back_post-203",
@@ -250,7 +281,17 @@
             "condition": "with_experience",
             "member": "job/call/events.jsonl",
             "line": 65
-          }
+          },
+          "robot": {
+            "video": "experience-story-media/priors/chair-push-pull.mp4",
+            "poster": "experience-story-media/priors/chair-push-pull.jpg",
+            "source_motion_sha256": "e25cff10ea0cb32b515cd65ccbd6eb2c7920fecd88afc18abe4e2348cacc88a6",
+            "source_run_token": "bdd3dbae39064285b3d1bc2d3d5b7ff8",
+            "sha256": "fc6e34e06dd230ab63c822e81fe6d8c7550553342fe2b3d4214cd42d89038f04"
+          },
+          "quotes": [
+            "Object orientation feedback rotates the desired wrist frames to oppose chair tipping."
+          ]
         }
       ],
       "learning": {
