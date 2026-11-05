@@ -3,7 +3,7 @@
   if (document.documentElement.dataset.media === 'off') return;
   const groups = new Map();
   function attach(group) {
-    const videos = [...group.querySelectorAll('video')].filter(v => v.closest('[data-synced-videos]') === group && !v.hasAttribute('data-independent-playback'));
+    const videos = [...group.querySelectorAll('video')].filter(v => v.closest('[data-synced-videos]') === group);
     if (!videos.length) return;
     const reference = document.querySelector(group.dataset.syncReference || ':not(*)') || videos[0];
     const normalized = group.dataset.syncedVideos === 'duration';

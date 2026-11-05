@@ -230,6 +230,13 @@
         recordNode.style.width=`${Math.max(190,(ikRect.right-agentRect.right)/scale+12)}px`;
         canvas.style.paddingTop=`${Math.max(0,recordNode.offsetHeight-120)}px`;
       }else{recordNode.style.width='';recordNode.style.left='';recordNode.style.top='';canvas.style.paddingTop='';}
+      const feedbackBlock=$('.loop-bottom');
+      if(innerWidth>=1100){
+        const previousLift=-(parseFloat(feedbackBlock.style.marginTop)||0);
+        const feedbackTop=$('[data-loop-node="feedback"]').getBoundingClientRect().top+previousLift;
+        const contentBottom=Math.max(...['rollout','control'].map(name=>$(`[data-loop-node="${name}"]`).getBoundingClientRect().bottom));
+        feedbackBlock.style.marginTop=`-${Math.max(0,feedbackTop-contentBottom-24)}px`;
+      }else feedbackBlock.style.marginTop='';
       const base=canvas.getBoundingClientRect();
       root.setAttribute('viewBox',`0 0 ${base.width/scale} ${base.height/scale}`);g.replaceChildren();
       if(innerWidth<1100)return;
