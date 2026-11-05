@@ -30,7 +30,7 @@
             <div class="loop-input" data-loop-node="initial"><h4>Humanoid Kinematic reference</h4><video data-architecture-clip="initial" muted autoplay loop playsinline preload="none" poster="architecture-media/kinematic.jpg" src="architecture-media/kinematic.mp4" aria-label="Initial kinematic humanoid reference"></video></div>
           </div>
           <div class="loop-agent loop-box" data-loop-node="agent"><h4>Astra</h4></div>
-          <div class="loop-record" data-loop-node="record"><span class="loop-record-label">Recorded agent log</span><blockquote id="architecture-agent-excerpt" data-loop-excerpt></blockquote><button type="button" class="loop-record-toggle" aria-expanded="false" aria-controls="architecture-agent-excerpt">Read more</button></div>
+          <div class="loop-record" data-loop-node="record"><blockquote id="architecture-agent-excerpt" data-loop-excerpt></blockquote><button type="button" class="loop-record-toggle" aria-expanded="false" aria-controls="architecture-agent-excerpt">Read more</button></div>
           <div class="loop-reference loop-arrow-label" data-loop-node="reference"><h4>End-effector references</h4></div>
           <div class="loop-ik-block loop-box" data-loop-node="ik"><h4>IK</h4></div>
           <div class="loop-targets loop-arrow-label" data-loop-node="targets"><div class="loop-target-preview"><video data-architecture-clip="targets" data-loop-targets-video muted autoplay loop playsinline preload="metadata" aria-label="Planned wrist targets over the G1 reference motion"></video><span class="loop-target-key" title="Colored arms show reference joint poses; gold markers show planned wrist targets.">Arm reference <i></i> Wrist targets</span><h4>Joint-space reference</h4></div></div>

@@ -14,20 +14,20 @@
       const methods=Object.fromEntries(Object.entries(row.methods||{}).filter(([key])=>!['orchestrator','communicating'].includes(key)));
       const picker=make('label','method-choice','Method'),select=make('select');
       select.setAttribute('aria-label','Dynamics method');
-      for(const [key,label] of [['hoi_spider','HOI-Retarget + SPIDER'],['zero_shot','Astra one-shot'],['codex','Astra with refinement, 30 min'],['codex120','Astra with refinement']]){
+      for(const [key,label] of [['hoi_spider','HOI-Retarget + SPIDER'],['zero_shot','Astra one-shot'],['codex','Astra with refinement, 30 min'],['codex120','Astra with refinement (2 hours)']]){
         if(!methods[key])continue;
         const option=make('option','',label);
         option.value=key;select.append(option);
       }
       const active=methods[method]?method:Object.keys(methods)[0];select.value=active;
-      buttons.forEach(b=>{b.textContent=b.dataset.dataset.toUpperCase()+(active==='codex120'?' (2 hours)':active==='codex'?' (30 min)':'');});
+      buttons.forEach(b=>{b.textContent=b.dataset.dataset.toUpperCase();});
       select.addEventListener('change',()=>{method=select.value;show(row);});picker.append(select);header.append(picker);
       const execution=methods[active];
       if(row.status==='ready'&&document.documentElement.dataset.media!=='off'){
         const pair=make('div','source-motion-pair');pair.dataset.syncedVideos='duration';
         const entries=[];
         if(row.human?.status==='ready') entries.push([row.human,'Human reference · SMPL']);
-        entries.push([execution,active==='codex120'?'Astra with refinement':active==='codex'?'Astra with refinement, 30 min':execution.label]);
+        entries.push([execution,active==='codex120'?'Astra with refinement (2 hours)':active==='codex'?'Astra with refinement, 30 min':execution.label]);
         for(const [media,label] of entries){
           const figure=make('figure','source-motion-card'),video=make('video');
           Object.assign(video,{src:media.video,poster:media.poster||'',controls:true,muted:true,autoplay:true,loop:true,playsInline:true,preload:'none'});
