@@ -9,7 +9,7 @@
   <title>HuMoTAR: Retargeting Through Reasoning for Humanoid–Object Interaction</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
   <script src="theme.js?v=1"></script>
-  <link rel="stylesheet" href="styles.css?v=architecture-feedback-wide-20261105">
+  <link rel="stylesheet" href="styles.css?v=feedback-raised-20261105">
   <link rel="stylesheet" href="experience.css?v=experience-compact-20261105">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -36,8 +36,8 @@
 <a href="#future-work">7. Future Work</a>
 <a class="subsection" href="#rl-fine-tuning">Refined references can support RL fine-tuning</a>
 <a href="#references">References</a>
-<a href="#appendix">Appendix</a>
-<a href="#citation">Cite this blog</a></nav>
+<a href="#citation">Cite this blog</a>
+<a href="#appendix">Appendix</a></nav>
     </aside>
     <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">Dark mode</button>
   </header>
@@ -218,7 +218,7 @@
 <section id="discussion" class="outline-section">
 <h2 id="7-discussion">6. Discussion</h2>
 
-<p><strong>Closed-loop refinement improves both object tracking and semantic success over open-loop, one-shot generation.</strong> Astra with refinement also outperforms the classical HOI-Retarget + SPIDER baseline in our evaluation. While SPIDER optimizes execution of a supplied reference, the agent revises both the reference and the control code in response to simulation feedback.</p>
+<p>In our evaluation, <strong>the semantic formulation of retargeting outperforms the classical optimization baseline</strong> <a href="#ref-hoi">[1]</a>, <a href="#ref-spider">[3]</a> in both object tracking and semantic success. The agent reasons about the intended object interaction and revises the motion and control needed to achieve it. <strong>Closed-loop refinement also outperforms open-loop, one-shot generation</strong> on both measures: testing and revising the solution in simulation improves on the initial proposal.</p>
 <h3 id="failure-analysis">Hand morphology limits some interactions</h3>
 <p>In Fig. 7, G1 must lift and swirl a plate to reproduce the human’s interaction. Although it lifts the plate, it fails to complete the swirling motion. The agents adjust finger placement and try two-handed support, yet the grasp remains unstable during rotation. We posit that this difficulty can be attributed to <strong>the morphological gap between human hands and G1’s Dex3 hands</strong>: the fingers struggle to establish a stable grasp around the plate’s thin rim. Notably, none of the tested motion and controller revisions fully compensate for this mismatch.</p>
 
@@ -246,10 +246,25 @@
 <li><strong>G1 and Dex3.</strong> Unitree Robotics. <a href="https://www.unitree.com/g1/">G1 platform</a> · <a href="https://github.com/unitreerobotics/unitree_mujoco">Official robot simulation models</a>.</li>
 </ol>
 </section>
+<section id="citation" class="outline-section blog-citation">
+<h2 id="cite-this-blog">Cite this blog</h2>
+<p>Narayanan Palghat Parameswaran, Jay Karhade, Haoyang He, Neehar Peri, Jay Patrikar, Dong-Ki Kim, Shayegan Omidshafiei, Sebastian Scherer, Deva Ramanan. <strong>HuMoTAR: Retargeting Through Reasoning for Humanoid–Object Interaction.</strong> 2026.</p>
+<p><a href="citation.bib">Download BibTeX</a></p>
+<pre><code class="language-bibtex">@misc{parameswaran2026humotar,
+  title = {HuMoTAR: Retargeting Through Reasoning for Humanoid–Object Interaction},
+  author = {Palghat Parameswaran, Narayanan and Karhade, Jay and He, Haoyang
+            and Peri, Neehar and Patrikar, Jay and Kim, Dong-Ki
+            and Omidshafiei, Shayegan and Scherer, Sebastian and Ramanan, Deva},
+  year = {2026},
+  howpublished = {Project blog},
+  url = {https://narayananpp.github.io/semantic-humanoid-retargeting-blog/}
+}
+</code></pre>
+</section>
 <section id="appendix" class="outline-section">
 <h2 id="appendix-questions">Appendix</h2>
-<details class="appendix-faq" id="text-to-trajectory">
-<summary id="text-to-trajectory-question">A1. Can a text description replace a motion reference?</summary>
+<section id="text-to-trajectory">
+<h3 id="text-to-trajectory-question">A1. Can a text description replace a motion reference?</h3>
 <p>Rather than providing a human motion reference or target object trajectory, we give Astra with refinement a detailed task description, the scene and an initial robot–object state. The agent then refines an execution that follows the description, using <strong>SONIC for the legs and waist</strong> and custom arm and hand control. We show five examples below, each with its supplied command and resulting simulated motion.</p>
 <div class="text-motion-showcase" data-text-motion-showcase>
   <label class="text-motion-picker">Task <select data-text-motion-select aria-label="Choose a text-to-trajectory task">
@@ -281,23 +296,8 @@
   </div>
 </div>
 <p class="publication-caption"><strong>Fig. A1.</strong> Simulated executions generated from text descriptions.</p>
-</details>
-
 </section>
-<section id="citation" class="outline-section blog-citation">
-<h2 id="cite-this-blog">Cite this blog</h2>
-<p>Narayanan Palghat Parameswaran, Jay Karhade, Haoyang He, Neehar Peri, Jay Patrikar, Dong-Ki Kim, Shayegan Omidshafiei, Sebastian Scherer, Deva Ramanan. <strong>HuMoTAR: Retargeting Through Reasoning for Humanoid–Object Interaction.</strong> 2026.</p>
-<p><a href="citation.bib">Download BibTeX</a></p>
-<pre><code class="language-bibtex">@misc{parameswaran2026humotar,
-  title = {HuMoTAR: Retargeting Through Reasoning for Humanoid–Object Interaction},
-  author = {Palghat Parameswaran, Narayanan and Karhade, Jay and He, Haoyang
-            and Peri, Neehar and Patrikar, Jay and Kim, Dong-Ki
-            and Omidshafiei, Shayegan and Scherer, Sebastian and Ramanan, Deva},
-  year = {2026},
-  howpublished = {Project blog},
-  url = {https://narayananpp.github.io/semantic-humanoid-retargeting-blog/}
-}
-</code></pre>
+
 </section>
     </div>
     <footer class="publication-footer"><span>HuMoTAR</span><a href="#top">Back to top ↑</a></footer>
@@ -308,7 +308,7 @@
 <script src="experience-story.js?v=human-sync-20261105" defer></script>
 <script src="text-motion.js?v=1" defer></script>
 <script src="results-evidence.js?v=spider-full-20261102" defer></script>
-<script src="architecture.js?v=human-sync-20261105" defer></script>
+<script src="architecture.js?v=feedback-raised-20261105" defer></script>
 <script src="autoplay.js?v=human-sync-20261105" defer></script>
 <script src="paired-videos.js?v=human-sync-20261105" defer></script>
 </body>

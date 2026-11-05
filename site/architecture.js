@@ -39,7 +39,6 @@
         </div>
         <div class="loop-bottom">
         <div class="loop-feedback" data-loop-node="feedback">
-          <div class="loop-feedback-heading"><h4>Simulation feedback</h4><span data-loop-feedback-context></span></div>
           <div class="loop-feedback-grid">
             <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Object-tracking error</h5><div class="loop-chart-tabs" role="group" aria-label="Object tracking measurements"><button type="button" data-loop-chart="error" aria-pressed="true">Mean ADD</button><button type="button" data-loop-chart="path" aria-pressed="false">3D object path</button></div></div><button type="button" class="loop-chart-button" data-loop-open="object" aria-label="Enlarge object-tracking measurements"><span data-loop-object-chart></span></button><div class="loop-chart-legend" data-loop-object-legend></div></div>
             <div class="loop-evidence loop-query-card"><div class="loop-evidence-heading"><h5>Execution feedback</h5><div class="loop-feedback-tabs" role="group" aria-label="Simulation measurements"><button type="button" data-feedback="forces">Contact forces</button><button type="button" data-feedback="speed">Object speed</button><button type="button" data-feedback="checks">Grasp checks</button><button type="button" data-feedback="error">Object error</button></div></div><button type="button" class="loop-chart-button" data-loop-open="feedback" aria-label="Enlarge the simulation measurements"><span data-loop-feedback-chart></span></button><div class="loop-feedback-legend" data-loop-feedback-legend></div></div>
@@ -166,7 +165,6 @@
         '023':'The floor supports the stand, robot contact is zero, and the object has stopped moving.'
       };
       $('[data-loop-query-values]').textContent=explanations[stage.id];
-      $('[data-loop-feedback-context]').textContent=stage.id==='initial'?'Input inspection':stage.id==='023'?'Final verification':`Iteration ${Number(stage.id)}`;
       $('[data-loop-excerpt]').textContent='“'+stage.quote+'”';
       $('.loop-record').classList.remove('is-expanded');$('.loop-record-toggle').setAttribute('aria-expanded','false');$('.loop-record-toggle').textContent='Read more';
       drawInspection();
