@@ -23,7 +23,7 @@
   const observer = new IntersectionObserver(entries => entries.forEach(({target}) => sync(target)), {threshold: [0, .15]});
   function register(video) {
     // The architecture figure sequences its own clips.
-    if (watched.has(video) || video.hasAttribute('data-architecture-clip') || video.closest('[data-synced-videos]')) return;
+    if (watched.has(video) || video.hasAttribute('data-architecture-clip') || (video.closest('[data-synced-videos]') && !video.hasAttribute('data-independent-playback'))) return;
     watched.add(video);
     video.muted = true; video.defaultMuted = true;
     video.playsInline = true;
