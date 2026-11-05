@@ -499,10 +499,10 @@ html[data-media="off"] .walkthrough-public-still { display:block; width:100%; as
 }
 
 /* Human context beside the robot execution or contact comparisons. */
-.source-motion-pair { display:grid; grid-template-columns:var(--video-columns,repeat(2,minmax(0,1fr))); gap:16px; }
+.source-motion-pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
 .source-motion-card { margin:0; min-width:0; }
 .source-motion-card figcaption { font:var(--caption-font-size)/1.5 var(--sans); margin:0 0 8px; color:var(--ink); }
-.source-motion-card video { display:block; width:100%; height:auto; aspect-ratio:auto; object-fit:contain; background:transparent; }
+.source-motion-card video { width:100%; aspect-ratio:16/10; object-fit:contain; }
 .kinematic-closeup-panels.with-human-reference { grid-template-columns:repeat(4,minmax(0,1fr)); }
 @media(max-width:1050px) { .kinematic-closeup-panels.with-human-reference { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:600px) { .source-motion-pair,.kinematic-closeup-panels.with-human-reference { grid-template-columns:1fr; } }
