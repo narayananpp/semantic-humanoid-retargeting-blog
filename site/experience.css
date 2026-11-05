@@ -299,3 +299,6 @@
 .experience-report-link {padding:0;background:none;border:0;border-bottom:1px solid currentColor;color:var(--experience-prior-label);font:inherit;cursor:pointer}
 .experience-transfer-note {font-size:15px!important;line-height:1.6}
 @media(max-width:760px){.experience-flow-arrows{display:none}.experience-shared{margin-top:32px}.experience-branches{margin-top:32px}.experience-decision{margin-top:24px}.experience-learning-result{width:100%;margin:28px 0}.experience-final-pair{margin-top:24px}}
+
+/* Fill comparison frames with footage at every responsive size. */
+.experience-film video,.experience-flow .experience-film video,.interaction-comparison video { object-fit:cover; background:transparent; }
