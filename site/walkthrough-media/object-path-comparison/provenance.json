@@ -41,5 +41,12 @@
     "robot_motion": "Original saved physics rollout.",
     "timing": "Both clips use the same 576-frame monotone object-path alignment as the overlay. Neither uses a fixed 2x speed multiplier.",
     "playback": "Linked play, pause, seeking, speed and looping."
+  },
+  "background": {
+    "color": "#fff4cc",
+    "rendering": "Transparent Blender world and shadow-catching floor composited onto the takeaway background. The table remains visible.",
+    "unchanged": "Recorded motion, alignment, cameras, geometry, object-path data and scores.",
+    "video_sha256": "b007c5291983ab7dfa304971ca1cc1ad0a3d43d69ad52f357f59479dd1c03241",
+    "poster_sha256": "7255b0392a969c6b21ab61bc917322a44d6b7fb9c540ae4baa7495784cc49376"
   }
 }
