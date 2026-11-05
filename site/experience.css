@@ -222,7 +222,6 @@
 /* Prior experience sits next to the agent report, beneath the object-tracking plot. */
 .experience-stage-aside { min-width:0; }
 .experience-stage-aside .experience-prior { display:block; margin-top:20px; padding:14px; }
-.experience-stage-aside .experience-prior summary { cursor:pointer; }
 .experience-prior-content { margin-top:12px; }
 .experience-prior-content .prior-excerpt { margin-top:12px; }
 .experience-stage-aside .experience-prior .prior-heading { font-size:13px; line-height:1.5; }

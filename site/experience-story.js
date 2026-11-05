@@ -71,10 +71,6 @@
       const context=node('div','experience-message-context'),link=node('a','experience-prior-node');
       link.href='#'+priorId;
       link.append(node('span','prior-node-label','Prior strategy'),node('strong','','Adjust wrist orientation to oppose tipping'),node('span','',example.prior.peer_title),node('span','prior-node-action','View the source human and robot motions →'));
-      link.addEventListener('click',()=>{
-        const target=document.getElementById(priorId);
-        if(target)target.open=true;
-      });
       context.append(box,link);return context;
     };
     const overview=node('div','experience-outcomes');overview.setAttribute('aria-label','Human reference and final outcomes');
@@ -135,9 +131,10 @@
     });
     let prior;
     if(example.prior){
-      prior=node('details','experience-prior');prior.id=priorId;prior.tabIndex=-1;prior.append(node('summary','prior-heading',`Prior experience: ${example.prior.peer_title}`));
+      prior=node('section','experience-prior');prior.id=priorId;prior.tabIndex=-1;
+      const heading=node('h5','prior-heading',`Prior experience: ${example.prior.peer_title}`);
+      heading.id=priorId+'-heading';prior.setAttribute('aria-labelledby',heading.id);prior.append(heading);
       const pair=node('div','source-motion-pair');if(example.prior.human)pair.append(videoCard(example.prior.human,'Human reference'));pair.append(videoCard(example.prior.media,'Prior robot execution'));const content=node('div','experience-prior-content');content.append(pair,node('p','prior-excerpt',`“${example.prior.text}”`));prior.append(content);aside.append(prior);
-      prior.addEventListener('toggle',()=>{if(!prior.open)pause(prior);});
     }
     const arrow=document.createElementNS('http://www.w3.org/2000/svg','svg');
     arrow.classList.add('experience-prior-arrow');arrow.setAttribute('aria-hidden','true');layout.append(arrow);
