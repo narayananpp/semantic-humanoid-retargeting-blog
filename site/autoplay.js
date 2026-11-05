@@ -11,7 +11,8 @@
   }
   function sync(video) {
     const active = visible(video);
-    video.autoplay = active;
+    video.autoplay = active && !userPaused.has(video);
+    if (active) video.preload = 'auto';
     if (active && !userPaused.has(video) && video.paused) {
       video.play().then(() => blocked.delete(video)).catch(error => {
         if (error.name === 'NotAllowedError') blocked.add(video);
@@ -42,6 +43,7 @@
     video.addEventListener('loadedmetadata', () => sync(video));
     video.addEventListener('loadeddata', () => sync(video));
     video.addEventListener('canplay', () => sync(video));
+    video.addEventListener('ended', () => { if (!video.hasAttribute('data-walkthrough-video')) sync(video); });
     video.addEventListener('emptied', () => { userPaused.delete(video); blocked.delete(video); });
     observer.observe(video);
     sync(video);
@@ -66,6 +68,7 @@
   window.addEventListener('scroll', refresh, {passive: true});
   window.addEventListener('resize', refresh, {passive: true});
   window.addEventListener('pageshow', refresh);
+  setInterval(() => { if (!document.hidden) refresh(); }, 1000);
   for (const event of ['pointerup', 'keydown']) {
     document.addEventListener(event, () => { if (blocked.size) refresh(); }, {passive: true});
   }

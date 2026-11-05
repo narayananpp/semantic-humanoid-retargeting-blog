@@ -8,13 +8,14 @@
     const reference = document.querySelector(group.dataset.syncReference || ':not(*)') || videos[0];
     const normalized = group.dataset.syncedVideos === 'duration';
     const listeners = [], internalPause = new Set(), internalPlay = new Set(), internalSeek = new Set();
-    let desired = true, visible = false, starting = false, looping = false, disposed = false;
+    let desired = true, visible = false, looping = false, disposed = false;
+    const attempting = new Set();
     const on = (node, event, handler) => { node.addEventListener(event, handler); listeners.push(() => node.removeEventListener(event, handler)); };
     const duration = v => Number.isFinite(v.duration) && v.duration > 0 ? v.duration : 0;
     const progress = v => normalized ? v.currentTime / duration(v) : v.currentTime;
     const at = (v, value) => normalized ? value * duration(v) : value;
     function pauseAll() {
-      videos.forEach(v => { if (!v.paused) { internalPause.add(v); v.pause(); } });
+      videos.forEach(v => { v.autoplay=false;if (!v.paused) { internalPause.add(v); v.pause(); } });
     }
     function seek(v, time) {
       if (!Number.isFinite(time) || !duration(v) || Math.abs(v.currentTime - time) < .04) return;
@@ -30,48 +31,46 @@
         if (Math.abs(v.playbackRate - supported) > .001) v.playbackRate = supported;
       });
     }
-    function ready() { return duration(reference) && videos.every(v => duration(v) && v.readyState >= 2 && !v.seeking); }
     function start() {
       rates();
-      if (disposed || !desired || !visible || document.hidden || starting || group.dataset.syncPaused === 'true' || !ready()) return;
-      let aligned = true;
-      videos.slice(1).forEach(v => {
-        const target = at(v, progress(videos[0]));
-        if (Math.abs(v.currentTime - target) > .15) { seek(v, target);aligned = false; }
-      });
-      if (!aligned) return;
-      starting = true;
-      Promise.allSettled(videos.map(v => {
-        if (!v.paused) return Promise.resolve();
-        internalPlay.add(v);
-        return v.play().catch(e => { internalPlay.delete(v); throw e; });
-      })).then(results => {
-        starting = false;looping = false;
-        if (disposed || !visible || document.hidden || group.dataset.syncPaused === 'true') pauseAll();
-        else if (results.some(r => r.status === 'rejected')) pauseAll();
+      if (disposed || !desired || !visible || document.hidden || group.dataset.syncPaused === 'true') return;
+      // A slow or unavailable clip must not block the other visible videos.
+      videos.forEach(v => {
+        v.autoplay = true;v.preload = 'auto';
+        if (v.readyState < 2 || v.seeking || attempting.has(v)) return;
+        if (v !== videos[0] && duration(videos[0]) && duration(v)) {
+          const target = at(v, progress(videos[0]));
+          if (Math.abs(v.currentTime - target) > .25) seek(v, target);
+        }
+        if (!v.paused) return;
+        attempting.add(v);internalPlay.add(v);
+        v.play().catch(() => { internalPlay.delete(v); }).finally(() => {
+          attempting.delete(v);
+          if (disposed || !desired || !visible || document.hidden || group.dataset.syncPaused === 'true') pauseAll();
+        });
       });
     }
     videos.forEach(v => {
       v.autoplay = false;v.loop = false;v.muted = true;v.defaultMuted = true;v.playsInline = true;
       on(v, 'play', () => {
         if (internalPlay.delete(v)) return;
-        desired = true;videos.filter(x => x !== v).forEach(x => seek(x, at(x, progress(v))));start();
+        desired = true;start();
       });
       on(v, 'pause', () => {
         if (internalPause.delete(v) || v.ended || looping) return;
-        desired = false;pauseAll();
+        if (!visible || document.hidden || v.readyState < 2 || v.seeking) return;
+        desired = false;videos.forEach(x => {x.autoplay=false;});pauseAll();
       });
       on(v, 'seeking', () => {
         if (internalSeek.has(v)) return;
         pauseAll();videos.filter(x => x !== v).forEach(x => seek(x, at(x, progress(v))));
       });
       on(v, 'seeked', () => { internalSeek.delete(v);start(); });
-      on(v, 'waiting', () => { if (v.readyState < 2) pauseAll(); });
-      on(v, 'canplay', start);on(v, 'loadedmetadata', start);
-      on(v, 'emptied', () => { internalSeek.clear();pauseAll();videos.forEach(x => seek(x, 0)); });
+      on(v, 'canplay', start);on(v, 'loadeddata', start);on(v, 'loadedmetadata', start);
+      on(v, 'emptied', () => { internalSeek.delete(v);desired=true; });
       on(v, 'ended', () => {
-        if (!desired || looping) return;
-        looping = true;pauseAll();videos.forEach(x => seek(x, 0));start();
+        if (!desired || looping || v !== videos[0]) return;
+        looping = true;videos.forEach(x => seek(x, 0));looping = false;start();
       });
     });
     if (!videos.includes(reference)) { reference.preload = 'metadata';on(reference, 'loadedmetadata', start); }
@@ -84,12 +83,10 @@
     on(group, 'comparison-resume', start);
     on(group, 'comparison-pause', pauseAll);
     on(group, 'comparison-restart', () => { desired = true;pauseAll();videos.forEach(v => seek(v, 0));start(); });
-    const timer = setInterval(() => {
-      if (disposed || !visible || !desired || document.hidden || group.dataset.syncPaused === 'true' || !ready()) return;
-      const master = videos[0];
-      videos.slice(1).forEach(v => { const target = at(v, progress(master));if (Math.abs(v.currentTime - target) > .15) seek(v, target); });
-      if (videos.some(v => v.paused)) start();
-    }, 200);
+    // Retry muted autoplay after buffering, scrolling back, or browser restoration.
+    on(window, 'pageshow', start);
+    on(document, 'pointerup', start);on(document, 'keydown', start);
+    const timer = setInterval(start, 500);
     groups.set(group, {videos, dispose() { disposed = true;clearInterval(timer);observer.disconnect();listeners.forEach(remove => remove());pauseAll(); }});
   }
   function refresh() {
