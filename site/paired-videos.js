@@ -53,7 +53,6 @@
     videos.forEach(v => {
       v.autoplay = false;v.loop = true;v.muted = true;v.defaultMuted = true;v.playsInline = true;
       on(v, 'pointerdown', () => interactionUntil.set(v, performance.now()+1000));
-      on(v, 'video-control-interaction', () => interactionUntil.set(v, performance.now()+1000));
       on(v, 'keydown', () => interactionUntil.set(v, performance.now()+1000));
       on(v, 'play', () => {
         if (internalPlay.delete(v)) return;
