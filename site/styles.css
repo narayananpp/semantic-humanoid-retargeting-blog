@@ -1149,11 +1149,13 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 
 /* Shared dataset tabs for side-by-side comparison plots. */
 .loop-arrow-label { position:relative; min-width:0; border:0; background:none; padding:0; text-align:center; }
-.loop-bottom { display:grid; grid-template-columns:minmax(250px,1fr) minmax(0,2.2fr); gap:44px; align-items:start; }
-.loop-bottom .loop-record { position:relative; display:block; margin:0; padding:17px; border-width:1px; border-radius:15px; z-index:2; }
-.loop-bottom .loop-record-label { display:block; margin-bottom:10px; }
-.loop-bottom .loop-record::before { content:''; position:absolute; left:calc(var(--bubble-tip,50%) - 10px); top:-11px; width:20px; height:20px; background:#fff0b5; border-left:1px solid #e6cf7a; border-top:1px solid #e6cf7a; transform:rotate(45deg); }
-.loop-bubble-stem { stroke:#c5a55c; stroke-width:1.5; }
+.loop-bottom { width:68%; margin-left:auto; }
+.loop-forward .loop-record { position:absolute; display:block; margin:0; padding:12px 14px; border-width:1px; border-radius:16px; z-index:3; }
+.loop-forward .loop-record-label { display:block; margin-bottom:6px; }
+.loop-forward .loop-record blockquote { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; overflow:hidden; font-size:12px; line-height:1.5; }
+.loop-forward .loop-record.is-expanded blockquote { display:block; }
+.loop-record-toggle { padding:0; margin-top:7px; border:0; background:none; color:#69501b; font:600 11px/1.5 var(--sans); text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+.loop-bubble-tail { fill:#fff0b5; stroke:#e6cf7a; stroke-width:1; }
 .loop-bottom .loop-feedback { padding:12px; }
 .loop-bottom .loop-feedback-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
 .loop-bottom .loop-evidence:last-child { grid-column:auto; }
@@ -1162,6 +1164,7 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 .loop-bottom .loop-evidence-heading { display:block; padding:8px; }
 .loop-bottom .loop-evidence-heading h5 { font-size:11px; }
 .loop-bottom .loop-chart-tabs { margin-top:6px; }
+.loop-bottom .loop-feedback-tabs { margin-top:6px; padding:0; }
 .loop-bottom .loop-query-card .loop-chart-button svg { height:auto; }
 .loop-bottom .loop-inspections .loop-image-button img { height:125px; }
 .loop-bottom .loop-query-summary { margin-top:8px; }
@@ -1172,6 +1175,7 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
  .loop-reference h4 { position:absolute; bottom:16px; width:100%; }
  .loop-target-preview { position:absolute; bottom:20px; width:100%; }
  .loop-targets video { margin-top:7px; height:130px; object-fit:contain; }
+ .loop-target-preview h4 { margin-top:9px; }
  .loop-bottom { padding-top:5px; }
 }
 @media(max-width:1099px) {
@@ -1180,9 +1184,9 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
  .loop-targets { display:block; }
  .loop-ik-block { align-self:center; justify-self:center; min-height:0; padding:16px; }
  .loop-target-preview { max-width:230px; margin:auto; }
- .loop-bottom { grid-template-columns:1fr; gap:26px; }
- .loop-bottom .loop-record { max-width:640px; }
- .loop-bottom .loop-record::before { left:24px; }
+ .loop-bottom { width:100%; margin:0; }
+ .loop-forward .loop-record { position:relative; grid-column:1/-1; grid-row:3; width:auto; max-width:640px; }
+ .loop-forward .loop-record::before { content:''; position:absolute; left:24px; top:-9px; width:16px; height:16px; background:#fff0b5; border-left:1px solid #e6cf7a; border-top:1px solid #e6cf7a; transform:rotate(45deg); }
 }
 @media(max-width:600px) {
  .loop-bottom .loop-feedback-grid { grid-template-columns:1fr; }

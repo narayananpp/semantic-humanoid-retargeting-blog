@@ -30,19 +30,19 @@
             <div class="loop-input" data-loop-node="initial"><h4>Humanoid Kinematic reference</h4><video data-architecture-clip="initial" muted autoplay loop playsinline preload="none" poster="architecture-media/kinematic.jpg" src="architecture-media/kinematic.mp4" aria-label="Initial kinematic humanoid reference"></video></div>
           </div>
           <div class="loop-agent loop-box" data-loop-node="agent"><h4>Astra</h4></div>
+          <div class="loop-record" data-loop-node="record"><span class="loop-record-label">Recorded agent log</span><blockquote id="architecture-agent-excerpt" data-loop-excerpt></blockquote><button type="button" class="loop-record-toggle" aria-expanded="false" aria-controls="architecture-agent-excerpt">Read more</button></div>
           <div class="loop-reference loop-arrow-label" data-loop-node="reference"><h4>End-effector references</h4></div>
           <div class="loop-ik-block loop-box" data-loop-node="ik"><h4>IK</h4></div>
-          <div class="loop-targets loop-arrow-label" data-loop-node="targets"><div class="loop-target-preview"><h4>Joint-space reference</h4><video data-architecture-clip="targets" data-loop-targets-video muted autoplay loop playsinline preload="metadata" aria-label="Planned wrist targets over the G1 reference motion"></video><span class="loop-target-key" title="Colored arms show reference joint poses; gold markers show planned wrist targets.">Arm reference <i></i> Wrist targets</span></div></div>
+          <div class="loop-targets loop-arrow-label" data-loop-node="targets"><div class="loop-target-preview"><video data-architecture-clip="targets" data-loop-targets-video muted autoplay loop playsinline preload="metadata" aria-label="Planned wrist targets over the G1 reference motion"></video><span class="loop-target-key" title="Colored arms show reference joint poses; gold markers show planned wrist targets.">Arm reference <i></i> Wrist targets</span><h4>Joint-space reference</h4></div></div>
           <div class="loop-control loop-box" data-loop-node="control"><h4 class="loop-control-title">Control</h4><div class="loop-controller" data-loop-node="sonic"><h4>Whole-body controller<br>(e.g. SONIC)</h4></div><div class="loop-controller" data-loop-node="wrist"><h4>Wrist and finger<br>impedance controller</h4></div></div>
           <div class="loop-rollout loop-box" data-loop-node="rollout"><div class="loop-rollout-heading"><h4>MuJoCo rollout</h4><span data-loop-trial></span></div><video data-architecture-clip="rollout" data-loop-rollout muted autoplay loop playsinline controls preload="metadata" aria-label="Recorded Astra execution"></video><div class="loop-score"><span>Mean object-tracking error</span><strong data-loop-add></strong></div></div>
         </div>
         <div class="loop-bottom">
-          <div class="loop-record" data-loop-node="record"><span class="loop-record-label">Recorded agent log</span><blockquote data-loop-excerpt></blockquote></div>
         <div class="loop-feedback" data-loop-node="feedback">
           <div class="loop-feedback-heading"><h4>Simulation feedback</h4><span data-loop-feedback-context></span></div>
           <div class="loop-feedback-grid">
             <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Object-tracking error</h5><div class="loop-chart-tabs" role="group" aria-label="Object tracking measurements"><button type="button" data-loop-chart="error" aria-pressed="true">Mean ADD</button><button type="button" data-loop-chart="path" aria-pressed="false">3D object path</button></div></div><button type="button" class="loop-chart-button" data-loop-open="object" aria-label="Enlarge object-tracking measurements"><span data-loop-object-chart></span></button><div class="loop-chart-legend" data-loop-object-legend></div></div>
-            <div class="loop-evidence loop-query-card"><div class="loop-evidence-heading"><h5>Execution feedback</h5></div><div class="loop-feedback-tabs" role="group" aria-label="Simulation measurements"><button type="button" data-feedback="forces">Contact forces</button><button type="button" data-feedback="speed">Object speed</button><button type="button" data-feedback="checks">Grasp checks</button><button type="button" data-feedback="error">Object error</button></div><button type="button" class="loop-chart-button" data-loop-open="feedback" aria-label="Enlarge the simulation measurements"><span data-loop-feedback-chart></span></button><div class="loop-feedback-legend" data-loop-feedback-legend></div></div>
+            <div class="loop-evidence loop-query-card"><div class="loop-evidence-heading"><h5>Execution feedback</h5><div class="loop-feedback-tabs" role="group" aria-label="Simulation measurements"><button type="button" data-feedback="forces">Contact forces</button><button type="button" data-feedback="speed">Object speed</button><button type="button" data-feedback="checks">Grasp checks</button><button type="button" data-feedback="error">Object error</button></div></div><button type="button" class="loop-chart-button" data-loop-open="feedback" aria-label="Enlarge the simulation measurements"><span data-loop-feedback-chart></span></button><div class="loop-feedback-legend" data-loop-feedback-legend></div></div>
             <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Agent image</h5></div><div class="loop-inspections"><button type="button" class="loop-image-button" data-loop-open="image" aria-label="Enlarge the image inspected by the agent"><img data-loop-image alt="" loading="lazy"></button><button type="button" class="loop-hand-button" data-loop-open="image" aria-label="View the original image for this hand-detail crop"><span data-loop-hand></span></button></div></div>
           </div>
           <div class="loop-query-summary"><span class="loop-query-tag">What the agent checked</span><strong data-loop-query-title></strong><span data-loop-query-values></span></div>
@@ -168,6 +168,7 @@
       $('[data-loop-query-values]').textContent=explanations[stage.id];
       $('[data-loop-feedback-context]').textContent=stage.id==='initial'?'Input inspection':stage.id==='023'?'Final verification':`Iteration ${Number(stage.id)}`;
       $('[data-loop-excerpt]').textContent='“'+stage.quote+'”';
+      $('.loop-record').classList.remove('is-expanded');$('.loop-record-toggle').setAttribute('aria-expanded','false');$('.loop-record-toggle').textContent='Read more';
       drawInspection();
       drawCharts();drawFeedback();setPhase('recorded');resumeVideos();requestAnimationFrame(connect);
     }
@@ -216,8 +217,20 @@
     ui.querySelectorAll('[data-loop-open]').forEach(button=>button.addEventListener('click',()=>openEvidence(button.dataset.loopOpen)));
     $('[data-loop-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});dialog.addEventListener('close',()=>{resumeVideos();if(playing)advance();});
 
+    $('.loop-record-toggle').addEventListener('click',()=>{
+      const expanded=$('.loop-record').classList.toggle('is-expanded');
+      $('.loop-record-toggle').setAttribute('aria-expanded',String(expanded));
+      $('.loop-record-toggle').textContent=expanded?'Read less':'Read more';
+      requestAnimationFrame(connect);
+    });
     function connect(){
-      const canvas=$('.loop-canvas'),root=$('.loop-connectors'),g=root.querySelector('g'),base=canvas.getBoundingClientRect();
+      const canvas=$('.loop-canvas'),root=$('.loop-connectors'),g=root.querySelector('g'),recordNode=$('.loop-record');
+      if(innerWidth>=1100){
+        const agentRect=$('[data-loop-node="agent"]').getBoundingClientRect(),ikRect=$('[data-loop-node="ik"]').getBoundingClientRect();
+        recordNode.style.width=`${Math.max(190,ikRect.right-agentRect.right+12)}px`;
+        canvas.style.paddingTop=`${Math.max(0,recordNode.offsetHeight-120)}px`;
+      }else{recordNode.style.width='';recordNode.style.left='';recordNode.style.top='';canvas.style.paddingTop='';}
+      const base=canvas.getBoundingClientRect();
       root.setAttribute('viewBox',`0 0 ${base.width} ${base.height}`);g.replaceChildren();
       if(innerWidth<1100)return;
       const box=name=>{const r=ui.querySelector(`[data-loop-node="${name}"]`).getBoundingClientRect();return {l:r.left-base.left,r:r.right-base.left,t:r.top-base.top,b:r.bottom-base.top,x:r.left-base.left+r.width/2,y:r.top-base.top+r.height/2};};
@@ -232,14 +245,16 @@
       const mid=agent.r+12,routeY=Math.max(control.b,box('ik').b,agent.b)+24;
       path(`M ${agent.r+2} ${agent.b-8} H ${mid} V ${routeY} H ${wrist.x} V ${wrist.b+5}`,'code-edge');
       const codeLabel=svg('text',{x:(ref.l+wrist.l)/2,y:routeY+15,'text-anchor':'middle'});codeLabel.textContent='Controller code';g.append(codeLabel);
-      const a=box('rollout'),f=box('feedback'),record=box('record');
+      const a=box('rollout'),f=box('feedback');
       path(`M ${a.x} ${a.b+3} V ${f.t-5}`,'feedback-out');
-      path(`M ${f.r+2} ${f.y} H ${base.width-3} V 10 H ${agent.x} V ${agent.t-5}`,'feedback-return');
-      const bubbleX=Math.max(record.l+20,Math.min(agent.x,record.r-20));
-      $('.loop-record').style.setProperty('--bubble-tip',`${bubbleX-record.l}px`);
-      g.append(svg('path',{d:`M ${agent.x} ${agent.b+2} V ${record.t-20} H ${bubbleX}`,class:'loop-bubble-stem',fill:'none'}));
+      path(`M ${f.l-2} ${f.y} H ${agent.x} V ${agent.b+5}`,'feedback-return');
+      recordNode.style.left=`${agent.r-10}px`;
+      recordNode.style.top=`${agent.t-32-recordNode.offsetHeight}px`;
+      const record=box('record');
+      g.append(svg('path',{d:`M ${record.l+9} ${record.b-1} L ${agent.x+8} ${agent.t-3} L ${record.l+35} ${record.b-1}`,class:'loop-bubble-tail'}));
     }
-    new ResizeObserver(connect).observe($('.loop-canvas'));
+    const layoutObserver=new ResizeObserver(()=>requestAnimationFrame(connect));
+    layoutObserver.observe($('.loop-canvas'));layoutObserver.observe($('.loop-record'));
     const videos=Array.from(ui.querySelectorAll('video'));
     const blocked=new Set();
     function videoInView(video){
