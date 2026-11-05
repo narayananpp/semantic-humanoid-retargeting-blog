@@ -47,7 +47,7 @@
     const observed=el('div','experience-learning-result');observed.append(el('p','flow-kicker','Further refinement with experience'),el('p','','The agent first improves the shelf lift with revised stepping, then adds bounded object-pose feedback. Its later report connects that feedback to the lower error:'),quote(e.quotes.with_experience.at(-1),'Agent'));root.append(observed);
     const finals=el('div','experience-final-pair');root.append(finals);for(const [key,title] of [['without_experience','Without experience'],['with_experience','With experience']])finals.append(film(e.media[key],`30 min / ${title}`,e.metrics[key].mean_add_m*100));
     for(const group of [inputs,start,midway,finals]){group.dataset.syncedVideos='duration';group.dataset.syncReference='#experience-human-clock';}
-    root.append(el('p','publication-caption','Shelf righting after equal 15-minute continuations. Playback durations matched to the human reference.'));
+    root.append(el('p','publication-caption','Shelf righting after equal 15-minute continuations.'));
     connectFlow(root,inputs,start,left,right,source,injection,ldecision,rdecision,midway,observed,finals);
   }
   function connectFlow(root,inputs,start,left,right,source,injection,ldecision,rdecision,midway,observed,finals){

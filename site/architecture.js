@@ -197,9 +197,9 @@
       timer=setTimeout(advance,duration);
     }
     $('[data-loop-play]').addEventListener('click',()=>{
-      if(playing){stop();rollout.pause();return;}
+      if(playing){stop();pauseVideos();return;}
       if(current===data.stages.length-1)show(0);
-      playing=true;ui.classList.add('loop-playing');$('[data-loop-play]').textContent='Ⅱ Pause loop';setPhase('recorded');advance();
+      playing=true;resumeVideos();ui.classList.add('loop-playing');$('[data-loop-play]').textContent='Ⅱ Pause loop';setPhase('recorded');advance();
     });
     ui.querySelectorAll('[data-loop-chart]').forEach(button=>button.addEventListener('click',()=>{
       chartMode=button.dataset.loopChart;ui.querySelectorAll('[data-loop-chart]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));drawCharts();

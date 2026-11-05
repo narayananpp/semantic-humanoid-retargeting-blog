@@ -9,7 +9,7 @@
     const normalized = group.dataset.syncedVideos === 'duration';
     const listeners = [], internalPause = new Set(), internalPlay = new Set(), internalSeek = new Set();
     let desired = true, visible = false, looping = false, disposed = false;
-    const attempting = new Set();
+    const attempting = new Set(), interactionUntil = new WeakMap();
     const on = (node, event, handler) => { node.addEventListener(event, handler); listeners.push(() => node.removeEventListener(event, handler)); };
     const duration = v => Number.isFinite(v.duration) && v.duration > 0 ? v.duration : 0;
     const progress = v => normalized ? v.currentTime / duration(v) : v.currentTime;
@@ -51,14 +51,18 @@
       });
     }
     videos.forEach(v => {
-      v.autoplay = false;v.loop = false;v.muted = true;v.defaultMuted = true;v.playsInline = true;
+      v.autoplay = false;v.loop = true;v.muted = true;v.defaultMuted = true;v.playsInline = true;
+      on(v, 'pointerdown', () => interactionUntil.set(v, performance.now()+1000));
+      on(v, 'keydown', () => interactionUntil.set(v, performance.now()+1000));
       on(v, 'play', () => {
         if (internalPlay.delete(v)) return;
         desired = true;start();
       });
       on(v, 'pause', () => {
         if (internalPause.delete(v) || v.ended || looping) return;
-        if (!visible || document.hidden || v.readyState < 2 || v.seeking) return;
+        // Browsers also pause media during scrolling, buffering and tab changes.
+        // Only an interaction with the video controls counts as a user pause.
+        if (!visible || document.hidden || v.readyState < 2 || v.seeking || performance.now() > (interactionUntil.get(v) || 0)) return;
         desired = false;videos.forEach(x => {x.autoplay=false;});pauseAll();
       });
       on(v, 'seeking', () => {

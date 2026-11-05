@@ -33,7 +33,7 @@
           Object.assign(video,{src:media.video,poster:media.poster||'',controls:true,muted:true,autoplay:true,loop:true,playsInline:true,preload:'none'});
           video.setAttribute('aria-label',row.title+': '+label);figure.append(make('figcaption','',label),video);pair.append(figure);
         }
-        player.append(pair,make('p','showcase-caption','Playback duration matched to the human reference.'));
+        player.append(pair);
       }else if(row.poster){const image=make('img');Object.assign(image,{src:row.poster,alt:row.title});player.append(image);}
       else player.append(make('p','showcase-pending','GPU Blender render in progress.'));
       if(execution.display_note)player.append(make('p','showcase-caption',execution.display_note));
