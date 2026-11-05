@@ -7,7 +7,7 @@
     if(add!==undefined)f.append(el('p','experience-final-score',`Mean ADD ${add.toFixed(2)} cm`));return f;
   }
   function quote(q,label){
-    const b=el('blockquote','experience-message');b.append(el('p','message-author',`${label} — ${q.minute.toFixed(1)} min`),el('p','message-text',q.text));return b;
+    const b=el('blockquote','experience-message');b.append(el('p','message-author',`${label} — ${q.minute.toFixed(1)} min`),el('p','message-text',`“${q.text}”`));return b;
   }
   function carousel(priors){
     const root=el('section','experience-injection');root.setAttribute('aria-label','Four supplied experience reports');
