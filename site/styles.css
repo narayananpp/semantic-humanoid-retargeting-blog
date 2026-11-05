@@ -967,7 +967,7 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 .loop-rollout-heading { margin:0 0 9px; }
 .loop-rollout-heading h4 { font-size:12px; }
 .loop-rollout-heading span { font-size:10px; color:var(--muted); }
-.loop-rollout video { display:block; width:100%; aspect-ratio:4/3; object-fit:contain; border-radius:5px; background:#ddd; }
+.loop-rollout video { display:block; width:100%; height:auto; aspect-ratio:auto; object-fit:contain; border-radius:5px; background:transparent; }
 .loop-score { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:11px; }
 .loop-score span { font:10px/1.4 var(--sans); max-width:110px; color:var(--muted); }
 .loop-score strong { font:650 21px/1.2 var(--sans); white-space:nowrap; color:var(--loop-teal); }
@@ -1017,7 +1017,7 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
  .loop-agent { grid-row:2; }
  .loop-reference { grid-row:2; }
  .loop-targets { grid-column:2; }
- .loop-rollout video { max-height:230px; }
+ .loop-rollout video { max-height:none; }
  .loop-feedback-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
  .loop-evidence:last-child { grid-column:1/-1; }
  .loop-image-button img { height:170px; }
@@ -1166,7 +1166,7 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 .loop-bottom .loop-chart-tabs { margin-top:6px; }
 .loop-bottom .loop-feedback-tabs { margin-top:6px; padding:0; }
 .loop-bottom .loop-query-card .loop-chart-button svg { height:auto; }
-.loop-bottom .loop-inspections .loop-image-button img { height:125px; }
+.loop-bottom .loop-inspections .loop-image-button img { height:auto; }
 .loop-bottom .loop-query-summary { margin-top:8px; }
 @media(min-width:1100px) {
  .loop-canvas { padding-right:20px; }
@@ -1190,7 +1190,7 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 }
 @media(max-width:600px) {
  .loop-bottom .loop-feedback-grid { grid-template-columns:1fr; }
- .loop-bottom .loop-inspections .loop-image-button img { height:180px; }
+ .loop-bottom .loop-inspections .loop-image-button img { height:auto; }
 }
 .final-results { max-width:960px; margin:30px auto; }
 .final-results-controls { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin:0 0 16px; }
@@ -1270,5 +1270,4 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 
 .loop-feedback-connection { fill:none; stroke:var(--loop-teal); stroke-width:2; opacity:.45; }
 
-/* Keep the rollout connection continuous from the block border to feedback. */
-.loop-edge.feedback-out { stroke-dasharray:none; animation:none; }
+/* The solid connection under the animated dashes keeps the whole arrow visible. */

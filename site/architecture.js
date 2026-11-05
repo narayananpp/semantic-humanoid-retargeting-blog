@@ -253,6 +253,8 @@
     }
     const layoutObserver=new ResizeObserver(()=>requestAnimationFrame(connect));
     layoutObserver.observe($('.loop-canvas'));layoutObserver.observe($('.loop-record'));
+    layoutObserver.observe($('[data-loop-node="rollout"]'));
+    layoutObserver.observe($('[data-loop-node="feedback"]'));
     const videos=Array.from(ui.querySelectorAll('video'));
     const blocked=new Set();
     function videoInView(video){
