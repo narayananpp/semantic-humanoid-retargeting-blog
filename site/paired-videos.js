@@ -9,7 +9,7 @@
     const normalized = group.dataset.syncedVideos === 'duration';
     const listeners = [], internalPause = new Set(), internalPlay = new Set(), internalSeek = new Set();
     let desired = true, visible = false, looping = false, disposed = false;
-    const attempting = new Set(), interactionUntil = new WeakMap();
+    const attempting = new Set(), aligned = new Set(), interactionUntil = new WeakMap();
     const on = (node, event, handler) => { node.addEventListener(event, handler); listeners.push(() => node.removeEventListener(event, handler)); };
     const duration = v => Number.isFinite(v.duration) && v.duration > 0 ? v.duration : 0;
     const progress = v => normalized ? v.currentTime / duration(v) : v.currentTime;
@@ -38,9 +38,11 @@
       videos.forEach(v => {
         v.autoplay = true;v.preload = 'auto';
         if (v.readyState < 2 || v.seeking || attempting.has(v)) return;
-        if (v !== videos[0] && duration(videos[0]) && duration(v)) {
-          const target = at(v, progress(videos[0]));
-          if (Math.abs(v.currentTime - target) > .25) seek(v, target);
+        // Align once when a clip becomes ready. Repeated seeks can prevent
+        // a buffering video from ever reaching a playable frame.
+        if (!aligned.has(v) && duration(videos[0]) && duration(v)) {
+          aligned.add(v);
+          if (v !== videos[0]) seek(v, at(v, progress(videos[0])));
         }
         if (!v.paused) return;
         attempting.add(v);internalPlay.add(v);
@@ -67,11 +69,13 @@
       });
       on(v, 'seeking', () => {
         if (internalSeek.has(v)) return;
+        // Native looping also emits seeking; it must not pause the row.
+        if (performance.now() > (interactionUntil.get(v) || 0)) return;
         pauseAll();videos.filter(x => x !== v).forEach(x => seek(x, at(x, progress(v))));
       });
       on(v, 'seeked', () => { internalSeek.delete(v);start(); });
       on(v, 'canplay', start);on(v, 'loadeddata', start);on(v, 'loadedmetadata', start);
-      on(v, 'emptied', () => { internalSeek.delete(v);desired=true; });
+      on(v, 'emptied', () => { internalSeek.delete(v);aligned.delete(v);desired=true; });
       on(v, 'ended', () => {
         if (!desired || looping || v !== videos[0]) return;
         looping = true;videos.forEach(x => seek(x, 0));looping = false;start();
