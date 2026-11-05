@@ -39,6 +39,7 @@
         </div>
         <div class="loop-bottom">
         <div class="loop-feedback" data-loop-node="feedback">
+          <div class="loop-feedback-heading"><h4>Simulation feedback</h4></div>
           <div class="loop-feedback-grid">
             <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Object-tracking error</h5><div class="loop-chart-tabs" role="group" aria-label="Object tracking measurements"><button type="button" data-loop-chart="error" aria-pressed="true">Mean ADD</button><button type="button" data-loop-chart="path" aria-pressed="false">3D object path</button></div></div><button type="button" class="loop-chart-button" data-loop-open="object" aria-label="Enlarge object-tracking measurements"><span data-loop-object-chart></span></button><div class="loop-chart-legend" data-loop-object-legend></div></div>
             <div class="loop-evidence loop-query-card"><div class="loop-evidence-heading"><h5>Execution feedback</h5><div class="loop-feedback-tabs" role="group" aria-label="Simulation measurements"><button type="button" data-feedback="forces">Contact forces</button><button type="button" data-feedback="speed">Object speed</button><button type="button" data-feedback="checks">Grasp checks</button><button type="button" data-feedback="error">Object error</button></div></div><button type="button" class="loop-chart-button" data-loop-open="feedback" aria-label="Enlarge the simulation measurements"><span data-loop-feedback-chart></span></button><div class="loop-feedback-legend" data-loop-feedback-legend></div></div>
@@ -243,7 +244,8 @@
       for(const name of ['sonic','wrist']) {const child=box(name),out=box('rollout');path(`M ${child.r+2} ${child.y} H ${merge} V ${out.y} H ${out.l-5}`,'forward');}
       const agent=box('agent');
       const a=box('rollout'),f=box('feedback');
-      path(`M ${a.x} ${a.b+3} V ${f.t-5}`,'feedback-out');
+      g.append(svg('path',{d:`M ${a.x} ${a.b} V ${f.t}`,class:'loop-feedback-connection'}));
+      path(`M ${a.x} ${a.b} V ${f.t-2}`,'feedback-out');
       path(`M ${f.l-2} ${f.y} H ${agent.x} V ${agent.b+5}`,'feedback-return');
       recordNode.style.left=`${agent.r-10}px`;
       recordNode.style.top=`${agent.t-32-recordNode.offsetHeight}px`;

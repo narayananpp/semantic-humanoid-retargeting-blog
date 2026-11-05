@@ -34,10 +34,12 @@
     }
     // The walkthrough tour uses 'ended' to advance its stages.
     video.loop = !video.hasAttribute('data-walkthrough-video');
-    video.addEventListener('pointerdown', () => {
+    const markInteraction = () => {
       video.dataset.userInteracting = 'true';
       setTimeout(() => delete video.dataset.userInteracting, 500);
-    });
+    };
+    video.addEventListener('pointerdown', markInteraction);
+    video.addEventListener('video-control-interaction', markInteraction);
     video.addEventListener('pause', () => { if (video.dataset.userInteracting && visible(video)) userPaused.add(video); });
     video.addEventListener('play', () => userPaused.delete(video));
     video.addEventListener('loadedmetadata', () => sync(video));
