@@ -9,7 +9,7 @@
   <title>HuMoTAR: Retargeting Through Reasoning for Humanoid–Object Interaction</title>
   <link rel="stylesheet" href="assets/katex/katex.min.css">
   <script src="theme.js?v=1"></script>
-  <link rel="stylesheet" href="styles.css?v=feedback-raised-20261105">
+  <link rel="stylesheet" href="styles.css?v=page-zoom-85-20261105">
   <link rel="stylesheet" href="experience.css?v=experience-compact-20261105">
   <script defer src="assets/katex/katex.min.js"></script>
   <script defer src="math.js"></script>
@@ -218,7 +218,7 @@
 <section id="discussion" class="outline-section">
 <h2 id="7-discussion">6. Discussion</h2>
 
-<p>In our evaluation, Astra with refinement achieves <strong>lower object-tracking error and higher semantic success</strong> than classical retargeting <a href="#ref-hoi">[1]</a>, <a href="#ref-spider">[3]</a>. The agent reasons about the intended object interaction and revises the motion and control needed to achieve it. <strong>Closed-loop refinement also outperforms open-loop, one-shot generation</strong> on both measures as the agent tests and improves its initial proposal in simulation.</p>
+<p>We conclude that retargeting should preserve the <strong>semantic intent of the interaction</strong> rather than require the robot to reproduce the human’s exact grasp, posture and sequence of movements. Our agentic approach achieves better object tracking and semantic success than classical retargeting <a href="#ref-hoi">[1]</a>, <a href="#ref-spider">[3]</a>. <strong>Closed-loop refinement also improves on open-loop, one-shot generation</strong> as the agent tests its proposed motion in simulation and uses the resulting feedback to revise it.</p>
 <h3 id="failure-analysis">Hand morphology limits some interactions</h3>
 <p>In Fig. 7, G1 must lift and swirl a plate to reproduce the human’s interaction. Although it lifts the plate, it fails to complete the swirling motion. The agents adjust finger placement and try two-handed support, yet the grasp remains unstable during rotation. We posit that this difficulty can be attributed to <strong>the morphological gap between human hands and G1’s Dex3 hands</strong>: the fingers struggle to establish a stable grasp around the plate’s thin rim. Notably, none of the tested motion and controller revisions fully compensate for this mismatch.</p>
 
@@ -305,10 +305,10 @@
   <script src="article.js?v=human-sync-20261105"></script>
 <script src="dynamics-showcase.js?v=autoplay-final-loops-20261105" defer></script>
 <script src="kinematic-showcase.js?v=autoplay-20261104" defer></script>
-<script src="experience-story.js?v=autoplay-final-loops-20261105" defer></script>
+<script src="experience-story.js?v=page-zoom-85-20261105" defer></script>
 <script src="text-motion.js?v=1" defer></script>
 <script src="results-evidence.js?v=spider-full-20261102" defer></script>
-<script src="architecture.js?v=autoplay-final-loops-20261105" defer></script>
+<script src="architecture.js?v=page-zoom-85-20261105" defer></script>
 <script src="autoplay.js?v=autoplay-recovery-20261105" defer></script>
 <script src="paired-videos.js?v=autoplay-final-loops-20261105" defer></script>
 </body>

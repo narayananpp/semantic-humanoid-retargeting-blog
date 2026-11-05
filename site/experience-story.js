@@ -54,8 +54,9 @@
     const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.classList.add('experience-flow-arrows');svg.setAttribute('aria-hidden','true');root.prepend(svg);
     const draw=()=>{
       if(innerWidth<=760){svg.replaceChildren();return;}
-      const box=root.getBoundingClientRect(),rect=n=>{const r=n.getBoundingClientRect();return{x:r.left+r.width/2-box.left,top:r.top-box.top,bottom:r.bottom-box.top};};
-      svg.setAttribute('viewBox',`0 0 ${box.width} ${box.height}`);let paths=[];
+      const scale=parseFloat(getComputedStyle(document.documentElement).zoom)||1;
+      const box=root.getBoundingClientRect(),rect=n=>{const r=n.getBoundingClientRect();return{x:(r.left+r.width/2-box.left)/scale,top:(r.top-box.top)/scale,bottom:(r.bottom-box.top)/scale};};
+      svg.setAttribute('viewBox',`0 0 ${box.width/scale} ${box.height/scale}`);let paths=[];
       const link=(a,b)=>{const f=rect(a),t=rect(b);paths.push(`M${f.x},${f.bottom+7} V${t.top-12}`);};
       link(inputs,start);const a=rect(start),l=rect(left.querySelector('h4')),r=rect(right.querySelector('h4')),y=a.bottom+26;
       paths.push(`M${a.x},${a.bottom+7} V${y} H${l.x} V${l.top-12}`,`M${a.x},${y} H${r.x} V${r.top-12}`);
