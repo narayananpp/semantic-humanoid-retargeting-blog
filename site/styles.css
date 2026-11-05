@@ -935,7 +935,7 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 .loop-phase { color:var(--muted); font:12px/1.4 var(--sans); padding-right:9px; }
 .loop-canvas { position:relative; }
 .loop-connectors { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; color:var(--loop-teal); }
-.loop-edge { fill:none; stroke:#a0aaa5; stroke-width:1.5; }
+.loop-edge { fill:none; stroke:#a0aaa5; stroke-width:1.5; stroke-dasharray:6 5; animation:loop-flow 1.8s linear infinite; }
 .loop-edge.feedback-out,.loop-edge.feedback-return { stroke:var(--loop-teal); stroke-width:2.5; }
 .loop-forward { display:grid; grid-template-columns:minmax(110px,1fr) minmax(70px,.6fr) minmax(95px,.85fr) minmax(55px,.5fr) minmax(78px,.7fr) minmax(105px,.9fr) minmax(180px,1.5fr); gap:21px; align-items:center; margin-bottom:55px; }
 .loop-box { position:relative; min-width:0; padding:16px 8px; background:var(--loop-paper); border:1px solid var(--line); border-radius:9px; }
@@ -1054,7 +1054,7 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
  .loop-record blockquote { grid-row:2; grid-column:1/-1; }
  .loop-record .loop-evidence-link { grid-row:1; grid-column:2; }
 }
-@media(prefers-reduced-motion:reduce) { .loop-edge { animation:none!important; } }
+@media(prefers-reduced-motion:reduce) { .loop-edge { animation:none!important; stroke-dasharray:none!important; } }
 
 :root[data-theme="dark"] .refinement-loop-ui { --loop-teal:#61bdb3; }
 :root[data-theme="dark"] .refinement-loop-ui path[stroke="#167c77"] { stroke:#61bdb3; }
