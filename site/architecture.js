@@ -235,7 +235,7 @@
         const previousLift=-(parseFloat(feedbackBlock.style.marginTop)||0);
         const feedbackTop=$('[data-loop-node="feedback"]').getBoundingClientRect().top+previousLift;
         const contentBottom=Math.max(...['rollout','control'].map(name=>$(`[data-loop-node="${name}"]`).getBoundingClientRect().bottom));
-        feedbackBlock.style.marginTop=`-${Math.max(0,feedbackTop-contentBottom-24)}px`;
+        feedbackBlock.style.marginTop=`-${Math.max(0,feedbackTop-contentBottom-16)}px`;
       }else feedbackBlock.style.marginTop='';
       const base=canvas.getBoundingClientRect();
       root.setAttribute('viewBox',`0 0 ${base.width/scale} ${base.height/scale}`);g.replaceChildren();
