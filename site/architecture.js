@@ -8,10 +8,10 @@
     Object.entries(attrs).forEach(([k,v]) => node.setAttribute(k, v));
     return node;
   };
-  fetch('architecture-trace/trace.json?v=7').then(r => {
+  Promise.all(['architecture-trace/trace.json?v=7','architecture-trace/input-timing.json?v=1'].map(url=>fetch(url).then(r=>{
     if (!r.ok) throw new Error('Trace unavailable');
     return r.json();
-  }).then(build).catch(() => {});
+  }))).then(([data,timing])=>{data.inputTiming=timing.stages;build(data);}).catch(() => {});
 
   function build(data) {
     const base = new URL("architecture-trace/trace.json", document.baseURI);
@@ -246,7 +246,10 @@
     layoutObserver.observe($('[data-loop-node="rollout"]'));
     layoutObserver.observe($('[data-loop-node="feedback"]'));
     const videos=Array.from(ui.querySelectorAll('video'));
+    const inputVideos=videos.filter(v=>['human','initial'].includes(v.dataset.architectureClip));
+    const executionVideos=videos.filter(v=>!inputVideos.includes(v));
     const blocked=new Set();
+    const lastInputSeek=new WeakMap();
     let cycleAbort, cycleReady=false;
     function videoInView(video){
       const r=video.getBoundingClientRect();
@@ -276,16 +279,46 @@
       if(signal.aborted)return;
       cycleReady=true;resumeVideos();
     }
+    function playbackVisible(){
+      return !document.hidden&&!dialog.open&&document.documentElement.dataset.media!=='off'&&videos.some(videoInView);
+    }
+    function syncInputVideos(){
+      if(!cycleReady||!playbackVisible())return;
+      const timing=data.inputTiming[data.stages[current].id],knots=timing.knots,t=rollout.currentTime;
+      let segment=0;
+      while(segment<knots.length-2&&t>=knots[segment+1][0])segment++;
+      const [t0,s0]=knots[segment],[t1,s1]=knots[segment+1];
+      const slope=t>=knots.at(-1)[0]?0:(s1-s0)/(t1-t0);
+      const sourceTime=t>=knots.at(-1)[0]?knots.at(-1)[1]:s0+Math.max(0,t-t0)*slope;
+      inputVideos.forEach(video=>{
+        const initial=data.stages[current].id==='initial';
+        const ratio=video.duration/timing.source_duration_s;
+        const target=Math.min(initial?t:sourceTime*ratio,Math.max(0,video.duration-1/60));
+        const rate=initial?1:slope*ratio;
+        const hold=rate===0||target>=video.duration-1/60||rollout.paused;
+        if(hold)video.pause();
+        if(!video.seeking&&Math.abs(video.currentTime-target)>.12&&performance.now()-(lastInputSeek.get(video)||-Infinity)>800){
+          video.currentTime=target;lastInputSeek.set(video,performance.now());
+        }
+        if(rate>0&&Math.abs(video.playbackRate-rate)>.001)video.playbackRate=rate;
+        if(!hold&&video.paused)video.play().catch(error=>{if(error.name==='NotAllowedError')blocked.add(video);});
+      });
+    }
     function resumeVideos(){
-      const active=!document.hidden&&!dialog.open&&document.documentElement.dataset.media!=='off'&&videos.some(videoInView);
+      const active=playbackVisible();
       videos.forEach(video=>{
-        video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=false;video.playbackRate=1;video.autoplay=false;
+        video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=false;video.autoplay=false;
         if(!active||!cycleReady){video.pause();return;}
+        if(inputVideos.includes(video))return;
+        video.playbackRate=1;
         if(video.paused&&!video.ended)video.play().then(()=>blocked.delete(video)).catch(error=>{
           if(error.name==='NotAllowedError')blocked.add(video);
         });
       });
+      syncInputVideos();
     }
+    function alignInputFrame(){syncInputVideos();requestAnimationFrame(alignInputFrame);}
+    requestAnimationFrame(alignInputFrame);
     function pauseVideos(){
       clearTimeout(timer);
       videos.forEach(video=>{video.autoplay=false;video.pause();});
@@ -293,7 +326,7 @@
     const videoObserver=new IntersectionObserver(resumeVideos,{threshold:[0,.01]});
     videos.forEach(video=>{
       video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=false;
-      video.addEventListener('ended',()=>{if(cycleReady&&videos.every(v=>v.ended))startAlignedCycle();});
+      video.addEventListener('ended',()=>{if(cycleReady&&executionVideos.every(v=>v.ended))startAlignedCycle();});
       video.addEventListener('loadedmetadata',resumeVideos);
       video.addEventListener('canplay',resumeVideos);
       videoObserver.observe(video);

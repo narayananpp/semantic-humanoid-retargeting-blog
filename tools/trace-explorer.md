@@ -73,3 +73,10 @@ event and motion hashes against the architecture before publishing. All 25
 candidate scores are retained, alongside the separately evaluated initial
 reference; iteration 023 is labelled as the final selected execution. No agent
 or physics simulation is run during export or browser playback.
+
+The architecture input videos use `architecture-trace/input-timing.json`, exported
+by `export_architecture_input_timing.py`. The mapping matches identical object
+poses in the original and revised references. Only the human and initial-reference
+videos receive these timing adjustments; generated-reference and simulator
+rollout videos remain at 1×. The initial and final holds come from the saved
+reference timestamps, rather than a uniform duration ratio.
