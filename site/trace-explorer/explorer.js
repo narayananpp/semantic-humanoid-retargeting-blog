@@ -323,8 +323,10 @@ function nextTour(){
 function stepTrial(direction){const trials=state.agent.trials.filter(t=>t.motion);const i=trials.indexOf(state.trial);const next=trials[Math.max(0,Math.min(trials.length-1,i+direction))];if(next)selectTrial(next.id);}
 
 async function boot(){
+  if ($('about')) {
   bind('about-button','click',()=>$('about').showModal());bind('close-about','click',()=>$('about').close());
   bind('about','click',e=>{if(e.target===$('about')){const r=$('about').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('about').close();}});
+  }
   recording=await getJSON(DATA+'index.json');
   await setupScene();
   const readRoute=()=>{
@@ -354,7 +356,7 @@ async function boot(){
   bind('tour','click',()=>{if(state.touring){stopTour();setPlaying(false);return;}state.touring=true;$('tour').textContent='Ⅱ Stop revision playback';$('tour').classList.add('running');playStage(0).catch(report);});
   bind('copy-link','click',async()=>{try{await navigator.clipboard.writeText(location.href);$('copy-link').textContent='Link copied';setTimeout(()=>$('copy-link').textContent='Copy link ↗',1600);}catch{window.prompt('Copy this link',location.href);}});
   document.addEventListener('trace-pause',()=>{stopTour();setPlaying(false);$('stage-video').pause();});
-  document.addEventListener('keydown',e=>{if(['INPUT','SELECT','TEXTAREA','BUTTON','SUMMARY'].includes(document.activeElement.tagName)||$('about').open)return;if(e.code==='Space'&&state.motion){e.preventDefault();$('play').click();}else if(e.key==='ArrowRight'){e.preventDefault();stepTrial(1);}else if(e.key==='ArrowLeft'){e.preventDefault();stepTrial(-1);}else if(e.key.toLowerCase()==='r')cameraPreset('wide');});
+  document.addEventListener('keydown',e=>{if(['INPUT','SELECT','TEXTAREA','BUTTON','SUMMARY'].includes(document.activeElement.tagName)||$('about')?.open)return;if(e.code==='Space'&&state.motion){e.preventDefault();$('play').click();}else if(e.key==='ArrowRight'){e.preventDefault();stepTrial(1);}else if(e.key==='ArrowLeft'){e.preventDefault();stepTrial(-1);}else if(e.key.toLowerCase()==='r')cameraPreset('wide');});
   // A public handle for deterministic visual and interaction checks; no mutation API.
   window.traceExplorer={get state(){return {agent:state.agent?.id,trial:state.trial?.id,time:state.time,playing:state.playing,motion:!!state.motion,tab:state.tab};}};
 }

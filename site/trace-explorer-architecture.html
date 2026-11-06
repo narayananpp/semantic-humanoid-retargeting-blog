@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Inside Astra refinement | HuMoTAR</title>
   <meta name="description" content="Explore the recorded tools, images and final motion of an Astra refinement run.">
-  <link rel="stylesheet" href="trace-explorer/explorer.css?v=architecture-recording-20261105">
+  <link rel="stylesheet" href="trace-explorer/explorer.css?v=minimal-explorer-20261105">
   <script type="importmap">{"imports":{"three":"./trace-explorer/vendor/three.module.js"}}</script>
 </head>
 <body data-trace="architecture">
   <header class="topbar">
     <a class="brand" href="index.html">Retargeting<span>/</span><span class="brand-section">Run explorer</span></a>
-    <nav><a href="index.html#method">Back to motion refinement ↗</a><button id="about-button" class="quiet">About this recording</button></nav>
+    <nav><a href="index.html#method">Back to motion refinement ↗</a></nav>
   </header>
   <main>
     <div class="heading"><h1>Lift, carry and place a clothes stand.</h1></div>
@@ -51,11 +51,10 @@
         <div class="evidence-footer"><span id="evidence-source">Recorded messages and tool outputs</span><button id="copy-link" class="quiet">Copy link ↗</button></div>
       </aside>
     </div>
-    <footer class="page-footer"><span><kbd>Space</kbd> play / pause <kbd>←</kbd><kbd>→</kbd> trial <kbd>R</kbd> reset camera</span></footer>
+    <footer class="page-footer"><span><kbd>Space</kbd> play / pause <kbd>←</kbd><kbd>→</kbd> trial <kbd>R</kbd> reset camera</span><div class="asset-attribution"><a href="trace-explorer/vendor/THREE-LICENSE.txt">Three.js license</a> · <a href="trace-explorer/vendor/UNITREE-LICENSE.txt">G1 asset notice</a> · <a href="trace-explorer/vendor/OMOMO-OBJECTS-LICENSE.txt">Object asset notice</a> · <a href="trace-explorer/vendor/DATA-NOTICE.txt">Data attribution</a></div></footer>
   </main>
-  <dialog id="about"><button id="close-about" class="dialog-close" aria-label="Close">×</button><p class="eyebrow">THE RECORDED EXPERIMENT</p><h2>A recorded Astra refinement run.</h2><p>This explorer uses the same recorded Astra session, selected trials and final execution as the architecture diagram. The initial motion is a separate evaluation of the identical input reference. Intermediate replays are verified against the original scores.</p><p>Messages are quoted from the recording with private paths and account identifiers removed. Tool labels summarize recorded operations. Images are those actually inspected by the agent. Playback uses saved poses and does not run new physics simulation.</p><p><a href="trace-explorer/vendor/THREE-LICENSE.txt">Three.js license</a> · <a href="trace-explorer/vendor/UNITREE-LICENSE.txt">G1 asset notice</a> · <a href="trace-explorer/vendor/OMOMO-OBJECTS-LICENSE.txt">Object asset notice</a> · <a href="trace-explorer/vendor/DATA-NOTICE.txt">Data attribution</a></p></dialog>
   <noscript>This explorer needs JavaScript. The <a href="index.html#method">architecture walkthrough</a> is also available in the article.</noscript>
-  <script type="module" src="trace-explorer/explorer.js?v=architecture-recording-20261105"></script>
+  <script type="module" src="trace-explorer/explorer.js?v=minimal-explorer-20261105"></script>
 <script src="autoplay.js?v=all-videos-20261104" defer></script>
 </body>
 </html>
