@@ -102,7 +102,7 @@ def export(recording, recovered, replays, prepared, site):
             for trial in linked:
                 trial['call_ids'].append(event['id'])
         events.append(event)
-    write(output / 'agent-0.json', dict(id=0, selected=True, configuration='Astra with refinement',
+    write(output / 'agent-0.json', dict(id=0, selected=True, configuration='Astra with Refinement',
                                        events=events, trials=trials, source_sha256=digest(event_file)))
     write(output / 'index.json', dict(schema=1, selected_agent=0, show_all_trials=True,
           default_trial='initial', initial_label='Initial reference', agents=[dict(id=0, selected=True)],

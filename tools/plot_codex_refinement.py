@@ -62,7 +62,7 @@ for mobile in (False, True):
                 textcoords='offset points', ha='right', color='#21665d', fontsize=9 if mobile else 11)
     ax.text(30, 58, '30 min', ha='center', va='top', fontsize=9, color='#6e7169',
             bbox={'facecolor': '#faf9f6', 'edgecolor': 'none', 'pad': 2})
-    fig.text(.07 if mobile else .09, .95, 'Astra with refinement', fontsize=14 if mobile else 18,
+    fig.text(.07 if mobile else .09, .95, 'Astra with Refinement', fontsize=14 if mobile else 18,
              weight='bold', color='#242620')
     handles = [Line2D([0], [0], color='#287b70', lw=2.3, label='Object tracking'),
                Line2D([0], [0], marker='D', color='#80609b', lw=0,

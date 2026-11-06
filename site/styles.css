@@ -1286,3 +1286,10 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 .text-motion-example video { object-fit:cover; background:transparent; }
 /* Standalone architecture previews keep their complete recorded frame. */
 .loop-input video,.loop-targets video,.loop-reference video { height:auto; max-height:none; aspect-ratio:auto; background:transparent; }
+
+/* The appendix compares only the two swarm configurations. */
+#swarm-ablation .configuration-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:1000px;margin:24px auto}
+#swarm-ablation .configuration-card header {min-height:98px}
+#swarm-ablation .configuration-card svg {max-height:420px}
+#swarm-ablation .configuration-card .step-description {min-height:145px}
+@media(max-width:650px){#swarm-ablation .configuration-grid{grid-template-columns:1fr}#swarm-ablation .configuration-card header{min-height:0}}

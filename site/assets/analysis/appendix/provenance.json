@@ -1,0 +1,82 @@
+[
+  {
+    "file": "agent-hours.svg",
+    "source_sha256": "2f301c399e88b651f22e4e2bd711840ce7e62461c947d51574f5ac1ea0480225",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-add-all-mobile.svg",
+    "source_sha256": "d252b9cd7ce21c677841cf76f3b3730124d01521063d7db11822e06cba11edde",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-add-all-tasks-mobile.svg",
+    "source_sha256": "b91053001b95608802eb6bf91be207259cd6620fc3b19d568031d63f7bf55078",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-add-all-tasks.svg",
+    "source_sha256": "dc22f1b2cd21fdacaf02b15aa2049f09616a079b4f215da46f3358c94708a302",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-add-all.svg",
+    "source_sha256": "7abfb2feda45187eba1294e6d1664bb68b6eca7bac83f33b8804d4f11f223354",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-add-humoto-mobile.svg",
+    "source_sha256": "3f469aa7531a39b621e5fc6f9655b71669534854b95a443a89b60ecb15e4cad1",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-add-humoto-tasks-mobile.svg",
+    "source_sha256": "8761aee6bdf0056e3810cd87f43c518bfee7d4d2984466fb085bb65f15b4e493",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-add-humoto-tasks.svg",
+    "source_sha256": "c19b08b408e29d860671df39e4db9b694fc89dc22c00786dffbc1bbdc926e55a",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-add-humoto.svg",
+    "source_sha256": "fd0a8de281dd52f1bbcc72915b53b440d99801157ca029b865b8747c27247779",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-add-omomo-mobile.svg",
+    "source_sha256": "0001ddc0f4d278e3d0f42f89b91ff88e7cfaa9de9cdf35e17dd9606247dba982",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-add-omomo-tasks-mobile.svg",
+    "source_sha256": "111fb992ee63ee768fb68270962e9e7dc691926766df89160bc6a107630e4f36",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-add-omomo-tasks.svg",
+    "source_sha256": "d3b594efa3830f23b27a07087ac5ca1b5d7af3d768900c89117a2159c090881d",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-add-omomo.svg",
+    "source_sha256": "d801af12732e1bed5a4b4928ced155d3bf6f7c9abb8864ceda237ccf27ce6c6b",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-semantic-humoto.svg",
+    "source_sha256": "2504e353c49613a7cecb8fb5f1387c5726ff1db1659c43c7500de19581c78cc1",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-semantic-omomo.svg",
+    "source_sha256": "ea2ede9b3660c687d82f4ec064602638f9342f3525e894f7a044da931c8baace",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  },
+  {
+    "file": "matched-time-semantic.svg",
+    "source_sha256": "1d82f87e40c289b006eab1a592e3ca22bc5fb68dc1d9f398b57cac1abfccf830",
+    "change": "Codex label replaced with Single agent; legend spacing adjusted where needed; plotted data unchanged"
+  }
+]

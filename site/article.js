@@ -19,7 +19,7 @@ const configurations = [
     ],
   },
   {
-    id: "ensemble", title: "Independent agentic swarm", subtitle: "Four Codex agents, separate refinement histories",
+    id: "ensemble", title: "Independent agentic swarm", subtitle: "Four Astra agents, separate refinement histories",
     steps: [
       ["workers", "Start four independent refinements", "Each agent receives the same task and references, with its own workspace and execution history."],
       ["simulation", "Test and revise independently", "Each session chooses its own trials and revises its controller or references. It keeps its own history and receives feedback from its executions."],
@@ -28,12 +28,12 @@ const configurations = [
     ],
   },
   {
-    id: "collaborative", title: "Collaborative agentic swarm", subtitle: "Four Codex agents, shared findings and critiques",
+    id: "collaborative", title: "Collaborative agentic swarm", subtitle: "Four Astra agents, shared findings and critiques",
     steps: [
-      ["workers", "Start four refinements", "Four Codex agents receive the same task and references. Each has its own workspace and execution history."],
-      ["simulation", "Test a candidate", "Each agent runs its motion and controller in MuJoCo with SONIC, then inspects its own simulation feedback."],
-      ["communication", "Share findings and critique", "Agents decide when to send findings, ask peers for help or critique a proposed strategy. They can read these messages during refinement; there is no fixed exchange schedule."],
-      ["feedback", "Revise with peer feedback", "Each agent can use a peer’s findings to revise its own motion or controller, then test the change in simulation. Their code and execution histories remain separate."],
+      ["workers", "Start four refinements", "Four Astra agents receive the same task and references. Each has its own workspace and execution history."],
+      ["simulation", "Test a candidate", "Each agent tests its motion and controller in the simulator, then inspects its own simulation feedback."],
+      ["communication", "Share findings and critique", "Agents decide when to send findings, ask other agents for help or critique a proposed strategy. They can read these messages during refinement; there is no fixed exchange schedule."],
+      ["feedback", "Revise with feedback from other agents", "Each agent can use another agent’s findings to revise its own motion or controller, then test the change in simulation. Their code and execution histories remain separate."],
       ["evidence", "Select one final submission", "The evaluator selects the valid final execution with the lowest mean ADD across the four agents, using the same selection rule as the independent swarm."],
     ],
   },
@@ -75,11 +75,11 @@ function diagram(config) {
   } else if (id === "ensemble" || id === "collaborative") {
     const collaborative = id === "collaborative";
     flow = node("inputs", "artifact", 85, 25, 250, "Task and references", "", 45) +
-      `<rect class="diagram-scope" x="50" y="99" width="304" height="167" rx="14"/><text class="scope-label" x="66" y="117">${collaborative ? "Four connected Codex sessions" : "Four isolated Codex sessions"}</text>` +
-      node("plain1", "agent", 61, 131, 120, "Codex", "") +
-      node("plain2", "agent", 222, 131, 120, "Codex", "") +
-      node("tools1", "agent", 61, 200, 120, "Codex", "") +
-      node("tools2", "agent", 222, 200, 120, "Codex", "") +
+      `<rect class="diagram-scope" x="50" y="99" width="304" height="167" rx="14"/><text class="scope-label" x="66" y="117">${collaborative ? "Four connected Astra sessions" : "Four independent Astra sessions"}</text>` +
+      node("plain1", "agent", 61, 131, 120, "Astra", "") +
+      node("plain2", "agent", 222, 131, 120, "Astra", "") +
+      node("tools1", "agent", 61, 200, 120, "Astra", "") +
+      node("tools2", "agent", 222, 200, 120, "Astra", "") +
       (collaborative ? `<g class="peer-messages" aria-label="Messages between agents">
         <path data-edge="communication" class="diagram-edge" d="M185 157 H218" marker-start="url(#peer-${id})" marker-end="url(#peer-${id})"/>
         <path data-edge="communication" class="diagram-edge" d="M185 226 H218" marker-start="url(#peer-${id})" marker-end="url(#peer-${id})"/>
@@ -114,7 +114,8 @@ const highlights = {
 };
 
 const configurationRoot = document.querySelector("#configuration-diagrams");
-for (const config of configurationRoot ? configurations : []) {
+const shownConfigurations = configurationRoot?.dataset.configurations?.split(' ');
+for (const config of configurationRoot ? configurations.filter(c=>!shownConfigurations||shownConfigurations.includes(c.id)) : []) {
   const card = document.getElementById(`configuration-${config.id}`) || document.createElement("article");
   card.className = "configuration-card";
   card.id = `configuration-${config.id}`;

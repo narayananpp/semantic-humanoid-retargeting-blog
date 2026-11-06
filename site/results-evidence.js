@@ -71,7 +71,7 @@
     }
     individual.addEventListener('change', () => {
       for (const img of root.querySelectorAll('[data-add-image]')) {
-        const base = `assets/analysis/results/matched-time-add-${img.dataset.addImage}${individual.checked ? '-tasks' : ''}`;
+        const base = `${root.dataset.plotBase || "assets/analysis/results"}/matched-time-add-${img.dataset.addImage}${individual.checked ? '-tasks' : ''}`;
         img.src = `${base}.svg?v=clean-1`;
         img.closest('picture').querySelector('source').srcset = `${base}-mobile.svg?v=clean-1`;
       }

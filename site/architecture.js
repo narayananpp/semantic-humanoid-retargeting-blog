@@ -19,7 +19,7 @@
     const ui = document.createElement('div');
     ui.className = 'refinement-loop-ui';
     ui.innerHTML = `
-      <div class="loop-heading"><div><span class="loop-eyebrow">Astra with refinement</span><h3>Motion refinement through simulation feedback</h3></div><span class="loop-task">Clothes-stand interaction</span></div>
+      <div class="loop-heading"><div><span class="loop-eyebrow">Astra with Refinement</span><h3>Motion refinement through simulation feedback</h3></div><span class="loop-task">Clothes-stand interaction</span></div>
       <div class="loop-toolbar"><div class="loop-trials" role="group" aria-label="Selected recorded trials"></div><div class="loop-playback"><span class="loop-phase" aria-live="polite">Recorded trial</span><button type="button" data-loop-play>▶ Play loop</button></div></div>
       <div class="loop-canvas">
         <svg class="loop-connectors" aria-hidden="true"><defs><marker id="loop-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><g></g></svg>
