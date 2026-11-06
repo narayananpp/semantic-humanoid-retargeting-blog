@@ -11,3 +11,10 @@
 9. **GPT-6 Astra.** OpenAI. *GPT-6 Astra: A new generation of intelligence.* [Model announcement](https://openai.com/index/gpt-6-astra/).
 10. **Codex.** OpenAI. *Codex CLI.* [Official coding-agent repository](https://github.com/openai/codex). This citation refers to the agent software; GPT-6 Astra is the model used in our experiments.
 11. **G1 and Dex3.** Unitree Robotics. [G1 platform](https://www.unitree.com/g1/) · [Official robot simulation models](https://github.com/unitreerobotics/unitree_mujoco).
+
+### Related posts and demonstrations
+
+We also acknowledge public posts and demonstrations exploring agentic robot control, retargeting and physical interaction:
+
+- **Xiao Hu.** The [video-to-simulation retargeting demo](https://x.com/huxiao93612565/status/2097815230105399402) and [DexGPT code](https://github.com/Hu-xiao-max/dexgpt) explore hand-motion reconstruction, retargeting to dexterous robot hands and grasp refinement in simulation.
+- **Haoyang Weng.** [*Beyond Motion Tracking: Steerable Physical Interaction Competence*](https://haoyangweng.pages.dev/blog/2026-10-steerable-interaction-competence/en/) emphasizes dynamics-grounded low-level controllers and interfaces that express object and contact intent.

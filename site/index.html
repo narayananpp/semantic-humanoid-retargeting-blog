@@ -83,7 +83,7 @@
 <aside class="takeaways-message" aria-label="Key takeaways">
   <div class="takeaway-with-video">
     <ul class="takeaway-copy">
-      <li><strong>How should one retarget human-object motions for humanoids?</strong> We argue that robotics is about enacting changes in the environment, and so retargeted motions should produce the same object trajectory.</li>
+      <li><strong>How should one retarget human-object motions for humanoids?</strong> We posit that robotics is about enacting changes in the environment, and so retargeted motions should produce the same object trajectory.</li>
       <li><strong>Agentic models with a simulator in-the-loop produce dynamically feasible motions.</strong> We analyze the behaviour of our harness and find that iterating over targets with a verification reward that prioritizes object-trajectory matching is crucial.</li>
       <li><strong>Experience from related tasks improves refinement.</strong> Summaries of prior strategies and outcomes reduce object-tracking error on a new humanoid–object task from 23.35 to 7.77 cm under equal compute and time budgets.</li>
     </ul>
@@ -246,11 +246,15 @@
 <li><strong>Codex.</strong> OpenAI. <em>Codex CLI.</em> <a href="https://github.com/openai/codex">Official coding-agent repository</a>. This citation refers to the agent software; GPT-6 Astra is the model used in our experiments.</li>
 <li><strong>G1 and Dex3.</strong> Unitree Robotics. <a href="https://www.unitree.com/g1/">G1 platform</a> · <a href="https://github.com/unitreerobotics/unitree_mujoco">Official robot simulation models</a>.</li>
 </ol>
+<h3 id="related-posts-and-demonstrations">Related posts and demonstrations</h3>
+<p>We also acknowledge public posts and demonstrations exploring agentic robot control, retargeting and physical interaction:</p>
+<ul>
+<li><strong>Xiao Hu.</strong> The <a href="https://x.com/huxiao93612565/status/2097815230105399402">video-to-simulation retargeting demo</a> and <a href="https://github.com/Hu-xiao-max/dexgpt">DexGPT code</a> explore hand-motion reconstruction, retargeting to dexterous robot hands and grasp refinement in simulation.</li>
+<li><strong>Haoyang Weng.</strong> <a href="https://haoyangweng.pages.dev/blog/2026-10-steerable-interaction-competence/en/"><em>Beyond Motion Tracking: Steerable Physical Interaction Competence</em></a> emphasizes dynamics-grounded low-level controllers and interfaces that express object and contact intent.</li>
+</ul>
 </section>
 <section id="citation" class="outline-section blog-citation">
 <h2 id="cite-this-blog">Cite this blog</h2>
-<p>Narayanan Palghat Parameswaran, Jay Karhade, Haoyang He, Neehar Peri, Jay Patrikar, Dong-Ki Kim, Shayegan Omidshafiei, Sebastian Scherer, Deva Ramanan. <strong>HuMoTAR: Retargeting Through Visual Reasoning for Humanoid–Object Interaction.</strong> 2026.</p>
-<p><a href="citation.bib">Download BibTeX</a></p>
 <pre><code class="language-bibtex">@misc{parameswaran2026humotar,
   title = {HuMoTAR: Retargeting Through Visual Reasoning for Humanoid–Object Interaction},
   author = {Palghat Parameswaran, Narayanan and Karhade, Jay and He, Haoyang
