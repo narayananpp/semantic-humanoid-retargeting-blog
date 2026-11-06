@@ -45,7 +45,6 @@
             <div class="loop-evidence loop-query-card"><div class="loop-evidence-heading"><h5>Execution feedback</h5><div class="loop-feedback-tabs" role="group" aria-label="Simulation measurements"><button type="button" data-feedback="forces">Contact forces</button><button type="button" data-feedback="speed">Object speed</button><button type="button" data-feedback="checks">Grasp checks</button><button type="button" data-feedback="error">Object error</button></div></div><button type="button" class="loop-chart-button" data-loop-open="feedback" aria-label="Enlarge the simulation measurements"><span data-loop-feedback-chart></span></button><div class="loop-feedback-legend" data-loop-feedback-legend></div></div>
             <div class="loop-evidence"><div class="loop-evidence-heading"><h5>Image feedback</h5></div><div class="loop-inspections"><button type="button" class="loop-image-button" data-loop-open="image" aria-label="Enlarge the image inspected by the agent"><img data-loop-image alt="" loading="lazy"></button><button type="button" class="loop-hand-button" data-loop-open="image" aria-label="View the original image for this hand-detail crop"><span data-loop-hand></span></button></div></div>
           </div>
-          <div class="loop-query-summary"><span class="loop-query-tag">What the agent checked</span><strong data-loop-query-title></strong><span data-loop-query-values></span></div>
         </div>
         </div>
       </div>
@@ -152,20 +151,7 @@
       const referenceVideo=$('[data-loop-targets-video]');referenceVideo.pause();referenceVideo.src=stage.targets_video;
       $('[data-loop-trial]').textContent=stage.label;
       $('[data-loop-add]').textContent=stage.add_cm.toFixed(2)+' cm';
-      const query=stage.queries[0];
       feedbackMode=stage.feedback.focus;
-      $('[data-loop-query-title]').textContent=stage.id==='003'?'Two-hand starting pose':query.label;
-      const explanations={
-        initial:'The starting pose has a foot below the floor and hand–object overlap.',
-        '001':'The sampled robot–object contact forces are zero while the fingers close.',
-        '002':'The three fingertips start about 0.5 mm from the object surface, with no detected overlap.',
-        '003':'The two-hand starting pose has no detected collisions or joint-limit violations. The object remains in its original pose.',
-        '006':'At the finish, the floor does not support the stand and the object is still moving.',
-        '013':'The object-tracking error at the finish is 15.63 cm, despite a mean ADD of 8.76 cm.',
-        '017':'The stand is nearly upright and touches the floor, but the hand is still in contact.',
-        '023':'The floor supports the stand, robot contact is zero, and the object has stopped moving.'
-      };
-      $('[data-loop-query-values]').textContent=explanations[stage.id];
       $('[data-loop-excerpt]').textContent='“'+stage.quote+'”';
       $('.loop-record').classList.remove('is-expanded');$('.loop-record-toggle').setAttribute('aria-expanded','false');$('.loop-record-toggle').textContent='Read more';
       drawInspection();
