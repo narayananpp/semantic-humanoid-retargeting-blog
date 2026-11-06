@@ -28,6 +28,7 @@
     root.className='experience-story experience-flow';
     const inputs=el('div','experience-initial-inputs');inputs.append(film(e.media.human,'Human demonstration (SMPL)'),film(e.media.kinematic,'Initial kinematic reference'));root.append(inputs);
     inputs.querySelector('video').id='experience-human-clock';
+    const agent=el('div','experience-agent','Astra');root.append(agent);
     const start=el('div','experience-shared');start.append(film(e.media.base,'After 15 minutes',e.metrics.base.mean_add_m*100));root.append(start);
 
     const grid=el('div','experience-branches');root.append(grid);
@@ -48,9 +49,9 @@
     const finals=el('div','experience-final-pair');root.append(finals);for(const [key,title] of [['without_experience','Without experience'],['with_experience','With experience']])finals.append(film(e.media[key],`30 min / ${title}`,e.metrics[key].mean_add_m*100));
     for(const group of [inputs,start,midway,finals]){group.dataset.syncedVideos='duration';group.dataset.syncReference='#experience-human-clock';}
     root.append(el('p','publication-caption','Shelf righting after equal 15-minute continuations.'));
-    connectFlow(root,inputs,start,left,right,source,injection,ldecision,rdecision,midway,observed,finals);
+    connectFlow(root,inputs,agent,start,left,right,source,injection,ldecision,rdecision,midway,observed,finals);
   }
-  function connectFlow(root,inputs,start,left,right,source,injection,ldecision,rdecision,midway,observed,finals){
+  function connectFlow(root,inputs,agent,start,left,right,source,injection,ldecision,rdecision,midway,observed,finals){
     const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.classList.add('experience-flow-arrows');svg.setAttribute('aria-hidden','true');root.prepend(svg);
     const draw=()=>{
       if(innerWidth<=760){svg.replaceChildren();return;}
@@ -58,12 +59,14 @@
       const box=root.getBoundingClientRect(),rect=n=>{const r=n.getBoundingClientRect();return{x:(r.left+r.width/2-box.left)/scale,top:(r.top-box.top)/scale,bottom:(r.bottom-box.top)/scale};};
       svg.setAttribute('viewBox',`0 0 ${box.width/scale} ${box.height/scale}`);let paths=[];
       const link=(a,b)=>{const f=rect(a),t=rect(b);paths.push(`M${f.x},${f.bottom+7} V${t.top-12}`);};
-      link(inputs,start);const a=rect(start),l=rect(left.querySelector('h4')),r=rect(right.querySelector('h4')),y=a.bottom+26;
+      const target=rect(agent),junction=target.top-24;
+      for(const input of inputs.children){const from=rect(input);paths.push(`M${from.x},${from.bottom+7} V${junction} H${target.x} V${target.top-12}`);}
+      link(agent,start);const a=rect(start),l=rect(left.querySelector('h4')),r=rect(right.querySelector('h4')),y=a.bottom+26;
       paths.push(`M${a.x},${a.bottom+7} V${y} H${l.x} V${l.top-12}`,`M${a.x},${y} H${r.x} V${r.top-12}`);
       link(source,ldecision);link(injection,rdecision);link(ldecision.lastElementChild,midway.children[0]);link(rdecision.lastElementChild,midway.children[1]);link(midway.children[1],observed);link(midway.children[0],finals.children[0]);link(observed,finals.children[1]);
       svg.innerHTML='<defs><marker id="experience-arrow-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1 L8 5 L1 9" fill="none" stroke="currentColor" stroke-width="1.5"/></marker></defs>'+paths.map(d=>`<path d="${d}" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#experience-arrow-tip)"/>`).join('');
     };
-    const observer=new ResizeObserver(()=>requestAnimationFrame(draw));for(const n of [root,inputs,start,left,right,midway,observed,finals])observer.observe(n);draw();
+    const observer=new ResizeObserver(()=>requestAnimationFrame(draw));for(const n of [root,inputs,agent,start,left,right,midway,observed,finals])observer.observe(n);draw();
   }
   fetch('experience-story.json?v=experience-evidence-20261105').then(r=>{if(!r.ok)throw Error(r.status);return r.json();}).then(d=>{const e=d.examples.find(x=>x.group==='related'),root=document.querySelector('#experience-shelf-walkthrough .experience-story');if(root)build(root,e);}).catch(e=>{const r=document.querySelector('.experience-story');if(r)r.textContent=`Walkthrough could not load: ${e.message}`;});
 })();
