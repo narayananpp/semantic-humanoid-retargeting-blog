@@ -306,3 +306,7 @@
 /* Both initial inputs enter Astra before the shared 15-minute result. */
 .experience-agent {width:148px;margin:44px auto 0;padding:12px 18px;text-align:center;font-size:17px;font-weight:700;border:1.5px solid #b59a50;border-radius:10px;background:color-mix(in srgb,#dbb245 11%,var(--paper,#fff));color:var(--ink)}
 @media(max-width:760px){.experience-agent:before,.experience-agent:after{content:'↓';position:absolute;left:50%;transform:translateX(-50%);color:var(--flow-line);font-weight:400}.experience-agent:before{bottom:calc(100% + 9px)}.experience-agent:after{top:calc(100% + 7px)}}
+
+.experience-flow-arrows>path {stroke-dasharray:6 5;animation:experience-arrow-flow 1.1s linear infinite}
+@keyframes experience-arrow-flow {to{stroke-dashoffset:-22}}
+@media(prefers-reduced-motion:reduce){.experience-flow-arrows>path{animation:none;stroke-dasharray:none}}
