@@ -2,7 +2,7 @@
 
 ```bibtex
 @misc{parameswaran2026humotar,
-  title = {HuMoTAR: Retargeting Through Reasoning for Humanoid–Object Interaction},
+  title = {Retargeting Through Reasoning for Humanoid–Object Interaction},
   author = {Palghat Parameswaran, Narayanan and Karhade, Jay and He, Haoyang
             and Peri, Neehar and Patrikar, Jay and Kim, Dong-Ki
             and Omidshafiei, Shayegan and Scherer, Sebastian and Ramanan, Deva},
