@@ -155,7 +155,7 @@
       $('[data-loop-excerpt]').textContent='“'+stage.quote+'”';
       $('.loop-record').classList.remove('is-expanded');$('.loop-record-toggle').setAttribute('aria-expanded','false');$('.loop-record-toggle').textContent='Read more';
       drawInspection();
-      drawCharts();drawFeedback();setPhase('recorded');resumeVideos();requestAnimationFrame(connect);
+      drawCharts();drawFeedback();setPhase('recorded');startAlignedCycle();requestAnimationFrame(connect);
     }
     function drawInspection(){
       const stage=data.stages[current];
@@ -178,7 +178,7 @@
         if(current===data.stages.length-1){stop();return;}
         show(current+1);setPhase('execute');
       } else setPhase(phases[Math.max(next,0)]);
-      if(phase==='execute'){rollout.currentTime=0;rollout.play().catch(()=>{});}
+      if(phase==='execute')startAlignedCycle();
       const duration=phase==='execute' ? (Number.isFinite(rollout.duration)?rollout.duration*1000:14000):phase==='inspect'?6500:2400;
       timer=setTimeout(advance,duration);
     }
@@ -247,17 +247,41 @@
     layoutObserver.observe($('[data-loop-node="feedback"]'));
     const videos=Array.from(ui.querySelectorAll('video'));
     const blocked=new Set();
+    let cycleAbort, cycleReady=false;
     function videoInView(video){
       const r=video.getBoundingClientRect();
       return r.width>0&&r.height>0&&r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth;
     }
+    // Start every clip at zero only after the selected stage has loaded.
+    // Shorter clips hold their last frame until the whole group restarts.
+    async function startAlignedCycle(){
+      cycleAbort?.abort();
+      const controller=new AbortController();cycleAbort=controller;
+      const {signal}=controller;cycleReady=false;
+      videos.forEach(video=>{video.autoplay=false;video.loop=false;video.pause();video.playbackRate=1;video.preload='auto';});
+      function waitFor(video,event,ready){
+        return new Promise(resolve=>{
+          function finish(){video.removeEventListener(event,check);signal.removeEventListener('abort',finish);resolve();}
+          function check(){if(ready())finish();}
+          video.addEventListener(event,check);signal.addEventListener('abort',finish,{once:true});check();
+        });
+      }
+      await Promise.all(videos.map(video=>waitFor(video,'loadeddata',()=>video.readyState>=2)));
+      if(signal.aborted)return;
+      await Promise.all(videos.map(video=>{
+        if(video.currentTime===0&&!video.seeking)return Promise.resolve();
+        video.currentTime=0;
+        return waitFor(video,'seeked',()=>!video.seeking);
+      }));
+      if(signal.aborted)return;
+      cycleReady=true;resumeVideos();
+    }
     function resumeVideos(){
-      const allowed=!document.hidden&&!dialog.open&&document.documentElement.dataset.media!=='off';
+      const active=!document.hidden&&!dialog.open&&document.documentElement.dataset.media!=='off'&&videos.some(videoInView);
       videos.forEach(video=>{
-        const active=allowed&&videoInView(video);
-        video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=true;video.playbackRate=1;video.autoplay=active;
-        if(!active){video.pause();return;}
-        if(video.paused)video.play().then(()=>blocked.delete(video)).catch(error=>{
+        video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=false;video.playbackRate=1;video.autoplay=false;
+        if(!active||!cycleReady){video.pause();return;}
+        if(video.paused&&!video.ended)video.play().then(()=>blocked.delete(video)).catch(error=>{
           if(error.name==='NotAllowedError')blocked.add(video);
         });
       });
@@ -268,7 +292,8 @@
     }
     const videoObserver=new IntersectionObserver(resumeVideos,{threshold:[0,.01]});
     videos.forEach(video=>{
-      video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=true;
+      video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=false;
+      video.addEventListener('ended',()=>{if(cycleReady&&videos.every(v=>v.ended))startAlignedCycle();});
       video.addEventListener('loadedmetadata',resumeVideos);
       video.addEventListener('canplay',resumeVideos);
       videoObserver.observe(video);
