@@ -2,8 +2,9 @@ import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
 
 const $ = id => document.getElementById(id);
-const SINGLE = document.body.dataset.trace === 'astra120';
-const DATA = SINGLE ? 'trace-explorer/astra120/' : 'trace-explorer/collaborative/';
+const ARCHITECTURE = document.body.dataset.trace === 'architecture';
+const SINGLE = ARCHITECTURE || document.body.dataset.trace === 'astra120';
+const DATA = ARCHITECTURE ? 'trace-explorer/architecture/' : SINGLE ? 'trace-explorer/astra120/' : 'trace-explorer/collaborative/';
 let recording;
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = value => Number.isFinite(value) ? value.toFixed(2) : '—';
@@ -153,7 +154,7 @@ async function selectAgent(id, requestedTrial, options={}) {
   $('loading').hidden=false;
   if(!caches.agent.has(id))caches.agent.set(id,getJSON(DATA+`agent-${id}.json`));
   const agent=await caches.agent.get(id);if(request!==state.agentRequest)return;state.agent=agent;
-  $('agent-meta').textContent=`${agent.trials.filter(t=>t.motion).length} replay stages`;
+  if ($('agent-meta')) $('agent-meta').textContent=`${agent.trials.filter(t=>t.motion).length} replay stages`;
   const chosen=agent.trials.find(t=>t.id===requestedTrial)||agent.trials.find(t=>t.id!=='initial'&&t.motion)||agent.trials.find(t=>t.id==='final')||agent.trials[0];
   if(!chosen)throw new Error('No scored trials were found for this agent.');
   await selectTrial(chosen.id,options);
@@ -166,7 +167,7 @@ async function selectTrial(id,options={}) {
   $('play').disabled=true;$('scrubber').disabled=true;
   const clip=$('stage-video');clip.pause();$('video-card').open=false;$('video-card').hidden=!trial.video;
   if(trial.video){clip.src=DATA+trial.video;}else{clip.removeAttribute('src');clip.load();}
-  $('trial-label').textContent=trial.id==='initial'?(SINGLE?'Initial reference (no physics)':'Initial reference'):trial.id==='final'?'Final execution':`Trial ${trial.id}`;
+  $('trial-label').textContent=trial.id==='initial'?(recording.initial_label || (SINGLE?'Initial reference (no physics)':'Initial reference')):trial.id==='final'?'Final execution':`Trial ${trial.id}`;
   document.querySelector('.mode-tag').textContent=trial.id==='initial'?'Kinematic reference':trial.motion?.kind==='verified_replay'?'Verified simulation replay':'Recorded simulation';
   $('evidence-title').textContent=trial.id==='initial'?'Initial reference':trial.id==='final'?'Final execution':`Trial ${trial.id}`;
   $('refinement-time').textContent=`${trial.time_min.toFixed(2)} min`;
@@ -256,9 +257,9 @@ function eventMarkup(event){
 }
 function contextEvents(){
   const t=state.trial,all=state.agent.events,idx=state.agent.trials.indexOf(t);
-  if(t.id==='initial')return [];
+  if(t.id==='initial')return all.filter(e=>t.evidence_lines?.includes(e.line));
   const next=state.agent.trials[idx+1],prev=state.agent.trials[idx-1];
-  const result=all.filter(e=>t.call_ids.includes(e.id)||e.time_min>=Math.max(0,prev?.time_min||0,t.start_min-1.2)&&e.time_min<Math.min(next?.start_min??t.time_min+1.5,t.time_min+2));
+  const result=all.filter(e=>t.evidence_lines?.includes(e.line)||t.call_ids.includes(e.id)||e.time_min>=Math.max(0,prev?.time_min||0,t.start_min-1.2)&&e.time_min<Math.min(next?.start_min??t.time_min+1.5,t.time_min+2));
   const before=all.filter(e=>e.kind==='agentMessage'&&e.time_min<=t.start_min).at(-1);
   const after=all.find(e=>e.kind==='agentMessage'&&e.time_min>=t.time_min);
   for(const e of [before,after])if(e&&!result.includes(e))result.push(e);
@@ -272,7 +273,7 @@ function pathPlot(trial){
   return `<h3 class="measure-title">Object path · top view</h3><svg class="path-plot" viewBox="0 0 340 330" role="img" aria-label="Desired and executed object paths in the horizontal plane">${paths.map((points,i)=>`<path d="${points.map((p,j)=>`${j?'L':'M'}${sx(p[0]).toFixed(2)},${sy(p[1]).toFixed(2)}`).join(' ')}" fill="none" stroke="${i?'#087b68':'#a06ac4'}" stroke-width="2.5"/>`).join('')}</svg><p class="path-legend"><span>● Desired</span><span>● Executed</span></p><p class="context-note">Spatial paths from the recorded object-path analysis.</p>`;
 }
 function renderStages(){
-  $('key-stages').innerHTML=recording.stages.map((stage,i)=>`<button data-stage="${i}" class="${state.agent.id===stage.agent&&state.trial.id===stage.trial?'active':''}"><span class="stage-index">${i+1}</span><b>${escapeHTML(stage.label)}</b><span>${stage.trial==='initial'?'Kinematic reference':`${SINGLE?'':`Agent ${stage.agent} · `}${stage.time_min.toFixed(1)} min`}</span><strong>${fmt(stage.add_cm)} <small>cm ADD</small></strong></button>`).join('');
+  $('key-stages').innerHTML=recording.stages.map((stage,i)=>`<button data-stage="${i}" class="${state.agent.id===stage.agent&&state.trial.id===stage.trial?'active':''}"><span class="stage-index">${i+1}</span><b>${escapeHTML(stage.label)}</b><span>${stage.trial==='initial'?(ARCHITECTURE?'Initial execution':'Kinematic reference'):`${SINGLE?'':`Agent ${stage.agent} · `}${stage.time_min.toFixed(1)} min`}</span><strong>${fmt(stage.add_cm)} <small>cm ADD</small></strong></button>`).join('');
   $('key-stages').querySelectorAll('[data-stage]').forEach(button=>button.addEventListener('click',async()=>{
     const stage=recording.stages[Number(button.dataset.stage)];
     if(stage.agent!==state.agent.id)await selectAgent(stage.agent,stage.trial);else await selectTrial(stage.trial);

@@ -34,7 +34,7 @@
           <div class="loop-reference loop-arrow-label" data-loop-node="reference"><h4>End-effector references</h4></div>
           <div class="loop-ik-block loop-box" data-loop-node="ik"><h4>IK</h4></div>
           <div class="loop-targets loop-arrow-label" data-loop-node="targets"><div class="loop-target-preview"><video data-architecture-clip="targets" data-loop-targets-video muted autoplay loop playsinline preload="metadata" aria-label="Planned wrist targets over the G1 reference motion"></video><span class="loop-target-key" title="Colored arms show reference joint poses; gold markers show planned wrist targets.">Arm reference <i></i> Wrist targets</span><h4>Joint-space reference</h4></div></div>
-          <div class="loop-control loop-box" data-loop-node="control"><h4 class="loop-control-title">Control</h4><div class="loop-controller" data-loop-node="sonic"><h4>Whole-body controller<br>(e.g. SONIC)</h4></div><div class="loop-controller" data-loop-node="wrist"><h4>Wrist and finger<br>impedance controller</h4></div></div>
+          <div class="loop-control loop-box" data-loop-node="control"><h4 class="loop-control-title">Control</h4><h4>Whole-body controller<br>(e.g. SONIC)</h4></div>
           <div class="loop-rollout loop-box" data-loop-node="rollout"><div class="loop-rollout-heading"><h4>MuJoCo rollout</h4><span data-loop-trial></span></div><video data-architecture-clip="rollout" data-loop-rollout muted autoplay loop playsinline controls preload="metadata" aria-label="Recorded Astra execution"></video><div class="loop-score"><span>Mean object-tracking error</span><strong data-loop-add></strong></div></div>
         </div>
         <div class="loop-bottom">
@@ -244,10 +244,7 @@
       function path(d,kind){g.append(svg('path',{d,class:`loop-edge ${kind}`,'marker-end':'url(#loop-arrow)'}));}
       function join(from,to,kind='forward',offset=0) {const a=box(from),b=box(to),mid=(a.r+b.l)/2;path(`M ${a.r+2} ${a.y} H ${mid} V ${b.y+offset} H ${b.l-5}`,kind);}
       join('human','agent','forward',-12);join('initial','agent','forward',12);join('agent','ik');
-      const source=box('ik'),control=box('control'),fork=control.l-14;
-      for(const name of ['sonic','wrist']) {const child=box(name);path(`M ${source.r+2} ${source.y} H ${fork} V ${child.y} H ${child.l-5}`,'forward');}
-      const merge=(control.r+box('rollout').l)/2;
-      for(const name of ['sonic','wrist']) {const child=box(name),out=box('rollout');path(`M ${child.r+2} ${child.y} H ${merge} V ${out.y} H ${out.l-5}`,'forward');}
+      join('ik','control');join('control','rollout');
       const agent=box('agent');
       const a=box('rollout'),f=box('feedback');
       g.append(svg('path',{d:`M ${a.x} ${a.b} V ${f.t}`,class:'loop-feedback-connection'}));

@@ -59,3 +59,17 @@ Keep all notices in `vendor/`, including source motion attribution and terms.
 No mesh-download link is offered. Video download controls are hidden where the
 browser supports it. These are presentation choices, not access protection:
 anything sent to a browser can be saved or extracted.
+
+## Architecture recording
+
+The main article links to `trace-explorer-architecture.html`. Its eight featured
+stages use the same source events, motion hashes, videos and ADD values as
+`architecture-trace/trace.json`. The two-hour recording remains separate in
+`trace-explorer-2h.html`.
+
+`export_architecture_explorer.py` takes explicit paths to the original recording,
+recovered images, verified replay bundles and initial/final bundles. It checks
+event and motion hashes against the architecture before publishing. All 25
+candidate scores are retained, alongside the separately evaluated initial
+reference; iteration 023 is labelled as the final selected execution. No agent
+or physics simulation is run during export or browser playback.

@@ -12,3 +12,6 @@
 .agent-finals{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}.agent-finals>span{font-size:11px;color:var(--muted);margin-right:8px}.agent-finals button{font-size:11px;padding:6px 10px}.agent-finals strong{font-weight:500;margin-left:8px;color:var(--accent)}.agent-finals button.active{border-color:var(--accent);background:var(--soft)}
 
 .agent-summary{display:grid;gap:5px;min-width:220px}.agent-summary strong{font-size:13px;font-weight:600}.agent-summary span{font-size:11px;color:var(--muted)}
+
+/* Eight architecture stages stay in one row on wide screens. */
+@media(min-width:1200px){body[data-trace="architecture"] .key-stages{grid-template-columns:repeat(8,minmax(0,1fr))}}

@@ -14,10 +14,7 @@
     <nav><a href="index.html#method">Back to motion refinement ↗</a><button id="about-button" class="quiet">About this recording</button></nav>
   </header>
   <main>
-    <div class="heading">
-      <div><p class="eyebrow">ASTRA WITH REFINEMENT / OMOMO</p><h1>Lift, carry and place a clothes stand.</h1><p class="intro">Replay the clothes-stand interaction at successive trials and inspect the agent’s recorded observations, tool calls and images.</p></div>
-      <div class="agent-summary"><strong>GPT-6 Astra in Codex</strong><span id="agent-meta">Recorded refinement</span></div>
-    </div>
+    <div class="heading"><h1>Lift, carry and place a clothes stand.</h1></div>
     <div id="app-error" class="app-error" role="alert" hidden></div>
     <section class="stages-card" aria-label="Selected stages"><div class="section-heading"><h2>Initial reference → refinement → final execution</h2><span>Selected trials and final execution</span></div><div id="key-stages" class="key-stages"></div></section>
     <div class="workspace">
@@ -58,7 +55,7 @@
   </main>
   <dialog id="about"><button id="close-about" class="dialog-close" aria-label="Close">×</button><p class="eyebrow">THE RECORDED EXPERIMENT</p><h2>A recorded Astra refinement run.</h2><p>GPT-6 Astra runs in the Codex coding environment. The session ended before the full budget was used. Refinement time counts active session time and excludes the interruption between the two saved sessions.</p><p>The initial reference, trials 001, 005 and 020, and the final execution have interactive 3D playback. Intermediate replays use the saved controllers, references and initial states and are checked against the original scores. Other trials retain their scores, messages and inspected images.</p><p>Messages are quoted from the recording with private paths and account identifiers removed. Tool labels summarize recorded operations. Images are those actually inspected by the agent. Playback uses saved poses and does not run new physics simulation.</p><p><a href="trace-explorer/vendor/THREE-LICENSE.txt">Three.js license</a> · <a href="trace-explorer/vendor/UNITREE-LICENSE.txt">G1 asset notice</a> · <a href="trace-explorer/vendor/OMOMO-OBJECTS-LICENSE.txt">Object asset notice</a> · <a href="trace-explorer/vendor/DATA-NOTICE.txt">Data attribution</a></p></dialog>
   <noscript>This explorer needs JavaScript. The <a href="index.html#method">architecture walkthrough</a> is also available in the article.</noscript>
-  <script type="module" src="trace-explorer/explorer.js?v=intermediate-replays-20261105"></script>
+  <script type="module" src="trace-explorer/explorer.js?v=title-only-20261105"></script>
 <script src="autoplay.js?v=all-videos-20261104" defer></script>
 </body>
 </html>

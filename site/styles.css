@@ -1124,7 +1124,8 @@ body .publication-caption strong { font-weight:700; color:var(--ink); }
 .loop-reference,.loop-targets { padding:10px 5px; }
 .loop-target-key { display:block; font:9px/1.4 var(--sans); margin-top:5px; color:var(--muted); }
 .loop-target-key i { display:inline-block; width:6px; height:6px; border-radius:50%; background:#eda70a; margin:0 2px 0 4px; }
-.loop-control { background:transparent; padding:26px 8px 10px; display:grid; gap:22px; }
+.loop-control { background:var(--loop-paper); padding:18px 8px 12px; display:grid; gap:0; }
+.loop-control>h4:not(.loop-control-title) { margin:0; font-size:12px; }
 .loop-control-title { position:absolute; left:50%; top:-10px; transform:translateX(-50%); padding:0 6px; background:var(--loop-paper); }
 .loop-controller { position:relative; padding:12px 5px; border:1px solid #b59a50; border-radius:7px; background:var(--loop-paper); }
 .loop-controller h4 { font-size:12px; }
